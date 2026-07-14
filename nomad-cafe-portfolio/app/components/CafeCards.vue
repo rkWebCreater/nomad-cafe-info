@@ -1,40 +1,4 @@
 <!-- app/components/CafeCards.vue -->
-<script setup>
-import { computed } from 'vue'
-// 💡 Web Components ではなく、Vue専用のコンポーネントとモジュールをインポートします
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules'
-
-// 💡 Vue版Swiperに必要なCSSをここで確実に読み込みます
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
-
-defineProps({ //cafeのデータを取り出す
-  cafes: {
-    type: Array,
-    required: true
-  }
-})
-
-// スライダーのモジュールを配列化
-const modules = [Navigation, Pagination, Scrollbar]
-
-// 💡 ブレイクポイントの数値をVueのオブジェクトとして定義（JSON.stringifyは不要になります）
-const swiperBreakpoints = {
-  0: {
-    slidesPerView: 1.2,
-    centeredSlides: true,
-    spaceBetween: 15
-  },
-  768: {
-    slidesPerView: 3,
-    spaceBetween: 20
-  }
-}
-</script>
-
 <template>
   <ClientOnly>
     <!-- 💡 <Swiper> コンポーネントを使用。これにより遷移時のバグが100%消滅します -->
@@ -154,14 +118,48 @@ const swiperBreakpoints = {
   }
 }
 </style>
+<script setup>
 
+// 💡 Web Components ではなく、Vue専用のコンポーネントとモジュールをインポートします
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, Scrollbar } from 'swiper/modules'
+
+// 💡 Vue版Swiperに必要なCSSをここで確実に読み込みます
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+
+defineProps({ //cafeのデータを取り出す
+  cafes: {
+    type: Array,
+    required: true
+  }
+})
+
+// スライダーのモジュールを配列化
+const modules = [Navigation, Pagination, Scrollbar]
+
+// 💡 ブレイクポイントの数値をVueのオブジェクトとして定義（JSON.stringifyは不要になります）
+const swiperBreakpoints = {
+  0: {
+    slidesPerView: 1.2,
+    centeredSlides: true,
+    spaceBetween: 15
+  },
+  768: {
+    slidesPerView: 3,
+    spaceBetween: 20
+  }
+}
+</script>
 <!-- スライドをクリックしてページ遷移しスライダーが固まるバグ解消法
 ------------------------------
 ## 【Nuxt 3 × Swiper】ページ遷移時にスライダーが崩れる（ただ並ぶだけになる）バグの解説## 1. 以前の書き方（Web Components版）が壊れていた理由
 以前のコードで使用していた <swiper-container> は、「Web Components（ウェブコンポーネント）」と呼ばれるブラウザ標準の機能です。これがNuxt 3の仕様と衝突していました。
 
 * 最初の読み込み（F5）で動く理由:
-ブラウザが最初から真っさらにHTMLを解析するため、タグを見つけて正常にスライダーの初期化（魔法を掛ける処理）が走ります。
+ブラウザが最初から真っさらにHTMLを解析するため、タグを見つけて正常にスライダーの初期化が走ります。
 * ページ遷移（往復）でただの画像が並ぶ状態になる理由:
 Nuxt 3はアプリのように超高速で画面を切り替えるため、ブラウザ自体の再読み込み（リフレッシュ）を行いません。画面が戻ってきた際、ブラウザは「その <swiper-container> はさっき読み込んだから知っている」と勘違いし、二度目の初期化処理をサボってしまいます。
 結果として、スライダーとしての命（JavaScript）が吹き込まれず、ただの四角いHTML要素（divタグと同じ状態）として縦や横に並んでしまうバグが発生していました。

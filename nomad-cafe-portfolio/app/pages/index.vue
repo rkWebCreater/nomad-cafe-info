@@ -179,42 +179,17 @@ header{
 </style>
 
 <script setup>
-
-
+//vueからcomputedを確実にインポート
+import { computed } from 'vue'
 import CafeCards from '~/components/CafeCards.vue'; /*コンポーネントCafeCards.vueの読み込み */
 // 先ほど作成したJSONデータを読み込む
 import cafeListData from '../../cafes.json'
-const cafeList = cafeListData
+const cafeList = cafeListData 
 
-//営業中かどうかの判定 スライダーのカードをコンポーネント化しているのでCafeCards.vue側にもcheckIfOpen関数を記述する
-const checkIfOpen = (businessHours) => {
+// 💡 composables から関数を呼び出す（1行書くだけでOK！）
+const { checkIfOpen } = useCafe()
 
-  const now = new Date();//今の日付
-  const currentHours = String(now.getHours()).padStart(2,'0');   //String()で文字データに変換し.padStart(2,'0')で1桁の数字（例：9）を、2桁のきれいな文字列（例：09）に強制的に変換する .padStart( , '')は文字列にしか使えない
-  const currentMinutes = String(now.getMinutes()).padStart(2, '0');
-  const nowTimeNum = Number(currentHours + currentMinutes);      //Number()で数値化する
-  
-  const times = businessHours.split('-');
-  if (times.length !== 2) return false //もしデータが未入力だったり形式が違ったりした場合に、エラーを起こさず安全に「営業外（false）」として弾く。
-  
-  const openTimeNum = Number(times[0].trim().replace(':', ''))//Number(...) で、文字列から純粋な数値の 800 に変換する。times[0].trim() 文字のまわりにある余分なスペース（半角・全角）をキレイに消去して "08:00" にする。 replace(':', '') で、コロンを消し去って "0800" というただの数字の並びにする。
-  const closeTimeNum = Number(times[1].trim().replace(':', ''))
-
-  if(closeTimeNum < openTimeNum){
-    // 終了時間が開店時間より小さい＝深夜営業の店の場合
-
-    // 「開始時刻以降（18時〜24時）」または「終了時刻まで（0時〜3時）」なら営業中
-     return nowTimeNum >= openTimeNum || nowTimeNum <= closeTimeNum
-  
-  }else{
-    // 終了時間が開店時間より大きい＝通常営業の店の場合
-
-     return nowTimeNum >= openTimeNum && nowTimeNum <= closeTimeNum
-  }
-}
-
-const openCafes = computed(()=> {
-  //filter関数を使ってcheckIfOpenがtrueになるカフェだけを残す
+const openCafes = computed(() => {
   return cafeList.filter(cafe => checkIfOpen(cafe.businessHours))
 })
 /*computed()について

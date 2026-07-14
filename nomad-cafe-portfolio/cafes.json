@@ -1,0 +1,331 @@
+[
+      {
+    "id": "cafe-001",
+    "name": "Mellow Work & Coffee",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区神南1丁目20-5 1F",
+    "budget": "￥600〜￥1,200",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafe1.jpg",
+    "isOpen": true,
+    "businessHours": "08:00 - 22:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 35.658034, "lng": 139.701632 }
+  },
+  {
+    "id": "cafe-002",
+    "name": "Grid & Green Shinjuku",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区新宿3丁目15-6 2F",
+    "budget": "￥700〜￥1,500",
+    "imageUrl": "/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "09:00 - 21:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none"},
+      "power": { "available": true, "seats": "some" }
+    },
+    "coordinates": { "lat": 35.689607, "lng": 139.700573 }
+  },
+  {
+    "id": "cafe-003",
+    "name": "The Base Lab",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区桜丘町4-2 1F",
+    "budget": "￥550〜￥1,100",
+    "imageUrl": "/images/slider/cafe1.jpg",
+    "isOpen": false,
+    "businessHours": "07:00 - 20:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "all" }
+    },
+    "coordinates": { "lat": 35.664035, "lng": 139.698421 }
+  },
+  {
+    "id": "cafe-004",
+    "name": "Focus Cafe Kichijoji",
+    "area": "kichijoji",
+    "areaNameJa": "吉祥寺",
+    "address": "東京都武蔵野市吉祥寺本町1丁目8-3",
+    "budget": "￥650〜￥1,300",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "07:30 - 20:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.703139, "lng": 139.579838 }
+  },
+  {
+    "id": "cafe-005",
+    "name": "night Cafe roppongi ",
+    "area": "roppongi",
+    "areaNameJa": "六本木",
+    "address": "東京都港区六本木3丁目11-6 B1F",
+    "budget": "￥1,200〜￥2,500",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": " 20:00 - 07:30",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.403139, "lng": 138.579838 }
+  },
+  {
+    "id": "cafe-006",
+    "name": "night Cafe kabuki ",
+    "area": "kabuki",
+    "areaNameJa": "歌舞伎町",
+    "address": "東京都新宿区歌舞伎町1丁目21-2",
+    "budget": "￥1,000〜￥2,200",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": " 22:00 - 06:30",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.803139, "lng": 139.079838 }
+  },
+  {
+    "id": "cafe-007",
+    "name": "night Cafe kabuki2 ",
+    "area": "kabuki",
+    "areaNameJa": "歌舞伎町",
+    "address": "東京都新宿区歌舞伎町2丁目38-1F",
+    "budget": "￥1,100〜￥2,400",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": " 21:00 - 06:30",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.80319, "lng": 139.07938 }
+  },
+  {
+    "id": "cafe-008",
+    "name": "night Cafe roppongi2 ",
+    "area": "roppongi",
+    "areaNameJa": "六本木",
+    "address": "東京都港区六本木5丁目2-4 3F",
+    "budget": "￥1,300〜￥2,800",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": " 20:00 - 07:30",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.403139, "lng": 138.579838 }
+  },
+  {
+    "id": "cafe-009",
+    "name": "Midnight Lounge Shibu-Ura",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区道玄坂2丁目16-8 B1F",
+    "budget": "￥1,500〜￥3,000",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "22:00 - 05:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 35.658034, "lng": 139.701632 }
+  },
+  {
+    "id": "cafe-010",
+    "name": "Owl Nest Cafe Shinjuku",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区新宿3丁目22-11 3F",
+    "budget": "￥900〜￥2,000",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "21:00 - 06:00",
+    "features": {
+      "wifi": { "available": true, "speed": "normal" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 35.693825, "lng": 139.703356 }
+  },
+  {
+    "id": "cafe-011",
+    "name": "Night Owl Roasters Ikebukuro",
+    "area": "ikebukuro",
+    "areaNameJa": "池袋",
+    "address": "東京都豊島区東池袋1丁目29-4",
+    "budget": "￥600〜￥1,400",
+    "imageUrl": "/images/slider/cafeNormal.png",
+    "isOpen": true,
+    "businessHours": "20:00 - 05:30",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.728926, "lng": 139.71038 }
+  },
+  {
+    "id": "cafe-012",
+    "name": "Cyber Cafe Neon Kabuki",
+    "area": "kabuki",
+    "areaNameJa": "歌舞伎町",
+    "address": "東京都新宿区歌舞伎町1丁目14-3 2F",
+    "budget": "￥800〜￥1,800",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "23:00 - 08:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 35.695844, "lng": 139.702081 }
+  },
+  {
+    "id": "cafe-013",
+    "name": "Roppongi Velvet Lounge",
+    "area": "roppongi",
+    "areaNameJa": "六本木",
+    "address": "東京都港区六本木4丁目9-2 B1F",
+    "budget": "￥1,600〜￥3,500",
+    "imageUrl": "/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "21:30 - 05:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.662725, "lng": 139.731234 }
+  },
+  {
+    "id": "cafe-014",
+    "name": "Dawn Break Cafe Shibuya",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区宇田川町31-1 4F",
+    "budget": "￥750〜￥1,600",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "20:00 - 06:00",
+    "features": {
+      "wifi": { "available": true, "speed": "normal" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 35.659462, "lng": 139.700553 }
+  },
+  {
+    "id": "cafe-015",
+    "name": "Late Night Base Shinjuku",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区西新宿1丁目18-5",
+    "budget": "￥850〜￥1,900",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "22:00 - 07:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 35.689622, "lng": 139.699211 }
+  },
+    {
+    "id": "cafe-016",
+    "name": "Moonlight Espresso Ikebukuro",
+    "area": "ikebukuro",
+    "areaNameJa": "池袋",
+    "address": "東京都豊島区西池袋3丁目25-10",
+    "budget": "￥800〜￥1,600",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "21:00 - 05:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.731454, "lng": 139.711822 }
+  },
+  {
+    "id": "cafe-017",
+    "name": "Night Hideout Kabuki3",
+    "area": "kabuki",
+    "areaNameJa": "歌舞伎町",
+    "address": "東京都新宿区歌舞伎町2丁目20-9",
+    "budget": "￥1,200〜￥2,500",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "20:30 - 06:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 35.696123, "lng": 139.702941 }
+  },
+  {
+    "id": "cafe-018",
+    "name": "Roppongi Midnight Beans",
+    "area": "roppongi",
+    "areaNameJa": "六本木",
+    "address": "東京都港区六本木7丁目14-5 2F",
+    "budget": "￥1,400〜￥2,800",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "22:00 - 05:30",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 35.663112, "lng": 139.732845 }
+  },
+  {
+    "id": "cafe-019",
+    "name": "Sunny Side Coffee Shibuya",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区神南1丁目19-4",
+    "budget": "￥650〜￥1,350",
+    "imageUrl": "/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "08:00 - 20:00",
+    "features": {
+      "wifi": { "available": true, "speed": "normal" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 35.661234, "lng": 139.698432 }
+  },
+  {
+    "id": "cafe-020",
+    "name": "Green Terrace Shinjuku",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区新宿4丁目1-6",
+    "budget": "￥700〜￥1,500",
+    "website": "https://example.com",
+    "imageUrl": "/images/slider/cafeNormal.png",
+    "isOpen": true,
+    "businessHours": "09:00 - 21:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.690112, "lng": 139.704543 }
+  }
+
+]

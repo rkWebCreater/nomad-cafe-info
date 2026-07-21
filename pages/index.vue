@@ -43,7 +43,7 @@
 
 /*PC、SP共通 */
 header{
-        background:url(../../public/images/FV/FV_cafe.png);
+        background:url(/nomad-cafe-info/images/FV/FV_cafe.png);
         background-repeat: no-repeat;
         position:relative;
         

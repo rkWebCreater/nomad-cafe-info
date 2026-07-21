@@ -3,7 +3,7 @@
 <script setup>
 import {computed} from 'vue'
 import {useRoute} from 'vue-router'
-import cafeData from '../cafes.json'
+import cafeData from '../../cafes.json'
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()
@@ -11,6 +11,13 @@ const route = useRoute()
 // 2. URLの ?keyword=〇〇 の部分やエリアボタンからのクエリをリアルタイムに取得 computed(()=>route.query.oooo || '')　キーワードか空文字を取得
 const searchKeyword = computed(()=>route.query.keyword || '')
 const searchArea = computed(()=>route.query.area || '')
+
+// エリアボタンから遷移する際の日本語に直して検索結果ページに表示させる
+const searchAreaName = computed(() =>{
+  if(!searchArea.value) return ''
+  const matchedCafe = cafeData.find( cafe => cafe.area ===searchArea.value)
+  return matchedCafe ? matchedCafe.areaNameJa : searchArea.value
+})
 
 // 3. キーワードをもとにカフェデータを絞り込む　computed(()=>{  })
 const filteredCafes = computed(()=> {
@@ -46,7 +53,7 @@ const filteredCafes = computed(()=> {
 
  <div class="search_result">
   <h1>
-   <span v-if="searchArea">エリア「{{ searchArea }}」</span>
+   <span v-if="searchArea">エリア「{{ searchAreaName }}」</span>
    <span v-if="searchArea && searchKeyword">と</span>
    <span v-if="searchKeyword">キーワード「{{ searchKeyword }}」</span>
    <span v-if="!searchArea && !searchKeyword">すべてのカフェ</span>

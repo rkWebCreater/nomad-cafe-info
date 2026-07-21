@@ -1,3 +1,6 @@
+// @ts-nocheck 
+
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -15,7 +18,7 @@ export default defineNuxtConfig({
 
   //  app内設定
   app: { 
-    baseURL: '/nomad-cafe-info/', 
+    baseURL: '/nomad-cafe-info/',
     head: {
       link: [
         // Google Fonts のサーバーに接続する設定

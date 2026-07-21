@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [ main ] # 💡メインブランチ名が master の場合は master に書き換えてください
+    branches: [ main ]
 permissions:
   contents: read
   pages: write
@@ -17,24 +17,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          
       - name: Install dependencies
         run: npm install --force
-        
       - name: Generate static site
         run: npx nuxt generate
-        
-      # 💡 最新のアップロード処理に修正しました
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
-          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

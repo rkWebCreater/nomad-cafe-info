@@ -2,7 +2,7 @@
 
 <template>
   <Drawer />
-  <div class=" mx-auto p-4 text-left">
+  <div class="max-w-6xl mx-auto p-4 text-left">
     
     <!-- クリックしたカフェ一軒の表示部分 -->
     <div v-if="cafe" class="detail rounded-2xl shadow-md overflow-hidden ml-auto mr-auto mb-10">

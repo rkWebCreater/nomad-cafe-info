@@ -91,7 +91,8 @@
 
 /* PC メニューが開いた時（JSで .is-active がついた時）の✖アニメーション */
 @media (min-width:769px){
-                      #menu-trigger.is-active span:nth-child(1) {
+
+#menu-trigger.is-active span:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
 }
 #menu-trigger.is-active span:nth-child(2) {
@@ -107,7 +108,7 @@
 .drawer-menu {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -20px;
   width: 280px; /* メニューの横幅 */
   height: 100vh; /* 画面全体の高さ */
   background: rgb(182 152 128); /* メニューの背景色 */

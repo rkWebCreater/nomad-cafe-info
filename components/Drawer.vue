@@ -62,31 +62,32 @@
 }
 @media (min-width:769px){
 
-                  #menu-trigger {
-                                width: 40px;
-                                height: 40px;
-                                gap: 7px;
+ #menu-trigger {
+               width: 40px;
+               height: 40px;
+               gap: 7px;
 
-                             span{
-                                  width: 24px;
-                                  height:3px;
-                              }
-                           & .is-active{
-                   
-                /* SP メニューが開いた時（JSで .is-active がついた時）の✖アニメーション */
-                                  & span{
-                                     &:nth-child(1){
-                                                 transform: translateY(3px) rotate(45deg);
-                                     }
-                                     &:nth-child(2){
-                                                 transform: translateY(-4px) rotate(-45deg);
-                                     }
-                                   }
-
-                            }
-                  }
+            span{
+                 width: 24px;
+                 height:3px;
+            }
+          
+  }
 }
 
+.is-active{
+                   
+/* SP メニューが開いた時（JSで .is-active がついた時）の✖アニメーション */
+         & span{
+              &:nth-child(1){
+                                         transform: translateY(3px) rotate(45deg);
+              }
+              &:nth-child(2){
+                                         transform: translateY(-4px) rotate(-45deg);
+              }
+         }
+
+}
 
 
 /* PC メニューが開いた時（JSで .is-active がついた時）の✖アニメーション */

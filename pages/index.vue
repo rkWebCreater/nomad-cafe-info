@@ -9,7 +9,7 @@
 
       <!-- キャッチコピー -->
       <h1 class="mt-3 text-amber-800">
-        <span class="mCatch text-2xl font-semibold ">今日の仕事はどこでしようか</span><br>
+        <span class="mCatch text-xl font-semibold ">今日の仕事はどこでしようか</span><br>
         <span class="sCatch">WiFi・電源あり、PC作業OK</span><br>
         <span class="sCatch">あなたに合ったカフェを見つける</span><br>
         <span class="sCatch  ">カフェ検索サイトです。</span><br>
@@ -142,9 +142,9 @@ header{
         height: 600px;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 120px;
+        margin-bottom: 100px;
         background-position: left;
-        background-size: cover;
+        background-size:contain;
 
         h1{
           font-size:25px ;
@@ -154,8 +154,8 @@ header{
           line-height:65px ;
 
           .mCatch{
-              font-size:50px ;
-              letter-spacing: 10px ;
+              font-size:40px ;
+              letter-spacing: 15px ;
               padding: 0 20px 0 20px ;
           }
         }

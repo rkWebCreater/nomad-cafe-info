@@ -143,7 +143,7 @@ const areasInfo = [
   {
     id:"shinjuku",
     name:"新宿",
-    imageUrl:"../images/areas/shinjuku.png"
+    imageUrl:"/nomad-cafe-info/images/areas/shinjuku.png"
   },
   {
     id:"umeda",
@@ -151,19 +151,19 @@ const areasInfo = [
     imageUrl:"../nomad-cafe-info/images/areas/umeda.png"
   },
   {
-    id:"nanba",
+    id:"namba",
     name:"難波",
-    imageUrl:"../../images/areas/nanba.png"
+    imageUrl:"/nomad-cafe-info/images/areas/nanba.png"
   },
   {
     id:"nagoya",
     name:"名古屋",
-    imageUrl:"../../images/areas/nagoya.png"
+    imageUrl:"/nomad-cafe-info/images/areas/nagoya.png"
   },
   {
     id:"fukuoka",
     name:"福岡",
-    imageUrl:"../../images/areas/fukuoka.png"
+    imageUrl:"/nomad-cafe-info/images/areas/fukuoka.png"
   }
 ]
 </script> 

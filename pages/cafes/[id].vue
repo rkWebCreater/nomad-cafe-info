@@ -12,10 +12,10 @@
        <h1 class="cafe-name font-bold text-gray-900 text-2xl mt-2 mb-2">{{ cafe.name }}</h1>
        <div class="description">
         <p class="text-gray-800 text-sm mt-1">📍 住所: {{ cafe.address }}</p>
-        <p class="text-gray-600 text-sm mt-1">🕒 営業時間: {{ cafe.businessHours }}</p>
-        <p class="text-gray-600 text-sm mt-1">💰予算: {{ cafe.budget }}</p>
+        <p class="text-gray-600 text-sm mt-1">🕒 営業: {{ cafe.businessHours }}</p>
+        <p class="text-gray-600 text-sm mt-1">💰 予算: {{ cafe.budget }}</p>
        </div>
-       <p class="text-gray-600 text-m m-2">💻HP: {{ cafe.website }}</p>
+       <p class="text-gray-600 text-m mt-2 mr-2 mb-2">💻HP: {{ cafe.website }}</p>
        <div class="mt-2 flex gap-2 text-xs text-gray-500">
         <span class="bg-gray-100 px-2 py-1 rounded">🛜 {{ cafe.features?.wifi?.available? 'あり' : 'なし' }}</span>
         <span class="bg-gray-100 px-2 py-1 rounded">🔌 {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>

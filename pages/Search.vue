@@ -22,7 +22,7 @@ const searchAreaName = computed(() =>{
 // 3. キーワードをもとにカフェデータを絞り込む　computed(()=>{  })
 const filteredCafes = computed(()=> {
 
-    const keyword = searchKeyword.value.trim().toLoserCase() //もし .trim() を使わずにそのまま検索してしまうと、コンピューターは「『スタバ』（スペースなし）と『スタバ 』（スペースあり）は別の言葉だ！」と判断してしまい、本当はデータがあるのに「0件です」と表示されてしまう原因になる
+    const keyword = searchKeyword.value.trim().toLowerCase() //もし .trim() を使わずにそのまま検索してしまうと、コンピューターは「『スタバ』（スペースなし）と『スタバ 』（スペースあり）は別の言葉だ！」と判断してしまい、本当はデータがあるのに「0件です」と表示されてしまう原因になる
     const area = searchArea.value.trim()
 
     //どちらも指定がない場合は全件表示

@@ -72,7 +72,7 @@ header{
 
 }
 .cafe-cards-section{
-                     background:url(../../public/images/slider/bg/cafe_table.jpg);
+                     background:url(/nomad-cafe-info/images/slider/bg/cafe_table.jpg);
                      background-repeat: no-repeat;
                      background-size: cover;
                      background-position: center; 
@@ -91,7 +91,7 @@ header{
 
   header{
          height:400px;
-         margin-bottom:80px;
+         margin-bottom:60px;
          background-position: top;
          background-size: cover;
 
@@ -122,7 +122,7 @@ header{
         .cafe-cards-ttl{
             font-size:20px;
             text-align: center;
-            padding:20px;
+            padding:10px;
 
         }
         .canSlide{
@@ -147,14 +147,14 @@ header{
         background-size:contain;
 
         h1{
-          font-size:25px ;
+          font-size: 25px ;
           top: 25% ;
-          right:10px ;
-          text-align:end ;
-          line-height:65px ;
+          right: 10px ;
+          text-align: end ;
+          line-height: 65px ;
 
           .mCatch{
-              font-size:40px ;
+              font-size: 40px ;
               letter-spacing: 15px ;
               padding: 0 20px 0 20px ;
           }

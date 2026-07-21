@@ -22,7 +22,7 @@ const searchAreaName = computed(() =>{
 // 3. キーワードをもとにカフェデータを絞り込む　computed(()=>{  })
 const filteredCafes = computed(()=> {
 
-    const keyword = searchKeyword.value.trim() //もし .trim() を使わずにそのまま検索してしまうと、コンピューターは「『スタバ』（スペースなし）と『スタバ 』（スペースあり）は別の言葉だ！」と判断してしまい、本当はデータがあるのに「0件です」と表示されてしまう原因になる
+    const keyword = searchKeyword.value.trim().toLoserCase() //もし .trim() を使わずにそのまま検索してしまうと、コンピューターは「『スタバ』（スペースなし）と『スタバ 』（スペースあり）は別の言葉だ！」と判断してしまい、本当はデータがあるのに「0件です」と表示されてしまう原因になる
     const area = searchArea.value.trim()
 
     //どちらも指定がない場合は全件表示
@@ -30,7 +30,17 @@ const filteredCafes = computed(()=> {
 
     return cafeData.filter(cafe =>{
 
-        const matchKeyword = !keyword || cafe.name.includes(keyword) || cafe.address.includes(keyword) || cafe.areaNameJa.includes(keyword)
+       //  カフェ側のデータもすべて小文字に変換して比較する
+    const cafeName = cafe.name.toLowerCase()
+    const cafeAddress = cafe.address.toLowerCase()
+    const cafeArea = cafe.area.toLowerCase() // 💡 これにより「shibuya」等のローマ字と一致するようになる
+    const cafeAreaNameJa = cafe.areaNameJa.toLowerCase()
+
+        const matchKeyword = !keyword || 
+        cafeName.includes(keyword) || 
+        cafeAddress.includes(keyword) || 
+        cafeArea.includes(keyword) ||
+        cafeAreaNameJa.includes(keyword)
 
         //エリアの条件（空文字なら無条件でtrue)
         //カフェデータのエリアID(areaId)と照合する想定

@@ -42,7 +42,7 @@
       }
       p{
         font-family:'zen kurenaido';
-        color:rgb(220, 198, 180);
+        color:rgb(245, 230, 217) ;
         background: rgb(127 56 11);
         position: absolute;
       }

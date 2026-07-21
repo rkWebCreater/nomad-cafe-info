@@ -138,17 +138,17 @@ const areasInfo = [
   {
     id:"shibuya",
     name:"渋谷",
-    imageUrl:"../../images/areas/shibuya.png"
+    imageUrl:"/nomad-cafe-info/images/areas/shibuya.png"
   },
   {
     id:"shinjuku",
     name:"新宿",
-    imageUrl:"../../images/areas/shinjuku.png"
+    imageUrl:"../images/areas/shinjuku.png"
   },
   {
     id:"umeda",
     name:"梅田",
-    imageUrl:"../../images/areas/umeda.png"
+    imageUrl:"../nomad-cafe-info/images/areas/umeda.png"
   },
   {
     id:"nanba",

@@ -3,7 +3,7 @@
 <script setup>
 import {computed} from 'vue'
 import {useRoute} from 'vue-router'
-import cafeData from '../../cafes.json'
+import cafeData from '../cafes.json'
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()

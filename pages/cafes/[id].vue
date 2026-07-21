@@ -39,7 +39,6 @@
 <style>
 
 .detail{
-        max-width: 1100px;
         background: rgb(255, 250, 244);
         display: grid;
         grid-auto-flow: row;

@@ -46,6 +46,7 @@
 
 .cafe-cards-slider {
   width: 100%;
+  max-width:1100px;
   background: rgb(106 106 106 / 50%);
   padding: 20px 20px 45px 20px;
   margin-left: auto;

@@ -2,10 +2,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   
-  // 💡 modulesに '@nuxt/content' を追加
+ 
   modules: [
-    '@nuxtjs/tailwindcss',
-    '@nuxt/content'
+    '@nuxtjs/tailwindcss'
   ],
 
   css: [

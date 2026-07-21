@@ -44,15 +44,7 @@
         grid-auto-flow: row;
 
 }
-.cafe-cards-section{
-        max-width: 1100px;
-}
-.cafe-cards-ttl{
-              text-align :center;
-}
-.canSlide{
-          text-align : center;
-}
+
 @media (max-width:768px){
     .detail{
              max-width: 380px;

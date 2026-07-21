@@ -327,7 +327,6 @@
     },
     "coordinates": { "lat": 35.690112, "lng": 139.704543 }
   },
-  [
   {
     "id": "cafe-021",
     "name": "Cafe Umeda Neo",
@@ -365,7 +364,7 @@
   {
     "id": "cafe-023",
     "name": "Meieki Tech Cafe",
-    "area": "meieki",
+    "area": "nagoya",
     "areaNameJa": "名古屋駅",
     "address": "愛知県名古屋市中村区名駅7-7-7",
     "budget": "￥700〜￥1,400",
@@ -382,7 +381,7 @@
   {
     "id": "cafe-024",
     "name": "Sakae Green Lounge",
-    "area": "sakae",
+    "area": "nagoya",
     "areaNameJa": "名古屋・栄",
     "address": "愛知県名古屋市中区栄6-6-6",
     "budget": "￥550〜￥1,300",
@@ -399,4 +398,4 @@
 ]
 
 
-]
+

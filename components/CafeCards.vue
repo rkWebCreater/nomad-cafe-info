@@ -77,6 +77,10 @@
   display: flex !important;
   flex-direction: column;
   flex-shrink: 0;
+
+  & .area-name{
+    text-align: center;
+  }
 }
 .card-link, .card-body-height {
   flex-grow: 1;
@@ -86,10 +90,6 @@
    3. スマホ・タブレット表示（767px以下）
 ========================================== */
 @media (max-width: 767px) {
-  
-  .swiper-slide .area-name {
-    text-align: center;
-  }
   
   .swiper-slide .cafe-name {
     font-size: 16px;
@@ -101,11 +101,6 @@
 ========================================== */
 @media (min-width: 768px) {
   
-  .swiper-slide .area-name {
-    width: 40%;
-    text-align: center;
-  }
-
   .swiper-slide .cafe-name {
     font-size: 20px;
     line-height: 25px;

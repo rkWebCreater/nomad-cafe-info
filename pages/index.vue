@@ -167,6 +167,7 @@ header{
         }
   }
     .cafe-cards-section{
+                       width:100% ;
                        padding:20px ;
                        margin-bottom:120px ; 
 

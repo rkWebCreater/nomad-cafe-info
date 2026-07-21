@@ -138,6 +138,7 @@ const swiperBreakpoints = {
   },
   768: {
     slidesPerView: 3,
+    centeredSlides : false,
     spaceBetween: 20
   }
 }

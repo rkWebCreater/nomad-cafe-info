@@ -46,7 +46,7 @@ const filteredCafes = computed(()=> {
 
  <div class="search_result">
   <h1>
-   <span v-if="searchArea">エリア「{{ searchArea }}」</span>
+   <span v-if="searchArea">エリア「{{ cafe.areaNameJa }}」</span>
    <span v-if="searchArea && searchKeyword">と</span>
    <span v-if="searchKeyword">キーワード「{{ searchKeyword }}」</span>
    <span v-if="!searchArea && !searchKeyword">すべてのカフェ</span>

@@ -111,7 +111,7 @@
   width: 280px; /* メニューの横幅 */
   height: 100vh; /* 画面全体の高さ */
   background: rgb(182 152 128); /* メニューの背景色 */
-  box-shadow: -4px 10px 0px 1px rgb(85 38 15 / 50%);/* 左側にうっすら影をつける */
+  box-shadow: -4px 10px 0 1px rgba(174, 143, 118, 0.8);/* 左側にうっすら影をつける */
   z-index: 9999;
   padding: 80px 24px 24px; /* ボタンと被らないように上をあける */
   box-sizing: border-box;

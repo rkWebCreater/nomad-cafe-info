@@ -6,7 +6,6 @@
 
       <!--  <Drawer />　ドロワーメニュー layouts/defaultで共通化をし自動インポートのため書く必要なし-->
 
-
       <!-- キャッチコピー -->
       <h1 class="mt-3 text-amber-800">
         <span class="mCatch text-xl font-semibold ">今日の仕事はどこでしようか</span><br>
@@ -122,7 +121,7 @@ header{
         .cafe-cards-ttl{
             font-size:20px;
             text-align: center;
-            padding:10px;
+            padding: 30px 10px 10px 10px;
 
         }
         .canSlide{

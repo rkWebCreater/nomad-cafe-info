@@ -16,9 +16,9 @@
         <p class="text-gray-600 text-sm mt-1">💰 予算: {{ cafe.budget }}</p>
        </div>
        <p class="text-gray-600 text-m mt-2 mr-2 mb-2">💻HP: {{ cafe.website }}</p>
-       <div class="mt-2 flex gap-2 text-xs text-gray-500">
-        <span class="bg-gray-100 px-2 py-1 rounded">🛜 {{ cafe.features?.wifi?.available? 'あり' : 'なし' }}</span>
-        <span class="bg-gray-100 px-2 py-1 rounded">🔌 {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
+       <div class="tag mt-2 flex gap-2 text-xs text-gray-500">
+        <span class="px-2 py-1 rounded">🛜 {{ cafe.features?.wifi?.available? 'あり' : 'なし' }}</span>
+        <span class="px-2 py-1 rounded">🔌 {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
        </div>
     </div>
       
@@ -50,7 +50,11 @@
 .canSlide{
        text-align: center;
 }
-
+.tag{
+  span{
+    background:rgb(232 239 252);
+  }
+}
 @media (max-width:768px){
     .detail{
              max-width: 380px;

@@ -26,7 +26,7 @@
     <!-- 💡 【フリーズ解決の最重要エリア】他のおすすめカフェセクション -->
     <!-- :key="cafeId" をセクション全体に指定し、URLが変わるたびにスライダーごと新しく作り直します -->
     <div v-if="othersCafes && othersCafes.length > 0" :key="cafeId" class="cafe-cards-section  ml-auto mr-auto mt-10">
-      <h2 class="cafe-cards-ttl font-bold text-white text-xl mb-2">他のおすすめカフェ</h2>
+      <h2 class="cafe-cards-ttl font-bold text-xl mb-2">他のおすすめカフェ</h2>
       <p class="canSlide text-gray-300 text-xs mb-4">＜ーー スライドできます ーー＞</p>
       <!-- 💡 除外済みの正しいリスト（otherCafes）」を、:cafes で渡します -->
       <CafeCards :cafes="othersCafes" :key ="cafe.id" />

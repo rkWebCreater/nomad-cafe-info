@@ -51,7 +51,7 @@
 }
 .tag{
   span{
-   background: rgb(243, 238, 231);
+    background:rgb(243, 238, 231);
   }
 }
 @media (max-width:768px){

@@ -1,7 +1,6 @@
 <!-- pages/cafes/[id].vue カフェの詳細ページ-->
 
 <template>
-  <Drawer />
   <div class="max-w-6xl mx-auto p-4 text-left">
     
     <!-- クリックしたカフェ一軒の表示部分 -->

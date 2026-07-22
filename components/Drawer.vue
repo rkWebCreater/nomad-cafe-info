@@ -39,7 +39,7 @@
   position: fixed;
   top: 3%;
   right: 1%;
-  background: rgb(85, 45, 15); /* ボタンの背景色（お好みで変えてください） */
+  background: rgba(53, 32, 16, 1); /* ボタンの背景色（お好みで変えてください） */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -111,7 +111,7 @@
   right: -20px;
   width: 280px; /* メニューの横幅 */
   height: 100vh; /* 画面全体の高さ */
-  background: rgb(231, 200, 175); /* メニューの背景色 */
+  background: #f7e9dc; /* メニューの背景色 */
   box-shadow: -4px 10px 0 1px rgba(174, 143, 118, 0.8);/* 左側にうっすら影をつける */
   z-index: 9999;
   padding: 80px 24px 24px; /* ボタンと被らないように上をあける */
@@ -144,7 +144,7 @@
 
 .drawer-nav a {
   display: block;
-  color: rgb(51, 51, 51);
+  color: rgb(101, 90, 73);
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
@@ -155,7 +155,7 @@
 
 /* リンクにマウスを乗せたときの効果 */
 .drawer-nav a:hover {
-  color: rgb(255, 234, 210); /* お好みのアクセントカラーに */
+  color: rgb(171, 160, 142); /* お好みのアクセントカラーに */
 }
 </style>
 

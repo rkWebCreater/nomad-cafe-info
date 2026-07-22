@@ -110,8 +110,7 @@ const tagList = [
 }
 
 .nav-title {
-  font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 12px;
   color: rgb(224, 218, 203);
   margin-bottom: 12px;
   border-bottom: 0.5px solid rgb(65, 40, 20);

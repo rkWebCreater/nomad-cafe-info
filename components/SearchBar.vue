@@ -1,7 +1,7 @@
 <!-- app/components/SearchBar.vue 検索バーのコンポーネント-->
 <template>
   <div class="search-container">
-    <input v-model="searchQuery" @keydown.enter ="handleSearch" type="text" placeholder="カフェ名、キーワードで検索..." class="search-input"  />
+    <input v-model="searchQuery" @keydown.enter ="handleSearch" type="text" placeholder="地名、カフェ名" class="search-input"  />
     <button class="search-button"  @click="handleSearch" >検索</button>
   </div>
 </template>

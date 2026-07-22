@@ -44,6 +44,12 @@
         grid-auto-flow: row;
 
 }
+.cafe-cards-ttl{
+               text-align:center;
+}
+.canSlide{
+       text-align: center;
+}
 
 @media (max-width:768px){
     .detail{

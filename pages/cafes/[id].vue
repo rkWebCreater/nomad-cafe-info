@@ -9,7 +9,7 @@
       <img :src="cafe.imageUrl" :alt="cafe.name" class="mainImg object-cover w-96 h-64" />
       <div class="p-5">
        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ cafe.areaNameJa }}</span>
-       <h1 class="cafe-name font-bold text-gray-900 text-2xl mt-2 mb-2">{{ cafe.name }}</h1>
+       <h1 class="cafe-name font-bold text-gray-900 text-2xl mt-2 ml-1 mb-2">{{ cafe.name }}</h1>
        <div class="description">
         <p class="text-gray-800 text-sm mt-1">📍 住所: {{ cafe.address }}</p>
         <p class="text-gray-600 text-sm mt-1">🕒 営業: {{ cafe.businessHours }}</p>

@@ -38,7 +38,7 @@
 <style>
 
 .detail{
-        background: rgb(255, 250, 244);
+        background: rgb(255, 255, 255);
         display: grid;
         grid-auto-flow: row;
 

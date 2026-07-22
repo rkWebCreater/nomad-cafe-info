@@ -4,7 +4,7 @@
     <!-- ヘッダー -->
     <header class="text-center ">
 
-      <Drawer /> <!-- ドロワーメニュー -->
+      <!--  <Drawer />　ドロワーメニュー layouts/defaultで共通化をし自動インポートのため書く必要なし-->
 
 
       <!-- キャッチコピー -->
@@ -48,18 +48,18 @@ header{
         position:relative;
         
       h1{
-        color:rgba(53, 32, 16, 1);
+        color:rgb(65, 40, 20);
         font-family: "Zen Kurenaido", sans-serif;
         font-style: normal;
         position: absolute;
 
         .mCatch{
             color:rgba(218, 175, 140, 1);
-            background:rgba(53, 32, 16, 1);
+            background:rgb(65, 40, 20);
             border-radius:40px;
         }
         .sCatch{
-               color:rgba(53, 32, 16, 1);
+               color:rgb(65, 40, 20);
                background:rgba(218, 175, 140, 1);
                border-radius:40px;
                padding: 3px 20px 3px 20px;

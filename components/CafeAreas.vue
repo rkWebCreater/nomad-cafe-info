@@ -2,7 +2,7 @@
 <template>
  <div id="cafeArea">
       <div class="ttl">
-        <h2 class="text-white font-semibold">エリアから探す</h2>
+        <h2 class="font-semibold">エリアから探す</h2>
       </div>
       <ul class="area-list">
        <!-- jsで繰り返し処理 -->
@@ -43,7 +43,7 @@
       p{
         font-family:'zen kurenaido';
         color:rgb(245, 230, 217) ;
-        background: rgb(127 56 11);
+        background: rgb(65, 40, 20);
         position: absolute;
       }
     }

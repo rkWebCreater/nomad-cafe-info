@@ -3,7 +3,7 @@
 const DISPLAY_COUNT = 3
 
 // カフェのデータ（実務では API や microCMS 等から取得）
-const cafes = ref([
+const recoCafes = ref([
   {
     id: 1,
     name: 'Cafe normand blaren',
@@ -48,8 +48,8 @@ const cafes = ref([
 // -------------------------------------------------------------
 const recommendedCafes = computed(() => {
   // 1. 手動で「おすすめ指定（isFeatured: true）」された店舗を取り出し優先順にソート
-  const featured = cafes.value
-    .filter(cafe => cafe.isFeatured)
+  const featured = recoCafes.value
+    .filter(item => item.isFeatured)
     .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
 
   // 手動指定だけで目標の3件が埋まっていれば、そのまま返す
@@ -58,12 +58,12 @@ const recommendedCafes = computed(() => {
   }
 
   // 2. 重複防止：手動選出されたカフェのIDを「Set」に保存
-  const featuredIds = new Set(featured.map(cafe => cafe.id))
+  const featuredIds = new Set(featured.map(item => item.id))
 
   // 3. 未選出の店舗から「評価（rating）が高い順」に不足分（3 - 手動数）だけ取得
   const neededCount = DISPLAY_COUNT - featured.length
-  const fallback = cafes.value
-    .filter(cafe => !featuredIds.has(cafe.id)) // Setを使って重なりを除外
+  const fallback = recoCafes.value
+    .filter(item => !featuredIds.has(item.id)) // Setを使って重なりを除外
     .sort((a, b) => b.rating - a.rating)       // 降順ソート
     .slice(0, neededCount)                    // 足りない分だけ切り出し
 

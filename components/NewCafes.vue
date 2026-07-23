@@ -26,7 +26,7 @@ const recoCafes = ref([
   {
     id: 3,
     name: 'GREEN SHADE CAFE',
-    areaName: '恵比寿',
+    areaName: '梅田',
     desc: '緑に囲まれたテラス席が人気のノマドカフェ。Wi-Fiも高速で快適です。',
     imageUrl: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop',
     rating: 4.9,        // 👈 手動指定なしの中で最高評価
@@ -35,7 +35,7 @@ const recoCafes = ref([
   {
     id: 4,
     name: 'SILENT COFFEE',
-    areaName: '梅田',
+    areaName: '福岡',
     desc: '集中作業に特化したサイレント仕様のカフェ。深煎りエスプレッソが魅力。',
     imageUrl: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800&auto=format&fit=crop',
     rating: 4.6,

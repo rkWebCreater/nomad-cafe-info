@@ -35,7 +35,7 @@ const tagList = [
         <ul class="nav-list">
           <li>
             <NuxtLink :to="{ path: '/', hash: '#nowOpenCafe' }" class="nav-link">
-              ☕ 今営業中のカフェ
+             現在営業中のカフェ
             </NuxtLink>
           </li>
         </ul>

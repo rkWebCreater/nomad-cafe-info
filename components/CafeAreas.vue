@@ -85,10 +85,10 @@
       }
 
       p{
-        font-size:16px;
+        font-size: 12px;
+        letter-spacing: 2px;
         bottom: 0;
-        letter-spacing: 5px;
-        padding: 0 0 0 5px;
+        padding: 0 7px 0 7px;
         border-radius: 5px;
       }
     }
@@ -126,7 +126,7 @@
       p{
         font-size:16px;
         bottom: 0;
-        letter-spacing: 5px;
+        letter-spacing: 3px;
         padding: 0 0 0 5px;
         border-radius: 5px;
       }

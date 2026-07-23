@@ -129,11 +129,11 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
   background: rgb(253, 251, 247);
   padding: 60px 20px;
 
-  .section-container {
+  & .section-container {
     max-width: 1100px;
     margin: 0 auto;
 
-    .section-title {
+    & .section-title {
       text-align: center;
       font-size: 1.5rem;
       color: #785842;
@@ -208,7 +208,8 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
       display: inline-block;
       align-self: flex-start;
       font-size: 0.75rem;
-      background-color: rgba(255, 255, 255, 0.25);
+      color: rgb(255, 246, 212);
+      background: rgba(223, 162, 116, 0.3);
       backdrop-filter: blur(4px);
       padding: 3px 10px;
       border-radius: 20px;

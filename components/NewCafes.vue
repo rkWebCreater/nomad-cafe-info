@@ -135,11 +135,15 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
 
     & .section-title {
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 18px;
       color: #785842;
       margin-bottom: 32px;
       font-weight: 500;
       letter-spacing: 0.05em;
+
+      @media (min-width:768px){
+        font-size:25px;
+      }
     }
 
     /* グリッドレイアウト構造 */

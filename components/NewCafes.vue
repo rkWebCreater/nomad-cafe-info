@@ -88,7 +88,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
 
       <div class="cafe-grid">
         <!-- 左側：メインカード（縦長に空間を見せる） -->
-        <NuxtLink 
+        <div 
           v-if="featuredCafe" 
           :to="`/cafes/${featuredCafe.id}`" 
           class="cafe-card main-card"
@@ -99,11 +99,11 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
             <h3 class="cafe-name">{{ featuredCafe.name }}</h3>
             <p class="cafe-desc">{{ featuredCafe.desc }}</p>
           </div>
-        </NuxtLink>
+        </div>
 
         <!-- 右側：サブカード群（文字量を抑えて写真の印象をキープ） -->
         <div class="sub-cards-group">
-          <NuxtLink 
+          <div
             v-for="cafe in subCafes" 
             :key="cafe.id" 
             :to="`/cafes/${cafe.id}`" 
@@ -115,7 +115,8 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
               <h3 class="cafe-name">{{ cafe.name }}</h3>
               <p class="cafe-desc">{{ cafe.desc }}</p>
             </div>
-          </NuxtLink>
+          </div>
+          
         </div>
       </div>
     </div>

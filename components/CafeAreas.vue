@@ -1,8 +1,8 @@
 <!-- カフェエリアのコンポーネント -->
 <template>
- <div id="cafeArea">
+ <div id="cafeArea" class="mt-20 mb-20">
       <div class="ttl">
-        <h2 class="font-semibold">エリアから探す</h2>
+        <h2>エリアから探す</h2>
       </div>
       <ul class="area-list">
        <!-- jsで繰り返し処理 -->
@@ -23,6 +23,9 @@
           }
         }
 }
+
+
+/* エリアボタン一覧 */
 .area-list{
            margin-left: auto;
            margin-right: auto;
@@ -30,6 +33,7 @@
            justify-content: center;
            align-content: center;
 
+    /* エリアボタン */
     .area-item{
                position: relative;
 
@@ -44,6 +48,7 @@
         font-family:'zen kurenaido';
         color:rgb(245, 230, 217) ;
         background: rgb(65, 40, 20);
+        padding:5px;
         position: absolute;
       }
     }

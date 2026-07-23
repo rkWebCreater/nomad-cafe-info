@@ -34,6 +34,9 @@
     
    <!-- エリアから探す -->
    <CafeAreas />
+
+   <!-- 新着おすすめカフェ -->
+   <NewCafes />
   
   </div>
 </template>

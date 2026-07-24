@@ -58,7 +58,7 @@
              max-width: 380px;
     }
 }
-@media (min-width:1024px){
+@media (min-width:769px){
     .detail{
            grid-auto-flow: column;
            margin-bottom:120px;

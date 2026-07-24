@@ -97,7 +97,6 @@ const filteredCafes = computed(()=> {
  .search_result{
               padding: 20px;
               margin-top: 80px;
-              margin-bottom: 80px;
               text-align:center;
 
             h1{

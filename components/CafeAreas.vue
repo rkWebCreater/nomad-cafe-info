@@ -23,6 +23,7 @@
         .ttl{
           h2{
             text-align: center;
+            color: rgb(120, 88, 66);
           }
         }
 }

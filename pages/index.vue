@@ -64,7 +64,7 @@ header{
                color:rgb(65, 40, 20);
                background:rgba(218, 175, 140, 1);
                border-radius:40px;
-               padding: 3px 20px 3px 20px;
+               padding: 6px 20px ;
                letter-spacing: 5px;
         }
       }

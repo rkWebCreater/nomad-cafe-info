@@ -147,7 +147,7 @@
   display: block;
   color: rgb(85, 46, 9);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
   transition: color 0.2s;
@@ -184,7 +184,8 @@
 const menuItem = [
   {id: 1 , name: 'トップページ' , path:'/' },
   {id: 2 , name: '営業中のカフェ' , path:'/#nowOpenCafe'},
-  {id: 3 , name: 'エリアから探す' , path:'/#cafeArea'}]
+  {id: 3 , name: 'エリアから探す' , path:'/#cafeArea'},
+  {id: 4 , name: '新着おすすめカフェ' , path:'/#new-reco-cafe'}]
 
 //-----ここまでドロワーメニューの繰り返し処理
 

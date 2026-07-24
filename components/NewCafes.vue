@@ -84,7 +84,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
 <template>
   <section class="new-cafes-section">
     <div class="section-container">
-      <h2 class="section-title">新着おすすめカフェ</h2>
+      <h2 class="section-title" id="new-reco-cafe">新着おすすめカフェ</h2>
 
       <div class="cafe-grid">
         <!-- 左側：メインカード（縦長に空間を見せる） -->

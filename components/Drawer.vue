@@ -17,6 +17,7 @@
     <!-- こちらも、isOpenがtrueの時だけ 'is-open' クラスが合体します -->
     <div :class="['drawer-menu', { 'is-open': isOpen }]" id="drawer-menu">
       <nav class="drawer-nav">
+        <SearchBar />
         <ul>
           <!-- @click="closeMenu" を仕込むことで、リンクを踏んだ瞬間に自動でドロワーが閉じます v-forによる繰り返し処理-->
           <li v-for="item in menuItem" :key="item.id">
@@ -108,11 +109,11 @@
 .drawer-menu {
   position: fixed;
   top: 0;
-  right: -20px;
+  right: 0px;
   width: 280px; /* メニューの横幅 */
   height: 100vh; /* 画面全体の高さ */
   background: #f7e9dc; /* メニューの背景色 */
-  box-shadow: -4px 10px 0 1px rgba(174, 143, 118, 0.8);/* 左側にうっすら影をつける */
+  box-shadow: inset 4px 4px 0 1px rgba(174, 143, 118, 0.8);
   z-index: 9999;
   padding: 80px 24px 24px; /* ボタンと被らないように上をあける */
   box-sizing: border-box;
@@ -139,15 +140,14 @@
 }
 
 .drawer-nav li {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .drawer-nav a {
   display: block;
-  color: rgb(101, 90, 73);
+  color: rgb(85, 46, 9);
   text-decoration: none;
   font-size: 16px;
-  font-weight: bold;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
   transition: color 0.2s;
@@ -155,7 +155,7 @@
 
 /* リンクにマウスを乗せたときの効果 */
 .drawer-nav a:hover {
-  color: rgb(171, 160, 142); /* お好みのアクセントカラーに */
+  color: rgb(201, 174, 130); /* お好みのアクセントカラーに */
 }
 </style>
 

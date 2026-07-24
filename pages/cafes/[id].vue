@@ -41,8 +41,6 @@
         background: rgb(255, 255, 255);
         display: grid;
         grid-auto-flow: row;
-        gap:20px;
-
 }
 .cafe-cards-ttl{
                text-align:center;
@@ -64,6 +62,7 @@
     .detail{
            grid-auto-flow: column;
            margin-bottom:120px;
+           gap:20px;
     }
 
 }

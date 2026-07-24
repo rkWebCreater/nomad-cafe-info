@@ -126,7 +126,6 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
 <style scoped>
 /* 共通設定 */
 .new-cafes-section {
-  background: rgb(253, 245, 238);
   padding: 60px 20px;
 
   & .section-container {

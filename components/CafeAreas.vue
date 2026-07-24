@@ -17,6 +17,7 @@
 <style>
 /*PC,SP 共通 */
 #cafeArea{
+  background: rgb(253, 245, 238);
         .ttl{
           h2{
             text-align: center;

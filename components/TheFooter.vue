@@ -79,7 +79,6 @@ const tagList = [
   background-color: rgb(167, 123, 88);
   color: rgb(237, 242, 247);
   padding: 40px 20px 20px;
-  margin-top: 80px;
 }
 
 /* ==============================================

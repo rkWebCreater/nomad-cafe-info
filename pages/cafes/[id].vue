@@ -5,7 +5,7 @@
     
     <!-- クリックしたカフェ一軒の表示部分 -->
     <div v-if="cafe" class="detail rounded-2xl shadow-md overflow-hidden ml-auto mr-auto mb-10">
-      <img :src="cafe.imageUrl" :alt="cafe.name" class="mainImg object-cover w-96 h-64" />
+      <img :src="cafe.imageUrl" :alt="cafe.name" class="mainImg object-cover w-full h-64" />
       <div class="p-5">
        <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ cafe.areaNameJa }}</span>
        <h1 class="cafe-name font-bold text-gray-900 text-2xl mt-2 ml-1 mb-2">{{ cafe.name }}</h1>
@@ -41,6 +41,7 @@
         background: rgb(255, 255, 255);
         display: grid;
         grid-auto-flow: row;
+        gap:20px;
 
 }
 .cafe-cards-ttl{

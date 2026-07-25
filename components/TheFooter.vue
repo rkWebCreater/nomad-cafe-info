@@ -24,7 +24,7 @@ const tagList = [
       <!-- 1. ロゴ・ブランドエリア -->
       <div class="footer-item footer-brand">
         <NuxtLink to="/" class="footer-logo">
-          <img src="~/public/images/Logo/logo-nomad_cafe_info" class="logo-img">
+          <img src="/nomad-cafe-info/images/Logo/logo-nomad_cafe_info.png" class="logo-img">
         </NuxtLink>
         <p class="brand-desc">カフェで仕事や作業をして過ごしたい人のためのカフェ検索サイト</p>
       </div>

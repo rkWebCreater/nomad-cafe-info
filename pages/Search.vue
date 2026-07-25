@@ -1,9 +1,9 @@
 <!-- 検索結果ページ -->
 
 <script setup>
-import {computed} from 'vue'
-import {useRoute} from 'vue-router'
-import cafeData from '../cafes.json' //git hub用のパス　git hubにアップする際cafes.jsonまでのパスがローカル環境と違う　appフォルダからpagesやcomponentsなどを出すため
+/*import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
+import {useRoute} from 'vue-router' */
+import cafeData from '~/cafes.json' 
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()

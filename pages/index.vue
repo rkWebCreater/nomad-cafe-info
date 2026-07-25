@@ -189,11 +189,11 @@ header{
 </style>
 
 <script setup>
-//vueからcomputedを確実にインポート
+/*vueからcomputedを確実にインポート
 import { computed } from 'vue'
-import CafeCards from '~/components/CafeCards.vue'; /*コンポーネントCafeCards.vueの読み込み */
+import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCards.vueの読み込み */
 // 先ほど作成したJSONデータを読み込む
-import cafeListData from '../cafes.json'
+import cafeListData from '~/cafes.json'
 
 
 const cafeList = cafeListData 

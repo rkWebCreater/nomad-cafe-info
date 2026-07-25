@@ -23,8 +23,8 @@ const tagList = [
       
       <!-- 1. ロゴ・ブランドエリア -->
       <div class="footer-item footer-brand">
-        <NuxtLink to="/" class="footer-logo">
-         <img src="/images/Logo/logo-nomad_cafe_info.png" class="w-full" alt="logo">
+        <NuxtLink to="/" >
+         <img src="/images/Logo/logo-nomad_cafe_info.png" class="footer-logo w-full" alt="logo">
         </NuxtLink>
         <p class="brand-desc">カフェで仕事や作業をして過ごしたい人のためのカフェ検索サイト</p>
       </div>
@@ -76,7 +76,7 @@ const tagList = [
 
 <style scoped>
 .site-footer {
-  background-color: rgb(167, 123, 88);
+  background: rgb(188, 151, 122);;
   color: rgb(237, 242, 247);
   padding: 40px 20px 20px;
   margin-top: 80px;

@@ -1,9 +1,38 @@
 <!-- app/components/SearchBar.vue 検索バーのコンポーネント-->
+<script setup>
+// Nuxt 3 では route, router, ref は自動インポートされるため import 文は不要です
+const route = useRoute()
+const router = useRouter()
+
+// 1. URLにすでに keyword があれば、検索窓の初期値としてセットする
+const searchQuery = ref(route.query.keyword || '')
+
+// 2. URLの keyword が変わったときに、検索窓の文字も連動させる
+watch(() => route.query.keyword, (newKeyword) => {
+  searchQuery.value = newKeyword || ''
+})
+
+const handleSearch = () => {
+  if (!searchQuery.value.trim()) return // 空っぽのときは何もしない
+
+  router.push({
+    path: '/search',
+    query: { keyword: searchQuery.value.trim() }
+  })
+}
+</script>
+
 <template>
-  <div class="search-container">
-    <input v-model="searchQuery" @keydown.enter ="handleSearch" type="text" placeholder="地名、カフェ名" class="search-input"  />
-    <button class="search-button"  @click="handleSearch" >検索</button>
-  </div>
+  <!-- form タグで囲み @submit.prevent を使うことで、日本語変換の Enter で誤発火するのを防ぎます -->
+  <form @submit.prevent="handleSearch" class="search-container">
+    <input 
+      v-model="searchQuery" 
+      type="text" 
+      placeholder="地名、カフェ名" 
+      class="search-input"  
+    />
+    <button type="submit" class="search-button">検索</button>
+  </form>
 </template>
 
 <style scoped>
@@ -37,19 +66,3 @@
   background-color: #451a03;
 }
 </style>
-<script setup>
-/* */
-import { useRouter } from 'vue-router';
-
-const router = useRouter()
-const searchQuery = ref('')
-
-const handleSearch = () => {
-  if(!searchQuery.value.trim()) return //空っぽのときは何もしない
-
-  router.push({
-    path:'/search' , 
-    query : { keyword : searchQuery.value }
-  })
-}
-</script>

@@ -1,8 +1,9 @@
 <!-- 検索結果ページ -->
 
 <script setup>
-/*import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
-import {useRoute} from 'vue-router' */
+/* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
+import {useRoute} from 'vue-router' 
+*/
 import cafeData from '~/cafes.json' 
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
@@ -46,11 +47,11 @@ const filteredCafes = computed(() => {
 
       //検索ワードが「電源」関連の場合、cafe.features.power.available を判定  【?.】オプショナルチェイニング：featuresなどが存在しない場合もエラーを出さず安全に判定
       const isPowerKw = ['電源', 'コンセント', 'power'].includes(kw)
-      const inPower = isPowerKw && cafe.features?.power?.available === true
+      const inPower = isPowerKw && Boolean(cafe.features?.power?.available)
       
       //検索ワードが「wifi」関連の場合、cafe.features.wifi.available を判定
       const isWifiKw = ['wifi', 'wi-fi', 'ワイファイ'].includes(kw)
-      const inWifi = isWifiKw && cafe.features?.wifi?.available === true
+      const inWifi = isWifiKw && Boolean(cafe.features?.wifi?.available)
 
       // テキスト・電源・WiFiのどれか1つでもマッチしていれば、このキーワード(kw)はクリア
       return inText || inPower || inWifi

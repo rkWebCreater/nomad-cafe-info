@@ -24,7 +24,6 @@ const tagList = [
       <!-- 1. ロゴ・ブランドエリア -->
       <div class="footer-item footer-brand">
         <NuxtLink to="/" class="footer-logo">
-          <img src="/nomad-cafe-info/images/Logo/logo-nomad_cafe_info.png" class="logo-img">
         </NuxtLink>
         <p class="brand-desc">カフェで仕事や作業をして過ごしたい人のためのカフェ検索サイト</p>
       </div>
@@ -97,7 +96,10 @@ const tagList = [
   max-width: 280px;
 }
 
-.logo-img {
+.footer-logo {
+  background : url(/nomad-cafe-info/images/Logo/logo-nomad_cafe_info.png);
+  background-repeat: no-repeat;
+  background-size:cover;
   width:130px;
 }
 

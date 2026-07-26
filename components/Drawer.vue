@@ -185,7 +185,8 @@ const menuItem = [
   {id: 1 , name: 'トップページ' , path:'/' },
   {id: 2 , name: '営業中のカフェ' , path:'/#nowOpenCafe'},
   {id: 3 , name: 'エリアから探す' , path:'/#cafeArea'},
-  {id: 4 , name: '新着おすすめカフェ' , path:'/#new-reco-cafe'}]
+  {id: 4 , name: 'タグから探す' , path:'/#cafeTag'},
+  {id: 5 , name: '新着おすすめカフェ' , path:'/#new-reco-cafe'}]
 
 //-----ここまでドロワーメニューの繰り返し処理
 

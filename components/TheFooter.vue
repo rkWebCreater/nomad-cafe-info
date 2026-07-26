@@ -53,7 +53,7 @@ const areaList = [
         <ul class="nav-list">
           <li v-for="tag in TAGS" :key="tag.key">
             <NuxtLink :to="{ path: '/search', query: { tag: tag.key } }" class="nav-link">
-              # {{ tag.name }}
+               {{ tag.name }}
             </NuxtLink>
           </li>
         </ul>
@@ -70,99 +70,102 @@ const areaList = [
 
 <style scoped>
 .site-footer {
-  background: rgb(188, 151, 122);;
+  background: rgb(188, 151, 122);
   color: rgb(237, 242, 247);
   padding: 40px 20px 20px;
   margin-top: 80px;
-}
 
-/* ==============================================
-   基本スタイル（SP：デフォルトで縦並び）
-============================================== */
-.footer-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column; /* SP: 縦並び */
-  gap: 32px;
-}
-
-.footer-brand {
-  max-width: 280px;
-}
-
-.footer-logo {
-            width:130px;
-  
-}
-
-.brand-desc {
-  font-size: 12px;
-  color: rgb(224, 218, 203);
-  margin-top: 8px;
-}
-
-.nav-title {
-  font-size: 12px;
-  color: rgb(224, 218, 203);
-  margin-bottom: 12px;
-  border-bottom: 0.5px solid rgb(65, 40, 20);
-  padding-bottom: 4px;
-}
-
-.nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-}
-
-.nav-link {
-  color: rgb(240, 236, 226);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: #fff;
-}
-
-.footer-bottom {
-  margin-top: 40px;
-  padding-top: 20px;
-  text-align: center;
-}
-
-.copyright {
-  font-size: 0.75rem;
-  color: rgb(65, 40, 20);
-}
-
-/* ==============================================
-   PCスタイル（768px以上：横並び）
-============================================== */
-@media (min-width: 768px) {
+  /* ----------------------------------
+     1. コンテナエリア
+  ---------------------------------- */
   .footer-container {
-    flex-direction: row;          /* 横並びに切替 */
-    justify-content: space-between; /* 4列を等間隔に配置 */
-    align-items: flex-start;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* SP: 縦並び */
+    gap: 32px;
+
+    @media (min-width: 768px) {
+      flex-direction: row; /* PC: 横並び */
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    /* ブランド（ロゴ）ブロック */
+    .footer-brand {
+      max-width: 280px;
+
+      @media (min-width: 768px) {
+        flex: 1.2;
+        max-width: 260px;
+      }
+
+      .footer-logo {
+        width: 130px;
+      }
+
+      .brand-desc {
+        font-size: 12px;
+        color: rgb(224, 218, 203);
+        margin-top: 8px;
+      }
+    }
+
+    /* ナビゲーション列ブロック */
+    .footer-item {
+      @media (min-width: 768px) {
+        flex: 1;
+        max-width: 220px;
+      }
+
+      .nav-title {
+        font-size: 12px;
+        color: rgb(224, 218, 203);
+        margin-bottom: 12px;
+        border-bottom: 0.5px solid rgb(65, 40, 20);
+        padding-bottom: 4px;
+      }
+
+      .nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap:wrap ;
+        gap: 10px;
+
+        @media (min-width: 768px) {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .nav-link {
+          color: rgb(240, 236, 226);
+          text-decoration: none;
+          font-size: 0.85rem;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
   }
 
-  .footer-item {
-    flex: 1;                     /* 各列の幅を均等化 */
-    max-width: 220px;
-  }
+  /* ----------------------------------
+     2. フッター下部（コピーライト）
+  ---------------------------------- */
+  .footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
 
-  .footer-brand {
-    flex: 1.2;                   /* ロゴエリアだけ少し広めに確保 */
-    max-width: 260px;
-  }
-  .nav-list{
-    flex-direction: column;
-    gap: 8px;
+    .copyright {
+      font-size: 0.75rem;
+      color: rgb(65, 40, 20);
+    }
   }
 }
 </style>

@@ -126,7 +126,11 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
 <style scoped>
 /* 共通設定 */
 .new-cafes-section {
-  padding: 60px 20px;
+  padding:20px;
+
+  @media (min-width:768px){
+    padding: 60px 20px;
+  }
 
   & .section-container {
     max-width: 1100px;

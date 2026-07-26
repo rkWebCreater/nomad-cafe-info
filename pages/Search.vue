@@ -46,11 +46,11 @@ const filteredCafes = computed(() => {
         cafe.areaNameJa.toLowerCase().includes(kw)
 
       //検索ワードが「電源」関連の場合、cafe.features.power.available を判定  【?.】オプショナルチェイニング：featuresなどが存在しない場合もエラーを出さず安全に判定
-      const isPowerKw = ['電源', 'コンセント', 'power'].includes(kw)
+      const isPowerKw = ['電源' , '電源あり', 'コンセント', 'コンセントあり', 'power'].includes(kw)
       const inPower = isPowerKw && Boolean(cafe.features?.power?.available)
       
       //検索ワードが「wifi」関連の場合、cafe.features.wifi.available を判定
-      const isWifiKw = ['wifi', 'wi-fi', 'ワイファイ'].includes(kw)
+      const isWifiKw = ['wifi','wifiあり', 'wi-fi', 'わいふぁい' , 'わいふぁいあり' , 'ワイファイ' , 'ワイファイあり'].includes(kw)
       const inWifi = isWifiKw && Boolean(cafe.features?.wifi?.available)
 
       // テキスト・電源・WiFiのどれか1つでもマッチしていれば、このキーワード(kw)はクリア

@@ -9,9 +9,9 @@
       <!-- キャッチコピー -->
       <h1 class="mt-3 text-amber-800">
         <span class="mCatch text-xl font-semibold ">今日の仕事はどこでしようか</span><br>
-        <span class="sCatch">WiFi・電源あり、PC作業OK</span><br>
-        <span class="sCatch">あなたに合ったカフェを見つける</span><br>
-        <span class="sCatch  ">カフェ検索サイトです。</span><br>
+        <span class="sCatch ">WiFi・電源あり、PC作業OK</span><br>
+        <span class="sCatch ">あなたに合ったカフェを見つける</span><br>
+        <span class="sCatch ">カフェ検索サイトです。</span><br>
       </h1>
 
       <!-- 検索バー -->
@@ -24,7 +24,7 @@
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
       
-      <h2 class="cafe-cards-ttl font-bold text-white">現在営業中のカフェ</h2>
+      <h2 class="cafe-cards-ttl font-bold text-white tracking-wider">現在営業中のカフェ</h2>
       <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
 
       <!-- CafeCards.vueの部分 -->
@@ -34,6 +34,9 @@
     
    <!-- エリアから探す -->
    <CafeAreas />
+
+   <!-- タグから探す -->
+   <TagSection />
 
    <!-- 新着おすすめカフェ -->
    <NewCafes />
@@ -65,7 +68,7 @@ header{
                background:rgba(218, 175, 140, 1);
                border-radius:40px;
                padding: 6px 20px ;
-               letter-spacing: 5px;
+               letter-spacing:5px;
         }
       }
       .search-bar{
@@ -77,11 +80,7 @@ header{
                      background:url(/nomad-cafe-info/images/slider/bg/cafe_table.jpg);
                      background-repeat: no-repeat;
                      background-size: cover;
-                     background-position: center; 
-
-                    .cafe-cards-ttl{
-                                   letter-spacing: 3px;
-                    }
+                     background-position: center;
                
            .canSlide{
                      color: white;

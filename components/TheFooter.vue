@@ -52,7 +52,7 @@ const areaList = [
         <p class="nav-title">タグから探す</p>
         <ul class="nav-list">
           <li v-for="tag in TAGS" :key="tag.key">
-            <NuxtLink :to="{ path: '/search/#search-header', query: { tag: tag.key } }" class="nav-link">
+            <NuxtLink :to="{ path: '/search/', hash:'#search-header', query: { tag: tag.key } }" class="nav-link">
                {{ tag.name }}
             </NuxtLink>
           </li>

@@ -4,18 +4,8 @@
 /* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
 import {useRoute} from 'vue-router' 
 */
-import cafeData from '~/cafes.json' 
-/* タグの英名と日本語名の対応表を用意
-wifiやpowerなどの英単語は引用符ありなしどちらでもOK　no-smoking ―がある場合は引用符がいる*/
-const tagMap = {
-  power: '電源',
-  wifi: 'Wifi',
-  morning: 'モーニング',
-  lunch: 'ランチ',
-  single: '一人席',
-  'no-smoking': '禁煙',
-  meeting: '打あわせ可'
-}
+import { TAG_MAP } from '~/constants/tags'
+import cafeData from '~/cafes.json'
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()
@@ -34,7 +24,7 @@ const searchAreaName = computed(() => {
 //タグから遷移する際　日本語に変換して表示させる処理
 const searchTagName = computed(()=>{
   if(!searchTag.value) return ''
-  return tagMap[searchTag.value] || searchTag.value
+  return TAG_MAP[searchTag.value] || searchTag.value
 })
 
 // 3. キーワードをもとにカフェデータを絞り込む computed(()=>{  })

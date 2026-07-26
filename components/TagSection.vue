@@ -1,7 +1,9 @@
 <script setup>
+import { TAGS } from '~/constants/tags'
+
 // 画像に表示されているタグのリスト
 // key は JSON 側のプロパティ名やクエリのパラメータに合わせて調整できます
-const tags = [
+/*const tags = [
   { name: '電源', key: 'power' },
   { name: 'Wifi', key: 'wifi' },
   { name: 'モーニング', key: 'morning' },
@@ -9,7 +11,8 @@ const tags = [
   { name: '一人席', key: 'single' },
   { name: '禁煙', key: 'no-smoking' },
   { name: '打あわせ可', key: 'meeting' }
-]
+] constants/tags.js にまとめたので消しても大丈夫　*/
+ 
 </script>
 
 <template>
@@ -28,7 +31,7 @@ const tags = [
     <!-- タグボタン一覧 -->
     <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
       <NuxtLink
-        v-for="tag in tags"
+        v-for="tag in TAGS"
         :key="tag.key"
         :to="{ path: '/search', query: { tag: tag.key } }"
         class="inline-block bg-[#A97A53] hover:bg-[#966B45] text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm"

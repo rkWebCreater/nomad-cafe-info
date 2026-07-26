@@ -84,7 +84,7 @@
                                          transform: translateY(3px) rotate(45deg);
               }
               &:nth-child(2){
-                                         transform: translateY(-4px) rotate(-45deg);
+                                         transform: translateY(-3px) rotate(-45deg);
               }
          }
 

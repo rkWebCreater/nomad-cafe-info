@@ -5,7 +5,8 @@
 import {useRoute} from 'vue-router' 
 */
 import cafeData from '~/cafes.json' 
-// タグの英名と日本語名の対応表を用意
+/* タグの英名と日本語名の対応表を用意
+wifiやpowerなどの英単語は引用符ありなしどちらでもOK　no-smoking ―がある場合は引用符がいる*/
 const tagMap = {
   power: '電源',
   wifi: 'Wifi',
@@ -98,7 +99,7 @@ const filteredCafes = computed(() => {
       <span v-if="searchKeyword">キーワード「{{ searchKeyword }}」</span>
       <span v-if="searchKeyword && searchTag">と</span>
       
-      <span v-if="searchTag">タグ「{{ searchTag }}」</span>
+      <span v-if="searchTag">タグ「{{ searchTagName }}」</span>
       
       <!-- いずれも指定がない場合 -->
       <span v-if="!searchArea && !searchKeyword && !searchTag">すべてのカフェ</span>

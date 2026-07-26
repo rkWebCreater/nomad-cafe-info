@@ -16,7 +16,7 @@ import { TAGS } from '~/constants/tags'
 </script>
 
 <template>
-  <section class=" px-4 text-center">
+  <section class=" px-4 text-center mb-20">
     <!-- タイトル -->
     <h2 class="section-ttl text-3xl text-[#7A583A] tracking-wider mb-4"><!-- tracking-wider は、CSSの letter-spacing（文字と文字の間の余白）を少し広くする Tailwind CSSのクラス -->
       タグから探す

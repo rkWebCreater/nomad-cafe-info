@@ -18,7 +18,6 @@
 /*PC,SP 共通 */
 #cafeArea{
   background: rgb(253, 245, 238);
-  padding:80px 0;
 
         .ttl{
           h2{

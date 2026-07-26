@@ -5,6 +5,16 @@
 import {useRoute} from 'vue-router' 
 */
 import cafeData from '~/cafes.json' 
+// タグの英名と日本語名の対応表を用意
+const tagMap = {
+  power: '電源',
+  wifi: 'Wifi',
+  morning: 'モーニング',
+  lunch: 'ランチ',
+  single: '一人席',
+  'no-smoking': '禁煙',
+  meeting: '打あわせ可'
+}
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()
@@ -14,11 +24,16 @@ const searchKeyword = computed(() => route.query.keyword || '')
 const searchArea = computed(() => route.query.area || '')
 const searchTag = computed(() => route.query.tag || '')
 
-// エリアボタンから遷移する際の日本語に直して検索結果ページに表示させる
+//エリアボタンから遷移する際　日本語に変換して表示させる処理
 const searchAreaName = computed(() => {
   if (!searchArea.value) return ''
-  const matchedCafe = cafeData.find(cafe => cafe.area === searchArea.value)
-  return matchedCafe ? matchedCafe.areaNameJa : searchArea.value
+  const matchedAreaButton = cafeData.find(cafe => cafe.area === searchArea.value)
+  return matchedAreaButton ? matchedAreaButton.areaNameJa : searchArea.value
+})
+//タグから遷移する際　日本語に変換して表示させる処理
+const searchTagName = computed(()=>{
+  if(!searchTag.value) return ''
+  return tagMap[searchTag.value] || searchTag.value
 })
 
 // 3. キーワードをもとにカフェデータを絞り込む computed(()=>{  })

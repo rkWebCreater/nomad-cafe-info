@@ -2,8 +2,7 @@
 
 <script setup>
 /* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
-import {useRoute} from 'vue-router' 
-*/
+import {useRoute} from 'vue-router' */
 import { TAG_MAP } from '~/constants/tags'
 import cafeData from '~/cafes.json'
 
@@ -15,12 +14,28 @@ const searchKeyword = computed(() => route.query.keyword || '')
 const searchArea = computed(() => route.query.area || '')
 const searchTag = computed(() => route.query.tag || '')
 
+// footerでタグを押したときどのページでも見出しまでスクロールするための処理　タグ（route.query.tag）が変わったのを検知してスクロールさせる
+watch(
+  () => route.query.tag,
+  async () => {
+    // DOM（画面の要素）が更新されるのを少し待つ
+    await nextTick()
+    
+    // #search-header の要素を取得してそこまでスクロール
+    const headerEl = document.getElementById('search-header')
+    if (headerEl) {
+      headerEl.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+)
+
 //エリアボタンから遷移する際　日本語に変換して表示させる処理
 const searchAreaName = computed(() => {
   if (!searchArea.value) return ''
   const matchedAreaButton = cafeData.find(cafe => cafe.area === searchArea.value)
   return matchedAreaButton ? matchedAreaButton.areaNameJa : searchArea.value
 })
+
 //タグから遷移する際　日本語に変換して表示させる処理
 const searchTagName = computed(()=>{
   if(!searchTag.value) return ''
@@ -80,7 +95,7 @@ const filteredCafes = computed(() => {
 
 <template>
   <!-- 検索結果のヘッダー情報 -->
-  <div class="search_result">
+  <div class="search_result" id="search-header">
     <h1>
       <!-- エリア・キーワード・タグの組み合わせ表示 -->
       <span v-if="searchArea">エリア「{{ searchAreaName }}」</span>

@@ -15,7 +15,7 @@ const tags = [
 <template>
   <section class="py-12 px-4 text-center">
     <!-- タイトル -->
-    <h2 class="text-3xl font-serif text-[#7A583A] tracking-wider mb-4"><!-- tracking-wider は、CSSの letter-spacing（文字と文字の間の余白）を少し広くする Tailwind CSSのクラス -->
+    <h2 class="section-ttl text-3xl text-[#7A583A] tracking-wider mb-4"><!-- tracking-wider は、CSSの letter-spacing（文字と文字の間の余白）を少し広くする Tailwind CSSのクラス -->
       タグから探す
     </h2>
 
@@ -38,3 +38,12 @@ const tags = [
     </div>
   </section>
 </template>
+<style>
+.section-ttl{
+  font-size:18px;
+  
+  @media (min-width:768px){
+        font-size:25px;
+      }
+}
+</style>

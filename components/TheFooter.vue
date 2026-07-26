@@ -1,4 +1,5 @@
 <script setup>
+import {TAG_MAP} from '~/constants/tags'
 // エリアリンクのデータ
 const areaList = [
   { id: 'shibuya', name: '渋谷' },
@@ -9,12 +10,6 @@ const areaList = [
   { id: 'fukuoka', name: '福岡' }
 ]
 
-// タグリンクのデータ
-const tagList = [
-  { id: 'wifi', name: 'Wi-Fiあり' },
-  { id: 'power', name: '電源あり' },
-  { id: 'quiet', name: '静か・作業向け' }
-]
 </script>
 
 <template>
@@ -53,17 +48,17 @@ const tagList = [
         </ul>
       </div>
 
-      <!-- 4. タグから探す 
+       4. タグから探す 
       <div class="footer-item">
         <p class="nav-title">タグから探す</p>
         <ul class="nav-list">
-          <li v-for="tag in tagList" :key="tag.id">
-            <NuxtLink :to="{ path: '/search', query: { tag: tag.id } }" class="nav-link">
+          <li v-for="tag in TAG_MAP" :key="tag.key">
+            <NuxtLink :to="{ path: '/search', query: { tag: tag.key } }" class="nav-link">
               # {{ tag.name }}
             </NuxtLink>
           </li>
         </ul>
-      </div>-->
+      </div>
 
     </div>
 

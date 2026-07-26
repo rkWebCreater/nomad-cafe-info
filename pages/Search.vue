@@ -15,8 +15,9 @@ const searchArea = computed(() => route.query.area || '')
 const searchTag = computed(() => route.query.tag || '')
 
 // footerでタグを押したときどのページでも見出しまでスクロールするための処理　タグ（route.query.tag）が変わったのを検知してスクロールさせる
+// タグ（tag）またはエリア（area）が変わったのを検知してスクロールさせる
 watch(
-  () => route.query.tag,
+  [() => route.query.tag, () => route.query.area],
   async () => {
     // DOM（画面の要素）が更新されるのを少し待つ
     await nextTick()

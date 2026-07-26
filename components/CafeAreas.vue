@@ -18,6 +18,7 @@
 /*PC,SP 共通 */
 #cafeArea{
   background: rgb(253, 245, 238);
+  padding:40px 0;
 
         .ttl{
           h2{
@@ -61,6 +62,7 @@
 @media (max-width:768px){
       
 #cafeArea{
+
         .ttl{
             margin-bottom:20px;
             letter-spacing: 1px;
@@ -99,6 +101,8 @@
 }
 @media (min-width:1024px){
      #cafeArea{
+           padding:60px 0;
+
         .ttl{
              margin-bottom:20px;
              letter-spacing: 5px;

@@ -19,7 +19,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
 
           <!-- 【左カラム】基本情報 -->
-          <div class="info-column space-y-4">
+          <div class="info-column ">
             <div class="info-item">
               <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">店舗名</dt>
               <dd class="text-xl md:text-2xl font-bold text-[#7a583a] ">{{ cafe.name }}</dd>
@@ -169,22 +169,27 @@
   .info-column {
     display: flex;
     flex-direction: column;
-    gap: 18px;
 
     /* PC表示時に右カラムの左側に縦線を入れる */
     &.border-left {
       border-top: 1px solid #f0e6df;
       padding-top: 24px;
 
-      @media (min-width: 769px) {
-        border-top: none;
-        border-left: 1px solid #f0e6df;
-        padding-top: 0;
-        padding-left: 40px;
-      }
+      
     }
   }
+  @media (min-width: 769px) {
+     .info-column{
+         gap:20px;
 
+        .border-left{
+            border-top: none;
+            border-left: 1px solid #f0e6df;
+            padding-top: 0;
+            padding-left: 40px;
+        }
+    }
+  }
   .info-item {
     display: flex;
     flex-direction: column;

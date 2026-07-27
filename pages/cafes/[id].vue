@@ -1,70 +1,256 @@
 <!-- pages/cafes/[id].vue カフェの詳細ページ-->
 
 <template>
-  <div class="max-w-6xl mx-auto p-4 text-left">
+  <div class="max-w-5xl mx-auto p-4 md:p-6 text-left">
     
     <!-- クリックしたカフェ一軒の表示部分 -->
-    <div v-if="cafe" class="detail rounded-2xl shadow-md overflow-hidden ml-auto mr-auto mb-10">
-      <img :src="cafe.imageUrl" :alt="cafe.name" class="mainImg object-cover w-full h-64 max-w-xl" />
-      <div class="p-5">
-       <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ cafe.areaNameJa }}</span>
-       <h1 class="cafe-name font-bold text-gray-900 text-2xl mt-2 ml-1 mb-2">{{ cafe.name }}</h1>
-       <div class="description">
-        <p class="text-gray-800 text-sm mt-1">📍 住所: {{ cafe.address }}</p>
-        <p class="text-gray-600 text-sm mt-1">🕒 営業: {{ cafe.businessHours }}</p>
-        <p class="text-gray-600 text-sm mt-1">💰 予算: {{ cafe.budget }}</p>
-       </div>
-       <p class="text-gray-600 text-m mt-2 mr-2 mb-2">💻HP: {{ cafe.website }}</p>
-       <div class="tag mt-2 flex gap-2 text-xs text-gray-500">
-        <span class="px-2 py-1 rounded">🛜 {{ cafe.features?.wifi?.available? 'あり' : 'なし' }}</span>
-        <span class="px-2 py-1 rounded">🔌 {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
-       </div>
-    </div>
+    <div v-if="cafe" class="detail-container mb-12">
       
+      <!-- 1. 最上部：メイン画像エリア（大きく配置） -->
+      <div class="hero-image-wrapper relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-md mb-6 md:mb-8">
+        <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" />
+        <span class="absolute top-4 left-4 bg-amber-100/90 text-amber-900 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+          {{ cafe.areaNameJa }}
+        </span>
+      </div>
+
+      <!-- 2. 情報カードエリア (SP: 1列 / PC: 左右2列) -->
+      <div class="info-card bg-white border border-[#efe8e1] rounded-2xl p-6 md:p-8 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+
+          <!-- 【左カラム】基本情報 -->
+          <div class="info-column space-y-4">
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">店舗名</dt>
+              <dd class="text-xl md:text-2xl font-bold text-[#7a583a] font-serif">{{ cafe.name }}</dd>
+            </div>
+            
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">📍 住所</dt>
+              <dd class="text-sm text-gray-800 leading-relaxed">{{ cafe.address }}</dd>
+            </div>
+            
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🕒 営業時間</dt>
+              <dd class="text-sm text-gray-800">{{ cafe.businessHours }}</dd>
+            </div>
+            
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">💰 予算</dt>
+              <dd class="text-sm text-gray-800">{{ cafe.budget }}</dd>
+            </div>
+            
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">💻 HP</dt>
+              <dd class="text-sm">
+                <a 
+                  v-if="cafe.website" 
+                  :href="cafe.website" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="text-[#bc977a] underline hover:text-[#7a583a] transition-colors"
+                >
+                  公式サイトを開く ↗
+                </a>
+                <span v-else class="text-gray-400">なし</span>
+              </dd>
+            </div>
+          </div>
+
+          <!-- 【右カラム】作業環境情報 -->
+          <div class="info-column space-y-4 border-t md:border-t-0 md:border-l border-[#f0e6df] pt-6 md:pt-0 md:pl-10">
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🪑 席数</dt>
+              <dd class="text-sm text-gray-800">{{ cafe.seats || cafe.nomadInfo?.seats || '要確認' }}</dd>
+            </div>
+
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🛜 Wi-Fi</dt>
+              <dd class="text-sm text-gray-800">
+                {{ cafe.nomadInfo?.wifiSpeed || (cafe.features?.wifi?.available ? 'あり' : 'なし') }}
+              </dd>
+            </div>
+
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🔌 電源（コンセント）</dt>
+              <dd class="text-sm text-gray-800">
+                {{ cafe.nomadInfo?.powerSupply || (cafe.features?.power?.available ? 'あり' : 'なし') }}
+              </dd>
+            </div>
+
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">☕️ 雰囲気</dt>
+              <dd class="text-sm text-gray-800">{{ cafe.atmosphere || cafe.nomadInfo?.atmosphere || '作業しやすい環境' }}</dd>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 
-    <!-- 💡 【フリーズ解決の最重要エリア】他のおすすめカフェセクション -->
-    <!-- :key="cafeId" をセクション全体に指定し、URLが変わるたびにスライダーごと新しく作り直します -->
-    <div v-if="othersCafes && othersCafes.length > 0" :key="cafeId" class="cafe-cards-section  ml-auto mr-auto mt-10">
-      <h2 class="cafe-cards-ttl font-bold text-xl mb-2">他のおすすめカフェ</h2>
-      <p class="canSlide text-gray-300 text-xs mb-4">＜ーー スライドできます ーー＞</p>
-      <!-- 💡 除外済みの正しいリスト（otherCafes）」を、:cafes で渡します -->
-      <CafeCards :cafes="othersCafes" :key ="cafe.id" />
+    <!-- 【他のおすすめカフェセクション】 -->
+    <div v-if="othersCafes && othersCafes.length > 0" :key="cafeId" class="cafe-cards-section ml-auto mr-auto mt-12">
+      <h2 class="cafe-cards-ttl font-bold text-xl mb-2 text-[#7a583a]">他のおすすめカフェ</h2>
+      <p class="canSlide text-gray-400 text-xs mb-4">＜ーー スライドできます ーー＞</p>
+      <CafeCards :cafes="othersCafes" :key="cafe.id" />
     </div>
 
   </div>
 </template>
 
-<style>
+<style scoped>
+/* ページ全体の幅・余白制御 */
+.cafe-detail-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+  text-align: left;
+}
 
-.detail{
-        background: rgb(255, 255, 255);
-        display: grid;
-        grid-auto-flow: row;
-}
-.cafe-cards-ttl{
-               text-align:center;
-}
-.canSlide{
-       text-align: center;
-}
-.tag{
-  span{
-    background:rgb(243, 238, 231);
+/* ==============================================
+   1. メイン画像エリア
+============================================== */
+.main-hero {
+  position: relative;
+  width: 100%;
+  height: 260px; /* SPでの画像高さ */
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+
+  @media (min-width: 769px) {
+    height: 400px; /* PCでの画像高さ（大きく見せる） */
+    margin-bottom: 32px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .area-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(254, 243, 199, 0.95); /* amber-100 */
+    color: #78350f; /* amber-900 */
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
   }
 }
-@media (max-width:768px){
-    .detail{
-             max-width: 380px;
+
+/* ==============================================
+   2. 情報カードエリア（SP: 1列 / PC: 2列）
+============================================== */
+.info-card {
+  background: #ffffff;
+  border: 1px solid #efe8e1; /* 元のCSSの温かいベージュトーン */
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 60px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  display: grid;
+  grid-template-columns: 1fr; /* SPは1列 */
+  gap: 24px;
+
+  @media (min-width: 769px) {
+    grid-template-columns: 1fr 1fr; /* PC（769px〜）は左右2列 */
+    gap: 40px;
+    padding: 36px;
+    margin-bottom: 80px;
+  }
+
+  .info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    /* PC表示時に右カラムの左側に縦線を入れる */
+    &.border-left {
+      border-top: 1px solid #f0e6df;
+      padding-top: 24px;
+
+      @media (min-width: 769px) {
+        border-top: none;
+        border-left: 1px solid #f0e6df;
+        padding-top: 0;
+        padding-left: 40px;
+      }
     }
-}
-@media (min-width:769px){
-    .detail{
-           grid-auto-flow: column;
-           margin-bottom:120px;
-           gap:20px;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #8c7a6b;
+      letter-spacing: 0.05em;
     }
 
+    .value {
+      font-size: 0.95rem;
+      color: #333333;
+      margin: 0;
+      line-height: 1.6;
+
+      &.font-bold {
+        font-size: 1.35rem;
+        font-weight: bold;
+        color: #7a583a;
+        font-family: 'YuMincho', '游明朝', serif;
+      }
+
+      .link {
+        color: #bc977a;
+        text-decoration: underline;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #7a583a;
+        }
+      }
+
+      .text-none {
+        color: #9ca3af;
+      }
+    }
+  }
+}
+
+/* ==============================================
+   3. 他のおすすめカフェセクション
+============================================== */
+.cafe-cards-section {
+  margin-top: 40px;
+
+  @media (min-width: 769px) {
+    margin-top: 60px;
+  }
+}
+
+.cafe-cards-ttl {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #7a583a;
+  margin-bottom: 8px;
+}
+
+.canSlide {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-bottom: 16px;
 }
 </style>
 <script setup>

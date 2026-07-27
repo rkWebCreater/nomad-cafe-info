@@ -22,7 +22,7 @@
           <div class="info-column space-y-4">
             <div class="info-item">
               <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">店舗名</dt>
-              <dd class="text-xl md:text-2xl font-bold text-[#7a583a] font-serif">{{ cafe.name }}</dd>
+              <dd class="text-xl md:text-2xl font-bold text-[#7a583a] ">{{ cafe.name }}</dd>
             </div>
             
             <div class="info-item">

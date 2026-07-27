@@ -160,7 +160,7 @@
   gap: 24px;
 
   @media (min-width: 769px) {
-    grid-template-columns: 1fr 1fr; /* PC（769px〜）は左右2列 */
+    
     gap: 40px;
     padding: 36px;
     margin-bottom: 80px;

@@ -169,6 +169,7 @@
   .info-column {
     display: flex;
     flex-direction: column;
+    gap:15px;
 
     /* PC表示時に右カラムの左側に縦線を入れる */
     &.border-left {
@@ -193,7 +194,12 @@
   .info-item {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 1px;
+    
+   @media (min-width:769px){
+    gap:4px;
+
+   }
 
     .label {
       font-size: 0.75rem;

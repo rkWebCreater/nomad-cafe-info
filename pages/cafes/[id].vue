@@ -58,7 +58,7 @@
           </div>
 
           <!-- 【右カラム】作業環境情報 -->
-          <div class="info-column space-y-4 border-t md:border-t-0 md:border-l border-[#f0e6df] pt-6 md:pt-0 md:pl-10">
+          <div class="info-column  border-t md:border-t-0 md:border-l border-[#f0e6df] pt-6 md:pt-0 md:pl-10">
             <div class="info-item">
               <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🪑 席数</dt>
               <dd class="text-sm text-gray-800">{{ cafe.seats || cafe.nomadInfo?.seats || '要確認' }}</dd>
@@ -195,7 +195,7 @@
     display: flex;
     flex-direction: column;
     gap: 1px;
-    
+
    @media (min-width:769px){
     gap:4px;
 

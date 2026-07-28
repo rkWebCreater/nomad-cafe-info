@@ -10,6 +10,7 @@
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg", 
     "isOpen": true,
     "businessHours": "08:00 - 22:00",
+    "morning":"500円～",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": true, "seats": "all" }

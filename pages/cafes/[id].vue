@@ -9,9 +9,9 @@
       <!-- 1. 最上部：メイン画像エリア（大きく配置） -->
       <div class="hero-image-wrapper relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-md mb-6 md:mb-8">
         <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" />
-        <span class="absolute top-4 left-4 bg-amber-100/90 text-amber-900 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+        <!-- <span class="absolute top-4 left-4 bg-amber-100/90 text-amber-900 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
           {{ cafe.areaNameJa }}
-        </span>
+        </span>-->
       </div>
 
       <!-- 2. 情報カードエリア (SP: 1列 / PC: 左右2列) -->

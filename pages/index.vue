@@ -193,8 +193,6 @@ import { computed } from 'vue'
 import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCards.vueの読み込み */
 // 先ほど作成したJSONデータを読み込む
 import cafeListData from '~/cafes.json'
-
-
 const cafeList = cafeListData 
 
 // 💡 composables から関数を呼び出す（1行書くだけでOK！）

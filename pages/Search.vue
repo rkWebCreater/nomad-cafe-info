@@ -83,9 +83,11 @@ const filteredCafes = computed(() => {
     //カフェデータのエリアID(areaId)と照合する想定
     const matchArea = !area || cafe.area === area
 
-    //条件C: タグ検索 (?tag=power や ?tag=wifi など)
-    // 【[tag]】ブラケット記法：変数 tag の文字列（"power"や"wifi"）を使って動的にプロパティへアクセス
-    const matchTag = !tag || cafe.features?.[tag]?.available === true
+    /*条件C: タグ検索 (?tag=power や ?tag=wifi など)
+    【[tag]】ブラケット記法：変数 tag の文字列（"power"や"wifi"）を使って動的にプロパティへアクセス
+    Boolean（ブーリアン / 真偽値）とは、プログラミングの世界における 「true（真・正しい）」か「false（偽・間違い）」の2通りしか存在しないデータ型（値の種類）のこと
+    */
+    const matchTag = !tag || cafe.features?.[tag]?.available === true // || Boolean(cafe[tag])  他の値をtagに引っ掛けるようにしたい場合
 
     // すべての条件（キーワード AND エリア AND タグ）をクリアしたデータだけを残す
     return matchKeyword && matchArea && matchTag

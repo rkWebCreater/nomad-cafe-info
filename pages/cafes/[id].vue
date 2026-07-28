@@ -82,6 +82,7 @@
               <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">☕️ 雰囲気</dt>
               <dd class="text-sm text-gray-800">{{ cafe.atmosphere || cafe.nomadInfo?.atmosphere || '作業しやすい環境' }}</dd>
             </div>
+
           </div>
 
         </div>

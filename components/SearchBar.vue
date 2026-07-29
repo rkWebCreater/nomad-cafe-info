@@ -19,6 +19,13 @@ const handleSearch = () => {
     path: '/search',
     query: { keyword: searchQuery.value.trim() }
   })
+
+  /* Nuxt 3 専用の組み込み関数（importも const router = useRouter() も不要）
+ await navigateTo({
+      path: '/search',
+      query: { keyword: searchQuery.value?.trim() }
+ }) */
+
 }
 </script>
 
@@ -28,7 +35,7 @@ const handleSearch = () => {
     <input 
       v-model="searchQuery" 
       type="text" 
-      placeholder="地名、カフェ名" 
+      placeholder="名古屋　電源　、Wifi　渋谷など" 
       class="search-input"  
     />
     <button type="submit" class="search-button">検索</button>
@@ -46,11 +53,16 @@ const handleSearch = () => {
 }
 .search-input {
   padding: 0 10px ;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 100%;
-  height:40px;
+  font-size: 16px ;
+  border: 1px solid #ccc ;
+  border-radius: 6px ;
+  width: 100% ;
+  height:32px ;
+
+  @media (min-width:768px){
+    height:40px ;
+  }
+  
 }
 .search-button {
   width:80px;

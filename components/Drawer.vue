@@ -160,33 +160,32 @@
 </style>
 
 <script setup>
-  import {ref , onMounted , watch } from 'vue'
-  import { useRoute } from 'vue-router'
-
+ /* import {ref , onMounted , watch } from 'vue'
+    import { useRoute } from 'vue-router' */
   const route = useRoute()
-
   //---------ドロワーメニューの開閉状態を真偽値( true / false) でリアクティブに管理  ref()
   const isOpen = ref(false)
 
   //メニューを開閉する関数  valueを書かないと認識しない
   const toggleMenu = () =>{
     isOpen.value = !isOpen.value
-  } 
+  }
 
   //メループを閉じる関数（リンクがクリックされたとき）
   const closeMenu = () =>{
     isOpen.value = false
   }
 
-  //---------ここまでドロワーメニューの開閉
+//---------ここまでドロワーメニューの開閉
 
-  //-----ドロワーメニューの繰り返し処理
-const menuItem = [
-  {id: 1 , name: 'トップページ' , path:'/' },
-  {id: 2 , name: '営業中のカフェ' , path:'/#nowOpenCafe'},
-  {id: 3 , name: 'エリアから探す' , path:'/#cafeArea'},
-  {id: 4 , name: 'タグから探す' , path:'/#cafeTag'},
-  {id: 5 , name: '新着おすすめカフェ' , path:'/#new-reco-cafe'}]
+//-----ドロワーメニューの繰り返し処理
+  const menuItem = [
+             {id: 1 , name: 'トップページ' , path:'/' },
+             {id: 2 , name: '営業中のカフェ' , path:'/#nowOpenCafe'},
+             {id: 3 , name: 'エリアから探す' , path:'/#cafeArea'},
+             {id: 4 , name: 'タグから探す' , path:'/#cafeTag'},
+             {id: 5 , name: '新着おすすめカフェ' , path:'/#new-reco-cafe'}
+  ]
 
 //-----ここまでドロワーメニューの繰り返し処理
 

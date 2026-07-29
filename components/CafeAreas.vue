@@ -49,11 +49,11 @@
          transform: translate(-50%, -50%);
       }
       p{
-        font-family:'zen kurenaido';
+        font-family:'zen kurenaido' ;
         color:rgb(245, 230, 217) ;
-        background: rgb(65, 40, 20);
-        padding:5px;
-        position: absolute;
+        background: rgb(104, 53, 4) ;
+        padding:5px ;
+        position: absolute ;
       }
     }
     

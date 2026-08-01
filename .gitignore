@@ -1,0 +1,39 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# 外部ライブラリ（これがファイル数肥大化の99%の原因です）
+node_modules/
+
+# Nuxtが自動生成する一時ファイル
+.nuxt/
+.output/
+dist/
+
+# 環境変数（パスワードなどが入るため公開NG）
+.env
+
+# ログファイルやOS固有のゴミファイル
+*.log
+.DS_Store

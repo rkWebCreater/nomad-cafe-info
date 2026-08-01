@@ -19,7 +19,7 @@ const areaList = [
       <!-- 1. ロゴ・ブランドエリア -->
       <div class="footer-item footer-brand">
         <NuxtLink to="/" >
-         <img src="/images/Logo/logo-nomad_cafe_info.png" class="footer-logo w-full" alt="logo">
+         <img src="/images/Logo/nomad_cafe_info.png" class="footer-logo w-full" alt="logo">
         </NuxtLink>
         <p class="brand-desc">カフェで仕事や作業をして過ごしたい人のためのカフェ検索サイト</p>
       </div>

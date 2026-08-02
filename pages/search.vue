@@ -117,8 +117,8 @@ const fetchSearchResults = async (keyword) => {
         noticeMessage.value = 'AI検索で一致しなかったため、通常のキーワード検索結果を表示しています。'
       }
     }else{
-      searchResults.value = data.results
-      aiConditions.value = data.conditions
+      searchResults.value = data.results || []
+      aiConditions.value = data.conditions || null
       if(data.isFallback && data.message){
         noticeMessage.value = data.message
       }

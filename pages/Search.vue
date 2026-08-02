@@ -4,7 +4,7 @@
 /* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
 import {useRoute} from 'vue-router' */
 import { TAG_MAP } from '~/constants/tags'
-import cafeData from '../cafes.json' //git hub用のパス
+import cafeData from '../../../cafes.json'
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()
@@ -94,6 +94,9 @@ const filteredCafes = computed(() => {
 //------------------------ gemini ai
 //fetchSearchResults 関数配置
 const fetchSearchResults = async (keyword) => {
+
+  // 💡 1. サーバー/ビルド時(SSR)なら実行しない（ブラウザでのみ実行）
+  if (!import.meta.client) return
   if(!keyword || !keyword.trim() || isLoading.value) return
 
   isLoading.value = true
@@ -110,7 +113,10 @@ const fetchSearchResults = async (keyword) => {
     }
     //↓はdata.successがtrueしていることになります　全体をif(data.success){}で囲む必要がなくなる
     if(data.results.length === 0){
-      searchResults.value = filteredCafes.value
+
+      //undefined 対策：filteredCafes が空でも必ず配列 [] をセットする
+      searchResults.value = filteredCafes.value || []
+
       if(searchResults.value.length > 0){
         noticeMessage.value = 'AI検索で一致しなかったため、通常のキーワード検索結果を表示しています。'
       }
@@ -128,7 +134,7 @@ const fetchSearchResults = async (keyword) => {
     // 自動的に従来のローカル絞り込み結果（filteredCafes）に切り替えて表示する
     console.error('Search request error:', error)
     noticeMessage.value = '⚠️ AIの利用制限に達したため、通常のキーワード検索結果を表示しています。'
-    searchResults.value = filteredCafes.value
+    searchResults.value = filteredCafes.value || []
   }
   finally{
     isLoading.value = false

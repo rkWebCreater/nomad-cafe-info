@@ -49,3 +49,53 @@ URLの末尾（ID）を `computed` と `useRoute` で24時間リアクティブ�
 - **問題**: 静的サイトのビルド時に `Exiting due to prerender errors.` および `Cannot read properties of undefined (reading 'replace') at checkIfOpen` が発生し、書き出しが強制終了した。
 - **原因**: データの複製・追加を手動で行った際、データの結合部に不要な `[`（角括弧）が混入して二重配列になり、JSONの階層構造が崩れていた。これにより、Nuxt 3の関数（`checkIfOpen`）が特定のデータ（`businessHours` など）を正しく参照できず、未定義エラーを吐いていた。
 - **解決策**: `cafes.json` 内の不要な配列記号を削除して1つのフラットなオブジェクト配列へと構造を修正。データ全体の構文的な整合性を担保したことで、プリレンダー時のデータパースエラーを完全に解消した。
+
+### 5. geminiのapiを検索バーに組み込むため検索結果ページにfetchSearchResults関数try,catchを書き直してgit hub上にアップしたらエラーになった
+npx nuxt generate（または GitHub Actions のビルド）を実行した際、Nuxt (Nitro) のクローラーがトップページからリンクされている /search 関連のページ（クエリパラメータ付きの /search?area=umeda や /search?tag=power などを含む）を巡回し、事前生成（プリレンダー）しようとしたこと 
+
+なぜビルド時（SSR）に 500 エラーが発生したのか？
+環境変数の不在:セキュリティ上 .env（Gemini APIキー）を GitHub に上げていないため、ビルド環境には API キーが存在しませんでした。
+
+サーバー処理の実行不可:API キーがない状態でビルド時に /api/search への通信やサーバー処理が走ってしまい、500 Server Error でビルド全体がストップしていました。
+
+- **実際に効果があった唯一の解決策**
+nuxt.config.ts に nitro.prerender.ignore の設定を追加し、ビルド時に検索ページを巡回・HTML生成（プリレンダー）対象から除外したこと で解決しました。
+
+🛠 追記したコード (nuxt.config.ts)
+TypeScript
+// nuxt.config.ts
+export default defineNuxtConfig({
+  nitro: {
+    prerender: {
+      // ビルド時に検索ページ（クエリパラメータ付き含む）を巡回・生成しないよう除外する
+      ignore: [
+        '/search',
+        '/Search',
+        '/nomad-cafe-info/search',
+        '/nomad-cafe-info/Search'
+      ]
+    }
+  }
+})
+この設定により、ビルド時に環境変数が必要な通信が走らなくなり、GitHub Actions 上で緑のチェック（ビルド成功）になりました。
+
+
+### 6.その他の重要なコード設計と現在の挙動
+
+① search.vue の安全設計（フロントエンド）
+if (!import.meta.client) return の配置:ビルド時（サーバー側）には検索通信を行わず、ブラウザでのみ実行されるようにガード。
+
+searchResults.value = filteredCafes.value || [] などの防御:万が一通信に失敗したりデータが空でも、常に空の配列 [] をセットすることで画面描画のクラッシュを防ぐ。
+
+② GitHub Pages 上での現在の挙動
+GitHub Pages は「静的ファイル専用サーバー」のため、裏側の Node.js サーバー処理（/api/search）が動作せず 404 になります。
+
+しかし、search.vue 内に書かれた try-catch によるフォールバック処理（安全装置）が完璧に機能しているため、自動的に通常のキーワード検索（filteredCafes）に切り替わり、画面が壊れることなく安全に動作しています。
+
+-*今後の選択肢 (本物の Gemini AI 検索を動かす場合)*
+
+現在アプリの安全装置（フォールバック）は完成しているため、もし公開サイト上で本物の Gemini AI 検索を動かしたい場合は、以下の対応を行います。
+Vercel（バーセル）にデプロイする【推奨】 現在のコード（/api/search）をそのまま変更せず利用可能。
+
+管理画面から安全に GEMINI_API_KEY を登録するだけで、本番環境でも Gemini AI 検索が動作します。
+GitHub Pages のまま Vue（ブラウザ）から直接 Gemini API を呼び出す。 /api/search を介さず、ブラウザから直接 Gemini API にリクエストを飛ばすコードに書き換えます（※APIキーの露出対策が必要）。

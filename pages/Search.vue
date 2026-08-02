@@ -4,7 +4,7 @@
 /* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
 import {useRoute} from 'vue-router' */
 import { TAG_MAP } from '~/constants/tags'
-import cafeData from '../../../cafes.json'
+import cafeData from '../cafes.json' //git hub用のパス
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()

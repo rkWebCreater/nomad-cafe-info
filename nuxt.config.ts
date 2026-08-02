@@ -40,13 +40,6 @@ export default defineNuxtConfig({
     compilerOptions: {
       isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
     },
-  },
-  
-  nitro: {
-    prerender: {
-      // 検索ページ（クエリ付き含む）の事前生成を無視する
-      ignore: ['/search', '/nomad-cafe-info/search']
-    }
   }
 
 })

@@ -19,7 +19,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
 
           <!-- 【左カラム】基本情報 -->
-          <div class="info-column ">
+          <div class="info-column">
             <div class="info-item">
               <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">店舗名</dt>
               <dd class="text-xl md:text-2xl font-bold text-[#7a583a] ">{{ cafe.name }}</dd>
@@ -270,7 +270,7 @@
 
 /* import { computed, watch } from 'vue'
    import { useRoute } from 'vue-router'  */
-import cafeData from '~/cafes.json'
+import cafeData from '../../../cafes.json'
 
 const route = useRoute()
 const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分を24時間監視してリアルタイムで検知する

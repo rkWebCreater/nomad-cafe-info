@@ -4,31 +4,26 @@
 /* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
 import {useRoute} from 'vue-router' */
 import { TAG_MAP } from '~/constants/tags'
-import cafeData from '~/cafes.json'
+import cafeData from '../../cafes.json'
 
 // 1. URLの情報を取得するための準備 useRoute()を取得
 const route = useRoute()
+//追記
+const searchResults = ref([])
+const aiConditions = ref(null)
+const noticeMessage = ref('')
+const isLoading = ref(false)
 
 // 2. URLの ?keyword=〇〇 の部分やエリアボタンからのクエリをリアルタイムに取得 computed(()=>route.query.oooo || '') キーワードか空文字を取得
 const searchKeyword = computed(() => route.query.keyword || '')
 const searchArea = computed(() => route.query.area || '')
 const searchTag = computed(() => route.query.tag || '')
 
-// footerでタグを押したときどのページでも見出しまでスクロールするための処理　タグ（route.query.tag）が変わったのを検知してスクロールさせる
-// タグ（tag）またはエリア（area）が変わったのを検知してスクロールさせる
-watch(
-  [() => route.query.tag, () => route.query.area],
-  async () => {
-    // DOM（画面の要素）が更新されるのを少し待つ
-    await nextTick()
-    
-    // #search-header の要素を取得してそこまでスクロール
-    const headerEl = document.getElementById('search-header')
-    if (headerEl) {
-      headerEl.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-)
+// 入力値のバリデーション（空文字NG、100文字以内）
+const isValidInput = computed(() =>{
+  const trimmed = searchKeyword.value.trim()
+  return trimmed.length > 0 && trimmed.length <= 100
+})
 
 //エリアボタンから遷移する際　日本語に変換して表示させる処理
 const searchAreaName = computed(() => {
@@ -43,13 +38,12 @@ const searchTagName = computed(()=>{
   return TAG_MAP[searchTag.value] || searchTag.value
 })
 
-// 3. キーワードをもとにカフェデータを絞り込む computed(()=>{  })
+// キーワードをもとにカフェデータを絞り込む　ローカル検索  computed(()=>{  })
 const filteredCafes = computed(() => {
 
   const rawKeyword = searchKeyword.value.trim().toLowerCase() //もし .trim() を使わずにそのまま検索してしまうと、コンピューターは「『スタバ』（スペースなし）と『スタバ 』（スペースあり）は別の言葉だ！」と判断してしまい、本当はデータがあるのに「0件です」と表示されてしまう原因になる
   const area = searchArea.value.trim()
   const tag = searchTag.value.trim()
-
   // 全角スペースも半角スペースに統一してから、スペースで区切って配列にする
   // 例: "渋谷 電源" ➔ ["渋谷", "電源"]
   const keywords = rawKeyword ? rawKeyword.replace(/ /g, ' ').split(/\s+/).filter(Boolean) : []
@@ -62,17 +56,19 @@ const filteredCafes = computed(() => {
     // 1. 店名・住所・エリア名に含まれるか
     const matchKeyword = keywords.every(kw => {
       const inText = 
-        cafe.name.toLowerCase().includes(kw) || 
-        cafe.address.toLowerCase().includes(kw) || 
-        cafe.area.toLowerCase().includes(kw) || 
-        cafe.areaNameJa.toLowerCase().includes(kw)
+        (cafe.name?.toLowerCase().includes(kw)) || 
+        (cafe.address?.toLowerCase().includes(kw)) || 
+        (cafe.area?.toLowerCase().includes(kw)) || 
+        (cafe.areaNameJa?.toLowerCase().includes(kw))
 
       //検索ワードが「電源」関連の場合、cafe.features.power.available を判定  【?.】オプショナルチェイニング：featuresなどが存在しない場合もエラーを出さず安全に判定
-      const isPowerKw = ['電源' , '電源あり', 'コンセント', 'コンセントあり', 'power'].includes(kw)
+      // 2. 検索ワードに「電源」関連の言葉が含まれているかを柔軟に判定（someを使用）
+      const isPowerKw =[ '電源' , '電源あり', 'コンセント', 'コンセントあり', 'power'].includes(kw)
       const inPower = isPowerKw && Boolean(cafe.features?.power?.available)
       
       //検索ワードが「wifi」関連の場合、cafe.features.wifi.available を判定
-      const isWifiKw = ['wifi','wifiあり', 'wi-fi', 'わいふぁい' , 'わいふぁいあり' , 'ワイファイ' , 'ワイファイあり'].includes(kw)
+      // 3. 検索ワードに「wifi」関連の言葉が含まれているかを柔軟に判定（someを使用）
+      const isWifiKw =['wifi','wifiあり', 'wi-fi', 'わいふぁい' , 'わいふぁいあり' , 'ワイファイ' , 'ワイファイあり'].includes(kw)
       const inWifi = isWifiKw && Boolean(cafe.features?.wifi?.available)
 
       // テキスト・電源・WiFiのどれか1つでもマッチしていれば、このキーワード(kw)はクリア
@@ -94,9 +90,106 @@ const filteredCafes = computed(() => {
   })
 
 })
+
+//------------------------ gemini ai
+//fetchSearchResults 関数配置
+const fetchSearchResults = async (keyword) => {
+  if(!keyword || !keyword.trim() || isLoading.value) return
+
+  isLoading.value = true
+  noticeMessage.value = ''
+  aiConditions.value = null
+  searchResults.value = []//ここで空にする
+
+  try{
+    const data = await $fetch(`/api/search?text=${encodeURIComponent(keyword.trim())}`)
+    //最初に失敗か(successではない)どうかチェック
+    //もし失敗していたら、ここで強制的にエラーを起こして下のcatchブロックにワープさせる  ガード節
+    if(!data.success){
+      throw new Error(data.message || 'APIの処理に失敗しました')
+    }
+    //↓はdata.successがtrueしていることになります　全体をif(data.success){}で囲む必要がなくなる
+    if(data.results.length === 0){
+      searchResults.value = filteredCafes.value
+      if(searchResults.value.length > 0){
+        noticeMessage.value = 'AI検索で一致しなかったため、通常のキーワード検索結果を表示しています。'
+      }
+    }else{
+      searchResults.value = data.results
+      aiConditions.value = data.conditions
+      if(data.isFallback && data.message){
+        noticeMessage.value = data.message
+      }
+    }
+
+  }
+  catch (error) {
+    // 💡 AIの制限（429エラーなど）や通信エラーが起きた場合、
+    // 自動的に従来のローカル絞り込み結果（filteredCafes）に切り替えて表示する
+    console.error('Search request error:', error)
+    noticeMessage.value = '⚠️ AIの利用制限に達したため、通常のキーワード検索結果を表示しています。'
+    searchResults.value = filteredCafes.value
+  }
+  finally{
+    isLoading.value = false
+  }
+}
+
+// footerでタグを押したときどのページでも見出しまでスクロールするための処理　タグ（route.query.tag）が変わったのを検知してスクロールさせる
+// タグ（tag）またはエリア（area）が変わったのを検知してスクロールさせる
+watch(
+  [() => route.query.keyword ,() => route.query.tag, () => route.query.area],
+  async ([newKeyword]) => {
+    // 1. 自由テキストのキーワードがある場合は、AI検索を実行
+    if(newKeyword){
+      //キーワード（文章）がある場合　AI検索を実行
+      await fetchSearchResults(newKeyword)
+    }else {
+      //キーワードがない場合（エリアボタンやタグ単体、または条件なし）
+      aiConditions.value = null
+      noticeMessage.value = ''
+      searchResults.value = filteredCafes.value
+    }
+
+    // DOM（画面の要素）が更新されるのを少し待つ
+    await nextTick()
+    // どのクエリ（keyword, tag, area）が変わった場合でも、画面の更新を待ってからスクロール
+    const headerEl = document.getElementById('search-header')
+    if (headerEl) {
+      headerEl.scrollIntoView({ behavior: 'smooth' })
+    }
+  },
+  {immediate:true } // ← この3行目を追加するだけで、onMountedの代わりになります！
+)
+/*ユーザーが直接URL（例: [https://example.com/search?keyword=名古屋](https://example.com/search?keyword=名古屋)）をブラウザに入力してページを開いたり、ページをリロード（再読み込み）したりしたとき、「URLが変わった瞬間（watch）」は起きず、「ページが最初に開いた瞬間」だけが起きます。
+onMounted を書くか、あるいは watch に「初回も自動で実行してね」というおまじないをつけるかのどちらかをしておかないと、「直接URLを開いたときに検索結果が出ない」という現象が起きてしまうから */
+
 </script>
 
 <template>
+  <!-- 1. AIローディング中の表示（検索時にふわっと出す） -->
+  <div v-if="isLoading" class="text-center py-8 text-amber-800 bg-amber-50 rounded-lg mb-6">
+    <p class="text-lg font-bold animate-pulse">🤖 AIが条件を解析して最適なカフェを探しています...</p>
+  </div>
+
+  <!-- 2. フォールバック・通知メッセージ（条件に合うものがなく別候補を出した時など） -->
+  <div v-if="noticeMessage" class="mb-6 p-4 bg-orange-100 text-orange-800 rounded-lg text-sm border border-orange-200">
+   ⚠️ {{ noticeMessage }}
+  </div>
+
+  <!-- 3. AIが解析した検索条件のボックス（Geminiが動いている証拠） -->
+  <div v-if="aiConditions" class="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm">
+    <p class="font-bold text-slate-700 mb-1">🤖 AIが以下の条件を読み取りました：</p>
+    <div class="flex flex-wrap gap-2 text-slate-600">
+      <span v-if="aiConditions.area" class="bg-white px-2 py-1 rounded border border-slate-200">
+       📍 エリア: <strong>{{ aiConditions.area }}</strong>
+      </span>
+      <span v-if="aiConditions.features && aiConditions.features.length > 0" class="bg-white px-2 py-1 rounded border border-slate-200">
+        ✨ 設備・特徴: <strong>{{ aiConditions.features.join(', ') }}</strong>
+      </span>
+    </div>
+  </div>
+
   <!-- 検索結果のヘッダー情報 -->
   <div class="search_result" id="search-header">
     <h1>
@@ -112,13 +205,13 @@ const filteredCafes = computed(() => {
       <!-- いずれも指定がない場合 -->
       <span v-if="!searchArea && !searchKeyword && !searchTag">すべてのカフェ</span>
     </h1>
-    <p><span>{{ filteredCafes.length }}件</span>のカフェが見つかりました</p>
+    <p><span>{{ searchResults.length }}件</span>のカフェが見つかりました</p>
   </div>
 
   <!-- 検索結果一覧 -->
-  <!-- 1件以上ある場合 -->
-  <ul v-if="filteredCafes.length > 0" class="cafe_filter_list ml-auto mr-auto">
-    <li v-for="filteredCafe in filteredCafes" :key="filteredCafe.id">
+  <!-- 1件以上ある場合 （※ filteredCafes から searchResults に変更）-->
+  <ul v-if="searchResults.length > 0" class="cafe_filter_list ml-auto mr-auto">
+    <li v-for="filteredCafe in searchResults" :key="filteredCafe.id">
       <NuxtLink :to="`/cafes/${filteredCafe.id}`" class="block h-full">
         <img :src="filteredCafe.imageUrl" :alt="filteredCafe.name" class="w-full h-48 object-cover"/>
         
@@ -150,8 +243,8 @@ const filteredCafes = computed(() => {
     </li>
   </ul>
 
-  <!-- 0件の場合のメッセージ -->
-  <div v-else class="text-center py-12 text-gray-500">
+  <!-- 0件の場合のメッセージ （ローディング中でない時だけ表示）-->
+  <div v-else-if="!isLoading" class="text-center py-12 text-gray-500">
     <p class="text-lg font-medium">条件に一致するカフェが見つかりませんでした。</p>
     <p class="text-sm mt-2">検索キーワードやエリアを変更して再度お試しください。</p>
   </div>

@@ -5,7 +5,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   
- 
+  runtimeConfig:{
+    // サーバーサイドでのみアクセス可能（ブラウザには露出しない）
+    geminiApiKey: process.env.GEMINI_API_KEY
+  },
+
+ //tailwind 設定
   modules: [
     '@nuxtjs/tailwindcss'
   ],
@@ -24,8 +29,8 @@ export default defineNuxtConfig({
         // Google Fonts のサーバーに接続する設定
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        // 使いたいフォント（Noto Sans JP と Quicksand）の読み込みリンク
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Zen+Kurenaido&display=swap' }
+        // 使いたいフォント（zen kurenaido）の読み込みリンク
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap' }
       ]
     }
   },
@@ -35,5 +40,13 @@ export default defineNuxtConfig({
     compilerOptions: {
       isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
     },
+  },
+  
+  nitro: {
+    prerender: {
+      // 検索ページ（クエリ付き含む）の事前生成を無視する
+      ignore: ['/search', '/nomad-cafe-info/search']
+    }
   }
+
 })

@@ -135,7 +135,7 @@ const fetchSearchResults = async (keyword) => {
   finally{
     isLoading.value = false
   }
-}////fetchSearchResults終わり
+}//fetchSearchResults終わり
 
 // footerでタグを押したときどのページでも見出しまでスクロールするための処理　タグ（route.query.tag）が変わったのを検知してスクロールさせる
 // タグ（tag）またはエリア（area）が変わったのを検知してスクロールさせる

@@ -120,9 +120,9 @@ const areaList = [
 
       .nav-title {
         font-size: 12px;
-        color: rgb(224, 218, 203);
+        color: rgb(220, 213, 195);
         margin-bottom: 12px;
-        border-bottom: 0.5px solid rgb(65, 40, 20);
+        border-bottom: 0.5px solid rgb(220, 213, 195);
         padding-bottom: 4px;
       }
 

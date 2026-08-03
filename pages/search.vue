@@ -3,169 +3,39 @@
 <script setup>
 /* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
 import {useRoute} from 'vue-router' */
+import { AREA_MAP } from '~/constants/areas'
 import { TAG_MAP } from '~/constants/tags'
-import cafeData from '../cafes.json' //git hub用のパス
+import cafeData from '../../../cafes.json'
 
-// 1. URLの情報を取得するための準備 useRoute()を取得
-const route = useRoute()
-//追記
-const searchResults = ref([])
-const aiConditions = ref(null)
-const noticeMessage = ref('')
-const isLoading = ref(false)
+// ① 読み込んだJSONデータをリアクティブ（Ref）に変換する
+const allCafes = ref(cafeData)
 
-// 2. URLの ?keyword=〇〇 の部分やエリアボタンからのクエリをリアルタイムに取得 computed(()=>route.query.oooo || '') キーワードか空文字を取得
-const searchKeyword = computed(() => route.query.keyword || '')
-const searchArea = computed(() => route.query.area || '')
-const searchTag = computed(() => route.query.tag || '')
+// ② 裏方の useCafe.ts にデータを渡して、画面で使いたい道具を受け取る
+const {
+  isLoading,
+  noticeMessage,
+  aiConditions,
+  searchResults,
+  searchKeyword,   //画面に検索キーワードを表示する用
+  searchArea,      //画面にエリアを表示する用
+  searchTag,       //画面にタグを表示する用
+  checkIfOpen      //子コンポーネントに渡す用
+} = useCafe(allCafes)
 
-// 入力値のバリデーション（空文字NG、100文字以内）
-const isValidInput = computed(() =>{
-  const trimmed = searchKeyword.value.trim()
-  return trimmed.length > 0 && trimmed.length <= 100
-})
-
-//エリアボタンから遷移する際　日本語に変換して表示させる処理
-const searchAreaName = computed(() => {
-  if (!searchArea.value) return ''
-  const matchedAreaButton = cafeData.find(cafe => cafe.area === searchArea.value)
-  return matchedAreaButton ? matchedAreaButton.areaNameJa : searchArea.value
-})
-
-//タグから遷移する際　日本語に変換して表示させる処理
-const searchTagName = computed(()=>{
+// ③ タグの英名（例: "power"）を日本語（例: "電源あり"）に変換する計算
+const searchTagName = computed(() => {
   if(!searchTag.value) return ''
+  //TAG_MAP にデータがあればその日本語名を返し、なければそのままの文字列を返す
   return TAG_MAP[searchTag.value] || searchTag.value
 })
 
-// キーワードをもとにカフェデータを絞り込む　ローカル検索  computed(()=>{  })
-const filteredCafes = computed(() => {
-
-  const rawKeyword = searchKeyword.value.trim().toLowerCase() //もし .trim() を使わずにそのまま検索してしまうと、コンピューターは「『スタバ』（スペースなし）と『スタバ 』（スペースあり）は別の言葉だ！」と判断してしまい、本当はデータがあるのに「0件です」と表示されてしまう原因になる
-  const area = searchArea.value.trim()
-  const tag = searchTag.value.trim()
-  // 全角スペースも半角スペースに統一してから、スペースで区切って配列にする
-  // 例: "渋谷 電源" ➔ ["渋谷", "電源"]
-  const keywords = rawKeyword ? rawKeyword.replace(/ /g, ' ').split(/\s+/).filter(Boolean) : []
-
-  //どちらも指定がない場合は全件表示
-  if (keywords.length === 0 && !area && !tag) return cafeData
-
-  return cafeData.filter(cafe => {
-    // 条件A: キーワード（複数単語のAND検索 ＆ 設備判定）
-    // 1. 店名・住所・エリア名に含まれるか
-    const matchKeyword = keywords.every(kw => {
-      const inText = 
-        (cafe.name?.toLowerCase().includes(kw)) || 
-        (cafe.address?.toLowerCase().includes(kw)) || 
-        (cafe.area?.toLowerCase().includes(kw)) || 
-        (cafe.areaNameJa?.toLowerCase().includes(kw))
-
-      //検索ワードが「電源」関連の場合、cafe.features.power.available を判定  【?.】オプショナルチェイニング：featuresなどが存在しない場合もエラーを出さず安全に判定
-      // 2. 検索ワードに「電源」関連の言葉が含まれているかを柔軟に判定（someを使用）
-      const isPowerKw =[ '電源' , '電源あり', 'コンセント', 'コンセントあり', 'power'].includes(kw)
-      const inPower = isPowerKw && Boolean(cafe.features?.power?.available)
-      
-      //検索ワードが「wifi」関連の場合、cafe.features.wifi.available を判定
-      // 3. 検索ワードに「wifi」関連の言葉が含まれているかを柔軟に判定（someを使用）
-      const isWifiKw =['wifi','wifiあり', 'wi-fi', 'わいふぁい' , 'わいふぁいあり' , 'ワイファイ' , 'ワイファイあり'].includes(kw)
-      const inWifi = isWifiKw && Boolean(cafe.features?.wifi?.available)
-
-      // テキスト・電源・WiFiのどれか1つでもマッチしていれば、このキーワード(kw)はクリア
-      return inText || inPower || inWifi
-    })
-
-    //エリアの条件（空文字なら無条件でtrue)
-    //カフェデータのエリアID(areaId)と照合する想定
-    const matchArea = !area || cafe.area === area
-
-    /*条件C: タグ検索 (?tag=power や ?tag=wifi など)
-    【[tag]】ブラケット記法：変数 tag の文字列（"power"や"wifi"）を使って動的にプロパティへアクセス
-    Boolean（ブーリアン / 真偽値）とは、プログラミングの世界における 「true（真・正しい）」か「false（偽・間違い）」の2通りしか存在しないデータ型（値の種類）のこと
-    */
-    const matchTag = !tag || cafe.features?.[tag]?.available === true // || Boolean(cafe[tag])  他の値をtagに引っ掛けるようにしたい場合
-
-    // すべての条件（キーワード AND エリア AND タグ）をクリアしたデータだけを残す
-    return matchKeyword && matchArea && matchTag
-  })
-
+// ④ エリアの英名（例: "nagoya"）を日本語（例: "名古屋"）に変換する計算
+const searchAreaName = computed(() => {
+  if (!searchArea.value) return ''
+  // もしエリアの対応表があれば変換し、なければURLの文字をそのまま返す
+  return AREA_MAP[searchArea.value] || searchArea.value
+  
 })
-
-//------------------------ gemini ai
-//fetchSearchResults 関数配置
-const fetchSearchResults = async (keyword) => {
-  //  1. サーバー/ビルド時(SSR)なら実行しない（ブラウザでのみ実行）
-  if (!import.meta.client) return
-  if(!keyword || !keyword.trim() || isLoading.value) return
-
-  isLoading.value = true
-  noticeMessage.value = ''
-  aiConditions.value = null
-  searchResults.value = []//ここで空にする
-
-  try{
-    const data = await $fetch(`/api/search?text=${encodeURIComponent(keyword.trim())}`)
-    //最初に失敗か(successではない)どうかチェック
-    //もし失敗していたら、ここで強制的にエラーを起こして下のcatchブロックにワープさせる  ガード節
-    if(!data.success){
-      throw new Error(data.message || 'APIの処理に失敗しました')
-    }
-    //↓はdata.successがtrueしていることになります　全体をif(data.success){}で囲む必要がなくなる
-    if(data.results.length === 0){
-      searchResults.value = filteredCafes.value || []
-      if(searchResults.value.length > 0){
-        noticeMessage.value = 'AI検索で一致しなかったため、通常のキーワード検索結果を表示しています。'
-      }
-    }else{
-      searchResults.value = data.results || []
-      aiConditions.value = data.conditions || null
-      if(data.isFallback && data.message){
-        noticeMessage.value = data.message
-      }
-    }
-
-  }
-  catch (error) {
-    // 💡 AIの制限（429エラーなど）や通信エラーが起きた場合、
-    // 自動的に従来のローカル絞り込み結果（filteredCafes）に切り替えて表示する
-    console.error('Search request error:', error)
-    noticeMessage.value = '⚠️ AIの利用制限に達したため、通常のキーワード検索結果を表示しています。'
-    searchResults.value = filteredCafes.value || []
-  }
-  finally{
-    isLoading.value = false
-  }
-}//fetchSearchResults終わり
-
-// footerでタグを押したときどのページでも見出しまでスクロールするための処理　タグ（route.query.tag）が変わったのを検知してスクロールさせる
-// タグ（tag）またはエリア（area）が変わったのを検知してスクロールさせる
-watch(
-  [() => route.query.keyword ,() => route.query.tag, () => route.query.area],
-  async ([newKeyword]) => {
-    // 1. 自由テキストのキーワードがある場合は、AI検索を実行
-    if(newKeyword){
-      //キーワード（文章）がある場合　AI検索を実行
-      await fetchSearchResults(newKeyword)
-    }else {
-      //キーワードがない場合（エリアボタンやタグ単体、または条件なし）
-      aiConditions.value = null
-      noticeMessage.value = ''
-      searchResults.value = filteredCafes.value
-    }
-
-    // DOM（画面の要素）が更新されるのを少し待つ
-    await nextTick()
-    // どのクエリ（keyword, tag, area）が変わった場合でも、画面の更新を待ってからスクロール
-    const headerEl = document.getElementById('search-header')
-    if (headerEl) {
-      headerEl.scrollIntoView({ behavior: 'smooth' })
-    }
-  },
-  {immediate:true } // ← この3行目を追加するだけで、onMountedの代わりになります！
-)
-/*ユーザーが直接URL（例: [https://example.com/search?keyword=名古屋](https://example.com/search?keyword=名古屋)）をブラウザに入力してページを開いたり、ページをリロード（再読み込み）したりしたとき、「URLが変わった瞬間（watch）」は起きず、「ページが最初に開いた瞬間」だけが起きます。
-onMounted を書くか、あるいは watch に「初回も自動で実行してね」というおまじないをつけるかのどちらかをしておかないと、「直接URLを開いたときに検索結果が出ない」という現象が起きてしまうから */
-
 </script>
 
 <template>

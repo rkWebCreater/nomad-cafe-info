@@ -176,7 +176,7 @@ onMounted を書くか、あるいは watch に「初回も自動で実行して
 
   <!-- 2. フォールバック・通知メッセージ（条件に合うものがなく別候補を出した時など） -->
   <div v-if="noticeMessage" class="mb-6 p-4 bg-orange-100 text-orange-800 rounded-lg text-sm border border-orange-200">
-   ⚠️ {{ noticeMessage }}
+    {{ noticeMessage }}
   </div>
 
   <!-- 3. AIが解析した検索条件のボックス（Geminiが動いている証拠） -->

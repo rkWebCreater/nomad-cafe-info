@@ -45,7 +45,7 @@ const searchAreaName = computed(() => {
   </div>
 
   <!-- 2. フォールバック・通知メッセージ（条件に合うものがなく別候補を出した時など） -->
-  <div v-if="noticeMessage" class="mb-6 p-4 bg-orange-100 text-orange-800 rounded-lg text-sm border border-orange-200">
+  <div v-if="noticeMessage" class="mb-6 p-4 bg-orange-100 text-orange-800 rounded-lg text-sm border border-orange-200 text-center">
     {{ noticeMessage }}
   </div>
 

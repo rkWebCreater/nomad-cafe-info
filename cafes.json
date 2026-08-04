@@ -1,13 +1,12 @@
 [
-      {
+  {
     "id": "cafe-001",
     "name": "Mellow Work & Coffee",
     "area": "shibuya",
     "areaNameJa": "渋谷",
-    "address": "東京都渋谷区神南1丁目20-5 1F",
+    "address": "東京都渋谷区道玄坂1丁目12-1",
     "budget": "￥600〜￥1,200",
-    "website": "https://",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg", 
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
     "isOpen": true,
     "businessHours": "08:00 - 22:00",
     "features": {
@@ -21,13 +20,13 @@
     "name": "Grid & Green Shinjuku",
     "area": "shinjuku",
     "areaNameJa": "新宿",
-    "address": "東京都新宿区新宿3丁目15-6 2F",
+    "address": "東京都新宿区西新宿2丁目8-1",
     "budget": "￥700〜￥1,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
     "isOpen": true,
     "businessHours": "09:00 - 21:00",
     "features": {
-      "wifi": { "available": false, "speed": "none"},
+      "wifi": { "available": false, "speed": "none" },
       "power": { "available": true, "seats": "some" }
     },
     "coordinates": { "lat": 35.689607, "lng": 139.700573 }
@@ -37,25 +36,24 @@
     "name": "The Base Lab",
     "area": "shibuya",
     "areaNameJa": "渋谷",
-    "address": "東京都渋谷区桜丘町4-2 1F",
+    "address": "東京都渋谷区神南1丁目19-11",
     "budget": "￥550〜￥1,100",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
     "isOpen": false,
     "businessHours": "07:00 - 20:00",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "all" }
+      "power": { "available": false, "seats": "none" }
     },
     "coordinates": { "lat": 35.664035, "lng": 139.698421 }
   },
   {
     "id": "cafe-004",
-    "name": "Focus Cafe Kichijoji",
-    "area": "kichijoji",
-    "areaNameJa": "吉祥寺",
-    "address": "東京都武蔵野市吉祥寺本町1丁目8-3",
+    "name": "Focus Cafe Umeda",
+    "area": "umeda",
+    "areaNameJa": "梅田",
+    "address": "大阪府大阪市北区梅田2丁目5-25",
     "budget": "￥650〜￥1,300",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
     "isOpen": true,
     "businessHours": "07:30 - 20:00",
@@ -63,79 +61,78 @@
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.703139, "lng": 139.579838 }
+    "coordinates": { "lat": 34.701912, "lng": 135.494881 }
   },
   {
     "id": "cafe-005",
-    "name": "night Cafe roppongi ",
-    "area": "roppongi",
-    "areaNameJa": "六本木",
-    "address": "東京都港区六本木3丁目11-6 B1F",
+    "name": "night Cafe Nagoya",
+    "area": "nagoya",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中村区名駅3丁目28-12",
     "budget": "￥1,200〜￥2,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
-    "businessHours": " 20:00 - 07:30",
+    "businessHours": "20:00 - 07:30",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.403139, "lng": 138.579838 }
+    "coordinates": { "lat": 35.170825, "lng": 136.882124 }
   },
   {
     "id": "cafe-006",
-    "name": "night Cafe kabuki ",
-    "area": "kabuki",
-    "areaNameJa": "歌舞伎町",
-    "address": "東京都新宿区歌舞伎町1丁目21-2",
+    "name": "night Cafe Shinjuku East",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区歌舞伎町1丁目2-3",
     "budget": "￥1,000〜￥2,200",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
-    "businessHours": " 22:00 - 06:30",
+    "businessHours": "22:00 - 06:30",
     "features": {
       "wifi": { "available": false, "speed": "none" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.803139, "lng": 139.079838 }
+    "coordinates": { "lat": 35.695844, "lng": 139.702081 }
   },
   {
     "id": "cafe-007",
-    "name": "night Cafe kabuki2 ",
-    "area": "kabuki",
-    "areaNameJa": "歌舞伎町",
-    "address": "東京都新宿区歌舞伎町2丁目38-1F",
+    "name": "night Cafe Fukuoka",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市中央区天神1丁目11-17",
     "budget": "￥1,100〜￥2,400",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
-    "businessHours": " 21:00 - 06:30",
+    "businessHours": "21:00 - 06:30",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.80319, "lng": 139.07938 }
+    "coordinates": { "lat": 33.591234, "lng": 130.401822 }
   },
   {
     "id": "cafe-008",
-    "name": "night Cafe roppongi2 ",
-    "area": "roppongi",
-    "areaNameJa": "六本木",
-    "address": "東京都港区六本木5丁目2-4 3F",
+    "name": "night Cafe Namba",
+    "area": "namba",
+    "areaNameJa": "難波",
+    "address": "大阪府大阪市中央区難波5丁目1-60",
     "budget": "￥1,300〜￥2,800",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
-    "businessHours": " 20:00 - 07:30",
+    "businessHours": "20:00 - 07:30",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.403139, "lng": 138.579838 }
+    "coordinates": { "lat": 34.665112, "lng": 135.501145 }
   },
   {
     "id": "cafe-009",
     "name": "Midnight Lounge Shibu-Ura",
     "area": "shibuya",
     "areaNameJa": "渋谷",
-    "address": "東京都渋谷区道玄坂2丁目16-8 B1F",
+    "address": "東京都渋谷区宇田川町21-6 B1F",
     "budget": "￥1,500〜￥3,000",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
@@ -151,9 +148,8 @@
     "name": "Owl Nest Cafe Shinjuku",
     "area": "shinjuku",
     "areaNameJa": "新宿",
-    "address": "東京都新宿区新宿3丁目22-11 3F",
+    "address": "東京都新宿区新宿3丁目38-1 3F",
     "budget": "￥900〜￥2,000",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
     "businessHours": "21:00 - 06:00",
@@ -165,10 +161,10 @@
   },
   {
     "id": "cafe-011",
-    "name": "Night Owl Roasters Ikebukuro",
-    "area": "ikebukuro",
-    "areaNameJa": "池袋",
-    "address": "東京都豊島区東池袋1丁目29-4",
+    "name": "Night Owl Roasters Nagoya",
+    "area": "nagoya",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中区栄4丁目15-20",
     "budget": "￥600〜￥1,400",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
     "isOpen": true,
@@ -177,16 +173,15 @@
       "wifi": { "available": false, "speed": "none" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.728926, "lng": 139.71038 }
+    "coordinates": { "lat": 35.168926, "lng": 136.90838 }
   },
   {
     "id": "cafe-012",
-    "name": "Cyber Cafe Neon Kabuki",
-    "area": "kabuki",
-    "areaNameJa": "歌舞伎町",
-    "address": "東京都新宿区歌舞伎町1丁目14-3 2F",
+    "name": "Cyber Cafe Neon Shinjuku",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区歌舞伎町2丁目10-5 2F",
     "budget": "￥800〜￥1,800",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
     "businessHours": "23:00 - 08:00",
@@ -198,10 +193,10 @@
   },
   {
     "id": "cafe-013",
-    "name": "Roppongi Velvet Lounge",
-    "area": "roppongi",
-    "areaNameJa": "六本木",
-    "address": "東京都港区六本木4丁目9-2 B1F",
+    "name": "Umeda Velvet Lounge",
+    "area": "umeda",
+    "areaNameJa": "梅田",
+    "address": "大阪府大阪市北区角田町8-7 B1F",
     "budget": "￥1,600〜￥3,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
     "isOpen": true,
@@ -210,14 +205,14 @@
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.662725, "lng": 139.731234 }
+    "coordinates": { "lat": 34.703225, "lng": 135.498234 }
   },
   {
     "id": "cafe-014",
     "name": "Dawn Break Cafe Shibuya",
     "area": "shibuya",
     "areaNameJa": "渋谷",
-    "address": "東京都渋谷区宇田川町31-1 4F",
+    "address": "東京都渋谷区桜丘町26-1 4F",
     "budget": "￥750〜￥1,600",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
     "isOpen": true,
@@ -233,9 +228,8 @@
     "name": "Late Night Base Shinjuku",
     "area": "shinjuku",
     "areaNameJa": "新宿",
-    "address": "東京都新宿区西新宿1丁目18-5",
+    "address": "東京都新宿区西新宿1丁目25-1",
     "budget": "￥850〜￥1,900",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
     "isOpen": true,
     "businessHours": "22:00 - 07:00",
@@ -245,12 +239,12 @@
     },
     "coordinates": { "lat": 35.689622, "lng": 139.699211 }
   },
-    {
+  {
     "id": "cafe-016",
-    "name": "Moonlight Espresso Ikebukuro",
-    "area": "ikebukuro",
-    "areaNameJa": "池袋",
-    "address": "東京都豊島区西池袋3丁目25-10",
+    "name": "Moonlight Espresso Fukuoka",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市博多区博多駅前2丁目1-1",
     "budget": "￥800〜￥1,600",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
@@ -259,14 +253,14 @@
       "wifi": { "available": false, "speed": "none" },
       "power": { "available": false, "seats": "none" }
     },
-    "coordinates": { "lat": 35.731454, "lng": 139.711822 }
+    "coordinates": { "lat": 33.589854, "lng": 130.419822 }
   },
   {
     "id": "cafe-017",
-    "name": "Night Hideout Kabuki3",
-    "area": "kabuki",
-    "areaNameJa": "歌舞伎町",
-    "address": "東京都新宿区歌舞伎町2丁目20-9",
+    "name": "Night Hideout Namba",
+    "area": "namba",
+    "areaNameJa": "難波",
+    "address": "大阪府大阪市中央区心斎橋筋1丁目7-1",
     "budget": "￥1,200〜￥2,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
     "isOpen": true,
@@ -275,16 +269,15 @@
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": true, "seats": "counter" }
     },
-    "coordinates": { "lat": 35.696123, "lng": 139.702941 }
+    "coordinates": { "lat": 34.671123, "lng": 135.500941 }
   },
   {
     "id": "cafe-018",
-    "name": "Roppongi Beans",
-    "area": "roppongi",
-    "areaNameJa": "六本木",
-    "address": "東京都港区六本木7丁目14-5 2F",
+    "name": "Nagoya Sakae Beans",
+    "area": "nagoya",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中区錦3丁目24-17 2F",
     "budget": "￥1,400〜￥2,800",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
     "isOpen": true,
     "businessHours": "05:30 - 15:00",
@@ -292,14 +285,14 @@
       "wifi": { "available": true, "speed": "fast" },
       "power": { "available": true, "seats": "all" }
     },
-    "coordinates": { "lat": 35.663112, "lng": 139.732845 }
+    "coordinates": { "lat": 35.170112, "lng": 136.905845 }
   },
   {
     "id": "cafe-019",
     "name": "Sunny Side Coffee Shibuya",
     "area": "shibuya",
     "areaNameJa": "渋谷",
-    "address": "東京都渋谷区神南1丁目19-4",
+    "address": "東京都渋谷区神宮前6丁目18-3",
     "budget": "￥650〜￥1,350",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
     "isOpen": true,
@@ -317,7 +310,6 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区新宿4丁目1-6",
     "budget": "￥700〜￥1,500",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
     "isOpen": true,
     "businessHours": "09:00 - 21:00",
@@ -331,10 +323,9 @@
     "id": "cafe-021",
     "name": "Cafe Umeda Neo",
     "area": "umeda",
-    "areaNameJa": "大阪・梅田",
-    "address": "大阪府大阪市北区梅田9-9-9",
+    "areaNameJa": "梅田",
+    "address": "大阪府大阪市北区茶屋町10-12",
     "budget": "￥600〜￥1,200",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
     "isOpen": true,
     "businessHours": "08:00 - 22:00",
@@ -348,10 +339,9 @@
     "id": "cafe-022",
     "name": "Namba Workspace Cafe",
     "area": "namba",
-    "areaNameJa": "大阪・難波",
-    "address": "大阪府大阪市中央区難波8-8-8",
+    "areaNameJa": "難波",
+    "address": "大阪府大阪市中央区難波千日前12-7",
     "budget": "￥500〜￥1,500",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
     "isOpen": true,
     "businessHours": "09:00 - 21:00",
@@ -365,10 +355,9 @@
     "id": "cafe-023",
     "name": "Meieki Tech Cafe",
     "area": "nagoya",
-    "areaNameJa": "名古屋駅",
-    "address": "愛知県名古屋市中村区名駅7-7-7",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中村区名駅1丁目1-4",
     "budget": "￥700〜￥1,400",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
     "isOpen": true,
     "businessHours": "07:30 - 21:30",
@@ -382,10 +371,9 @@
     "id": "cafe-024",
     "name": "Sakae Green Lounge",
     "area": "nagoya",
-    "areaNameJa": "名古屋・栄",
-    "address": "愛知県名古屋市中区栄6-6-6",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中区栄3丁目6-1",
     "budget": "￥550〜￥1,300",
-    "website": "https://",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
     "isOpen": false,
     "businessHours": "10:00 - 20:00",
@@ -394,8 +382,421 @@
       "power": { "available": true, "seats": "some" }
     },
     "coordinates": { "lat": 35.1685, "lng": 136.9066 }
+  },
+  {
+    "id": "cafe-025",
+    "name": "Hakata Roast Lab",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市博多区博多駅中央街1-1",
+    "budget": "￥600〜￥1,300",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "isOpen": true,
+    "businessHours": "07:30 - 21:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 33.5902, "lng": 130.4207 }
+  },
+  {
+    "id": "cafe-026",
+    "name": "Tenjin Work & Brew",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市中央区天神2丁目2-43",
+    "budget": "￥650〜￥1,450",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "isOpen": true,
+    "businessHours": "08:00 - 22:00",
+    "features": {
+      "wifi": { "available": true, "speed": "stable" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 33.5916, "lng": 130.3989 }
+  },
+  {
+    "id": "cafe-027",
+    "name": "Daimyo Craft Coffee",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市中央区大名1丁目14-25",
+    "budget": "￥550〜￥1,200",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "10:00 - 20:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": true, "seats": "some" }
+    },
+    "coordinates": { "lat": 33.5878, "lng": 130.3942 }
+  },
+  {
+    "id": "cafe-028",
+    "name": "Sakae Central Coffee",
+    "area": "nagoya",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中区錦2丁目18-5",
+    "budget": "￥600〜￥1,300",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "08:30 - 21:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.1664, "lng": 136.9078 }
+  },
+  {
+    "id": "cafe-029",
+    "name": "Grand Front Espresso",
+    "area": "umeda",
+    "areaNameJa": "梅田",
+    "address": "大阪府大阪市北区大深町3-1",
+    "budget": "￥750〜￥1,600",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "isOpen": true,
+    "businessHours": "08:00 - 22:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "many" }
+    },
+    "coordinates": { "lat": 34.7058, "lng": 135.4947 }
+  },
+  {
+    "id": "cafe-030",
+    "name": "Dotonbori Nomad Hub",
+    "area": "namba",
+    "areaNameJa": "難波",
+    "address": "大阪府大阪市中央区道頓堀1丁目4-16",
+    "budget": "￥600〜￥1,400",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "09:00 - 23:00",
+    "features": {
+      "wifi": { "available": true, "speed": "normal" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 34.6687, "lng": 135.5013 }
+  },
+  {
+    "id": "cafe-031",
+    "name": "Jinnan Parkside Cafe",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区神南1丁目5-11",
+    "budget": "￥700〜￥1,500",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "09:00 - 21:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 35.6631, "lng": 139.7001 }
+  },
+  {
+    "id": "cafe-032",
+    "name": "Shinjuku Gyoen Lounge",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区新宿1丁目11-3",
+    "budget": "￥650〜￥1,300",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "isOpen": false,
+    "businessHours": "08:00 - 19:00",
+    "features": {
+      "wifi": { "available": true, "speed": "stable" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.6882, "lng": 139.7104 }
+  },
+  {
+    "id": "cafe-033",
+    "name": "Fukuoka Bay Brew",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市中央区大名2丁目1-18",
+    "budget": "￥700〜￥1,600",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "08:00 - 20:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "some" }
+    },
+    "coordinates": { "lat": 33.5954, "lng": 130.3891 }
+  },
+  {
+    "id": "cafe-034",
+    "name": "Umeda Station Roasters",
+    "area": "umeda",
+    "areaNameJa": "梅田",
+    "address": "大阪府大阪市北区芝田1丁目1-3",
+    "budget": "￥600〜￥1,350",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "isOpen": true,
+    "businessHours": "10:00 - 21:00",
+    "features": {
+      "wifi": { "available": true, "speed": "normal" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 34.7049, "lng": 135.4984 }
+  },
+  {
+    "id": "cafe-035",
+    "name": "Shinjuku Skyscraper Lounge",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区西新宿6丁目5-1",
+    "budget": "￥1,200〜￥2,800",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "11:00 - 23:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.6924, "lng": 139.6922 }
+  },
+  {
+    "id": "cafe-036",
+    "name": "Ebisu Green Cafe",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区恵比寿西1丁目10-7",
+    "budget": "￥550〜￥1,250",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "09:00 - 19:30",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.6481, "lng": 139.7081 }
+  },
+  {
+    "id": "cafe-037",
+    "name": "Yakuin Corner Cafe",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市中央区薬院1丁目6-14",
+    "budget": "￥500〜￥1,150",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "isOpen": true,
+    "businessHours": "08:30 - 19:00",
+    "features": {
+      "wifi": { "available": true, "speed": "stable" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 33.5812, "lng": 130.4011 }
+  },
+  {
+    "id": "cafe-038",
+    "name": "Miyashita Work Lounge",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区神宮前6丁目20-10",
+    "budget": "￥800〜￥1,800",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "isOpen": true,
+    "businessHours": "08:00 - 22:30",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 35.6618, "lng": 139.7022 }
+  },
+  {
+    "id": "cafe-039",
+    "name": "Shinjuku Tech Base",
+    "area": "shinjuku",
+    "areaNameJa": "新宿",
+    "address": "東京都新宿区歌舞伎町1丁目19-3",
+    "budget": "￥900〜￥2,000",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "18:00 - 05:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "many" }
+    },
+    "coordinates": { "lat": 35.6951, "lng": 139.7028 }
+  },
+  {
+    "id": "cafe-040",
+    "name": "Meieki Gate Tower Cafe",
+    "area": "nagoya",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中村区名駅4丁目7-1",
+    "budget": "￥700〜￥1,500",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "07:00 - 22:00",
+    "features": {
+      "wifi": { "available": true, "speed": "stable" },
+      "power": { "available": true, "seats": "some" }
+    },
+    "coordinates": { "lat": 35.1722, "lng": 136.8828 }
+  },
+  {
+    "id": "cafe-041",
+    "name": "Chayamachi Workspace",
+    "area": "umeda",
+    "areaNameJa": "梅田",
+    "address": "大阪府大阪市北区茶屋町15-22",
+    "budget": "￥650〜￥1,400",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "09:00 - 21:30",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 34.7061, "lng": 135.4988 }
+  },
+  {
+    "id": "cafe-042",
+    "name": "Shinsaibashi Roastery",
+    "area": "namba",
+    "areaNameJa": "難波",
+    "address": "大阪府大阪市中央区心斎橋筋1丁目8-3",
+    "budget": "￥600〜￥1,300",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "isOpen": true,
+    "businessHours": "08:30 - 20:30",
+    "features": {
+      "wifi": { "available": true, "speed": "normal" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 34.6719, "lng": 135.5011 }
+  },
+  {
+    "id": "cafe-043",
+    "name": "Hakata Station Terrace",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市博多区博多駅前3丁目25-24",
+    "budget": "￥750〜￥1,500",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "isOpen": true,
+    "businessHours": "07:00 - 22:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 33.5897, "lng": 130.4207 }
+  },
+  {
+    "id": "cafe-044",
+    "name": "Namba Mid-Town Lounge",
+    "area": "namba",
+    "areaNameJa": "難波",
+    "address": "大阪府大阪市中央区難波2丁目3-5",
+    "budget": "￥1,100〜￥2,400",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "10:00 - 22:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "some" }
+    },
+    "coordinates": { "lat": 34.6672, "lng": 135.4988 }
+  },
+  {
+    "id": "cafe-045",
+    "name": "Shibuya West Gate Espresso",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区道玄坂2丁目29-1",
+    "budget": "￥500〜￥1,100",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "07:30 - 20:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 35.6598, "lng": 139.6982 }
+  },
+  {
+    "id": "cafe-046",
+    "name": "Nagoya Meieki Central Cafe",
+    "area": "nagoya",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中村区名駅5丁目3-18",
+    "budget": "￥600〜￥1,200",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "isOpen": true,
+    "businessHours": "08:00 - 21:00",
+    "features": {
+      "wifi": { "available": true, "speed": "stable" },
+      "power": { "available": true, "seats": "counter" }
+    },
+    "coordinates": { "lat": 35.1712, "lng": 136.8885 }
+  },
+  {
+    "id": "cafe-047",
+    "name": "Tenjin Underground Work",
+    "area": "fukuoka",
+    "areaNameJa": "福岡",
+    "address": "福岡県福岡市中央区天神2丁目11-1",
+    "budget": "￥600〜￥1,300",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "isOpen": true,
+    "businessHours": "07:30 - 21:00",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "all" }
+    },
+    "coordinates": { "lat": 33.5908, "lng": 130.3995 }
+  },
+  {
+    "id": "cafe-048",
+    "name": "Osu Kannon Coffee",
+    "area": "nagoya",
+    "areaNameJa": "名古屋",
+    "address": "愛知県名古屋市中区大須3丁目30-40",
+    "budget": "￥500〜￥1,100",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "isOpen": true,
+    "businessHours": "10:00 - 19:00",
+    "features": {
+      "wifi": { "available": false, "speed": "none" },
+      "power": { "available": true, "seats": "some" }
+    },
+    "coordinates": { "lat": 35.1598, "lng": 136.8994 }
+  },
+  {
+    "id": "cafe-049",
+    "name": "Nakanoshima River Cafe",
+    "area": "umeda",
+    "areaNameJa": "梅田",
+    "address": "大阪府大阪市北区中之島2丁目3-18",
+    "budget": "￥800〜￥1,700",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "isOpen": true,
+    "businessHours": "08:30 - 21:00",
+    "features": {
+      "wifi": { "available": true, "speed": "stable" },
+      "power": { "available": false, "seats": "none" }
+    },
+    "coordinates": { "lat": 34.6937, "lng": 135.5031 }
+  },
+  {
+    "id": "cafe-050",
+    "name": "Harajuku Terrace Lounge",
+    "area": "shibuya",
+    "areaNameJa": "渋谷",
+    "address": "東京都渋谷区神宮前1丁目8-8",
+    "budget": "￥750〜￥1,600",
+    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "isOpen": true,
+    "businessHours": "09:00 - 20:30",
+    "features": {
+      "wifi": { "available": true, "speed": "fast" },
+      "power": { "available": true, "seats": "some" }
+    },
+    "coordinates": { "lat": 35.6702, "lng": 139.7028 }
   }
 ]
-
-
-

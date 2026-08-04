@@ -1,11 +1,4 @@
 <!-- カフェエリアのコンポーネント -->
-
-<script setup>
-
-//定数ファイルからAREASのリストを読み込む
-import {AREAS} from '~/constants/areas'
-
-</script> 
 <template>
  <div id="cafeArea" class="mt-20 mb-20">
       <div class="ttl">
@@ -13,7 +6,7 @@ import {AREAS} from '~/constants/areas'
       </div>
       <ul class="area-list">
        <!-- jsで繰り返し処理 -->
-       <NuxtLink v-for="area in AREAS" :key="area.id" :to="{path: '/search', query: { area: area.id }}" class="area-item">
+       <NuxtLink v-for="area in areasInfo" :key="area.id" :to="{path: '/search', query: { area: area.id }}" class="area-item">
         <img :src="area.imageUrl" :alt="area.name" class="area-image" />
         <p class="area-name">{{area.name}}</p>
        </NuxtLink><!-- コロン（:）をつけることで、データの中の「imageUrl」の文字をそのまま画像パスとして正しく読み込みます。 -->  
@@ -150,3 +143,39 @@ import {AREAS} from '~/constants/areas'
       
 }
 </style>
+
+<script setup>
+
+const areasInfo = [
+  {
+    id:"shibuya",
+    name:"渋谷",
+    imageUrl:"/nomad-cafe-info/images/areas/shibuya.png"
+  },
+  {
+    id:"shinjuku",
+    name:"新宿",
+    imageUrl:"/nomad-cafe-info/images/areas/shinjuku.png"
+  },
+  {
+    id:"umeda",
+    name:"梅田",
+    imageUrl:"../nomad-cafe-info/images/areas/umeda.png"
+  },
+  {
+    id:"namba",
+    name:"難波",
+    imageUrl:"/nomad-cafe-info/images/areas/nanba.png"
+  },
+  {
+    id:"nagoya",
+    name:"名古屋",
+    imageUrl:"/nomad-cafe-info/images/areas/nagoya.png"
+  },
+  {
+    id:"fukuoka",
+    name:"福岡",
+    imageUrl:"/nomad-cafe-info/images/areas/fukuoka.png"
+  }
+]
+</script> 

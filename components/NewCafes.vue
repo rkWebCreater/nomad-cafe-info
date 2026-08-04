@@ -11,7 +11,8 @@ const recoCafes = ref([
     desc: '渋谷ストリーム2Fに位置する開放感あふれる旗艦店。大きな窓から差し込む自然光の中で、ゆったりと作業を進められます。',
     imageUrl: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop',
     rating: 4.8,
-    isFeatured: true    //  手動おすすめフラグ
+    isFeatured: true,    // 👈 手動おすすめフラグ
+    featuredOrder: 1     // 👈 表示順の優先度
   },
   {
     id: 2,
@@ -28,18 +29,17 @@ const recoCafes = ref([
     areaName: '梅田',
     desc: '緑に囲まれたテラス席が人気のノマドカフェ。Wi-Fiも高速で快適です。',
     imageUrl: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop',
-    rating: 4.9,        //  手動指定なしの中で最高評価
+    rating: 4.9,        // 👈 手動指定なしの中で最高評価
     isFeatured: false
   },
   {
     id: 4,
     name: 'SILENT COFFEE',
-    areaName: '名古屋',
+    areaName: '福岡',
     desc: '集中作業に特化したサイレント仕様のカフェ。深煎りエスプレッソが魅力。',
     imageUrl: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800&auto=format&fit=crop',
     rating: 4.6,
-    isFeatured: true,
-    featuredOrder: 1 //表示優先
+    isFeatured: false
   }
 ])
 
@@ -48,7 +48,9 @@ const recoCafes = ref([
 // -------------------------------------------------------------
 const recommendedCafes = computed(() => {
   // 1. 手動で「おすすめ指定（isFeatured: true）」された店舗を取り出し優先順にソート
-  const featured = recoCafes.value.filter(item => item.isFeatured).sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
+  const featured = recoCafes.value
+    .filter(item => item.isFeatured)
+    .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
 
   // 手動指定だけで目標の3件が埋まっていれば、そのまま返す
   if (featured.length >= DISPLAY_COUNT) {
@@ -202,7 +204,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
   .card-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(0deg, rgba(81, 43, 11, 0.859) 0, rgba(149, 114, 80, 0.149) 50%, rgba(255, 241, 229, 0.18));
+    background: linear-gradient(to top, rgb(81 43 11 / 61%) 0%, rgb(149 114 80 / 15%) 50%, #fff1e52e 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

@@ -25,7 +25,7 @@
               <p class="text-gray-800 text-sm min-h-[2rem] line-clamp-2">📍 {{ cafe.address }}</p>
               <p class="text-gray-600 text-sm mt-1">🕒 {{ cafe.businessHours }}</p>
             </div>
-            <div class="mt-2 flex gap-2 text-xs text-gray-500"> <!-- img srcはgit hub用のパス -->
+            <div class="tags mt-2 flex gap-2 text-xs text-gray-500"> <!-- img srcはgit hub用のパス -->
               <span class="bg-gray-100 px-2 py-1 rounded"><img src="../public/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-5"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
               <span class="bg-gray-100 px-2 py-1 rounded"><img src="../public/images/icon/power_icon.png" alt="電源のアイコン" class="w-5"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
             </div>
@@ -86,7 +86,15 @@
 .card-link, .card-body-height {
   flex-grow: 1;
 }
-
+.tags{
+  & span{
+     display: flex;
+     gap: 4px;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     align-content: center;
+  }
+}
 /* ==========================================
    3. スマホ・タブレット表示（767px以下）
 ========================================== */

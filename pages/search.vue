@@ -102,7 +102,7 @@ const searchAreaName = computed(() => {
             <p class="text-gray-600 text-sm mt-1">🕒 {{ filteredCafe.businessHours }}</p>
           </div>
           
-          <div class="mt-2 flex gap-2 text-xs text-gray-500">
+          <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
             <span class="bg-gray-100 px-2 py-1 rounded">
               <img src="../public/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ filteredCafe.features?.wifi?.available ? 'あり' : 'なし' }}
             </span>
@@ -170,4 +170,13 @@ const searchAreaName = computed(() => {
               }
                
  }
+ .tags{
+    & span{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 4px ;
+      align-content: center;
+  }
+}
 </style>

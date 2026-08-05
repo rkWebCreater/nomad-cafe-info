@@ -52,6 +52,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
+  z-index:1111;
 
   /* 💡 茶色系のカラー設定をVue版のクラスに適用します */
   --swiper-navigation-color: rgba(53, 32, 16, 1);

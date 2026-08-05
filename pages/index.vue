@@ -195,7 +195,8 @@ import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCa
 import cafeListData from '../cafes.json'
 const cafeList = cafeListData 
 
-// 💡 composables から関数を呼び出す（1行書くだけでOK！）
+// composables から関数を呼び出す　親要素（ページ）に関数を呼び出して子コンポーネントに渡す処理を書くのは子コンポーネントを別のところで使いまわしやすくするため
+//時間判定関数を子コンポーネントに呼び出すと他の親要素（ページ）で他の目的で使うときその関数をつかわないのに読み込みが発生し無駄な処理になってしまう
 const { checkIfOpen } = useCafe()
 
 const openCafes = computed(() => {
@@ -206,7 +207,6 @@ const openCafes = computed(() => {
  普通の関数（function）との決定的な違い「計算するタイミング」と「記憶力（キャッシュ）」が違う
 普通の関数（methods など）:画面が書き換わる（リロードされるなど）たびに、毎回最初から最後まで計算を実行する
  データが変わっていなくてもお構いなしに動くため、データ量が多いとサイトが重くなる
- 
 computed():元になるデータ（今回の場合は cafeList や検索窓の文字）が変わった瞬間だけ自動で再計算します。
 データが変わっていなければ、前回の計算結果を頭の中に記憶（キャッシュ）してそれを一瞬で使い回すため、サイトの動作が劇的に軽くなります。 
 */

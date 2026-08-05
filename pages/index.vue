@@ -81,12 +81,27 @@ header{
                      background-repeat: no-repeat;
                      background-size: cover;
                      background-position: center;
+                     position:relative;
+                     z-index:-11;
                
            .canSlide{
                      color: white;
                      text-align:center;
             }
 }
+  .cafe-cards-section::before{
+  /* contentプロパティは必須 */
+  content: "";
+  /* divを起点に位置を調整する */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* オーバーレイを作成 */
+  background: linear-gradient(rgba(167, 88, 28, 0.5),  rgba(87, 47, 3, 0.5));
+  z-index: -1;
+ }
 
 @media (max-width:768px) {
 

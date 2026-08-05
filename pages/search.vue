@@ -104,10 +104,10 @@ const searchAreaName = computed(() => {
           
           <div class="mt-2 flex gap-2 text-xs text-gray-500">
             <span class="bg-gray-100 px-2 py-1 rounded">
-              🛜 {{ filteredCafe.features?.wifi?.available ? 'あり' : 'なし' }}
+              <img src="../public/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ filteredCafe.features?.wifi?.available ? 'あり' : 'なし' }}
             </span>
             <span class="bg-gray-100 px-2 py-1 rounded">
-              🔌 {{ filteredCafe.features?.power?.available ? 'あり' : 'なし' }}
+              <img src="../public/images/icon/power_icon.png" alt="powerrのアイコン" class="w-4"> {{ filteredCafe.features?.power?.available ? 'あり' : 'なし' }}
             </span>
           </div>
         </div>

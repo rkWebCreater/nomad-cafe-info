@@ -270,7 +270,7 @@
 
 /* import { computed, watch } from 'vue'
    import { useRoute } from 'vue-router'  */
-import cafeData from '../../cafes.json'
+import cafeData from '../../../cafes.json'
 
 const route = useRoute()
 const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分を24時間監視してリアルタイムで検知する

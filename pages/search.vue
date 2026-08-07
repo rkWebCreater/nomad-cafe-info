@@ -5,7 +5,7 @@
 import {useRoute} from 'vue-router' */
 import { AREA_MAP } from '~/constants/areas'
 import { TAG_MAP } from '~/constants/tags'
-import cafeData from '../cafes.json' //git hub用のパス
+import cafeData from '../../../cafes.json'
 
 // ① 読み込んだJSONデータをリアクティブ（Ref）に変換する
 const allCafes = ref(cafeData)
@@ -92,22 +92,23 @@ const searchAreaName = computed(() => {
             <span class="area-name bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded inline-block">
               {{ filteredCafe.areaNameJa }}
             </span>
-            <h3 class="cafe-name font-bold text-gray-900 mt-2 mb-1 min-h-[2rem] line-clamp-2">
+            <h3 class="cafe-name font-bold text-gray-900 mt-2 mb-1 min-h-[2rem] line-clamp-1.5 py-0 px-[5px]">
               {{ filteredCafe.name }}
             </h3>
-          </div>
-          
-          <div class="flex flex-col justify-center">
-            <p class="text-gray-800 text-sm min-h-[2rem] line-clamp-2">📍 {{ filteredCafe.address }}</p>
-            <p class="text-gray-600 text-sm mt-1">🕒 {{ filteredCafe.businessHours }}</p>
+            <p class="text-gray-800 text-sm min-h-[2rem] line-clamp-1.5">
+              📍{{ filteredCafe.address }}
+            </p>
+            <p class="text-gray-600 text-sm mt-1">
+              🕒{{ filteredCafe.businessHours }}
+            </p>
           </div>
           
           <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
             <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="../public/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ filteredCafe.features?.wifi?.available ? 'あり' : 'なし' }}
+              <img src="../../images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4">{{ filteredCafe.features?.wifi?.available ? 'あり' : 'なし' }}
             </span>
             <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="../public/images/icon/power_icon.png" alt="powerrのアイコン" class="w-4"> {{ filteredCafe.features?.power?.available ? 'あり' : 'なし' }}
+              <img src="../../images/icon/power_icon.png" alt="powerのアイコン" class="w-4">{{ filteredCafe.features?.power?.available ? 'あり' : 'なし' }}
             </span>
           </div>
         </div>

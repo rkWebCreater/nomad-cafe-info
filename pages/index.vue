@@ -23,10 +23,12 @@
 
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
-      
-      <h2 class="cafe-cards-ttl font-bold text-white tracking-wider">現在営業中のカフェ</h2>
-      <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
 
+      
+        <h2 class="cafe-cards-ttl font-bold text-white tracking-wider">現在営業中のカフェ</h2>
+        <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
+    
+      
       <!-- CafeCards.vueの部分 -->
       <CafeCards :cafes="openCafes" class="h-full" />
     
@@ -48,6 +50,7 @@
 
 /*PC、SP共通 */
 header{
+        width:clamp(320px , 100% , 1200px);/*clamp() メディアクエリを使わなくてもSP、PC両方のサイズを設定できる 最小320px、画面幅の100%を基本とし、最大1200pxに制限 */
         background:url(/nomad-cafe-info/images/FV/FV_cafe.png);
         background-repeat: no-repeat;
         position:relative;
@@ -81,13 +84,28 @@ header{
                      background-repeat: no-repeat;
                      background-size: cover;
                      background-position: center;
-               
+                     position: relative;
+          
            .canSlide{
                      color: white;
                      text-align:center;
             }
 }
-
+/*
+.cafe-cards-section::before{
+   /*contentプロパティは必須 
+  content: "";
+  /* divを起点に位置を調整する 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* オーバーレイを作成 
+  background: linear-gradient(rgba(167, 88, 28, 0.5),  rgba(87, 47, 3, 0.5));
+  z-index: -1;
+ }
+*/
 @media (max-width:768px) {
 
   header{
@@ -139,7 +157,6 @@ header{
 @media (min-width:1024px){
 
   header{
-        max-width: 1200px;
         height: 600px;
         margin-left: auto;
         margin-right: auto;
@@ -192,11 +209,10 @@ header{
 import { computed } from 'vue'
 import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCards.vueの読み込み */
 // 先ほど作成したJSONデータを読み込む
-import cafeListData from '../cafes.json'
+import cafeListData from '../../cafes.json'
 const cafeList = cafeListData 
 
-// composables から関数を呼び出す　親要素（ページ）に関数を呼び出して子コンポーネントに渡す処理を書くのは子コンポーネントを別のところで使いまわしやすくするため
-//時間判定関数を子コンポーネントに呼び出すと他の親要素（ページ）で他の目的で使うときその関数をつかわないのに読み込みが発生し無駄な処理になってしまう
+// 💡 composables から関数を呼び出す（1行書くだけでOK！）
 const { checkIfOpen } = useCafe()
 
 const openCafes = computed(() => {
@@ -207,6 +223,7 @@ const openCafes = computed(() => {
  普通の関数（function）との決定的な違い「計算するタイミング」と「記憶力（キャッシュ）」が違う
 普通の関数（methods など）:画面が書き換わる（リロードされるなど）たびに、毎回最初から最後まで計算を実行する
  データが変わっていなくてもお構いなしに動くため、データ量が多いとサイトが重くなる
+ 
 computed():元になるデータ（今回の場合は cafeList や検索窓の文字）が変わった瞬間だけ自動で再計算します。
 データが変わっていなければ、前回の計算結果を頭の中に記憶（キャッシュ）してそれを一瞬で使い回すため、サイトの動作が劇的に軽くなります。 
 */

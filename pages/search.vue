@@ -171,7 +171,7 @@ const searchAreaName = computed(() => {
                
  }
  .tags{
-    & span{
+    & img{
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;

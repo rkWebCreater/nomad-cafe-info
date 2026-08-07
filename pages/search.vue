@@ -34,8 +34,8 @@ const searchAreaName = computed(() => {
   if (!searchArea.value) return ''
   // もしエリアの対応表があれば変換し、なければURLの文字をそのまま返す
   return AREA_MAP[searchArea.value] || searchArea.value
-  
 })
+  
 </script>
 
 <template>

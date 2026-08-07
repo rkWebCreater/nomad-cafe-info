@@ -7,9 +7,7 @@
 - **Styling**: Tailwind CSS
 - **Library**: Swiper v11 (swiper/vue)
 - **Data**: JSON形式によるローカルモックデータ管理（営業時間自動判定ロジック実装）
-
 ---
-
 ## 💡 技術的なこだわり・工夫したポイント
 
 ### 1. ページ遷移時のSwiperフリーズバグの克服

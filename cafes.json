@@ -75,7 +75,8 @@
     "businessHours": "20:00 - 07:30",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "power": { "available": false, "seats": "none" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.170825, "lng": 136.882124 }
   },
@@ -171,7 +172,8 @@
     "businessHours": "20:00 - 05:30",
     "features": {
       "wifi": { "available": false, "speed": "none" },
-      "power": { "available": false, "seats": "none" }
+      "power": { "available": false, "seats": "none" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.168926, "lng": 136.90838 }
   },
@@ -283,7 +285,8 @@
     "businessHours": "05:30 - 15:00",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "power": { "available": true, "seats": "all" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.170112, "lng": 136.905845 }
   },
@@ -363,7 +366,8 @@
     "businessHours": "07:30 - 21:30",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "power": { "available": true, "seats": "all" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.1709, "lng": 136.8815 }
   },
@@ -379,7 +383,8 @@
     "businessHours": "10:00 - 20:00",
     "features": {
       "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "some" }
+      "power": { "available": true, "seats": "some" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.1685, "lng": 136.9066 }
   },
@@ -443,7 +448,8 @@
     "businessHours": "08:30 - 21:00",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "power": { "available": false, "seats": "none" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.1664, "lng": 136.9078 }
   },
@@ -635,7 +641,8 @@
     "businessHours": "07:00 - 22:00",
     "features": {
       "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "some" }
+      "power": { "available": true, "seats": "some" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.1722, "lng": 136.8828 }
   },
@@ -731,7 +738,8 @@
     "businessHours": "08:00 - 21:00",
     "features": {
       "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "counter" }
+      "power": { "available": true, "seats": "counter" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.1712, "lng": 136.8885 }
   },
@@ -763,7 +771,8 @@
     "businessHours": "10:00 - 19:00",
     "features": {
       "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "some" }
+      "power": { "available": true, "seats": "some" },
+      "morning":{"available":true}
     },
     "coordinates": { "lat": 35.1598, "lng": 136.8994 }
   },

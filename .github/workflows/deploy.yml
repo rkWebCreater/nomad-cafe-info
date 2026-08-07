@@ -1,14 +1,18 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches: [ main ]
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: true
+
 jobs:
   deploy:
     environment:
@@ -17,18 +21,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '24' # クォートで囲むのがベストプラクティス
+
       - name: Install dependencies
-        run: npm install --force
+        run: npm ci # CI環境では再現性の高い npm ci を推奨（必要に応じて --force を付与）
+
       - name: Generate static site
         run: npx nuxt generate
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

@@ -75,8 +75,7 @@
     "businessHours": "20:00 - 07:30",
     "features": {
       "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" },
-      "morning":{"available":true}
+      "power": { "available": false, "seats": "none" }
     },
     "coordinates": { "lat": 35.170825, "lng": 136.882124 }
   },
@@ -172,8 +171,7 @@
     "businessHours": "20:00 - 05:30",
     "features": {
       "wifi": { "available": false, "speed": "none" },
-      "power": { "available": false, "seats": "none" },
-      "morning":{"available":true}
+      "power": { "available": false, "seats": "none" }
     },
     "coordinates": { "lat": 35.168926, "lng": 136.90838 }
   },

@@ -13,7 +13,9 @@ import {AREAS} from '~/constants/areas'
       </div>
       <ul class="area-list">
        <!-- jsで繰り返し処理 -->
-       <NuxtLink v-for="area in AREAS" :key="area.id" :to="{path: '/search', query: { area: area.id }}" class="area-item">
+       <NuxtLink v-for="area in AREAS" 
+       :key="area.id" 
+       :to="{path: '/search', query: { area: area.id }}" class="area-item">
         <img :src="area.imageUrl" :alt="area.name" class="area-image" />
         <p class="area-name">{{area.name}}</p>
        </NuxtLink><!-- コロン（:）をつけることで、データの中の「imageUrl」の文字をそのまま画像パスとして正しく読み込みます。 -->  
@@ -54,6 +56,7 @@ import {AREAS} from '~/constants/areas'
          top: 50%;
          left: 50%;
          transform: translate(-50%, -50%);
+         border: 5px solid #683504;
       }
       p{
         font-family:'zen kurenaido' ;

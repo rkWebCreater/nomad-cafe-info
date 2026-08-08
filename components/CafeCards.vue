@@ -22,7 +22,7 @@
               <h3 class="cafe-name font-bold text-gray-900 mt-2 mb-1 min-h-[1.5rem] px-1.5 py-0.5 line-clamp-2">{{ cafe.name }}</h3>
               <p class="text-gray-600 text-sm mt-1">🕒 {{ cafe.businessHours }}</p>
             </div>
-            <div class="flex flex-col justify-center">
+            <div class="flex flex-col justify-start">
               <p class="text-gray-800 text-sm min-h-[1.5rem] line-clamp-2">📍 {{ cafe.address }}</p>
             </div>
             <div class="tags mt-2 flex gap-2 text-xs text-gray-500">

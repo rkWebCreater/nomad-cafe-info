@@ -75,7 +75,19 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
     }
   }
 
-  //-------- ローカル検索・エリア、タグ絞り込みロジック
+  const FEATURE_KEYWORDS : Record<string , string[]> = {
+    power : ['電源', '電源あり', 'コンセント', 'コンセントあり', 'power'],
+    wifi : ['wifi', 'wifiあり', 'wi-fi', 'わいふぁい', 'わいふぁいあり', 'ワイファイ', 'ワイファイあり'],
+    morning : ['モーニング', 'もーにんぐ', '朝食', '朝ごはん']
+  }
+
+  /**
+   * ローカル検索・エリア絞り込み・タグ絞り込みを実行するメイン関数
+   * 
+   * @param allCafes 全カフェのデータ配列
+   * @param options 検索条件（keyword: キーワード, area: エリア, tag: タグ）
+   * @returns 絞り込まれたカフェの配列
+   */
   const localSearch = (
     allCafes: Cafe[],
     options: { keyword?: string; area?: string; tag?: string } = {}
@@ -84,40 +96,43 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
     const area = (options.area || '').trim()
     const tag = (options.tag || '').trim()
 
-    const keywords: string[] = rawKeyword
-      ? rawKeyword.replace(/ /g, ' ').split(/\s+/).filter(Boolean)
-      : []
+    // キーワード文字列をスペース区切りで配列化  rawKeyword ? ... : [] （三項演算子） rawKeywordに文字が入っていたら後半の処理を実行　空なら空の配列[]を返す
+    // .split(/\s+/) : 1つ以上の半角/全角スペースで分割
+    // .filter(Boolean) : 空文字 ("") を除外
+    const keywords: string[] = rawKeyword? rawKeyword.replace(/ /g, ' ').split(/\s+/).filter(Boolean): [] 
+    /*.filter(Boolean) （空文字の除去）
+    意味: 分割した結果、紛れ込んでしまった空文字（""）を除外します。
+    JavaScript では Boolean("") は false になるため、.filter(Boolean) と書くだけで空要素がキレイに消えます。*/ 
 
-    if (keywords.length === 0 && !area && !tag) {
-      return allCafes
-    }
+    if (keywords.length === 0 && !area && !tag) return allCafes
 
     return allCafes.filter((cafe) => {
       // --- 条件 A: キーワード（複数単語AND検索 ＆ 電源/Wi-Fi判定） ---
+      // .every() : 指定したキーワードすべてにヒットする場合のみ true
       const matchKeyword = keywords.every((kw) => {
-        const inText =
-          cafe.name?.toLowerCase().includes(kw) ||
-          cafe.address?.toLowerCase().includes(kw) ||
-          cafe.area?.toLowerCase().includes(kw) ||
-          cafe.areaNameJa?.toLowerCase().includes(kw)
 
-        const isPowerKw = ['電源', '電源あり', 'コンセント', 'コンセントあり', 'power'].includes(kw)
-        const inPower = isPowerKw && Boolean(cafe.features?.power?.available)
+        // 1. 店舗情報テキスト（店名、住所、エリア名など）に含まれているか
+        // .some() : 配列内のいずれか1つでも条件を満たせば true
+        const inText = [cafe.name, cafe.address, cafe.area, cafe.areaNameJa].some((field) => field?.toLowerCase().includes(kw))
+       
+        // 2. 設備キーワード（電源、Wi-Fi、モーニングなど）に一致し、かつ店舗で利用可能か
+        // Object.entries() : オブジェクトを [キー, 値] の配列に変換
+        const inFeature = Object.entries(FEATURE_KEYWORDS).some(
+          ([featureKey , kwList]) =>
+            // 入力されたkwがリストに含まれているか (.includes)  かつ、そのカフェで該当機能が利用可能か (Booleanで安全にboolean値化)
+            kwList.includes(kw) && Boolean(cafe.features?.[featureKey]?.available)
+            
+        )  
 
-        const isWifiKw = ['wifi','wifiあり','wi-fi','わいふぁい','わいふぁいあり','ワイファイ','ワイファイあり'].includes(kw)
-        const inWifi = isWifiKw && Boolean(cafe.features?.wifi?.available)
-
-        const isMorningkw = ['モーニング','もーにんぐ','朝食','朝ごはん'].includes(kw)
-        const inMorning = isMorningkw && Boolean(cafe.features?.morning?.available)
-
-        return inText || inPower || inWifi || inMorning
+        return inText || inFeature
       })
 
       // --- 条件 B: エリア一致確認 ---
       const matchArea = !area || cafe.area === area
 
       // --- 条件 C: タグ一致確認 ---
-      const matchTag = !tag || cafe.features?.[tag]?.available === true
+      // タグが未指定(!tag)、または該当タグのavailableがtrueの場合に true
+      const matchTag = !tag || Boolean(cafe.features?.[tag]?.available)
 
       return matchKeyword && matchArea && matchTag
     })

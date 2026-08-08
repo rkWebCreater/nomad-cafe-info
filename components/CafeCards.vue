@@ -21,7 +21,7 @@
               <span class="area-name bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
               <h3 class="cafe-name font-bold text-gray-900 mt-2 mb-1 min-h-[1.5rem] px-1.5 line-clamp-2">{{ cafe.name }}</h3>
             </div>
-            <div class="flex flex-col justify-center">
+            <div class="flex flex-col justify-start">
               <p class="text-gray-800 text-sm min-h-[1.5rem] line-clamp-2">📍 {{ cafe.address }}</p>
               <p class="text-gray-600 text-sm mt-1">🕒 {{ cafe.businessHours }}</p>
             </div>

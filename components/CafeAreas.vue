@@ -68,7 +68,7 @@ import {AREAS} from '~/constants/areas'
     }
     
 }
-.area-list:hover{
+.area-item:hover{
               opacity:0.8;
 }
 

@@ -2,20 +2,14 @@
 <template>
   <ClientOnly>
     <!-- 💡 <Swiper> コンポーネントを使用。これにより遷移時のバグが100%消滅します -->
-    <Swiper
-      :modules="modules"
-      :breakpoints="swiperBreakpoints"
-      :navigation="true"
-      :pagination="{ clickable: true }"
-      :scrollbar="{ draggable: true }"
+    <Swiper :modules="modules" :breakpoints="swiperBreakpoints" :navigation="true" :pagination="{ clickable: true }" :scrollbar="{ draggable: true }"
       class="cafe-cards-slider">
- 
       <!-- 💡 <SwiperSlide> タグを使用 -->
-      <SwiperSlide v-for="cafe in cafes" :key="cafe.id" class="w-full bg-white rounded-[5%_5%_5%_5%] shadow-md overflow-hidden hover:shadow-lg transition">
-          
+      <SwiperSlide v-for="cafe in cafes" :key="cafe.id" class="w-full bg-white rounded-[5%_5%_5%_5%] shadow-md overflow-hidden hover:shadow-lg transition"> 
         <NuxtLink :to="`/cafes/${cafe.id}`" class="block text-left flex flex-col flex-1 card-link">
 
           <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-48 object-cover" />
+          
           <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-2 content-between card-body-height flex-1">
             <div>
               <span class="area-name bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
@@ -32,10 +26,9 @@
           </div>
 
         </NuxtLink>
-
       </SwiperSlide>
-
     </Swiper>
+    
   </ClientOnly>
 </template>
 

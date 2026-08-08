@@ -1,18 +1,17 @@
 <!-- カフェエリアのコンポーネント -->
-
 <script setup>
-
 //定数ファイルからAREASのリストを読み込む
 import {AREAS} from '~/constants/areas'
 
 </script> 
 <template>
  <div id="cafeArea" class="mt-20 mb-20">
+  
       <div class="ttl">
         <h2>エリアから探す</h2>
       </div>
       <ul class="area-list">
-       <!-- jsで繰り返し処理 -->
+       <!-- 繰り返し処理 -->
        <NuxtLink v-for="area in AREAS" 
        :key="area.id" 
        :to="{path: '/search', query: { area: area.id }}" class="area-item">
@@ -20,6 +19,7 @@ import {AREAS} from '~/constants/areas'
         <p class="area-name">{{area.name}}</p>
        </NuxtLink><!-- コロン（:）をつけることで、データの中の「imageUrl」の文字をそのまま画像パスとして正しく読み込みます。 -->  
       </ul>
+  
   </div>
 </template>
 

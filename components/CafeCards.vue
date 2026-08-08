@@ -26,8 +26,8 @@
               <p class="text-gray-600 text-sm mt-1">🕒 {{ cafe.businessHours }}</p>
             </div>
             <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
-              <span class="bg-gray-100 px-2 py-1 rounded"><img src="~/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
-              <span class="bg-gray-100 px-2 py-1 rounded"><img src="~/images/icon/power_icon.png" alt="電源のアイコン" class="w-4"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
+              <span class="bg-gray-100 px-2 py-1 rounded"><img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
+              <span class="bg-gray-100 px-2 py-1 rounded"><img src="/images/icon/power_icon.png" alt="電源のアイコン" class="w-4"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
             </div>
           </div>
 

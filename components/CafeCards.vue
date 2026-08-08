@@ -2,33 +2,40 @@
 <template>
   <ClientOnly>
     <!-- 💡 <Swiper> コンポーネントを使用。これにより遷移時のバグが100%消滅します -->
-    <Swiper :modules="modules" :breakpoints="swiperBreakpoints" :navigation="true" :pagination="{ clickable: true }" :scrollbar="{ draggable: true }"
+    <Swiper
+      :modules="modules"
+      :breakpoints="swiperBreakpoints"
+      :navigation="true"
+      :pagination="{ clickable: true }"
+      :scrollbar="{ draggable: true }"
       class="cafe-cards-slider">
+ 
       <!-- 💡 <SwiperSlide> タグを使用 -->
-      <SwiperSlide v-for="cafe in cafes" :key="cafe.id" class="w-full bg-white rounded-[5%_5%_5%_5%] shadow-md overflow-hidden hover:shadow-lg transition"> 
+      <SwiperSlide v-for="cafe in cafes" :key="cafe.id" class="w-full bg-white rounded-[5%_5%_5%_5%] shadow-md overflow-hidden hover:shadow-lg transition">
+          
         <NuxtLink :to="`/cafes/${cafe.id}`" class="block text-left flex flex-col flex-1 card-link">
 
           <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-48 object-cover" />
-          
           <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-2 content-between card-body-height flex-1">
             <div>
               <span class="area-name bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
-              <h3 class="cafe-name font-bold text-gray-900 mt-2 mb-1 min-h-[2rem] line-clamp-2">{{ cafe.name }}</h3>
+              <h3 class="cafe-name font-bold text-gray-900 mt-2 mb-1 min-h-[1.5rem] px-1.5 line-clamp-2">{{ cafe.name }}</h3>
             </div>
             <div class="flex flex-col justify-center">
-              <p class="text-gray-800 text-sm min-h-[2rem] line-clamp-2">📍 {{ cafe.address }}</p>
+              <p class="text-gray-800 text-sm min-h-[1.5rem] line-clamp-2">📍 {{ cafe.address }}</p>
               <p class="text-gray-600 text-sm mt-1">🕒 {{ cafe.businessHours }}</p>
             </div>
-            <div class="tags mt-2 flex gap-2 text-xs text-gray-500"> <!-- img srcはgit hub用のパス -->
-              <span class="bg-gray-100 px-2 py-1 rounded"><img src="../public/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
-              <span class="bg-gray-100 px-2 py-1 rounded"><img src="../public/images/icon/power_icon.png" alt="電源のアイコン" class="w-4"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
+            <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
+              <span class="bg-gray-100 px-2 py-1 rounded"><img src="../../images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
+              <span class="bg-gray-100 px-2 py-1 rounded"><img src="../../images/icon/power_icon.png" alt="電源のアイコン" class="w-4"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
             </div>
           </div>
 
         </NuxtLink>
+
       </SwiperSlide>
+
     </Swiper>
-    
   </ClientOnly>
 </template>
 
@@ -79,6 +86,7 @@
 .card-link, .card-body-height {
   flex-grow: 1;
 }
+
 .tags{
   & span{
      display: flex;
@@ -88,6 +96,7 @@
      align-content: center;
   }
 }
+
 /* ==========================================
    3. スマホ・タブレット表示（767px以下）
 ========================================== */

@@ -78,30 +78,19 @@
 
 .is-active{
                    
-/* SP メニューが開いた時（JSで .is-active がついた時）の✖アニメーション */
+/*メニューが開いた時（JSで .is-active がついた時）の✖アニメーション */
          & span{
               &:nth-child(1){
-                                         transform: translateY(3px) rotate(45deg);
+                             transform: translateY(4px) rotate(225deg);
               }
               &:nth-child(2){
-                                         transform: translateY(-3px) rotate(-45deg);
+                            transform: translateY(-4px) rotate(315deg);
               }
          }
 
 }
 
 
-/* PC メニューが開いた時（JSで .is-active がついた時）の✖アニメーション */
-@media (min-width:769px){
-
-#menu-trigger.is-active span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-#menu-trigger.is-active span:nth-child(2) {
-  transform: translateY(-4px) rotate(-45deg);
-}
-
-}
 
 /* ===================================================
    ドロワーメニュー本体（右側から出てくる白い画面）
@@ -112,7 +101,7 @@
   right: 0px;
   width: 280px; /* メニューの横幅 */
   height: 100vh; /* 画面全体の高さ */
-  background: #f7e9dc; /* メニューの背景色 */
+  background: rgb(247, 233, 220); /* メニューの背景色 */
   box-shadow: inset 4px 4px 0 1px rgba(174, 143, 118, 0.8);
   z-index: 9999;
   padding: 80px 24px 24px; /* ボタンと被らないように上をあける */

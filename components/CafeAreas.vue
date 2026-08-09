@@ -49,27 +49,32 @@ import {AREAS} from '~/constants/areas'
            display: grid;
            justify-content: center;
            align-content: center;
+           gap:20px;
 
     /* エリアボタン */
     .area-item{
                width:stretch;
                max-width:clamp(200px , 5vw , 300px);
-               height:70px;
+               height:80px;
                position: relative;
                display: flex;
                flex-wrap: wrap; 
-               
-
+               overflow:hidden;
+               border-radius: 20px;
+    /*　画像　*/
       .area-image{
          width:clamp(150px , 4vw , 200px);
+
          img{
           border-radius: 10px;
+          height:stretch;
          }
         
       }
+      /*　エリア名　*/
       .area-name{
               width:stretch ;
-              height: 70px ;
+              height: 80px ;
               background: rgb(53 32 16);
               border-radius: 10px;
               /*右側を曲線にする */
@@ -98,7 +103,7 @@ import {AREAS} from '~/constants/areas'
       .area-name:before{
               content:'';
               width: 100%;
-              height: 70px;
+              height:80px;
               background: rgb(255 247 240);
               border-radius: 10px;
               clip-path: ellipse(100% 65% at 100% 40%);
@@ -109,8 +114,8 @@ import {AREAS} from '~/constants/areas'
     }
     
 }
-.area-image:hover{
-              opacity:0.8;
+.area-item:hover{
+              opacity : 0.5;
 }
 
 @media (max-width:768px){
@@ -136,11 +141,9 @@ import {AREAS} from '~/constants/areas'
            row-gap: 10px;
 
     .area-item{
-               height:70px;
 
       img{
         width: 100% ;
-        height: 70px ; 
       }
 
       p{
@@ -153,7 +156,7 @@ import {AREAS} from '~/constants/areas'
     }
  }
 }
-@media (min-width:1024px){
+@media (min-width:769px){
      #cafeArea{
            padding:60px 0;
 
@@ -176,16 +179,16 @@ import {AREAS} from '~/constants/areas'
            row-gap: 30px;
 
     .area-item{
-               height:100px;
+               height:80px;
 
       img{
         width: 100% ;
-        height: 100px ; 
+        height: 80px ; 
         object-fit: cover;
       }
 
       p{
-        font-size:16px;
+        font-size:14px;
         bottom: 0;
         letter-spacing: 3px;
         padding: 0 0 0 5px;

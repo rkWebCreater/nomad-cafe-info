@@ -31,7 +31,6 @@ import {AREAS} from '~/constants/areas'
 <style>
 /*PC,SP 共通 */
 #cafeArea{
-  padding:40px 0;
 
         .ttl{
           h2{
@@ -55,7 +54,7 @@ import {AREAS} from '~/constants/areas'
     .area-item{
                width:stretch;
                max-width:clamp(200px , 5vw , 300px);
-               height:80px;
+               height:70px;
                position: relative;
                display: flex;
                flex-wrap: wrap; 
@@ -86,7 +85,6 @@ import {AREAS} from '~/constants/areas'
           width: max-content;
           color: rgb(53 32 16);
           position:absolute;
-          top:50%;
           left:57%;
           transform : translate(-50% , -50%);
          
@@ -139,25 +137,26 @@ import {AREAS} from '~/constants/areas'
            column-gap: 10px;
            row-gap: 10px;
 
+           /* エリアボタン */
     .area-item{
 
-      img{
-        width: 100% ;
-      }
-
-      p{
-        font-size: 12px;
-        letter-spacing: 2px;
-        bottom: 0;
-        padding: 0 7px 0 7px;
-        border-radius: 5px;
+      /*　エリア名　*/
+      .area-name{
+            
+        p{
+          font-size:12px;
+          top:35%;
+         
+        }
+        
       }
     }
+    
+
  }
 }
 @media (min-width:769px){
      #cafeArea{
-           padding:60px 0;
 
         .ttl{
              margin-bottom:20px;
@@ -192,6 +191,7 @@ import {AREAS} from '~/constants/areas'
         letter-spacing: 3px;
         padding: 0 0 0 5px;
         border-radius: 5px;
+        top:50%;
       }
     }
  }

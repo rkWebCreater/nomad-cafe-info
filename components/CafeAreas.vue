@@ -94,8 +94,7 @@ import {AREAS} from '~/constants/areas'
         p:after{
            content:'→';
            position:absolute;
-           left:50%;
-           transform:translateX(-50%);
+           left:40%;
          
         }
         

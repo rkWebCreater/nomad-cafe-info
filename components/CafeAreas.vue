@@ -70,7 +70,7 @@ import {AREAS} from '~/constants/areas'
       .area-name{
               width:stretch ;
               height: 70px ;
-              background: rgb(214, 200, 188);
+              background: rgb(53 32 16);
               border-radius: 10px;
               /*右側を曲線にする */
               clip-path: ellipse(100% 75% at 100% 50%);
@@ -79,7 +79,7 @@ import {AREAS} from '~/constants/areas'
             
         p{
           width: max-content;
-          color: rgb(104, 53, 4) ;
+          color: rgb(53 32 16);
           position:absolute;
           top:50%;
           left:57%;
@@ -101,7 +101,7 @@ import {AREAS} from '~/constants/areas'
               height: 70px;
               background: rgb(255 247 240);
               border-radius: 10px;
-              clip-path: ellipse(100% 75% at 100% 50%);
+              clip-path: ellipse(100% 65% at 100% 40%);
               position: absolute;
               left: 3px;
 

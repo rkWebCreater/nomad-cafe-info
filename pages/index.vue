@@ -79,8 +79,9 @@ header{
       }
 
 }
-.cafe-cards-section{
-                     background:url(/nomad-cafe-info/images/slider/bg/cafe_table.jpg);
+/*CSSの background または background-image プロパティで url() と linear-gradient() をカンマ (,) で区切って同時に指定すると、背景画像の上に半透明のグラデーションを重ねて表示できる。先に書いた方が手前（上層）に重なる。 */
+.cafe-cards-section{ 
+                     background: linear-gradient(#ff760059, #361e0a5e), url(/nomad-cafe-info/images/slider/bg/cafe_table.jpg);
                      background-repeat: no-repeat;
                      background-size: cover;
                      background-position: center;
@@ -209,10 +210,10 @@ header{
 import { computed } from 'vue'
 import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCards.vueの読み込み */
 // 先ほど作成したJSONデータを読み込む
-import cafeListData from '~/cafes.json'
+import cafeListData from '../../cafes.json'
 const cafeList = cafeListData 
 
-// 💡 composables から関数を呼び出す（1行書くだけでOK！）
+// 💡 composables から関数を呼び出す CafeCards.vueを営業時間判定にかけるため
 const { checkIfOpen } = useCafe()
 
 const openCafes = computed(() => {

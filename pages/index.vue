@@ -210,7 +210,7 @@ header{
 import { computed } from 'vue'
 import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCards.vueの読み込み */
 // 先ほど作成したJSONデータを読み込む
-import cafeListData from '../../cafes.json'
+import cafeListData from '../cafes.json' //github 用
 const cafeList = cafeListData 
 
 // 💡 composables から関数を呼び出す CafeCards.vueを営業時間判定にかけるため

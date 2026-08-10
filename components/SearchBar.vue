@@ -69,7 +69,7 @@ const handleSearch = () => {
   width:80px;
   font-size: 16px;
   color: rgb(107, 64, 24);
-  background: rgb(225, 196, 88);
+  background: rgb(250, 219, 104);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -77,7 +77,7 @@ const handleSearch = () => {
 
 }
 .search-button:hover {
-  color: rgb(225, 196, 88);
+  color: rgb(250, 219, 104);
   background: rgb(107, 64, 24);
 }
 </style>

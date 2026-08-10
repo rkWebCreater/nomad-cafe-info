@@ -25,7 +25,7 @@
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
 
       
-        <h2 class="cafe-cards-ttl font-bold text-white tracking-wider">現在営業中のカフェ</h2>
+        <h2 class="cafe-cards-ttl font-semibold text-white tracking-wider">現在営業中のカフェ</h2>
         <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
     
       

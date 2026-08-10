@@ -35,7 +35,7 @@ const handleSearch = () => {
     <input 
       v-model="searchQuery" 
       type="text" 
-      placeholder="名古屋　電源　、Wifi　渋谷など" 
+      placeholder="名古屋 電源やWifi 渋谷など" 
       class="search-input"  
     />
     <button type="submit" class="search-button">検索</button>
@@ -68,13 +68,14 @@ const handleSearch = () => {
   width:80px;
   font-size: 16px;
   color: rgb(107, 64, 24);
-  background-color: rgb(225, 196, 88);
+  background: rgb(225, 196, 88);
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
 }
 .search-button:hover {
-  background-color: #451a03;
+  color: rgb(225, 196, 88);
+  background: rgb(107, 64, 24);
 }
 </style>

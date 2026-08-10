@@ -12,7 +12,12 @@ import { TAGS } from '~/constants/tags'
   { name: '禁煙', key: 'no-smoking' },
   { name: '打あわせ可', key: 'meeting' }
 ] constants/tags.js にまとめたので消しても大丈夫　*/
- 
+ /*
+ const tagImages =[
+  {id:1 , name:'wifiImage' , imgUrl :'~/images/illust/wifi_pin.png'},
+  {id:2 , name:'powerImage' , imgUrl :'~/images/illust/power_pin.png'}
+  ]  
+  */
 </script>
 
 <template>
@@ -27,15 +32,18 @@ import { TAGS } from '~/constants/tags'
       あなたの作業スタイルに合ったカフェを<br class="block sm:hidden" /> <!-- <br class="block sm:hidden" /> でスマホ時は改行、PCタブレット（sm:以上 ）では非表示にする-->
       細かい条件で絞り込んで検索できます
     </p>
-
+    <!-- タグイラスト 
+    <div v-for="tagImage in tagImages" :key="tagImage.id" class="tag_image">
+      <img src="tagImage.imgUrl" alt="tagImage.name">
+    </div>
+-->
     <!-- タグボタン一覧 -->
     <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
       <NuxtLink
         v-for="tag in TAGS"
         :key="tag.key"
         :to="{ path: '/search', query: { tag: tag.key } }"
-        class="inline-block bg-[#d88839] hover:bg-[#966B45] text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm"
-      >
+        class="inline-block bg-[#ff8a17] hover:bg-[#ae7d4d] text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
         {{ tag.name }}
       </NuxtLink>
     </div>

@@ -48,7 +48,7 @@ import {AREAS} from '~/constants/areas'
            display: grid;
            justify-content: center;
            align-content: center;
-           gap:20px;
+           gap: clamp(10px, 2vw, 2rem);
 
     /* エリアボタン */
     .area-item{
@@ -134,8 +134,6 @@ import {AREAS} from '~/constants/areas'
            max-width: 400px;
            height:250px;
            grid-template-columns: repeat(auto-fill, minmax(45%, auto));
-           column-gap: 10px;
-           row-gap: 10px;
 
            /* エリアボタン */
     .area-item{

@@ -119,7 +119,7 @@ const searchAreaName = computed(() => {
   <!-- 0件の場合のメッセージ （ローディング中でない時だけ表示）-->
   <div v-else-if="!isLoading" class="text-center py-12 text-gray-500">
     <p class="text-lg font-medium">条件に一致するカフェが見つかりませんでした。</p>
-    <p class="text-sm mt-2">検索キーワードやエリアを変更して再度お試しください。</p>
+    <p class="text-sm mt-2">検索キーワードやエリアを変更して再度お試しください。打あわせ可は0件のデザインを表示するために値をセットしていません。</p>
   </div>
 </template>
 

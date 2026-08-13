@@ -43,7 +43,7 @@ import { TAGS } from '~/constants/tags'
         v-for="tag in TAGS"
         :key="tag.key"
         :to="{ path: '/search', query: { tag: tag.key } }"
-        class="inline-block bg-[#ff8a17] hover:bg-[#ae7d4d] text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
+        class="inline-block bg-[#e48e43] hover:bg-[#ae7d4d] text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
         {{ tag.name }}
       </NuxtLink>
     </div>

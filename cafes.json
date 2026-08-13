@@ -7,13 +7,24 @@
     "address": "東京都渋谷区道玄坂1丁目12-1",
     "budget": "￥600〜￥1,200",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "08:00 - 22:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.658034, "lng": 139.701632 }
+    "coordinates": {
+      "lat": 35.658034,
+      "lng": 139.701632
+    }
   },
   {
     "id": "cafe-002",
@@ -23,13 +34,21 @@
     "address": "東京都新宿区西新宿2丁目8-1",
     "budget": "￥700〜￥1,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "09:00 - 21:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "some" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      }
     },
-    "coordinates": { "lat": 35.689607, "lng": 139.700573 }
+    "coordinates": {
+      "lat": 35.689607,
+      "lng": 139.700573
+    }
   },
   {
     "id": "cafe-003",
@@ -39,13 +58,21 @@
     "address": "東京都渋谷区神南1丁目19-11",
     "budget": "￥550〜￥1,100",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": false,
     "businessHours": "07:00 - 20:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      }
     },
-    "coordinates": { "lat": 35.664035, "lng": 139.698421 }
+    "coordinates": {
+      "lat": 35.664035,
+      "lng": 139.698421
+    }
   },
   {
     "id": "cafe-004",
@@ -55,13 +82,27 @@
     "address": "大阪府大阪市北区梅田2丁目5-25",
     "budget": "￥650〜￥1,300",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "07:30 - 20:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "lunch": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 34.701912, "lng": 135.494881 }
+    "coordinates": {
+      "lat": 34.701912,
+      "lng": 135.494881
+    }
   },
   {
     "id": "cafe-005",
@@ -71,13 +112,24 @@
     "address": "愛知県名古屋市中村区名駅3丁目28-12",
     "budget": "￥1,200〜￥2,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "20:00 - 07:30",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.170825, "lng": 136.882124 }
+    "coordinates": {
+      "lat": 35.170825,
+      "lng": 136.882124
+    }
   },
   {
     "id": "cafe-006",
@@ -87,13 +139,21 @@
     "address": "東京都新宿区歌舞伎町1丁目2-3",
     "budget": "￥1,000〜￥2,200",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "22:00 - 06:30",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      }
     },
-    "coordinates": { "lat": 35.695844, "lng": 139.702081 }
+    "coordinates": {
+      "lat": 35.695844,
+      "lng": 139.702081
+    }
   },
   {
     "id": "cafe-007",
@@ -103,13 +163,24 @@
     "address": "福岡県福岡市中央区天神1丁目11-17",
     "budget": "￥1,100〜￥2,400",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "21:00 - 06:30",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "single": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 33.591234, "lng": 130.401822 }
+    "coordinates": {
+      "lat": 33.591234,
+      "lng": 130.401822
+    }
   },
   {
     "id": "cafe-008",
@@ -119,13 +190,21 @@
     "address": "大阪府大阪市中央区難波5丁目1-60",
     "budget": "￥1,300〜￥2,800",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "20:00 - 07:30",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      }
     },
-    "coordinates": { "lat": 34.665112, "lng": 135.501145 }
+    "coordinates": {
+      "lat": 34.665112,
+      "lng": 135.501145
+    }
   },
   {
     "id": "cafe-009",
@@ -135,13 +214,27 @@
     "address": "東京都渋谷区宇田川町21-6 B1F",
     "budget": "￥1,500〜￥3,000",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "22:00 - 05:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "lunch": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.658034, "lng": 139.701632 }
+    "coordinates": {
+      "lat": 35.658034,
+      "lng": 139.701632
+    }
   },
   {
     "id": "cafe-010",
@@ -151,13 +244,24 @@
     "address": "東京都新宿区新宿3丁目38-1 3F",
     "budget": "￥900〜￥2,000",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "21:00 - 06:00",
     "features": {
-      "wifi": { "available": true, "speed": "normal" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": true,
+        "speed": "normal"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.693825, "lng": 139.703356 }
+    "coordinates": {
+      "lat": 35.693825,
+      "lng": 139.703356
+    }
   },
   {
     "id": "cafe-011",
@@ -167,13 +271,21 @@
     "address": "愛知県名古屋市中区栄4丁目15-20",
     "budget": "￥600〜￥1,400",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "20:00 - 05:30",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      }
     },
-    "coordinates": { "lat": 35.168926, "lng": 136.90838 }
+    "coordinates": {
+      "lat": 35.168926,
+      "lng": 136.90838
+    }
   },
   {
     "id": "cafe-012",
@@ -183,13 +295,27 @@
     "address": "東京都新宿区歌舞伎町2丁目10-5 2F",
     "budget": "￥800〜￥1,800",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "23:00 - 08:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "lunch": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.695844, "lng": 139.702081 }
+    "coordinates": {
+      "lat": 35.695844,
+      "lng": 139.702081
+    }
   },
   {
     "id": "cafe-013",
@@ -199,13 +325,21 @@
     "address": "大阪府大阪市北区角田町8-7 B1F",
     "budget": "￥1,600〜￥3,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "21:30 - 05:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      }
     },
-    "coordinates": { "lat": 34.703225, "lng": 135.498234 }
+    "coordinates": {
+      "lat": 34.703225,
+      "lng": 135.498234
+    }
   },
   {
     "id": "cafe-014",
@@ -215,13 +349,21 @@
     "address": "東京都渋谷区桜丘町26-1 4F",
     "budget": "￥750〜￥1,600",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "08:00 - 16:00",
     "features": {
-      "wifi": { "available": true, "speed": "normal" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": true,
+        "speed": "normal"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      }
     },
-    "coordinates": { "lat": 35.659462, "lng": 139.700553 }
+    "coordinates": {
+      "lat": 35.659462,
+      "lng": 139.700553
+    }
   },
   {
     "id": "cafe-015",
@@ -231,13 +373,24 @@
     "address": "東京都新宿区西新宿1丁目25-1",
     "budget": "￥850〜￥1,900",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "22:00 - 07:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.689622, "lng": 139.699211 }
+    "coordinates": {
+      "lat": 35.689622,
+      "lng": 139.699211
+    }
   },
   {
     "id": "cafe-016",
@@ -247,13 +400,24 @@
     "address": "福岡県福岡市博多区博多駅前2丁目1-1",
     "budget": "￥800〜￥1,600",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "21:00 - 05:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "single": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 33.589854, "lng": 130.419822 }
+    "coordinates": {
+      "lat": 33.589854,
+      "lng": 130.419822
+    }
   },
   {
     "id": "cafe-017",
@@ -263,13 +427,24 @@
     "address": "大阪府大阪市中央区心斎橋筋1丁目7-1",
     "budget": "￥1,200〜￥2,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "20:30 - 06:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 34.671123, "lng": 135.500941 }
+    "coordinates": {
+      "lat": 34.671123,
+      "lng": 135.500941
+    }
   },
   {
     "id": "cafe-018",
@@ -279,14 +454,30 @@
     "address": "愛知県名古屋市中区錦3丁目24-17 2F",
     "budget": "￥1,400〜￥2,800",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "05:30 - 15:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" },
-      "morning":{"available":true}
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "morning": {
+        "available": true
+      },
+      "lunch": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.170112, "lng": 136.905845 }
+    "coordinates": {
+      "lat": 35.170112,
+      "lng": 136.905845
+    }
   },
   {
     "id": "cafe-019",
@@ -296,13 +487,21 @@
     "address": "東京都渋谷区神宮前6丁目18-3",
     "budget": "￥650〜￥1,350",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "08:00 - 20:00",
     "features": {
-      "wifi": { "available": true, "speed": "normal" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": true,
+        "speed": "normal"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      }
     },
-    "coordinates": { "lat": 35.661234, "lng": 139.698432 }
+    "coordinates": {
+      "lat": 35.661234,
+      "lng": 139.698432
+    }
   },
   {
     "id": "cafe-020",
@@ -312,13 +511,24 @@
     "address": "東京都新宿区新宿4丁目1-6",
     "budget": "￥700〜￥1,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "09:00 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.690112, "lng": 139.704543 }
+    "coordinates": {
+      "lat": 35.690112,
+      "lng": 139.704543
+    }
   },
   {
     "id": "cafe-021",
@@ -328,13 +538,21 @@
     "address": "大阪府大阪市北区茶屋町10-12",
     "budget": "￥600〜￥1,200",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "08:00 - 22:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      }
     },
-    "coordinates": { "lat": 34.7024, "lng": 135.4959 }
+    "coordinates": {
+      "lat": 34.7024,
+      "lng": 135.4959
+    }
   },
   {
     "id": "cafe-022",
@@ -344,13 +562,21 @@
     "address": "大阪府大阪市中央区難波千日前12-7",
     "budget": "￥500〜￥1,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "09:00 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "many" }
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": true,
+        "seats": "many"
+      }
     },
-    "coordinates": { "lat": 34.6661, "lng": 135.5022 }
+    "coordinates": {
+      "lat": 34.6661,
+      "lng": 135.5022
+    }
   },
   {
     "id": "cafe-023",
@@ -360,14 +586,27 @@
     "address": "愛知県名古屋市中村区名駅1丁目1-4",
     "budget": "￥700〜￥1,400",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "07:30 - 21:30",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" },
-      "morning":{"available":true}
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "morning": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.1709, "lng": 136.8815 }
+    "coordinates": {
+      "lat": 35.1709,
+      "lng": 136.8815
+    }
   },
   {
     "id": "cafe-024",
@@ -377,14 +616,30 @@
     "address": "愛知県名古屋市中区栄3丁目6-1",
     "budget": "￥550〜￥1,300",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": false,
     "businessHours": "10:00 - 20:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "some" },
-      "morning":{"available":true}
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      },
+      "morning": {
+        "available": true
+      },
+      "single": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.1685, "lng": 136.9066 }
+    "coordinates": {
+      "lat": 35.1685,
+      "lng": 136.9066
+    }
   },
   {
     "id": "cafe-025",
@@ -394,13 +649,24 @@
     "address": "福岡県福岡市博多区博多駅中央街1-1",
     "budget": "￥600〜￥1,300",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "07:30 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 33.5902, "lng": 130.4207 }
+    "coordinates": {
+      "lat": 33.5902,
+      "lng": 130.4207
+    }
   },
   {
     "id": "cafe-026",
@@ -410,13 +676,24 @@
     "address": "福岡県福岡市中央区天神2丁目2-43",
     "budget": "￥650〜￥1,450",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "08:00 - 22:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      },
+      "single": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 33.5916, "lng": 130.3989 }
+    "coordinates": {
+      "lat": 33.5916,
+      "lng": 130.3989
+    }
   },
   {
     "id": "cafe-027",
@@ -426,13 +703,24 @@
     "address": "福岡県福岡市中央区大名1丁目14-25",
     "budget": "￥550〜￥1,200",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "10:00 - 20:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "some" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 33.5878, "lng": 130.3942 }
+    "coordinates": {
+      "lat": 33.5878,
+      "lng": 130.3942
+    }
   },
   {
     "id": "cafe-028",
@@ -442,14 +730,27 @@
     "address": "愛知県名古屋市中区錦2丁目18-5",
     "budget": "￥600〜￥1,300",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "08:30 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" },
-      "morning":{"available":true}
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "morning": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.1664, "lng": 136.9078 }
+    "coordinates": {
+      "lat": 35.1664,
+      "lng": 136.9078
+    }
   },
   {
     "id": "cafe-029",
@@ -459,13 +760,27 @@
     "address": "大阪府大阪市北区大深町3-1",
     "budget": "￥750〜￥1,600",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "08:00 - 22:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "many" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "many"
+      },
+      "lunch": {
+        "available": false
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 34.7058, "lng": 135.4947 }
+    "coordinates": {
+      "lat": 34.7058,
+      "lng": 135.4947
+    }
   },
   {
     "id": "cafe-030",
@@ -475,13 +790,24 @@
     "address": "大阪府大阪市中央区道頓堀1丁目4-16",
     "budget": "￥600〜￥1,400",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "09:00 - 23:00",
     "features": {
-      "wifi": { "available": true, "speed": "normal" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "normal"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 34.6687, "lng": 135.5013 }
+    "coordinates": {
+      "lat": 34.6687,
+      "lng": 135.5013
+    }
   },
   {
     "id": "cafe-031",
@@ -491,13 +817,24 @@
     "address": "東京都渋谷区神南1丁目5-11",
     "budget": "￥700〜￥1,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "09:00 - 21:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.6631, "lng": 139.7001 }
+    "coordinates": {
+      "lat": 35.6631,
+      "lng": 139.7001
+    }
   },
   {
     "id": "cafe-032",
@@ -507,13 +844,21 @@
     "address": "東京都新宿区新宿1丁目11-3",
     "budget": "￥650〜￥1,300",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": false,
     "businessHours": "08:00 - 19:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      }
     },
-    "coordinates": { "lat": 35.6882, "lng": 139.7104 }
+    "coordinates": {
+      "lat": 35.6882,
+      "lng": 139.7104
+    }
   },
   {
     "id": "cafe-033",
@@ -523,13 +868,24 @@
     "address": "福岡県福岡市中央区大名2丁目1-18",
     "budget": "￥700〜￥1,600",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "08:00 - 20:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "some" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 33.5954, "lng": 130.3891 }
+    "coordinates": {
+      "lat": 33.5954,
+      "lng": 130.3891
+    }
   },
   {
     "id": "cafe-034",
@@ -539,13 +895,21 @@
     "address": "大阪府大阪市北区芝田1丁目1-3",
     "budget": "￥600〜￥1,350",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "10:00 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "normal" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "normal"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      }
     },
-    "coordinates": { "lat": 34.7049, "lng": 135.4984 }
+    "coordinates": {
+      "lat": 34.7049,
+      "lng": 135.4984
+    }
   },
   {
     "id": "cafe-035",
@@ -555,13 +919,27 @@
     "address": "東京都新宿区西新宿6丁目5-1",
     "budget": "￥1,200〜￥2,800",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "11:00 - 23:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "lunch": {
+        "available": false
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.6924, "lng": 139.6922 }
+    "coordinates": {
+      "lat": 35.6924,
+      "lng": 139.6922
+    }
   },
   {
     "id": "cafe-036",
@@ -571,13 +949,21 @@
     "address": "東京都渋谷区恵比寿西1丁目10-7",
     "budget": "￥550〜￥1,250",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "09:00 - 19:30",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      }
     },
-    "coordinates": { "lat": 35.6481, "lng": 139.7081 }
+    "coordinates": {
+      "lat": 35.6481,
+      "lng": 139.7081
+    }
   },
   {
     "id": "cafe-037",
@@ -587,13 +973,24 @@
     "address": "福岡県福岡市中央区薬院1丁目6-14",
     "budget": "￥500〜￥1,150",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "08:30 - 19:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 33.5812, "lng": 130.4011 }
+    "coordinates": {
+      "lat": 33.5812,
+      "lng": 130.4011
+    }
   },
   {
     "id": "cafe-038",
@@ -603,13 +1000,21 @@
     "address": "東京都渋谷区神宮前6丁目20-10",
     "budget": "￥800〜￥1,800",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "08:00 - 22:30",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      }
     },
-    "coordinates": { "lat": 35.6618, "lng": 139.7022 }
+    "coordinates": {
+      "lat": 35.6618,
+      "lng": 139.7022
+    }
   },
   {
     "id": "cafe-039",
@@ -619,13 +1024,24 @@
     "address": "東京都新宿区歌舞伎町1丁目19-3",
     "budget": "￥900〜￥2,000",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "18:00 - 05:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "many" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "many"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.6951, "lng": 139.7028 }
+    "coordinates": {
+      "lat": 35.6951,
+      "lng": 139.7028
+    }
   },
   {
     "id": "cafe-040",
@@ -635,14 +1051,27 @@
     "address": "愛知県名古屋市中村区名駅4丁目7-1",
     "budget": "￥700〜￥1,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "07:00 - 22:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "some" },
-      "morning":{"available":true}
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      },
+      "morning": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.1722, "lng": 136.8828 }
+    "coordinates": {
+      "lat": 35.1722,
+      "lng": 136.8828
+    }
   },
   {
     "id": "cafe-041",
@@ -652,13 +1081,21 @@
     "address": "大阪府大阪市北区茶屋町15-22",
     "budget": "￥650〜￥1,400",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "09:00 - 21:30",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "counter" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      }
     },
-    "coordinates": { "lat": 34.7061, "lng": 135.4988 }
+    "coordinates": {
+      "lat": 34.7061,
+      "lng": 135.4988
+    }
   },
   {
     "id": "cafe-042",
@@ -668,13 +1105,24 @@
     "address": "大阪府大阪市中央区心斎橋筋1丁目8-3",
     "budget": "￥600〜￥1,300",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "08:30 - 20:30",
     "features": {
-      "wifi": { "available": true, "speed": "normal" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "normal"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 34.6719, "lng": 135.5011 }
+    "coordinates": {
+      "lat": 34.6719,
+      "lng": 135.5011
+    }
   },
   {
     "id": "cafe-043",
@@ -684,13 +1132,21 @@
     "address": "福岡県福岡市博多区博多駅前3丁目25-24",
     "budget": "￥750〜￥1,500",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "07:00 - 22:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      }
     },
-    "coordinates": { "lat": 33.5897, "lng": 130.4207 }
+    "coordinates": {
+      "lat": 33.5897,
+      "lng": 130.4207
+    }
   },
   {
     "id": "cafe-044",
@@ -700,13 +1156,21 @@
     "address": "大阪府大阪市中央区難波2丁目3-5",
     "budget": "￥1,100〜￥2,400",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "10:00 - 22:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "some" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      }
     },
-    "coordinates": { "lat": 34.6672, "lng": 135.4988 }
+    "coordinates": {
+      "lat": 34.6672,
+      "lng": 135.4988
+    }
   },
   {
     "id": "cafe-045",
@@ -716,13 +1180,30 @@
     "address": "東京都渋谷区道玄坂2丁目29-1",
     "budget": "￥500〜￥1,100",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "07:30 - 20:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "lunch": {
+        "available": true
+      },
+      "single": {
+        "available": false
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 35.6598, "lng": 139.6982 }
+    "coordinates": {
+      "lat": 35.6598,
+      "lng": 139.6982
+    }
   },
   {
     "id": "cafe-046",
@@ -732,14 +1213,27 @@
     "address": "愛知県名古屋市中村区名駅5丁目3-18",
     "budget": "￥600〜￥1,200",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
-    "isOpen": true,
     "businessHours": "08:00 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": true, "seats": "counter" },
-      "morning":{"available":true}
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": true,
+        "seats": "counter"
+      },
+      "morning": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.1712, "lng": 136.8885 }
+    "coordinates": {
+      "lat": 35.1712,
+      "lng": 136.8885
+    }
   },
   {
     "id": "cafe-047",
@@ -749,13 +1243,24 @@
     "address": "福岡県福岡市中央区天神2丁目11-1",
     "budget": "￥600〜￥1,300",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
-    "isOpen": true,
     "businessHours": "07:30 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "all" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "all"
+      },
+      "no-smoking": {
+        "available": true
+      }
     },
-    "coordinates": { "lat": 33.5908, "lng": 130.3995 }
+    "coordinates": {
+      "lat": 33.5908,
+      "lng": 130.3995
+    }
   },
   {
     "id": "cafe-048",
@@ -765,14 +1270,27 @@
     "address": "愛知県名古屋市中区大須3丁目30-40",
     "budget": "￥500〜￥1,100",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
-    "isOpen": true,
     "businessHours": "10:00 - 19:00",
     "features": {
-      "wifi": { "available": false, "speed": "none" },
-      "power": { "available": true, "seats": "some" },
-      "morning":{"available":true}
+      "wifi": {
+        "available": false,
+        "speed": "none"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      },
+      "morning": {
+        "available": true
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.1598, "lng": 136.8994 }
+    "coordinates": {
+      "lat": 35.1598,
+      "lng": 136.8994
+    }
   },
   {
     "id": "cafe-049",
@@ -782,13 +1300,24 @@
     "address": "大阪府大阪市北区中之島2丁目3-18",
     "budget": "￥800〜￥1,700",
     "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
-    "isOpen": true,
     "businessHours": "08:30 - 21:00",
     "features": {
-      "wifi": { "available": true, "speed": "stable" },
-      "power": { "available": false, "seats": "none" }
+      "wifi": {
+        "available": true,
+        "speed": "stable"
+      },
+      "power": {
+        "available": false,
+        "seats": "none"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 34.6937, "lng": 135.5031 }
+    "coordinates": {
+      "lat": 34.6937,
+      "lng": 135.5031
+    }
   },
   {
     "id": "cafe-050",
@@ -798,12 +1327,23 @@
     "address": "東京都渋谷区神宮前1丁目8-8",
     "budget": "￥750〜￥1,600",
     "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
-    "isOpen": true,
     "businessHours": "09:00 - 20:30",
     "features": {
-      "wifi": { "available": true, "speed": "fast" },
-      "power": { "available": true, "seats": "some" }
+      "wifi": {
+        "available": true,
+        "speed": "fast"
+      },
+      "power": {
+        "available": true,
+        "seats": "some"
+      },
+      "no-smoking": {
+        "available": false
+      }
     },
-    "coordinates": { "lat": 35.6702, "lng": 139.7028 }
+    "coordinates": {
+      "lat": 35.6702,
+      "lng": 139.7028
+    }
   }
 ]

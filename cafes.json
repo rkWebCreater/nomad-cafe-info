@@ -17,8 +17,11 @@
         "available": true,
         "seats": "all"
       },
+      "single": {
+        "available": true
+      },
       "no-smoking": {
-        "available": false
+        "available": true
       }
     },
     "coordinates": {
@@ -43,6 +46,9 @@
       "power": {
         "available": true,
         "seats": "some"
+      },
+      "single": {
+        "available": true
       }
     },
     "coordinates": {
@@ -93,6 +99,9 @@
         "seats": "none"
       },
       "lunch": {
+        "available": true
+      },
+      "single": {
         "available": true
       },
       "no-smoking": {
@@ -224,11 +233,8 @@
         "available": true,
         "seats": "all"
       },
-      "lunch": {
-        "available": true
-      },
       "no-smoking": {
-        "available": false
+        "available": true
       }
     },
     "coordinates": {
@@ -304,9 +310,6 @@
       "power": {
         "available": true,
         "seats": "all"
-      },
-      "lunch": {
-        "available": true
       },
       "no-smoking": {
         "available": false
@@ -771,7 +774,7 @@
         "seats": "many"
       },
       "lunch": {
-        "available": false
+        "available": true
       },
       "no-smoking": {
         "available": false
@@ -929,11 +932,8 @@
         "available": false,
         "seats": "none"
       },
-      "lunch": {
-        "available": false
-      },
       "no-smoking": {
-        "available": false
+        "available": true
       }
     },
     "coordinates": {

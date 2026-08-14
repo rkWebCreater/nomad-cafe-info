@@ -74,7 +74,7 @@ import {AREAS} from '~/constants/areas'
       .area-name{
               width:stretch ;
               height: 80px ;
-              background: rgb(53 32 16);
+              background: linear-gradient(rgb(49 26 7), rgb(155 107 71));
               border-radius: 10px;
               /*右側を曲線にする */
               clip-path: ellipse(100% 75% at 100% 50%);

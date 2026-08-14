@@ -16,6 +16,10 @@ export interface Cafe {
   features?: {
     power?: CafeFeature
     wifi?: CafeFeature
+    morning?: CafeFeature
+    lunch?: CafeFeature
+    single? : CafeFeature
+    'no-smoking'? : CafeFeature
     [key: string]: CafeFeature | undefined
   }
 }
@@ -78,7 +82,9 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
   const FEATURE_KEYWORDS : Record<string , string[]> = {
     power : ['電源', '電源あり', 'コンセント', 'コンセントあり', 'power'],
     wifi : ['wifi', 'wifiあり', 'wi-fi', 'わいふぁい', 'わいふぁいあり', 'ワイファイ', 'ワイファイあり'],
-    morning : ['モーニング', 'もーにんぐ', '朝食', '朝ごはん']
+    morning : ['モーニング', 'もーにんぐ', '朝食', '朝ごはん'],
+    single  : ['一人席', '個室', '一人'],
+    'no-smoking' :['禁煙' , 'きんえん']
   }
 
   /**
@@ -121,8 +127,7 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
           ([featureKey , kwList]) =>
             // 入力されたkwがリストに含まれているか (.includes)  かつ、そのカフェで該当機能が利用可能か (Booleanで安全にboolean値化)
             kwList.includes(kw) && Boolean(cafe.features?.[featureKey]?.available)
-            
-        )  
+        ) 
 
         return inText || inFeature
       })

@@ -74,7 +74,7 @@ export interface TopHeroProps {
 const props = withDefaults(defineProps<TopHeroProps>(), {
   mainImage: '/nomad-cafe-info/images/slider/cafeNormal2.png',
   coffeeImage: '/nomad-cafe-info/images/slider/cafeNormal3.png',
-  interiorImage: '/nomad-cafe-info/images/images/slider/cafe2.jpg'
+  interiorImage: '/nomad-cafe-info/images/slider/cafe2.jpg'
 })
 </script>
 

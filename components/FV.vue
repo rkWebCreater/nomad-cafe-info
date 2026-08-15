@@ -287,6 +287,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
         }
 
         .sub-script {
+          font-family: 'Style Script';
           position: absolute;
           left: 30%;
           bottom:-0.3rem;

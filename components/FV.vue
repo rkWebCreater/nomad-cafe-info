@@ -50,12 +50,12 @@
             <span class="main-heading">環 境 へ</span>
             <span class="sub-script">cafe nomadic</span>
           </span>
-          <span class="search-bar w-full">
-           <SearchBar />
-          </span>
         </h1>
+        <div class="search-bar w-full max-w-l">
+         <SearchBar />
+        </div>
       </div>
-
+      
     </div>
 
   </section>
@@ -295,6 +295,10 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
           pointer-events: none;
         }
       }
+    }
+    .search-bar{
+          width:90%;
+          max-width: 500px;
     }
   }
 

@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     'swiper/css/pagination'
   ],
 
-  //  app内設定
+  //  app内設定 外部のモジュールをインストール不要
   app: { 
     baseURL: '/nomad-cafe-info/',
     head: {
@@ -29,8 +29,8 @@ export default defineNuxtConfig({
         // Google Fonts のサーバーに接続する設定
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        // 使いたいフォント（zen kurenaido）の読み込みリンク
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap' }
+        // 使いたいフォント（zen kurenaido とStyle Script）の読み込みリンク
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap&family=Style+Script&display=swap' }
       ]
     }
   },

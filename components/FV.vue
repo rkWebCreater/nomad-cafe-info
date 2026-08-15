@@ -2,7 +2,7 @@
   <section class="top-hero">
     <!-- 背景装飾のウォーターマークテキスト -->
     <div class="hero-watermark" aria-hidden="true">
-      nomad in life
+      nomad in life<br>
     </div>
 
     <div class="hero-container">
@@ -102,18 +102,23 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   /* 背景ウォーターマーク */
   .hero-watermark {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-4deg);
-    font-family: 'Alex Brush', cursive;
-    font-size: clamp(6rem, 16vw, 22rem);
-    color: rgba(240, 228, 177, 0.338);
+    top: 50% ;
+    left: 50% ;
+    transform: translate(-50%, -50%) rotate(-10deg) ;
+    font-family: 'Alex Brush', cursive ;
+    font-size: clamp(6rem, 16vw, 22rem) ;
+    color: rgba(240, 228, 177, 0.338) ;
     white-space: nowrap;
     pointer-events: none;
     user-select: none;
     z-index: 1;
     letter-spacing: 0.05em;
-    text-shadow: 0 0 20px rgba(227, 223, 219, 0.8);
+    text-shadow: 0 0 20px rgba(230, 226, 222, 0.8);
+  }
+  .hero-watermark::after{
+    content : 'comfortable place';
+
+
   }
 
   /* メインコンテナ（スマホでは1カラム縦並び） */
@@ -223,7 +228,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     display: flex ;
     flex-direction: column ;
     align-items:center;
-    width:clamp(300px , 90% , 500px) ; 
+    width:clamp(300px , 90% , 400px) ; 
     position: relative ;
     top:0;
     right:0;

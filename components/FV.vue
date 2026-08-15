@@ -284,8 +284,8 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
 
         .sub-script {
           position: absolute;
-          bottom: -0.7rem;
           left: 30%;
+          bottom:-0.3rem;
           transform: translateX(-50%);
           font-family: 'Alex Brush', cursive;
           font-size: 0.5rem;

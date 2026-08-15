@@ -3,7 +3,7 @@
 現在営業中または深夜営業を行っているカフェを一覧・詳細で確認できる、ノマドワーカーや在宅ワーカーのためのカフェ検索サイトです。
 
 ## 🛠️ 使用技術（技術スタック）
-- **Frontend**: Nuxt 3 (Vue 3) / TypeScript
+- **Frontend**: Nuxt 4 (Vue 3) / TypeScript
 - **Styling**: Tailwind CSS
 - **Library**: Swiper v11 (swiper/vue)
 - **Data**: JSON形式によるローカルモックデータ管理（営業時間自動判定ロジック実装）

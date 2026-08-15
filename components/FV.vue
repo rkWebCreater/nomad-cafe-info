@@ -72,9 +72,9 @@ export interface TopHeroProps {
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {
-  mainImage: '../../images/slider/cafeNormal2.png',
-  coffeeImage: '../../images/slider/cafeNormal3.png',
-  interiorImage: '../../images/slider/cafe2.jpg'
+  mainImage: '../images/slider/cafeNormal2.png',
+  coffeeImage: '../images/slider/cafeNormal3.png',
+  interiorImage: '../images/slider/cafe2.jpg'
 })
 </script>
 

@@ -2,7 +2,7 @@
   <section class="top-hero">
     <!-- 背景装飾のウォーターマークテキスト -->
     <div class="hero-watermark" aria-hidden="true">
-      nomad in life<br>
+      <p>nomad in life<br></p>
     </div>
 
     <div class="hero-container">
@@ -101,24 +101,25 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
 
   /* 背景ウォーターマーク */
   .hero-watermark {
+    width:100%;
     position: absolute;
     top: 50% ;
     left: 50% ;
     transform: translate(-50%, -50%) rotate(-10deg) ;
-    font-family: 'Alex Brush', cursive ;
-    font-size: clamp(6rem, 16vw, 22rem) ;
-    color: rgba(240, 228, 177, 0.338) ;
-    white-space: nowrap;
-    pointer-events: none;
-    user-select: none;
     z-index: 1;
     letter-spacing: 0.05em;
-    text-shadow: 0 0 20px rgba(230, 226, 222, 0.8);
+
+    p{
+     width:100%;
+     font-size: clamp(6rem, 16vw, 22rem) ;
+     color: rgba(251, 246, 227, 0.463);
+     text-shadow: 0 0 20px rgba(230, 226, 222, 0.8);
+     font-family: 'Style Script';
+    }
+
   }
-  .hero-watermark::after{
+  .hero-watermark p::after{
     content : 'comfortable place';
-
-
   }
 
   /* メインコンテナ（スマホでは1カラム縦並び） */
@@ -131,7 +132,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     align-items: center;
     display:flex;
     flex-direction: column-reverse;
-
   }
 
   /* 画像ギャラリー（スマホ基本設定） */
@@ -145,7 +145,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     grid-template-rows: repeat(12, 1fr);
     gap: 0.5rem;
     
-
     .gallery-item {
       overflow: hidden;
       border-radius: 16px;
@@ -292,7 +291,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
           left: 30%;
           bottom:-0.3rem;
           transform: translateX(-50%);
-          font-family: 'Alex Brush', cursive;
           font-size: 0.5rem;
           color: #c4a04d;
           letter-spacing: 0.5em;

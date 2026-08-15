@@ -1,34 +1,32 @@
 <!-- トップページ -->
 <template>
-  <div class="min-h-screen ">
-    <!-- ヘッダー -->
-    <header class="text-center ">
-
-      <!--  <Drawer />　ドロワーメニュー layouts/defaultで共通化をし自動インポートのため書く必要なし-->
-
-      <!-- キャッチコピー -->
+  <div class="min-h-screen">
+    <!-- ヘッダー 
+    <header class="text-center">
+        <Drawer />　ドロワーメニュー layouts/defaultで共通化をし自動インポートのため書く必要なし
+     キャッチコピー 
       <h1 class="mt-3 text-amber-800">
-        <span class="mCatch text-xl font-semibold ">今日の仕事はどこでしようか</span><br>
-        <span class="sCatch ">WiFi・電源あり、PC作業OK</span><br>
-        <span class="sCatch ">あなたに合ったカフェを見つける</span><br>
-        <span class="sCatch ">カフェ検索サイトです。</span><br>
+       <span class="mCatch text-xl font-semibold ">今日の仕事はどこでしようか</span><br>
+       <span class="sCatch ">WiFi・電源あり、PC作業OK</span><br>
+       <span class="sCatch ">あなたに合ったカフェを見つける</span><br>
+       <span class="sCatch ">カフェ検索サイトです。</span><br>
       </h1>
 
-      <!-- 検索バー -->
+       検索バー 
       <div class="search-bar">
        <SearchBar />
       </div>
 
-    </header>
+    </header>-->
+
+    <FV/> 
 
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
-
-      
-        <h2 class="cafe-cards-ttl font-semibold text-white tracking-wider">現在営業中のカフェ</h2>
-        <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
+  
+      <h2 class="cafe-cards-ttl font-semibold text-white tracking-wider">現在営業中のカフェ</h2>
+      <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
     
-      
       <!-- CafeCards.vueの部分 -->
       <CafeCards :cafes="openCafes" class="h-full" />
     
@@ -155,7 +153,7 @@ header{
   }
 }
 
-@media (min-width:1024px){
+@media (min-width:769px){
 
   header{
         height: 600px;
@@ -210,7 +208,7 @@ header{
 import { computed } from 'vue'
 import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCards.vueの読み込み */
 // 先ほど作成したJSONデータを読み込む
-import cafeListData from '../cafes.json' //github 用
+import cafeListData from '../../cafes.json'
 const cafeList = cafeListData 
 
 // 💡 composables から関数を呼び出す CafeCards.vueを営業時間判定にかけるため

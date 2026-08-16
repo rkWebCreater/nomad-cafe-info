@@ -1,8 +1,8 @@
-name: Deploy to GitHub Pages
+name: Deploy Nuxt site to Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: ["main"] # または確認したいブランチ名
 
 permissions:
   contents: read
@@ -10,33 +10,40 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps:deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '24' # クォートで囲むのがベストプラクティス
+          node-version: "20"
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci # CI環境では再現性の高い npm ci を推奨（必要に応じて --force を付与）
+        run: npm ci
 
-      - name: Generate static site
+      - name: Static HTML Export
         run: npx nuxt generate
 
-      - name: Upload Pages artifact
+      # ここが今回の重要な解決策の部分です
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .output/public
+          path: .output/public # Nuxt 3 の生成先を正確に指定
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Deploy to GitHub Pages
         id: deployment

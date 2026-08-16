@@ -1,10 +1,10 @@
 <!-- トップページ -->
 <template>
   <div class="min-h-screen">
-    <!-- ヘッダー 
+    <!--  ヘッダー  --> 
     <header class="text-center">
-        <Drawer />　ドロワーメニュー layouts/defaultで共通化をし自動インポートのため書く必要なし
-     キャッチコピー 
+        <Drawer />　<!--ドロワーメニュー layouts/defaultで共通化をし自動インポートのため書く必要なし -->
+     <!--キャッチコピー -->
       <h1 class="mt-3 text-amber-800">
        <span class="mCatch text-xl font-semibold ">今日の仕事はどこでしようか</span><br>
        <span class="sCatch ">WiFi・電源あり、PC作業OK</span><br>
@@ -12,14 +12,12 @@
        <span class="sCatch ">カフェ検索サイトです。</span><br>
       </h1>
 
-       検索バー 
+      <!-- 検索バー -->
       <div class="search-bar">
        <SearchBar />
       </div>
 
-    </header>-->
-
-    <FV/> 
+    </header>
 
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">

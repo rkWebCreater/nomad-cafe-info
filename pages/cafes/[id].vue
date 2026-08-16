@@ -279,7 +279,7 @@ const {allCafesData , checkIfOpen } = useCafe()
 const {data : cafe } = await useAsyncData(
     ()  =>  `cafe-${cafeId.value}`, //データの識別スタンプ
     () => {
-        const found = allCafesData.find(cafe => cafe.id === cafeId.value)
+        const found = allCafesData.find(cafe => String(cafe.id) === cafeId.value)
         return Promise.resolve(found || null)
     },
     {
@@ -289,7 +289,7 @@ const {data : cafe } = await useAsyncData(
 
 // 他の営業中のカフェ（今見ている店は除外）CafeCards.vueをメインで表示されているカフェ以外のフィルタと営業時間判定にかけるため
 const othersCafes = computed(() => {
-  return allCafesData.filter(cafe => cafe.id !== cafeId.value && checkIfOpen(cafe.businessHours)=== true)
+  return allCafesData.filter(cafe => String(cafe.id) !== cafeId.value && checkIfOpen(cafe.businessHours)=== true)
 })
 </script>
 

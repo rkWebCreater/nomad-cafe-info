@@ -273,13 +273,13 @@
 
 const route = useRoute()
 const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分を24時間監視してリアルタイムで検知する
-const {allCafes, checkIfOpen } = useCafe()
+const {allCafes , checkIfOpen } = useCafe()
 
 //---------Nuxt 3において「現在開いている詳細ページのカフェのデータをJSONから探し出し、URL（ID）が切り替わったときも自動でデータを最新に更新する」という、極めてスマートな非同期データ取得（データ一本釣り）の処理
 const {data : cafe } = await useAsyncData(
     ()  =>  `cafe-${cafeId.value}`, //データの識別スタンプ
     () => {
-        const found = allCafes.find(cafe => cafe.id === cafeId.value)
+        const found = allCafes.value.find(cafe => cafe.id === cafeId.value)
         return Promise.resolve(found || null)
     },
     {
@@ -289,7 +289,7 @@ const {data : cafe } = await useAsyncData(
 
 // 他の営業中のカフェ（今見ている店は除外）CafeCards.vueをメインで表示されているカフェ以外のフィルタと営業時間判定にかけるため
 const othersCafes = computed(() => {
-  return allCafes.filter(cafe => cafe.id !== cafeId.value && checkIfOpen(cafe.businessHours)=== true)
+  return allCafes.value.filter(cafe => cafe.id !== cafeId.value && checkIfOpen(cafe.businessHours)=== true)
 })
 </script>
 

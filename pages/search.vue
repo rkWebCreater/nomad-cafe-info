@@ -5,7 +5,7 @@
 import {useRoute} from 'vue-router' */
 import { AREA_MAP } from '../constants/areas'
 import { TAG_MAP } from '../constants/tags'
-import cafeData from '../../cafes.json'
+import cafeData from '../cafes.json'
 
 // ① 読み込んだJSONデータをリアクティブ（Ref）に変換する
 const allCafes = ref(cafeData)

@@ -1,26 +1,19 @@
 <!-- 検索結果ページ -->
 
 <script setup>
-/* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
-import {useRoute} from 'vue-router' */
-import { AREA_MAP } from '~/constants/areas'
-import { TAG_MAP } from '~/constants/tags'
-import cafeData from '~/cafes.json'
+import { AREA_MAP } from '../constants/areas'
+import { TAG_MAP } from '../constants/tags'
 
-// ① 読み込んだJSONデータをリアクティブ（Ref）に変換する
-const allCafes = ref(cafeData)
-
-// ② 裏方の useCafe.ts にデータを渡して、画面で使いたい道具を受け取る
+// useCafe から必要なデータと機能を呼び出す（個別 import も引数も不要！）
 const {
   isLoading,
   noticeMessage,
   aiConditions,
-  searchResults,
-  searchKeyword,   //画面に検索キーワードを表示する用
-  searchArea,      //画面にエリアを表示する用
-  searchTag,       //画面にタグを表示する用
-  checkIfOpen      //子コンポーネントに渡す用
-} = useCafe(allCafes)
+  searchResults,   //検索結果に応じたカフェデータ
+  searchKeyword,   // 画面に検索キーワードを表示する用
+  searchArea,      // 画面にエリアを表示する用
+  searchTag,       // 画面にタグを表示する用
+} = useCafe()
 
 // ③ タグの英名（例: "power"）を日本語（例: "電源あり"）に変換する計算
 const searchTagName = computed(() => {
@@ -50,13 +43,13 @@ const searchAreaName = computed(() => {
   </div>
 
   <!-- 3. AIが解析した検索条件のボックス（Geminiが動いている証拠） -->
-  <div v-if="aiConditions" class="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm">
-    <p class="font-bold text-slate-700 mb-1">🤖 AIが以下の条件を読み取りました：</p>
-    <div class="flex flex-wrap gap-2 text-slate-600">
+  <div v-if="aiConditions" class="mb-6 p-4 border rounded-lg text-sm">
+    <p class="font-bold text-slate-700 mb-1 text-center">🤖 AIが以下の条件を読み取りました：</p>
+    <div class="flex flex-wrap justify-center gap-2 text-slate-600">
       <span v-if="aiConditions.area" class="bg-white px-2 py-1 rounded border border-slate-200">
        📍 エリア: <strong>{{ aiConditions.area }}</strong>
       </span>
-      <span v-if="aiConditions.features && aiConditions.features.length > 0" class="bg-white px-2 py-1 rounded border border-slate-200">
+      <span v-if="Boolean(aiConditions.features) && aiConditions.features.length > 0" class="bg-white px-2 py-1 rounded border border-slate-200">
         ✨ 設備・特徴: <strong>{{ aiConditions.features.join(', ') }}</strong>
       </span>
     </div>
@@ -81,7 +74,7 @@ const searchAreaName = computed(() => {
   </div>
 
   <!-- 検索結果一覧 -->
-  <!-- 1件以上ある場合 （※ filteredCafes から searchResults に変更）-->
+  <!-- 1件以上ある場合 -->
   <ul v-if="searchResults.length > 0" class="cafe_filter_list ml-auto mr-auto">
     <li v-for="filteredCafe in searchResults" :key="filteredCafe.id">
       <NuxtLink :to="`/cafes/${filteredCafe.id}`" class="block h-full">
@@ -111,6 +104,7 @@ const searchAreaName = computed(() => {
               <img src="/images/icon/power_icon.png" alt="powerのアイコン" class="w-4">{{ filteredCafe.features?.power?.available ? 'あり' : 'なし' }}
             </span>
           </div>
+
         </div>
       </NuxtLink>
     </li>
@@ -119,7 +113,10 @@ const searchAreaName = computed(() => {
   <!-- 0件の場合のメッセージ （ローディング中でない時だけ表示）-->
   <div v-else-if="!isLoading" class="text-center py-12 text-gray-500">
     <p class="text-lg font-medium">条件に一致するカフェが見つかりませんでした。</p>
-    <p class="text-sm mt-2">検索キーワードやエリアを変更して再度お試しください。打あわせ可は0件のデザインを表示するために値をセットしていません。</p>
+    <p class="text-sm mt-2">検索キーワードやエリアを変更して再度お試しください。</p>
+    <p v-if="searchTag === 'meeting'" class="text-xs text-amber-700 bg-amber-50 inline-block px-3 py-1.5 rounded-full mt-4 border border-amber-200">
+      ※「打あわせ可」は0件表示のデザイン確認用のため、現在データをセットしていません。
+    </p>
   </div>
 </template>
 
@@ -143,7 +140,7 @@ const searchAreaName = computed(() => {
               width: fit-content;
               background: aliceblue;
               border-radius: 40px;
-              padding: 10px ;
+              padding: 10px 20px ;
               margin-left: auto;
               margin-right: auto;
               margin-bottom: 20px;

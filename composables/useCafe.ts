@@ -1,3 +1,4 @@
+import rawCafeData from '@@/cafes.json'
 import featureMaster from '../data/features.json'
 
 // ==========================================
@@ -18,6 +19,12 @@ export interface Cafe {
   area?: string
   areaNameJa?: string
   businessHours?: string
+  imageUrl?: string
+  budget?: string
+  coordinates?: {
+    lat: number
+    lng: number
+  }
   features?: {
     [K in FeatureKey]?: CafeFeature
   } & {
@@ -34,10 +41,13 @@ export interface SearchApiResponse {
   isFallback?: boolean
 }
 
+// ★ アプリ全体で共有するカフェデータのマスター（ここで1回だけ読み込む！）
+export const allCafesData : Cafe[] = rawCafeData as Cafe[]
+
 // ==========================================
 // 2. Composable 本体の実装
 // ==========================================
-export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
+export const useCafe = () => {
   // ① Nuxtのルーターを取得（URLのクエリを見るために必要）
   const route = useRoute()
 
@@ -145,7 +155,7 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
 
   // ④ ローカル検索の自動算出プロパティ (filteredCafes)
   const filteredCafes = computed<Cafe[]>(() => {
-    return localSearch(allCafesData.value, {
+    return localSearch(allCafesData, {
       keyword: searchKeyword.value,
       area: searchArea.value,
       tag: searchTag.value
@@ -227,6 +237,7 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
 
   // Vueファイル側で使いたい変数・関数をすべて返す
   return {
+    allCafes: allCafesData, // ★ 全カフェデータ
     checkIfOpen,
     localSearch,
     searchKeyword,

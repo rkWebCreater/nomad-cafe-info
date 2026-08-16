@@ -1,4 +1,5 @@
 // constants/areas.ts
+
 // ① エリアのマスターデータ（画面で表示するためのリスト）
 export const AREAS = [
   { id: "shibuya", name: "渋谷", imageUrl: "/nomad-cafe-info/images/areas/shibuya.png" },

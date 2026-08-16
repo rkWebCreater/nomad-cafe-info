@@ -1,6 +1,11 @@
+import featureMaster from '../data/features.json'
+
 // ==========================================
 // 1. 型定義（Interface）を作成して any を排除
 // ==========================================
+// features.json から特徴キー一覧（"power" | "wifi" | "morning" ...）を自動生成
+export type FeatureKey = keyof typeof featureMaster
+
 export interface CafeFeature {
   available: boolean
   [key: string]: any
@@ -14,15 +19,12 @@ export interface Cafe {
   areaNameJa?: string
   businessHours?: string
   features?: {
-    power?: CafeFeature
-    wifi?: CafeFeature
-    morning?: CafeFeature
-    lunch?: CafeFeature
-    single? : CafeFeature
-    'no-smoking'? : CafeFeature
+    [K in FeatureKey]?: CafeFeature
+  } & {
     [key: string]: CafeFeature | undefined
   }
 }
+
 
 export interface SearchApiResponse {
   success: boolean
@@ -79,13 +81,11 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
     }
   }
 
-  const FEATURE_KEYWORDS : Record<string , string[]> = {
-    power : ['電源', '電源あり', 'コンセント', 'コンセントあり', 'power'],
-    wifi : ['wifi', 'wifiあり', 'wi-fi', 'わいふぁい', 'わいふぁいあり', 'ワイファイ', 'ワイファイあり'],
-    morning : ['モーニング', 'もーにんぐ', '朝食', '朝ごはん'],
-    single  : ['一人席', '個室', '一人'],
-    'no-smoking' :['禁煙' , 'きんえん']
-  }
+  // features.json から検索用キーワードリストを全自動生成（二度と手動更新不要！）
+  const FEATURE_KEYWORDS: Record<string, string[]> = Object.fromEntries(
+    Object.entries(featureMaster).map(([key, item]) => [key, item.keywords])
+  )
+
 
   /**
    * ローカル検索・エリア絞り込み・タグ絞り込みを実行するメイン関数

@@ -270,7 +270,7 @@
 
 /* import { computed, watch } from 'vue'
    import { useRoute } from 'vue-router'  */
-import cafeData from '~/cafes.json'
+import cafeData from '@@/cafes.json'
 
 const route = useRoute()
 const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分を24時間監視してリアルタイムで検知する
@@ -288,7 +288,7 @@ const {data : cafe } = await useAsyncData(
     }
 )//-------------
 
-// 他の営業中のカフェ（今見ている店は除外）
+// 他の営業中のカフェ（今見ている店は除外）CafeCards.vueをメインで表示されているカフェ以外のフィルタと営業時間判定にかけるため
 const othersCafes = computed(() => {
   return cafeData.filter(cafe => cafe.id !== cafeId.value && checkIfOpen(cafe.businessHours)=== true)
 })

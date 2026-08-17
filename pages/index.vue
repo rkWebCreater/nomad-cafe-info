@@ -204,28 +204,11 @@ header{
 </style>
 
 <script setup>
-/*vueからcomputedを確実にインポート
-import { computed } from 'vue'
-import CafeCards from '~/components/CafeCards.vue';  コンポーネントCafeCards.vueの読み込み */
-// 先ほど作成したJSONデータを読み込む
-import cafeListData from '@@/cafes.json'
-const cafeList = cafeListData 
-
-// 💡 composables から関数を呼び出す CafeCards.vueを営業時間判定にかけるため
-const { checkIfOpen } = useCafe()
+// 💡 composables/useCafe.ts から全カフェデータと営業時間判定関数を呼び出す（個別 import 不要！）
+const { allCafes, checkIfOpen } = useCafe()
 
 const openCafes = computed(() => {
-  return cafeList.filter(cafe => checkIfOpen(cafe.businessHours))
+  return allCafes.value.filter(cafe => checkIfOpen(cafe.businessHours))
 })
-/*computed()について
-
- 普通の関数（function）との決定的な違い「計算するタイミング」と「記憶力（キャッシュ）」が違う
-普通の関数（methods など）:画面が書き換わる（リロードされるなど）たびに、毎回最初から最後まで計算を実行する
- データが変わっていなくてもお構いなしに動くため、データ量が多いとサイトが重くなる
- 
-computed():元になるデータ（今回の場合は cafeList や検索窓の文字）が変わった瞬間だけ自動で再計算します。
-データが変わっていなければ、前回の計算結果を頭の中に記憶（キャッシュ）してそれを一瞬で使い回すため、サイトの動作が劇的に軽くなります。 
-*/
-
 </script>
 

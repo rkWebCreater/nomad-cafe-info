@@ -1,25 +1,19 @@
 <!-- 検索結果ページ -->
 
 <script setup>
-/* import {computed} from 'vue'  vueのimport ref,computedなどの記述はNuxtでは不要
-import {useRoute} from 'vue-router' */
 import { AREA_MAP } from '../constants/areas'
 import { TAG_MAP } from '../constants/tags'
-import cafeData from '@@/cafes.json'
 
-// ① 読み込んだJSONデータをリアクティブ（Ref）に変換する
-const allCafes = ref(cafeData)
-
-// ② 裏方の useCafe.ts にデータを渡して、画面で使いたい道具を受け取る
+// useCafe から必要なデータと機能を呼び出す（個別 import も引数も不要！）
 const {
   isLoading,
   noticeMessage,
   aiConditions,
-  searchResults,
-  searchKeyword,   //画面に検索キーワードを表示する用
-  searchArea,      //画面にエリアを表示する用
-  searchTag,       //画面にタグを表示する用
-} = useCafe(allCafes)
+  searchResults,   //検索結果に応じたカフェデータ
+  searchKeyword,   // 画面に検索キーワードを表示する用
+  searchArea,      // 画面にエリアを表示する用
+  searchTag,       // 画面にタグを表示する用
+} = useCafe()
 
 // ③ タグの英名（例: "power"）を日本語（例: "電源あり"）に変換する計算
 const searchTagName = computed(() => {
@@ -80,7 +74,7 @@ const searchAreaName = computed(() => {
   </div>
 
   <!-- 検索結果一覧 -->
-  <!-- 1件以上ある場合 （※ filteredCafes から searchResults に変更）-->
+  <!-- 1件以上ある場合 -->
   <ul v-if="searchResults.length > 0" class="cafe_filter_list ml-auto mr-auto">
     <li v-for="filteredCafe in searchResults" :key="filteredCafe.id">
       <NuxtLink :to="`/cafes/${filteredCafe.id}`" class="block h-full">

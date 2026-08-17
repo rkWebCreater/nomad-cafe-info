@@ -1,3 +1,4 @@
+import rawCafeData from '@@/cafes.json'
 import featureMaster from '../data/features.json'
 
 // ==========================================
@@ -18,6 +19,12 @@ export interface Cafe {
   area?: string
   areaNameJa?: string
   businessHours?: string
+  imageUrl?: string
+  budget?: string
+  coordinates?: {
+    lat: number
+    lng: number
+  }
   features?: {
     [K in FeatureKey]?: CafeFeature
   } & {
@@ -34,10 +41,16 @@ export interface SearchApiResponse {
   isFallback?: boolean
 }
 
+// ★ アプリ全体で共有するカフェデータのマスター（ここで1回だけ読み込む！）
+// → 将来 API やデータベースに切り替えたい時は、この1行だけ export const allCafesData = ref<Cafe[]>(await $fetch('/api/cafes'))に書き換えればOK
+export const allCafesData = ref<Cafe[]>(rawCafeData as Cafe[])
+/*JSONはすでに手元にあるので待つ必要がなく await と $fetch は不要ですが、ref だけは今も必要です。
+なぜなら「データが変わったら画面を自動更新する」という Vue のリアクティブ機能を使うため */
+
 // ==========================================
 // 2. Composable 本体の実装
 // ==========================================
-export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
+export const useCafe = () => {
   // ① Nuxtのルーターを取得（URLのクエリを見るために必要）
   const route = useRoute()
 
@@ -227,6 +240,7 @@ export const useCafe = (allCafesData: Ref<Cafe[]> = ref([])) => {
 
   // Vueファイル側で使いたい変数・関数をすべて返す
   return {
+    allCafes: allCafesData, // ★ 全カフェデータ（Ref<Cafe[]>）
     checkIfOpen,
     localSearch,
     searchKeyword,

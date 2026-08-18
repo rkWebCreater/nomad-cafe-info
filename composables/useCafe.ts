@@ -32,7 +32,6 @@ export interface Cafe {
   }
 }
 
-
 export interface SearchApiResponse {
   success: boolean
   message?: string
@@ -44,8 +43,7 @@ export interface SearchApiResponse {
 // ★ アプリ全体で共有するカフェデータのマスター（ここで1回だけ読み込む！）
 // → 将来 API やデータベースに切り替えたい時は、この1行だけ export const allCafesData = ref<Cafe[]>(await $fetch('/api/cafes'))に書き換えればOK
 export const allCafesData = ref<Cafe[]>(rawCafeData as Cafe[])
-/*JSONはすでに手元にあるので待つ必要がなく await と $fetch は不要ですが、ref だけは今も必要です。
-なぜなら「データが変わったら画面を自動更新する」という Vue のリアクティブ機能を使うため */
+//JSONはすでに手元にあるので待つ必要がなく await と $fetch は不要ですが、「データが変わったら画面を自動更新する」という Vue のリアクティブ機能を使うためref だけは今も必要です。
 
 // ==========================================
 // 2. Composable 本体の実装

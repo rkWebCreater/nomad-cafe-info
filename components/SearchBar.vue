@@ -20,12 +20,6 @@ const handleSearch = () => {
     query: { keyword: searchQuery.value.trim() }
   })
 
-  /* Nuxt 3 専用の組み込み関数（importも const router = useRouter() も不要）
- await navigateTo({
-      path: '/search',
-      query: { keyword: searchQuery.value?.trim() }
- }) */
-
 }
 </script>
 
@@ -36,7 +30,7 @@ const handleSearch = () => {
       v-model="searchQuery" 
       type="text" 
       placeholder="キーワードで検索 (名古屋  電源 や Wifi  渋谷など)" 
-      class="search-input"  
+      class="search-input placeholder:text-xs md:placeholder:text-sm"  
     />
     <button type="submit" class="search-button">検索</button>
   </form>

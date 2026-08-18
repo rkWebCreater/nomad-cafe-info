@@ -99,3 +99,5 @@ Vercel（バーセル）にデプロイする【推奨】 現在のコード（/
 
 管理画面から安全に GEMINI_API_KEY を登録するだけで、本番環境でも Gemini AI 検索が動作します。
 GitHub Pages のまま Vue（ブラウザ）から直接 Gemini API を呼び出す。 /api/search を介さず、ブラウザから直接 Gemini API にリクエストを飛ばすコードに書き換えます（※APIキーの露出対策が必要）。
+
+cafes.jsonのcafeデータのfeaturesの部分を更新しやすいようにdata/featuresにまとめ、更新されると server/api/search.ts は AIへの指示文とJSONスキーマを自動生成、app/composables/useCafe.tsでは interfaceでcafe{id: ,features{ }} を定義していてcafes.jsonのfeaturesとfeatures.jsonのfeaturesがリンクしているからそれぞれのカフェの値が出力される　

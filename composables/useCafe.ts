@@ -94,9 +94,7 @@ export const useCafe = () => {
 
   // features.json から検索用キーワードリストを全自動生成（二度と手動更新不要！）
   const FEATURE_KEYWORDS: Record<string, string[]> = Object.fromEntries(
-    Object.entries(featureMaster).map(([key, item]) => [key, item.keywords])
-  )
-
+    Object.entries(featureMaster).map(([key, item]) => [key, item.keywords]))
 
   /**
    * ローカル検索・エリア絞り込み・タグ絞り込みを実行するメイン関数

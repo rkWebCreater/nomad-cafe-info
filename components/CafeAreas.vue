@@ -6,6 +6,7 @@
 import {AREAS} from '~/constants/areas'
 
 </script> 
+
 <template>
  <div id="cafeArea" class="mt-20 mb-20">
       <div class="ttl">

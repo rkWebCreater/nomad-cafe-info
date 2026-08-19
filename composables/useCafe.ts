@@ -32,6 +32,12 @@ export interface Cafe {
   }
 }
 
+export interface SearchOptions {
+  keyword? :string ,
+  area? : string ,
+  tag? : string
+}
+
 export interface SearchApiResponse {
   success: boolean
   message?: string
@@ -105,7 +111,7 @@ export const useCafe = () => {
    */
   const localSearch = (
     allCafes: Cafe[],
-    options: { keyword?: string; area?: string; tag?: string } = {}
+    options: SearchOptions = {}
   ): Cafe[] => {
     const rawKeyword = (options.keyword || '').trim().toLowerCase()
     const area = (options.area || '').trim()

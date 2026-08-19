@@ -19,7 +19,6 @@ import {AREAS} from '~/constants/areas'
        :to="{path: '/search', query: { area: area.id }}" class="area-item">
 
        <div class="area-image"><img :src="area.imageUrl" :alt="area.name"  /></div> 
-       
        <div class="area-name"><p >{{area.name}}<br></p></div> 
        
       </NuxtLink><!-- コロン（:）をつけることで、データの中の「imageUrl」の文字をそのまま画像パスとして正しく読み込みます。 -->  

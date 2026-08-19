@@ -96,7 +96,7 @@ export const useCafe = () => {
   const FEATURE_KEYWORDS: Record<string, string[]> = Object.fromEntries(
     Object.entries(featureMaster).map(([key, item]) => [key, item.keywords]))
 
-  /**
+  /*
    * ローカル検索・エリア絞り込み・タグ絞り込みを実行するメイン関数
    * 
    * @param allCafes 全カフェのデータ配列

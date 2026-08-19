@@ -97,3 +97,5 @@ Vercel（バーセル）にデプロイする【推奨】 現在のコード（/
 
 管理画面から安全に GEMINI_API_KEY を登録するだけで、本番環境でも Gemini AI 検索が動作します。
 GitHub Pages のまま Vue（ブラウザ）から直接 Gemini API を呼び出す。 /api/search を介さず、ブラウザから直接 Gemini API にリクエストを飛ばすコードに書き換えます（※APIキーの露出対策が必要）。
+
+wifi・power などの名称と検索用キーワードをまとめます。追加・変更すると、 server/api/search.ts は、AIへの設備一覧の指示文とレスポンス用JSONスキーマを自動生成する app/composables/useCafe.ts は、通常検索で使うキーワード一覧と FeatureKey 型を自動生成する

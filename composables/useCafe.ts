@@ -133,9 +133,8 @@ export const useCafe = () => {
         // 2. 設備キーワード（電源、Wi-Fi、モーニングなど）に一致し、かつ店舗で利用可能か
         // Object.entries() : オブジェクトを [キー, 値] の配列に変換
         const inFeature = Object.entries(FEATURE_KEYWORDS).some(
-          ([featureKey , kwList]) =>
-            // 入力されたkwがリストに含まれているか (.includes)  かつ、そのカフェで該当機能が利用可能か (Booleanで安全にboolean値化)
-            kwList.includes(kw) && Boolean(cafe.features?.[featureKey]?.available)
+          // 入力されたkwがリストに含まれているか (.includes)  かつ、そのカフェで該当機能が利用可能か (Booleanで安全にboolean値化)
+          ([featureKey , kwList]) => kwList.includes(kw) && Boolean(cafe.features?.[featureKey]?.available)        
         ) 
 
         return inText || inFeature

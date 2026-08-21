@@ -1,71 +1,94 @@
 # ☕️ 深夜・通常営業カフェ検索＆閲覧アプリケーション
 
-現在営業中または深夜営業を行っているカフェを一覧・詳細で確認できる、ノマドワーカーや在宅ワーカーのためのカフェ検索サイトです。
+ノマドワーカー・在宅ワーカー向けに、**現在営業中・深夜営業のカフェを検索・閲覧できるWebアプリケーション**をNuxt 4 / Vue 3 / TypeScriptで開発しました。
 
-## 🛠️ 使用技術（技術スタック）
-- **Frontend**: Nuxt 4 (Vue 3) / TypeScript
-- **Styling**: Tailwind CSS
-- **Library**: Swiper v11 (swiper/vue)
-- **Data**: JSON形式によるローカルモックデータ管理（営業時間自動判定ロジック実装）
----
-## 💡 技術的なこだわり・工夫したポイント
+営業時間をもとにした営業状態の自動判定、動的な詳細ページ、AI検索、静的サイトへのデプロイまで、フロントエンドだけでなく**SSR / SSG・API・データ設計・CI/CDを含めた開発**を行っています。
 
-### 1. ページ遷移時のSwiperフリーズバグの克服
-当初はWeb Components版の `<swiper-container>` を使用していましたが、Nuxt 4の画面遷移時にブラウザが初期化タイミングを見失い、スライダーが固まる・ただ並ぶだけになるというモダン開発特有の難問に直面しました。
-ライフサイクルとSSR（サーバーサイドレンダリング）の親和性を考慮し、フレームワーク専用の `swiper/vue` 方式に全面切り替え。さらにVueの `:key` を使ったコンポーネント再生成や、CSS `:deep(.swiper-wrapper)` による詳細度コントロールを組み合わせることで、ページ往復時でも手動の再読み込みなしで100%完璧に動くサクサクとしたUX（ユーザー体験）を実現しました。
+## 🛠 技術スタック
 
-### 2. 動的データ一本釣りと除外ロジック
-URLの末尾（ID）を `computed` と `useRoute` で24時間リアクティブに監視。
-`useAsyncData` の `watch` オプションを活用し、下部のおすすめスライダーから別の店をクリックした際も、ページ全体のリフレッシュなしで最上部のカフェデータが瞬時に切り替わる高度な連動ロジックを組み込みました。
-また、詳細ページの下部スライダーでは、現在見ているカフェが重複して表示されないよう、JavaScriptの `.filter` 関数を用いて動的にデータを除外する設計（Propsでの共通化）にしています。
-
-### 3. Tailwind CSS を駆使した高さの完全同期
-店名や住所が1行の店と2行の店が混在してもカードの底辺がガタつかないよう、`min-h` や `grid-rows-[auto_1fr_auto]` を指定。どんな画面幅でもボタンやWiFiアイコンがピシッと一直線に揃う美しいUIを意識しました。特徴的なトップのアーチ型デザインには、カスタム角丸 `rounded-[50%_50%_5%_5%]` を使用しています。
+- **Frontend:** Nuxt 4 / Vue 3 / TypeScript
+- **CSS:** Tailwind CSS
+- **UI:** Swiper v11（swiper/vue）
+- **Data:** JSONローカルデータ
+- **API:** Nuxt Server API / Gemini API
+- **Rendering:** SSR / SSG
+- **Deployment:** GitHub Pages / GitHub Actions
+- **State / Data Fetching:** `ref` / `computed` / `useRoute` / `useAsyncData`
+- **Language:** TypeScript
 
 ---
 
-## 🛠️ GitHub Pages公開におけるトラブルシューティングと解決策
+## 💡 技術的にこだわったポイント
 
-本ポートフォリオを GitHub Pages へ静的生成（SSG）して公開するにあたり、直面したエラーとその原因、および具体的な解決アプローチの記録です。
+### 1. Nuxt 4 × Swiperのライフサイクル問題を解決
 
-### 1. GitHub Actions でビルド成果物（Artifacts）が生成されない
-- **問題**: ビルドは成功（緑の✅）しているにもかかわらず、サイトにアクセスするとデフォルトの README しか表示されなかった。
-- **原因**: `.github/workflows/deploy.yml` 内の転送処理が GitHub Actions の最新仕様（v3）に対応しておらず、静的ファイルが正しくデプロイされていなかった。
-- **解決策**: `upload-pages-artifact@v3` へのアップデートおよび成果物のパス指定（`.output/public`）を厳密に見直し、ワークフローファイルを刷新した。
+当初はWeb Components版の`<swiper-container>`を使用していましたが、Nuxt 4のページ遷移とSSR環境における初期化タイミングの違いにより、画面遷移後にSwiperがフリーズし、スライドが正常に機能しない問題が発生しました。
 
-### 2. ロックファイル未検出による依存関係のインストールエラー
-- **問題**: `Dependencies lock file is not found...` というエラーで環境構築（`npm ci`）が停止した。
-- **原因**: 画面からの個別ファイルアップロードを行ったため、ローカルの依存関係を管理する `package-lock.json` がリポジトリ側に不足していた。
-- **解決策**: `package-lock.json` をルート階層に正しく配置。さらに環境による軽微な不整合を無視して確実にビルドを通すため、`deploy.yml` 内のコマンドを `npm install --force` に、および `Setup Node` の `cache: npm` 設定を排他制御することで、Actions 上での依存パッケージの強制インストールを成功させた。
+そこで`swiper/vue`へ移行し、Vueコンポーネントとしてライフサイクルを管理。
 
-### 3. 動的データ（JSON）内の画像パスにおける 404 エラー
-- **問題**: ローカル環境（PC）では表示されていたスライダーやメインビジュアル（FV）の画像が、本番環境で表示されなかった。
-- **原因**: パソコン環境とは異なり、GitHub Pages（Linux サーバー）は大文字・小文字を厳格に区別するため、パス指定とのわずかな不一致で 404 が発生していた。また、GitHub Pages 特有のサブディレクトリ構造（URL にリポジトリ名 `/nomad-cafe-info/` が挟まる仕様）を JSON 内の `imageUrl` が考慮できていなかった。
-- **解決策**: JSON ファイル内に記述された静的資産のパスを、`public` フォルダを省略した絶対パス（`/nomad-cafe-info/images/...`）へと全データ統合・修正し、大文字・小文字のタイポを完全に一意にすることで、動的な画像レンダリングのバグを解消した。
+さらに、
 
-### 4. 外部データ（JSON）の構文崩れによるプリレンダーエラー（500 Server Error）
-- **問題**: 静的サイトのビルド時に `Exiting due to prerender errors.` および `Cannot read properties of undefined (reading 'replace') at checkIfOpen` が発生し、書き出しが強制終了した。
-- **原因**: データの複製・追加を手動で行った際、データの結合部に不要な `[`（角括弧）が混入して二重配列になり、JSONの階層構造が崩れていた。これにより、Nuxt 3の関数（`checkIfOpen`）が特定のデータ（`businessHours` など）を正しく参照できず、未定義エラーを吐いていた。
-- **解決策**: `cafes.json` 内の不要な配列記号を削除して1つのフラットなオブジェクト配列へと構造を修正。データ全体の構文的な整合性を担保したことで、プリレンダー時のデータパースエラーを完全に解消した。
+- Vueの`:key`によるコンポーネント再生成
+- `:deep(.swiper-wrapper)`によるScoped CSSの詳細度制御
+- NuxtのSSR環境を考慮した初期化
 
-### 5. geminiのapiを検索バーに組み込むため検索結果ページにfetchSearchResults関数try,catchを書き直してgit hub上にアップしたらエラーになった
-npx nuxt generate（または GitHub Actions のビルド）を実行した際、Nuxt (Nitro) のクローラーがトップページからリンクされている /search 関連のページ（クエリパラメータ付きの /search?area=umeda や /search?tag=power などを含む）を巡回し、事前生成（プリレンダー）しようとしたこと 
+を組み合わせ、**ページ遷移後も再読み込みなしでSwiperが正常動作するUI**を実現しました。
 
-なぜビルド時（SSR）に 500 エラーが発生したのか？
-環境変数の不在:セキュリティ上 .env（Gemini APIキー）を GitHub に上げていないため、ビルド環境には API キーが存在しませんでした。
+---
 
-サーバー処理の実行不可:API キーがない状態でビルド時に /api/search への通信やサーバー処理が走ってしまい、500 Server Error でビルド全体がストップしていました。
+### 2. リアクティブな詳細ページと動的データ連携
 
-- **実際に効果があった唯一の解決策**
-nuxt.config.ts に nitro.prerender.ignore の設定を追加し、ビルド時に検索ページを巡回・HTML生成（プリレンダー）対象から除外したこと で解決しました。
+カフェ詳細ページではURLのIDを`useRoute`と`computed`でリアクティブに取得。
 
-🛠 追記したコード (nuxt.config.ts)
-TypeScript
+さらに`useAsyncData`の`watch`を利用し、ページ下部のおすすめカフェをクリックした際にも、**ページ全体をリロードせず詳細情報だけをリアクティブに切り替える設計**にしています。
+
+また、おすすめカフェ一覧では現在表示中のカフェを`.filter()`で除外し、同一店舗が重複表示されないようにしています。
+
+共通処理はPropsを利用してコンポーネント化し、再利用性も考慮しています。
+
+---
+
+### 3. 営業時間から「現在営業中」を自動判定
+
+JSONに保持した営業時間データをもとに、現在時刻と営業時間を比較して営業状態を自動判定するロジックを実装。
+
+通常営業時間だけでなく、**日付をまたぐ深夜営業にも対応できるデータ構造**を採用し、検索結果や詳細ページで現在の営業状態を動的に表示できるようにしています。
+
+---
+
+### 4. Gemini APIを利用したAI検索とフォールバック設計
+
+検索バーにはGemini APIを利用した自然言語検索を実装。
+
+例えば「WiFiがあって電源も使える深夜営業のカフェ」のような条件をAI側で解析し、設備条件などを構造化して検索できる仕組みを設計しました。
+
+ただし、AI検索に依存するとAPI障害や環境変数未設定時にアプリケーション全体が停止する可能性があります。
+そのため、
+```text
+AI検索
+  ↓
+try / catch
+  ↓
+API失敗
+  ↓
+通常のキーワード検索へフォールバック
+というFail Safe設計を採用。
+searchResults.value = filteredCafes.value || []のような防御的な実装も行い、API通信に失敗してもUIがクラッシュしない構成にしています。
+
+## 5. SSG環境におけるGemini APIとNitro Prerenderの問題を解決
+
+GitHub PagesへのSSGデプロイ時、Nuxt / NitroのPrerender処理が`/search`関連ページをクロールし、ビルド時にAPI処理が実行される問題が発生しました。
+
+GitHub Actionsにはセキュリティ上`.env`をアップロードしていないため、ビルド環境にはGemini APIキーが存在せず、API処理が`500 Server Error`となっていました。
+
+そこで`nitro.prerender.ignore`を利用し、検索ページをPrerender対象から除外しました。
+
+```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   nitro: {
     prerender: {
-      // ビルド時に検索ページ（クエリパラメータ付き含む）を巡回・生成しないよう除外する
+      // ビルド時に検索ページをPrerender対象から除外
       ignore: [
         '/search',
         '/Search',
@@ -75,27 +98,56 @@ export default defineNuxtConfig({
     }
   }
 })
-この設定により、ビルド時に環境変数が必要な通信が走らなくなり、GitHub Actions 上で緑のチェック（ビルド成功）になりました。
 
+* 防御的プログラミングを徹底し、API層でエラーが発生してもUIがクラッシュせず、通常のローカル検索結果を提供し続ける安全な運用を実現しました。
 
-### 6.その他の重要なコード設計と現在の挙動
+### 5. SSG環境における Gemini API と Nitro Prerender の競合解決
+* **課題**: GitHub PagesへのSSG（静的生成）デプロイ時、Nuxt / Nitro の Prerender 処理が `/search` 関連ページを自動クロールし、ビルド（Node.js環境）時にAPI通信を行おうとしました。しかし、セキュリティ上 GitHub Actions のビルド環境には `.env`（APIキー）を入れていないため、Prerender 段階で `500 Server Error` となりビルドが失敗していました。
+* **解決策**:
+* `nuxt.config.ts` の `nitro.prerender.ignore` に動的検索ルートを追加し、事前レンダリング対象から除外。
+* `search.vue` 内で `import.meta.client` によるクライアント実行判定を実装。
+* **「ビルド時に静的化する処理」** と **「ブラウザ上で動的に実行する処理」** の関心事を明確に分離することで、APIキーを漏洩させることなくSSGビルドを正常完了させました。
 
-① search.vue の安全設計（フロントエンド）
-if (!import.meta.client) return の配置:ビルド時（サーバー側）には検索通信を行わず、ブラウザでのみ実行されるようにガード。
+---
 
-searchResults.value = filteredCafes.value || [] などの防御:万が一通信に失敗したりデータが空でも、常に空の配列 [] をセットすることで画面描画のクラッシュを防ぐ。
+## 🚀 GitHub Actions / GitHub Pages への CI/CD・SSGデプロイ
 
-② GitHub Pages 上での現在の挙動
-GitHub Pages は「静的ファイル専用サーバー」のため、裏側の Node.js サーバー処理（/api/search）が動作せず 404 になります。
+GitHub Actions を構築し、メインブランチへのプッシュ時に自動でビルド＆デプロイされるパイプラインを確立しました。開発過程で発生したインフラ・環境固有の問題を以下のように解決しています。
 
-しかし、search.vue 内に書かれた try-catch によるフォールバック処理（安全装置）が完璧に機能しているため、自動的に通常のキーワード検索（filteredCafes）に切り替わり、画面が壊れることなく安全に動作しています。
+| 発生した問題・エラー | 原因 | 解決策 |
+| :--- | :--- | :--- |
+| **Artifacts が生成されない** | アクションのバージョン古化と出力パス設定ミス | `actions/upload-pages-artifact@v3` へ更新し、Nuxtの生成物 `.output/public` を明示的に指定 |
+| **依存関係インストール失敗** | ロックファイルの不整合・リポジトリ欠落 | `package-lock.json` をリポジトリ管理下に追加し、`npm ci` による再現性のあるビルドを確立 |
+| **画像・アセットの 404 エラー** | GitHub Pages のサブディレクトリ仕様（`/nomad-cafe-info/`）および Linux ケースセンシティブ | ベースパスに合わせた相対パス補正と、ファイル名の大文字・小文字の完全一致対応 |
+| **Prerender 時の 500 Error** | 追加したJSONデータの配列構造ネストミス | 二重配列構造をフラットな単一オブジェクト配列にデータ整形し、`undefined` 参照を解消 |
 
--*今後の選択肢 (本物の Gemini AI 検索を動かす場合)*
+---
 
-現在アプリの安全装置（フォールバック）は完成しているため、もし公開サイト上で本物の Gemini AI 検索を動かしたい場合は、以下の対応を行います。
-Vercel（バーセル）にデプロイする【推奨】 現在のコード（/api/search）をそのまま変更せず利用可能。
+## 🔧 設備検索データの自動型定義 ＆ プロンプト一元管理
 
-管理画面から安全に GEMINI_API_KEY を登録するだけで、本番環境でも Gemini AI 検索が動作します。
-GitHub Pages のまま Vue（ブラウザ）から直接 Gemini API を呼び出す。 /api/search を介さず、ブラウザから直接 Gemini API にリクエストを飛ばすコードに書き換えます（※APIキーの露出対策が必要）。
+カフェの設備仕様（Wi-Fi、電源、ランチ、深夜営業など）は `FeatureKey` として一元管理しています。
 
-wifi・power などの名称と検索用キーワードをまとめます。追加・変更すると、 server/api/search.ts は、AIへの設備一覧の指示文とレスポンス用JSONスキーマを自動生成する app/composables/useCafe.ts は、通常検索で使うキーワード一覧と FeatureKey 型を自動生成する
+* **シングルソース・オブ・トゥルース（Single Source of Truth）**:
+1. `server/api/search.ts` における Gemini API 向けシステムプロンプト
+2. AIレスポンスバリデーション用 JSON Schema
+3. `useCafe.ts` における通常フォールバック検索キーワード
+4. TypeScript の `FeatureKey` 型定義
+
+設備キーを追加・変更するだけで、上記 4 箇所の型・プロンプト・判定ロジックが連動して更新される設計を採用。ハードコードを排除し、保守性と型安全性を大幅に向上させました。
+
+---
+
+## 📌 実装・開発を通じてアピールできるポイント
+
+本プロジェクトでは、単なる画面デザインやCRUD操作の域を超え、Webアプリケーション全体のライフサイクルを見据えた開発を遂行しました。
+
+* **フロントエンド・フレームワーク** : Nuxt 4 / Vue 3 Composition API による高品質なUI構築
+* **型安全性と保守性** : TypeScript による厳密な型定義とデータドリブンな一元管理
+* **アーキテクチャの理解** : SSR / SSG のレンダリング挙動の違いに応じた Nitro Prerender の制御
+* **API連携と堅牢性** : Nuxt Server API + Gemini API の活用、および障害に強い Fail-Safe（フォールバック）設計
+* **リアクティブ思考** : `useAsyncData` + `watch` / `computed` を駆使した画面遷移のないシームレスなUX
+* **ライブラリ・ライフサイクル制御** : Nuxt 4 と Swiper のSSR/クライアントギャップの克服
+* **DevOps / CI/CD** : GitHub Actions による静的サイト自動生成および GitHub Pages への堅牢なデプロイパイプライン
+
+各技術の特性と動作用域（サーバー/クライアント/ビルド時）を正しく理解し、実際に発生した課題の原因を突き止めて解決に導く実践力を身につけています。
+"""

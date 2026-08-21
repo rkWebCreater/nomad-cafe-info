@@ -77,6 +77,8 @@ API失敗
 
 searchResults.value = filteredCafes.value || []のような防御的な実装も行い、API通信に失敗してもUIがクラッシュしない構成にしています。
 
+---
+
 ### 5. SSG環境におけるGemini APIとNitro Prerenderの問題を解決
 
 GitHub PagesへのSSGデプロイ時、Nuxt / NitroのPrerender処理が`/search`関連ページをクロールし、ビルド時にAPI処理が実行される問題が発生しました。

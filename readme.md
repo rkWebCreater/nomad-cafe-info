@@ -65,17 +65,19 @@ JSONに保持した営業時間データをもとに、現在時刻と営業時�
 ただし、AI検索に依存するとAPI障害や環境変数未設定時にアプリケーション全体が停止する可能性があります。
 そのため、
 ```text
-AI検索
+ローカル検索
   ↓
+ローカル検索で引っかからない場合
+AI検索
 try / catch
   ↓
 API失敗
   ↓
-通常のキーワード検索へフォールバック
-というFail Safe設計を採用。
+ローカル検索へフォールバック設計を採用。
+
 searchResults.value = filteredCafes.value || []のような防御的な実装も行い、API通信に失敗してもUIがクラッシュしない構成にしています。
 
-## 5. SSG環境におけるGemini APIとNitro Prerenderの問題を解決
+### 5. SSG環境におけるGemini APIとNitro Prerenderの問題を解決
 
 GitHub PagesへのSSGデプロイ時、Nuxt / NitroのPrerender処理が`/search`関連ページをクロールし、ビルド時にAPI処理が実行される問題が発生しました。
 
@@ -98,15 +100,6 @@ export default defineNuxtConfig({
     }
   }
 })
-
-* 防御的プログラミングを徹底し、API層でエラーが発生してもUIがクラッシュせず、通常のローカル検索結果を提供し続ける安全な運用を実現しました。
-
-### 5. SSG環境における Gemini API と Nitro Prerender の競合解決
-* **課題**: GitHub PagesへのSSG（静的生成）デプロイ時、Nuxt / Nitro の Prerender 処理が `/search` 関連ページを自動クロールし、ビルド（Node.js環境）時にAPI通信を行おうとしました。しかし、セキュリティ上 GitHub Actions のビルド環境には `.env`（APIキー）を入れていないため、Prerender 段階で `500 Server Error` となりビルドが失敗していました。
-* **解決策**:
-* `nuxt.config.ts` の `nitro.prerender.ignore` に動的検索ルートを追加し、事前レンダリング対象から除外。
-* `search.vue` 内で `import.meta.client` によるクライアント実行判定を実装。
-* **「ビルド時に静的化する処理」** と **「ブラウザ上で動的に実行する処理」** の関心事を明確に分離することで、APIキーを漏洩させることなくSSGビルドを正常完了させました。
 
 ---
 

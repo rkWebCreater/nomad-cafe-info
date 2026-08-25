@@ -119,11 +119,8 @@ export const useCafe = () => {
 
     // キーワード文字列をスペース区切りで配列化  rawKeyword ? ... : [] （三項演算子） rawKeywordに文字が入っていたら後半の処理を実行　空なら空の配列[]を返す
     // .split(/\s+/) : 1つ以上の半角/全角スペースで分割
-    // .filter(Boolean) : 空文字 ("") を除外
+    // .filter(Boolean) : 空文字 ("") を除外　JavaScript では Boolean("") は false になるため、.filter(Boolean) と書くだけで空要素がキレイに消えます。
     const keywords: string[] = rawKeyword? rawKeyword.replace(/ /g, ' ').split(/\s+/).filter(Boolean): [] 
-    /*.filter(Boolean) （空文字の除去）
-    意味: 分割した結果、紛れ込んでしまった空文字（""）を除外します。
-    JavaScript では Boolean("") は false になるため、.filter(Boolean) と書くだけで空要素がキレイに消えます。*/ 
 
     if (keywords.length === 0 && !area && !tag) return allCafes
 

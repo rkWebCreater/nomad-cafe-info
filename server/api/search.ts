@@ -1,7 +1,7 @@
 //google gemini apiを使って検索バーにgeminiを組み込む
 import { GoogleGenAI, Type } from "@google/genai";
 import cafeData from "../data/cafes.json"
-import featureMaster from "../../app/data/features.json"
+import featureMaster from "@@/data/features.json"
 
 // features.json から Gemini へのプロンプト文を自動生成 Object.entries()で配列にしてmapを使って値を分ける
 // 例: "- 電源 → \"power\"\n- Wifi → \"wifi\"..."

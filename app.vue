@@ -1,4 +1,6 @@
 <template>
+  <LoadingScreen />
+
   <!-- pagesフォルダの中身をURLに合わせて自動で映し出すスイッチです -->
   <NuxtLayout>
       <NuxtPage />

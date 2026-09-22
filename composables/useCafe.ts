@@ -1,5 +1,5 @@
 import rawCafeData from '@@/cafes.json'
-import featureMaster from '../data/features.json'
+import featureMaster from '../../data/features.json'
 
 // ==========================================
 // 1. 型定義（Interface）を作成して any を排除
@@ -73,30 +73,43 @@ export const useCafe = () => {
   const isValidInput = computed(() => searchKeyword.value.trim().length > 0)
 
   //-------- 営業中かどうかの判定
-  const checkIfOpen = (businessHours: string): boolean => {
-    const now = new Date()
-    const currentHours = String(now.getHours()).padStart(2, '0')
-    const currentMinutes = String(now.getMinutes()).padStart(2, '0')
-    const nowTimeNum = Number(currentHours + currentMinutes)
+const checkIfOpen = (businessHours: string): boolean => {
 
-    const cleanHours = businessHours.replace(/\s+/g, '')
-    const times = cleanHours.split('-')
-    if (times.length !== 2) return false
+  // 現在時刻を取得
+  const now = new Date()
+  const nowTimeNum = now.getHours() * 100 + now.getMinutes() // 現在時刻を数値化 例：14:30 → 1430
 
-    const openStr = times[0]
-    const closeStr = times[1]
+  // 営業時間を開店時間と閉店時間に分ける
+  const [openTime, closeTime] = businessHours
+    .replace(/[^0-9-]/g, '')
+    .split('-')
+    .map(Number)
 
-    if (!openStr || !closeStr) return false
-
-    const openTimeNum = Number(openStr.replace(':', ''))
-    const closeTimeNum = Number(closeStr.replace(':', ''))
-
-    if (closeTimeNum < openTimeNum) {
-      return nowTimeNum >= openTimeNum || nowTimeNum <= closeTimeNum
-    } else {
-      return nowTimeNum >= openTimeNum && nowTimeNum <= closeTimeNum
-    }
+  // まず存在するかチェック
+  if (openTime === undefined || closeTime === undefined) {
+    return false
   }
+  /*   TypeScriptに「ここより下では openTime と closeTime は必ず存在する」と伝えるために、openTime と closeTime は undefined の可能性があるので先にはじく
+  isNaN() は number を要求するから */
+
+  // エラーチェック
+  if (isNaN(openTime) || isNaN(closeTime)) {
+    return false
+  }
+
+  // 深夜営業の場合
+  // 例：22:00〜02:00
+  if (closeTime < openTime) {
+    return nowTimeNum >= openTime || nowTimeNum <= closeTime
+  }
+
+  // 通常営業の場合
+  // 例：10:00〜18:00
+  return nowTimeNum >= openTime && nowTimeNum <= closeTime
+}
+
+  //-------- ここまで営業中かどうかの判定
+
 
   // features.json から検索用キーワードリストを全自動生成（二度と手動更新不要！）
   const FEATURE_KEYWORDS: Record<string, string[]> = Object.fromEntries(

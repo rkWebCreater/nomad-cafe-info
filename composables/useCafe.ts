@@ -108,7 +108,7 @@ const checkIfOpen = (businessHours: string): boolean => {
   return nowTimeNum >= openTime && nowTimeNum <= closeTime
 }
 
-  //-------- ここまで営業中かどうかの判定
+//-------- ここまで営業中かどうかの判定
 
 
   // features.json から検索用キーワードリストを全自動生成（二度と手動更新不要！）

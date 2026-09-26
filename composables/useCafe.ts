@@ -9,7 +9,7 @@ export type FeatureKey = keyof typeof featureMaster
 
 export interface CafeFeature {
   available: boolean
-  [key: string]: any
+  [key: string]: unknown
 }
 
 export interface Cafe {
@@ -42,7 +42,7 @@ export interface SearchApiResponse {
   success: boolean
   message?: string
   results: Cafe[]
-  conditions?: any
+  conditions?: unknown
   isFallback?: boolean
 }
 
@@ -61,7 +61,7 @@ export const useCafe = () => {
   // ② リアクティブな状態（State）の定義 データの一時保存
   const isLoading = ref(false)
   const noticeMessage = ref('')
-  const aiConditions = ref<any>(null)
+  const aiConditions = ref<unknown | null>(null)
   const searchResults = ref<Cafe[]>([])
 
   // ③ URLのクエリパラメータを監視・取得するための算出プロパティ

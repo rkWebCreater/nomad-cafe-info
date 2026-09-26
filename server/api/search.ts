@@ -1,7 +1,10 @@
+// h3 からサーバー用ヘルパーを明示的にインポート
+import { defineEventHandler, getQuery, createError} from 'h3'
 //google gemini apiを使って検索バーにgeminiを組み込む
 import { GoogleGenAI, Type } from "@google/genai";
+import type { Cafe } from "@/composables/useCafe"
 import cafeData from "../data/cafes.json"
-import featureMaster from "@@/data/features.json"
+import featureMaster from "../../data/features.json"
 
 // features.json から Gemini へのプロンプト文を自動生成 Object.entries()で配列にしてmapを使って値を分ける
 // 例: "- 電源 → \"power\"\n- Wifi → \"wifi\"..."
@@ -33,11 +36,11 @@ export default defineEventHandler(async(event) =>{
     }
 
     //nuxt.config.tsで設定したAPIキーを安全に読み込む　サーバーの奥深くに隠しておいた「秘密の鍵（APIキー）」を取り出して、Geminiとお話しするための準備（初期設定）をしています。
-    const config = useRuntimeConfig();
+    const config = useRuntimeConfig(event);
     const ai = new GoogleGenAI({ apiKey: config.geminiApiKey});
 
     // catch の外側でも使えるようにあらかじめ変数を用意しておく
-    let fallbackResults: any[] = [];
+    let fallbackResults: Cafe[] = [];
 
     // ----------------メインの処理     ユーザーが入力した「名古屋で電源があるカフェ」という文章をGeminiに渡し、{ area: "名古屋", features: ["power"] } という綺麗なデータに変換してもらいます。そして、そのデータをもとにJSONファイル（カフェ一覧）を絞り込んでいます
     try{
@@ -71,32 +74,34 @@ export default defineEventHandler(async(event) =>{
             }
 
         });
+
         // 2. AIの返答をJavaScriptで扱いやすいデータ(JSON)に変換
         const conditions = JSON.parse(response.text || "{}");
-        // 3. カフェの全データを用意
-        let filteredCafes = [...cafeData];
+
+        // 3. カフェの全データを用意 useCafe.tsで定義したCafe型の配列として扱うため、cafeDataをCafe[]にキャストしている
+        let filteredCafes = [...cafeData] as Cafe[];
 
        // 4. AIが「エリア」を見つけていたら、エリアで絞り込む
        if(conditions.area){
-        filteredCafes = filteredCafes.filter((cafe:any) =>
+        filteredCafes = filteredCafes.filter((cafe: Cafe) =>
          cafe.area.includes(conditions.area) ||
-         cafe.name.includes(conditions.area) ||
-         (cafe.areaNameJa && cafe.areaNameJa.includes(conditions.area))
+         cafe.areaNameJa.includes(conditions.area)||
+         cafe.name.includes(conditions.area)
         )
        }
        // 5. AIが「設備」を見つけていたら、設備で絞り込む
        if(conditions.features && conditions.features.length > 0){
 
-        filteredCafes = filteredCafes.filter((cafe :any) => {
+        filteredCafes = filteredCafes.filter((cafe: Cafe) => {
         
         if (conditions.featureLogic === "OR") {
                  return conditions.features.some((featureKey: string) => {
-                 const featureData = (cafe.features as any)?.[featureKey];
+                 const featureData = (cafe.features)?.[featureKey];
                  return featureData && featureData.available === true;
                });
         }else {
               return conditions.features.every((featureKey: string) => {
-                const featureData = (cafe.features as any)?.[featureKey];
+                const featureData = (cafe.features)?.[featureKey];
                  return featureData && featureData.available === true;
              });
         }
@@ -120,7 +125,7 @@ export default defineEventHandler(async(event) =>{
         console.error("Gemini API Error Detail:",error);
 
         // 【フォールバック処理】AIがダメなら、単純な文字の一致だけでカフェを探す
-        fallbackResults = cafeData.filter((cafe: any ) => cafe.name.includes(userText) || cafe.area.includes(userText))
+        fallbackResults = (cafeData as Cafe[]).filter((cafe: Cafe) => cafe.name.includes(userText) || cafe.area.includes(userText))
 
     }
     return {

@@ -1,5 +1,5 @@
 import rawCafeData from '@@/cafes.json'
-import featureMaster from '@@/data/features.json'
+import featureMaster from '../../data/features.json'
 
 // ==========================================
 // 1. 型定義（Interface）を作成して any を排除
@@ -13,12 +13,12 @@ export interface CafeFeature {
 }
 
 export interface Cafe {
-  id?: string | number
+  id: string | number
   name: string
-  address?: string
-  area?: string
-  areaNameJa?: string
-  businessHours?: string
+  address: string
+  area: string
+  areaNameJa: string
+  businessHours: string
   imageUrl?: string
   budget?: string
   coordinates?: {
@@ -108,7 +108,7 @@ const checkIfOpen = (businessHours: string): boolean => {
   return nowTimeNum >= openTime && nowTimeNum <= closeTime
 }
 
-//-------- ここまで営業中かどうかの判定
+  //-------- ここまで営業中かどうかの判定
 
 
   // features.json から検索用キーワードリストを全自動生成（二度と手動更新不要！）

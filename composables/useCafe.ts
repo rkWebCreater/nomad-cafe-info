@@ -1,5 +1,5 @@
 import rawCafeData from '@@/cafes.json'
-import featureMaster from '../../data/features.json'
+import featureMaster from '@@/data/features.json'
 
 // ==========================================
 // 1. 型定義（Interface）を作成して any を排除

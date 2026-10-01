@@ -1,37 +1,10 @@
 import rawCafeData from '@@/cafes.json'
 import featureMaster from '@@/data/features.json'
+import { CafesSchema, type Cafe, type FeatureKey } from '@/schemas/cafe'
 
 // ==========================================
 // 1. 型定義（Interface）を作成して any を排除
 // ==========================================
-// features.json から特徴キー一覧（"power" | "wifi" | "morning" ...）を自動生成
-export type FeatureKey = keyof typeof featureMaster
-
-export interface CafeFeature {
-  available: boolean
-  [key: string]: unknown
-}
-
-export interface Cafe {
-  id: string | number
-  name: string
-  address: string
-  area: string
-  areaNameJa: string
-  businessHours: string
-  imageUrl?: string
-  budget?: string
-  coordinates?: {
-    lat: number
-    lng: number
-  }
-  features?: {
-    [K in FeatureKey]?: CafeFeature
-  } & {
-    [key: string]: CafeFeature | undefined
-  }
-}
-
 export interface SearchOptions {
   keyword? :string ,
   area? : string ,
@@ -47,12 +20,12 @@ export interface SearchApiResponse {
 }
 
 // ★ アプリ全体で共有するカフェデータのマスター（ここで1回だけ読み込む！）
-// → 将来 API やデータベースに切り替えたい時は、この1行だけ export const allCafesData = ref<Cafe[]>(await $fetch('/api/cafes'))に書き換えればOK
-export const allCafesData = ref<Cafe[]>(rawCafeData as Cafe[])
-//JSONはすでに手元にあるので待つ必要がなく await と $fetch は不要ですが、「データが変わったら画面を自動更新する」という Vue のリアクティブ機能を使うためref だけは今も必要です。
+const validatedCafes = CafesSchema.parse(rawCafeData) // cafes.json の内容を Zod で検証し、型安全な Cafe[] に変換
+export const allCafesData = ref<Cafe[]>(validatedCafes)
+//JSONはすでに手元にあるので待つ必要がなく await と $fetch は不要ですが、「データが変わったら画面を自動更新する」という Vue のリアクティブ機能を使うためrefは必要。
 
 // ==========================================
-// 2. Composable 本体の実装
+// 2. カフェ検索用のカスタムコンポーザブル（useCafe）
 // ==========================================
 export const useCafe = () => {
   // ① Nuxtのルーターを取得（URLのクエリを見るために必要）
@@ -107,13 +80,10 @@ const checkIfOpen = (businessHours: string): boolean => {
   // 例：10:00〜18:00
   return nowTimeNum >= openTime && nowTimeNum <= closeTime
 }
-
   //-------- ここまで営業中かどうかの判定
 
-
-  // features.json から検索用キーワードリストを全自動生成（二度と手動更新不要！）
-  const FEATURE_KEYWORDS: Record<string, string[]> = Object.fromEntries(
-    Object.entries(featureMaster).map(([key, item]) => [key, item.keywords]))
+  
+const FEATURE_KEYWORDS = featureMaster
 
   /*
    * ローカル検索・エリア絞り込み・タグ絞り込みを実行するメイン関数
@@ -142,16 +112,17 @@ const checkIfOpen = (businessHours: string): boolean => {
       // .every() : 指定したキーワードすべてにヒットする場合のみ true
       const matchKeyword = keywords.every((kw) => {
 
-        // 1. 店舗情報テキスト（店名、住所、エリア名など）に含まれているか
-        // .some() : 配列内のいずれか1つでも条件を満たせば true
-        const inText = [cafe.name, cafe.address, cafe.area, cafe.areaNameJa].some((field) => field?.toLowerCase().includes(kw))
+        // 1. 店舗情報テキスト（店名、住所、エリア名など）に含まれている　　.some() : 配列内のいずれか1つでも条件を満たせば true
+        const inText = [
+          cafe.name, 
+          cafe.address, 
+          cafe.area, 
+          cafe.areaNameJa
+        ].some((field) => field?.toLowerCase().includes(kw))
        
         // 2. 設備キーワード（電源、Wi-Fi、モーニングなど）に一致し、かつ店舗で利用可能か
-        // Object.entries() : オブジェクトを [キー, 値] の配列に変換
-        const inFeature = Object.entries(FEATURE_KEYWORDS).some(
-          // 入力されたkwがリストに含まれているか (.includes)  かつ、そのカフェで該当機能が利用可能か (Booleanで安全にboolean値化)
-          ([featureKey , kwList]) => kwList.includes(kw) && Boolean(cafe.features?.[featureKey]?.available)        
-        ) 
+        const inFeature = (Object.keys(FEATURE_KEYWORDS) as FeatureKey[])
+        .some((featureKey) => FEATURE_KEYWORDS[featureKey].keywords.includes(kw) && cafe.features[featureKey]?.available === true) 
 
         return inText || inFeature
       })
@@ -161,7 +132,7 @@ const checkIfOpen = (businessHours: string): boolean => {
 
       // --- 条件 C: タグ一致確認 ---
       // タグが未指定(!tag)、または該当タグのavailableがtrueの場合に true
-      const matchTag = !tag || Boolean(cafe.features?.[tag]?.available)
+      const matchTag = !tag || cafe.features[tag as FeatureKey]?.available
 
       return matchKeyword && matchArea && matchTag
     })
@@ -178,22 +149,23 @@ const checkIfOpen = (businessHours: string): boolean => {
 
   //-------- API 検索関数（名称は fetchSearchResults のまま）
   const fetchSearchResults = async (keyword: string) => {
-    if (!import.meta.client) return
-    if (!keyword || !keyword.trim() || isLoading.value) return
+    if (!import.meta.client) return // サーバーサイドでは実行しない
+    if (!keyword || !keyword.trim() || isLoading.value) return // キーワードが空、またはすでに検索中の場合は何もしない
 
-    isLoading.value = true
+    isLoading.value = true 
     noticeMessage.value = ''
-    aiConditions.value = null
-    searchResults.value = []
+    aiConditions.value = null 
+    searchResults.value = []  
 
-    try {
-      const data = await $fetch<SearchApiResponse>(`/api/search?text=${encodeURIComponent(keyword.trim())}`)
+    try { 
+      const data = await $fetch<SearchApiResponse>(`/api/search?text=${encodeURIComponent(keyword.trim())}`) 
 
       if (!data.success) {
         throw new Error(data.message || 'APIの処理に失敗しました')
       }
 
       if (data.results.length === 0) {
+
         searchResults.value = filteredCafes.value || []
 
         if (searchResults.value.length > 0) {
@@ -209,16 +181,18 @@ const checkIfOpen = (businessHours: string): boolean => {
         }
       }
     } catch (error) {
+
       console.error('Search request error:', error)
       noticeMessage.value =
-        '⚠️ AIの利用制限に達したため、通常のキーワード検索結果を表示しています。'
+        '⚠️ AI検索を利用できないため、通常のキーワード検索結果を表示しています。'
       searchResults.value = filteredCafes.value || []
+
     } finally {
       isLoading.value = false
     }
   }
 
-  // watch URLクエリ監視 自動実行スクロール
+  // ⑤ URLのクエリパラメータが変化したら自動で検索を実行するウォッチャー
   watch(
     [() => route.query.keyword, () => route.query.area, () => route.query.tag],
     async ([newKeyword]) => {
@@ -245,6 +219,7 @@ const checkIfOpen = (businessHours: string): boolean => {
           headerEl.scrollIntoView({ behavior: 'smooth' })
         }
       }
+
     },
     { immediate: true }
   )

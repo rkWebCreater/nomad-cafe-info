@@ -1,10 +1,12 @@
 // h3 からサーバー用ヘルパーを明示的にインポート
 import { defineEventHandler, getQuery, createError} from 'h3'
+import { z } from 'zod'
 //google gemini apiを使って検索バーにgeminiを組み込む
-import { GoogleGenAI, Type } from "@google/genai";
-import type { Cafe } from "@/composables/useCafe"
+// @ts-expect-error @google/genai may not ship type declarations in the current setup.
+import { GoogleGenAI, Type } from "@google/genai"
 import cafeData from "../data/cafes.json"
-import featureMaster from "../../data/features.json"
+import { CafesSchema ,type Cafe , type FeatureKey} from "@/schemas/cafe"
+import featureMaster from "@@/data/features.json"
 
 // features.json から Gemini へのプロンプト文を自動生成 Object.entries()で配列にしてmapを使って値を分ける
 // 例: "- 電源 → \"power\"\n- Wifi → \"wifi\"..."
@@ -18,22 +20,48 @@ const featureDescription = Object.entries(featureMaster)
     .map(([key, item]) => `${item.name}なら'${key}'`)
     .join('、') + '。なければ空配列'
 
+
+// サーバー起動時に一度だけJSONを検証する。
+// cafes.json が壊れていれば、開発中にすぐ気付ける。
+const cafesData = CafesSchema.parse(cafeData)
+
+/*
+バックエンドの処理の流れ
+1. フロントエンドから送られてきた検索テキストを受け取る
+2. 受け取ったテキストをGoogle Gemini APIに渡して、検索条件（エリア・設備）を抽出してもらう
+3. 抽出された条件をもとに、cafes.jsonのデータを絞り込む
+4. 絞り込んだ結果をフロントエンドに返す
+*/
 export default defineEventHandler(async(event) =>{
 
     // 1. クエリパラメーターからテキストを取得　フロントエンド（検索バー）から飛んできた ?text=名古屋 電源 というURLのオマケ（クエリ）を受け取り、userText という箱に入れています
     const query = getQuery(event);
-    const userText = (query.text as string) || "";
+    // URLクエリの正しい形式を定義する
+    const SearchQuerySchema = z.object({
+    text: z
+      .string()
+      .trim()
+      .min(1, '検索テキストは1文字以上で入力してください')
+      .max(20, '検索テキストは20文字以内で入力してください')
+    })
     
+    // 【セキュリティ対策】入力文字数の制限（空文字や長すぎるテキストを弾く）空っぽのまま検索ボタンを押されたり、悪意のある人が1万文字の長文を送ってきてサーバーをパンクさせようとしたりするのを防ぐための「門番」です。条件に合わなければここでエラーを返して処理を終わらせます。
+    // URLから受け取った値を実行時に検証する
+    const queryResult = SearchQuerySchema.safeParse(getQuery(event))
+
+    // 文字列でない、空、または21文字以上なら400エラーにする
+    if (!queryResult.success) {
+      throw createError({
+        statusCode: 400,
+        statusMessage:
+        queryResult.error.issues[0]?.message ?? '入力内容が正しくありません'
+      })
+    }
+
+    // 検証済みなので、ここから先では安全な文字列として使える
+    const userText = queryResult.data.text
     //  ここにログを追加 ターミナルでnpm run devしているときに記録される
     console.log('【API受信】検索キーワード:', userText)
-
-    // 【セキュリティ対策】入力文字数の制限（空文字や長すぎるテキストを弾く）空っぽのまま検索ボタンを押されたり、悪意のある人が1万文字の長文を送ってきてサーバーをパンクさせようとしたりするのを防ぐための「門番」です。条件に合わなければここでエラーを返して処理を終わらせます。
-    if(!userText.trim() || userText.length > 20){
-        throw createError({
-            statusCode : 400 ,
-            statusMessage:"検索テキストは1文字以上20文字以内で入力してください",
-        })
-    }
 
     //nuxt.config.tsで設定したAPIキーを安全に読み込む　サーバーの奥深くに隠しておいた「秘密の鍵（APIキー）」を取り出して、Geminiとお話しするための準備（初期設定）をしています。
     const config = useRuntimeConfig(event);
@@ -42,11 +70,13 @@ export default defineEventHandler(async(event) =>{
     // catch の外側でも使えるようにあらかじめ変数を用意しておく
     let fallbackResults: Cafe[] = [];
 
-    // ----------------メインの処理     ユーザーが入力した「名古屋で電源があるカフェ」という文章をGeminiに渡し、{ area: "名古屋", features: ["power"] } という綺麗なデータに変換してもらいます。そして、そのデータをもとにJSONファイル（カフェ一覧）を絞り込んでいます
+    // ----------------メインの処理   ユーザーが入力した「名古屋で電源があるカフェ」という文章をGeminiに渡し、{ area: "名古屋", features: ["power"] } という綺麗なデータに変換してもらいます。そして、そのデータをもとにJSONファイル（カフェ一覧）を絞り込んでいます
     try{
         // 1. Geminiに「この条件でJSON形式で返してね」とお願いする
         const response = await ai.models.generateContent({
+
             model: "gemini-3.7-flash",
+
             contents:`ユーザーのカフェ検索要望から検索条件を抽出してください。検索できる設備・条件は以下です。
             ${featureInstructions}
             ユーザーの文章に該当する条件があればfeaturesに入れてください。
@@ -79,7 +109,7 @@ export default defineEventHandler(async(event) =>{
         const conditions = JSON.parse(response.text || "{}");
 
         // 3. カフェの全データを用意 useCafe.tsで定義したCafe型の配列として扱うため、cafeDataをCafe[]にキャストしている
-        let filteredCafes = [...cafeData] as Cafe[];
+        let filteredCafes : Cafe[] = [...cafesData] ;
 
        // 4. AIが「エリア」を見つけていたら、エリアで絞り込む
        if(conditions.area){
@@ -95,14 +125,14 @@ export default defineEventHandler(async(event) =>{
         filteredCafes = filteredCafes.filter((cafe: Cafe) => {
         
         if (conditions.featureLogic === "OR") {
-                 return conditions.features.some((featureKey: string) => {
-                 const featureData = (cafe.features)?.[featureKey];
-                 return featureData && featureData.available === true;
+                return conditions.features.some((featureKey: string) => {
+                const featureData= (cafe.features)?.[featureKey as FeatureKey];
+                return featureData && featureData.available === true;
                });
         }else {
-              return conditions.features.every((featureKey: string) => {
-                const featureData = (cafe.features)?.[featureKey];
-                 return featureData && featureData.available === true;
+               return conditions.features.every((featureKey: string) => {
+               const featureData = (cafe.features)?.[featureKey as FeatureKey];
+               return featureData && featureData.available === true;
              });
         }
          // features?.[featureKey] に赤い波線が出ている原因は、TypeScriptが「string 型の変数を使ってオブジェクトにアクセスするのは、型が安全か分からないからダメ！」と厳しくチェックしているためです。Nuxt 3のTypeScriptは非常に優秀な反面、JSONの中身のキー（wifi や power）に対して、変数（string）でダイナミックにアクセスしようとすると怒られてしまいます。これをスッキリ解決するには、cafe.features を一時的に any として扱うようにキャスト（型アサーション）してあげます。*/
@@ -125,7 +155,7 @@ export default defineEventHandler(async(event) =>{
         console.error("Gemini API Error Detail:",error);
 
         // 【フォールバック処理】AIがダメなら、単純な文字の一致だけでカフェを探す
-        fallbackResults = (cafeData as Cafe[]).filter((cafe: Cafe) => cafe.name.includes(userText) || cafe.area.includes(userText))
+        fallbackResults = cafesData.filter((cafe: Cafe) => cafe.name.includes(userText) || cafe.area.includes(userText))
 
     }
     return {

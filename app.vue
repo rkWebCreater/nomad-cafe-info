@@ -1,4 +1,12 @@
-
+<script setup lang="ts">
+useSeoMeta({
+  ogTitle: 'Nomad Cafe Info',
+  ogImage: 'https://nomad-cafe-info.vercel.app/nomad-cafe-info/ogp.png',
+  ogUrl: 'https://nomad-cafe-info.vercel.app/nomad-cafe-info/',
+  twitterCard: 'summary_large_image',
+  twitterImage: 'https://あなたのドメイン/ogp.png',
+})
+</script>
 <template>
    <LoadingScreen/>
   <!-- pagesフォルダの中身をURLに合わせて自動で映し出すスイッチです -->

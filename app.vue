@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-   <LoadingScreen />
+   <LoadingScreen v-if="isLoading"/>
   </ClientOnly>
 
   <!-- pagesフォルダの中身をURLに合わせて自動で映し出すスイッチです -->

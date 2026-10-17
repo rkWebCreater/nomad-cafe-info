@@ -36,7 +36,7 @@ onMounted(() => {
     isFading.value = true
     setTimeout(() => {
       isVisible.value = false
-    }, 4000)
+    }, 4300)
   }, props.duration)
   }
 })

@@ -1,5 +1,6 @@
 ﻿<script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, useTemplateRef } from 'vue'
+import { useRuntimeConfig } from 'nuxt/app';
 
 interface Props {
   duration?: number
@@ -11,10 +12,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 const isVisible = ref(true)
 const isFading = ref(false)
+const videoRef = useTemplateRef<HTMLVideoElement>('videoRef')
 
-// GitHub Pages の baseURL ('/nomad-cafe-info/') を自動考慮
+let fadeTimer: ReturnType<typeof setTimeout> | null = null
+let hideTimer: ReturnType<typeof setTimeout> | null = null
+
+// GitHub Pages の baseURL を取得
 const config = useRuntimeConfig()
-const rawBase = config.app.baseURL || '/'
+const rawBase = (config.app as Record<string, any>)?.baseURL || '/'
 const normalizedBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`
 
 // public/images/loading/loading_bar.mp4 へのパス
@@ -22,31 +27,35 @@ const videoSrc = computed(() => {
   return `${normalizedBase}images/loading/loading_bar.mp4`
 })
 
-onMounted(() => {
-  /* まず、自分が本物のブラウザ（人間）かどうかをチェック*/
-  const isBot = navigator.userAgent.includes('Vercel')
+const clearTimers = () => {
+  if (fadeTimer) clearTimeout(fadeTimer)
+  if (hideTimer) clearTimeout(hideTimer)
+}
 
-  if (isBot) {
-    /* Vercelの撮影ボットなら、ローディングは false のまま（＝即座にメイン画面を表示）*/
+const hideOverlay = (delay: number) => {
+  clearTimers()
+  isFading.value = true
+  hideTimer = setTimeout(() => {
     isVisible.value = false
-  } else {
-    /* 本物の人間なら、ここで初めてローディング画面を起動して2秒待つ*/
-    isVisible.value = true
-    setTimeout(() => {
-    isFading.value = true
-    setTimeout(() => {
-      isVisible.value = false
-    }, 4300)
-  }, props.duration)
+  }, delay)
+}
+
+onMounted(() => {
+  if (videoRef.value) {
+    videoRef.value.play().catch(() => {})
   }
+
+  fadeTimer = setTimeout(() => {
+    hideOverlay(700)
+  }, props.duration)
 })
-  
+
+onUnmounted(() => {
+  clearTimers()
+})
 
 const skipLoading = () => {
-  isFading.value = true
-  setTimeout(() => {
-    isVisible.value = false
-  }, 300)
+  hideOverlay(300)
 }
 </script>
 
@@ -60,6 +69,7 @@ const skipLoading = () => {
   >
     <div class="loading-wrapper">
       <video
+        ref="videoRef"
         class="loading-video"
         :src="videoSrc"
         autoplay
@@ -79,7 +89,7 @@ const skipLoading = () => {
   inset: 0;
   width: 100vw;
   height: 100dvh;
-  background-color: #fff1e5; /* サイト全体の優しい生成り色 */
+  background-color: #fff1e5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,7 +110,6 @@ const skipLoading = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* レイアウトシフト（カクつき）を完全防止 */
   width: min(540px, 90vw);
   max-width: 540px;
 }

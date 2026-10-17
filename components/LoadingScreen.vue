@@ -23,11 +23,7 @@ const videoSrc = computed(() => {
 })
 
 onMounted(() => {
-  //  import.meta.client を追加して、サーバー側でのクラッシュを防ぐ
-  if (import.meta.client && (navigator.userAgent.includes('Vercel') || navigator.userAgent.includes('Headless'))) {
-    isLoading.value = false
-    return
-  }
+  
   setTimeout(() => {
     isFading.value = true
     setTimeout(() => {

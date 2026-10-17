@@ -26,6 +26,8 @@ export default defineNuxtConfig({
     baseURL: '/nomad-cafe-info/',
     head: {
       link: [
+        //vercelのfavicon設定　サムネイル
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
         // Google Fonts のサーバーに接続する設定
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },

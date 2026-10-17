@@ -21,16 +21,28 @@ const normalizedBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`
 const videoSrc = computed(() => {
   return `${normalizedBase}images/loading/loading_bar.mp4`
 })
+  /*初期値を false にしておき、ブラウザが起動してから true に切り替えます*/ 
+const isLoading = ref(false)
 
 onMounted(() => {
-  
-  setTimeout(() => {
+  /* まず、自分が本物のブラウザ（人間）かどうかをチェック*/
+  const isBot = navigator.userAgent.includes('Vercel') || navigator.userAgent.includes('Headless')
+
+  if (isBot) {
+    /* Vercelの撮影ボットなら、ローディングは false のまま（＝即座にメイン画面を表示）*/
+    isLoading.value = false
+  } else {
+    /* 本物の人間なら、ここで初めてローディング画面を起動して2秒待つ*/
+    isLoading.value = true
+    setTimeout(() => {
     isFading.value = true
     setTimeout(() => {
       isVisible.value = false
     }, 700)
   }, props.duration)
+  }
 })
+  
 
 const skipLoading = () => {
   isFading.value = true

@@ -23,8 +23,8 @@ const videoSrc = computed(() => {
 })
 
 onMounted(() => {
-   // Vercelの撮影用ボットがアクセスしてきた場合は、即座にローディングを終了させる
-  if (navigator.userAgent.includes('Vercel') || navigator.userAgent.includes('Headless')) {
+  //  import.meta.client を追加して、サーバー側でのクラッシュを防ぐ
+  if (import.meta.client && (navigator.userAgent.includes('Vercel') || navigator.userAgent.includes('Headless'))) {
     isLoading.value = false
     return
   }

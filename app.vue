@@ -1,3 +1,23 @@
+<script lang="ts">
+  /*初期値を false にしておき、ブラウザが起動してから true に切り替えます*/ 
+const isLoading = ref(false)
+
+onMounted(() => {
+  /* まず、自分が本物のブラウザ（人間）かどうかをチェック*/
+  const isBot = navigator.userAgent.includes('Vercel') || navigator.userAgent.includes('Headless')
+
+  if (isBot) {
+    /* Vercelの撮影ボットなら、ローディングは false のまま（＝即座にメイン画面を表示）*/
+    isLoading.value = false
+  } else {
+    /* 本物の人間なら、ここで初めてローディング画面を起動して2秒待つ*/
+    isLoading.value = true
+    setTimeout(() => {
+      isLoading.value = false
+    }, 2000)
+  }
+})
+</script>
 <template>
   <ClientOnly>
    <LoadingScreen v-if="isLoading"/>
@@ -17,22 +37,4 @@ body {
   color: rgb(65, 40, 20); /* 全体の標準の文字色もここで指定できます */
   font-family: 'zen kurenaido', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-/*初期値を false にしておき、ブラウザが起動してから true に切り替えます*/ 
-const isLoading = ref(false)
-
-onMounted(() => {
-  /* まず、自分が本物のブラウザ（人間）かどうかをチェック*/
-  const isBot = navigator.userAgent.includes('Vercel') || navigator.userAgent.includes('Headless')
-
-  if (isBot) {
-    /* Vercelの撮影ボットなら、ローディングは false のまま（＝即座にメイン画面を表示）*/
-    isLoading.value = false
-  } else {
-    /* 本物の人間なら、ここで初めてローディング画面を起動して2秒待つ*/
-    isLoading.value = true
-    setTimeout(() => {
-      isLoading.value = false
-    }, 2000)
-  }
-})
 </style>

@@ -23,6 +23,11 @@ const videoSrc = computed(() => {
 })
 
 onMounted(() => {
+   // Vercelの撮影用ボットがアクセスしてきた場合は、即座にローディングを終了させる
+  if (navigator.userAgent.includes('Vercel') || navigator.userAgent.includes('Headless')) {
+    isLoading.value = false
+    return
+  }
   setTimeout(() => {
     isFading.value = true
     setTimeout(() => {

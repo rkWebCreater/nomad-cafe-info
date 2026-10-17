@@ -1,9 +1,6 @@
 
 <template>
-  <ClientOnly>
    <LoadingScreen/>
-  </ClientOnly>
-
   <!-- pagesフォルダの中身をURLに合わせて自動で映し出すスイッチです -->
   <NuxtLayout>
       <NuxtPage />

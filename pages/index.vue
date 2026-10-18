@@ -22,12 +22,12 @@
     <FV/> 
 
     <!-- カフェスライダーセクション -->
-    <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
+    <div class="cafe-cards-section  mx-auto max-w-[1100px]" id="nowOpenCafe">
   
       <h2 class="cafe-cards-ttl font-semibold text-white tracking-wider">現在営業中のカフェ</h2>
       <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
     
-      <!-- CafeCards.vueの部分 -->
+      <!-- CafeCards -->
       <CafeCards :cafes="openCafes" class="h-full" />
     
     </div>
@@ -79,7 +79,7 @@ header{
 }
 /*CSSの background または background-image プロパティで url() と linear-gradient() をカンマ (,) で区切って同時に指定すると、背景画像の上に半透明のグラデーションを重ねて表示できる。先に書いた方が手前（上層）に重なる。 */
 .cafe-cards-section{ 
-                     background: linear-gradient(#ff760059, #361e0a5e), url(/nomad-cafe-info/images/slider/bg/cafe_table.jpg);
+                     background: linear-gradient(#ff760059, #361e0a5e), url(/images/slider/bg/cafe_table.jpg);
                      background-repeat: no-repeat;
                      background-size: cover;
                      background-position: center;

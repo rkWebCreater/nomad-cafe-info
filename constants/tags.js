@@ -1,12 +1,12 @@
-import featureMaster from '../data/features.json'
+import featureMaster from '@@/data/features.json'
 
-// タグのマスターデータ（features.json から自動生成）
+// featureMasterからタグの配列を作成 
 export const TAGS = Object.entries(featureMaster).map(([key, item]) => ({
-  name: item.name,
-  key: key
+  name: item.name, 
+  key: key // featureMasterのキーをタグのkeyとして使用
 }))
 
-// キーから日本語名へ素早く変換するための連想配列（Map）
+// TAG_MAPは、TAGS配列をオブジェクトに変換したもの  キーはタグのkeyで、値はタグのname
 export const TAG_MAP = Object.fromEntries(
   TAGS.map(tag => [tag.key, tag.name])
-)
+)

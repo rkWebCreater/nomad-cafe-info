@@ -19,11 +19,16 @@
 
         <!-- 画像2（左下：コーヒーカップ） -->
         <div class="gallery-item coffee-img">
-          <img
+          <video
             :src="coffeeImage"
-            alt="温かいコーヒーカップ"
-            loading="lazy"
-          />
+            poster="/images/FV/fv_2.webp"
+            autoplay
+            muted
+            loop
+            preload="auto"
+            playsinline
+          >
+          </video>
         </div>
 
         <!-- 画像3（右下：カフェ内観） -->
@@ -72,9 +77,9 @@ export interface TopHeroProps {
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {
-  mainImage: '/nomad-cafe-info/images/slider/cafeNormal2.png',
-  coffeeImage: '/nomad-cafe-info/images/slider/cafeNormal3.png',
-  interiorImage: '/nomad-cafe-info/images/slider/cafe2.jpg'
+  mainImage: '/images/FV/fv_1.png',
+  coffeeImage: '/images/FV/fv_2.mp4',
+  interiorImage: '/images/FV/fv_3.jpg'
 })
 </script>
 

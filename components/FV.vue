@@ -69,17 +69,17 @@
 <script setup lang="ts">
 export interface TopHeroProps {
   /** メイン画像（テラス・PC作業）のURL */
-  mainImage?: string
+  mainImage: string
   /** 左下画像（コーヒーカップ）のURL */
-  coffeeImage?: string
+  coffeeImage: string
   /** 右下画像（カフェ内観）のURL */
-  interiorImage?: string
+  interiorImage: string
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {
-  mainImage: '/images/FV/fv_1.png',
-  coffeeImage: '/images/FV/fv_2.mp4',
-  interiorImage: '/images/FV/fv_3.jpg'
+  mainImage: 'images/FV/fv_1.png',
+  coffeeImage: 'images/FV/fv_2.mp4',
+  interiorImage: 'images/FV/fv_3.jpg'
 })
 </script>
 
@@ -144,7 +144,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   .hero-gallery {
     width: 100%;
     max-width: 400px;
-    height:clamp(300px 60vh , 500px);
+    height: clamp(300px, 60vh, 500px);
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);

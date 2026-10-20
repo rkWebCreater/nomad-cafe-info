@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 
   //  app内設定 外部のモジュールをインストール不要
   app: { 
-    baseURL: '/nomad-cafe-info/',
+    baseURL: '/',
     head: {
       link: [
         // Google Fonts のサーバーに接続する設定

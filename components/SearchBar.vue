@@ -26,7 +26,7 @@ const handleSearch = () => {
 <template>
   <!-- 検索フォームの submit イベントを handleSearch メソッドにバインド -->
   <form @submit.prevent="handleSearch" class="search-container c-search-form">
-   <input v-model="searchQuery" type="text" class="search-input c-search-input placeholder:text-xs md:placeholder:text-sm">
+   <input type="text" v-model="searchQuery" class="search-input c-search-input placeholder:text-xs md:placeholder:text-sm">
    <button type="submit" class="search-button c-search-button">
     <span class="c-search-button-label">検索</span>
     <span class="c-search-particles" aria-hidden="true">

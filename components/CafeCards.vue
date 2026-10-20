@@ -18,7 +18,7 @@
           <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-48 object-cover" />
           <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-1 content-between card-body-height flex-1">
             <div>
-              <span class="c-cafe-area text-xs font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
+              <span class="c-cafe-area text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
               <h3 class="c-cafe-title font-bold mt-2 min-h-[1.5rem] px-1 py-0.5 line-clamp-2">{{ cafe.name }}</h3>
             </div>
             <div class="flex flex-col justify-start">

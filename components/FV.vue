@@ -172,7 +172,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
 
       /* 2. 下段左画像：少し上に配置（2〜6行目、左半分） */
       &.coffee-img {
-        grid-column: 1/ 6;
+        grid-column: 1/ 7;
         grid-row: 7/ 11;
         animation: moveSide 2s ease-in-out infinite; 
       }

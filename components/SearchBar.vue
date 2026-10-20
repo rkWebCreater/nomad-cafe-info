@@ -72,7 +72,7 @@ const handleSearch = () => {
   </form>
 </template>
 
-<style scoped>
+<style>
 /* Component: 検索フォーム */
 .c-search-form {
   width: 100%;

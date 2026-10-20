@@ -155,7 +155,8 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
       border-radius: 16px;
       box-shadow: 0 10px 28px rgba(61, 44, 30, 0.07);
 
-      img {
+      img,
+      video {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -165,22 +166,22 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
       /* 1. メイン画像：上部に大きく配置（3〜11行目、横いっぱい） */
       &.main-img {
         grid-column: 3 / 11;
-        grid-row: 1 / 7;
-        animation: moveScale 2s ease-in-out infinite; /* 時間 (3s) を追加 */
+        grid-row: 1 / 6;
+        animation:moveScale 2s ease-in-out infinite; 
       }
 
       /* 2. 下段左画像：少し上に配置（2〜6行目、左半分） */
       &.coffee-img {
-        grid-column: 2/ 6;
-        grid-row: 8/ 11;
-        animation: moveSide 2s ease-in-out infinite; /* 時間 (3s) を追加 */
+        grid-column: 1/ 6;
+        grid-row: 7/ 11;
+        animation: moveSide 2s ease-in-out infinite; 
       }
 
       /* 3. 下段右画像：少し下に配置（7〜10行目、右半分・互い違い） */
       &.interior-img {
-        grid-column: 7 / 10;
+        grid-column: 8 / 12;
         grid-row: 8 / 12;
-        animation: moveUnder 1.5s ease-out infinite; /* 時間 (3s) を追加 */
+        animation: moveUnder 1.5s ease-out infinite; 
       }
     }
   }

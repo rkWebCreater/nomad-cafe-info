@@ -17,7 +17,9 @@
     <!-- こちらも、isOpenがtrueの時だけ 'is-open' クラスが合体します -->
     <div :class="['drawer-menu', { 'is-open': isOpen }]" id="drawer-menu">
       <nav class="drawer-nav">
-        <SearchBar />
+        <div class="tag-section">
+          <TagSection />
+        </div>
         <ul>
           <!-- @click="closeMenu" を仕込むことで、リンクを踏んだ瞬間に自動でドロワーが閉じます v-forによる繰り返し処理-->
           <li v-for="item in menuItem" :key="item.id">
@@ -122,6 +124,42 @@
 /* ===================================================
    メニューの中のリンク（ナビゲーション）
 =================================================== */
+.drawer-nav .tag-section {
+  width: 100%;
+  height: auto;
+  font-size: 14px;
+}
+
+/* Drawer内のTagSectionだけをコンパクトに調整 */
+.drawer-nav .tag-section #cafeTag {
+  padding-inline: 0;
+  margin-bottom: 24px;
+}
+
+.drawer-nav .tag-section #cafeTag .section-ttl {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.drawer-nav .tag-section #cafeTag > p {
+  display:none;
+}
+
+.drawer-nav .tag-section #cafeTag > div {
+  gap: 8px;
+}
+
+.drawer-nav .tag-section #cafeTag > div a {
+  display: inline-flex;
+  width: auto;
+  align-items: center;
+  border-bottom: 0;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+/* ここまでDrawer内のTagSection */
+
 .drawer-nav ul {
   list-style: none;
   padding: 0;

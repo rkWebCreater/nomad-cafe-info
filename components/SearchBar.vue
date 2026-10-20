@@ -72,7 +72,17 @@ const handleSearch = () => {
   </form>
 </template>
 
-<style>
+<style scoped>
+
+:global(:root) {
+  --color-base: #f7f2e9;
+  --color-surface: #fffcf7;
+  --color-beige: #e8d9c8;
+  --color-border: #ddcdbd;
+  --color-text: #3e2b24;
+  --color-muted: #76675d;
+  --color-accent: #c59915;
+}
 /* Component: 検索フォーム */
 .c-search-form {
   width: 100%;

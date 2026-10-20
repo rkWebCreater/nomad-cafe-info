@@ -1,7 +1,7 @@
 <!-- app/components/CafeCards.vue カフェスライダーのスライドのコンポーネント-->
 <template>
-  <ClientOnly>
-    <!-- 💡 <Swiper> コンポーネントを使用。これにより遷移時のバグが100%消滅します -->
+  <ClientOnly> <!-- コンテンツをブラウザ（クライアントサイド）でのみ描画し、サーバーサイドのビルドから除外（ツリーシェイキング）するための内蔵コンポーネント -->
+    <!-- 💡 <Swiper> コンポーネントを使用。これにより遷移時のバグが100%消滅 -->
     <Swiper
       :modules="modules"
       :breakpoints="swiperBreakpoints"
@@ -11,23 +11,23 @@
       class="cafe-cards-slider">
  
       <!-- 💡 <SwiperSlide> タグを使用 -->
-      <SwiperSlide v-for="cafe in cafes" :key="cafe.id" class="w-full bg-white rounded-[5%_5%_5%_5%] shadow-md overflow-hidden hover:shadow-lg transition">
+      <SwiperSlide  v-for="cafe in cafes" :key="cafe.id" class="c-cafe-card w-full overflow-hidden transition">
           
         <NuxtLink :to="`/cafes/${cafe.id}`" class="block text-left flex flex-col flex-1 card-link">
 
           <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-48 object-cover" />
           <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-1 content-between card-body-height flex-1">
             <div>
-              <span class="area-name bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
-              <h3 class="cafe-name font-bold text-gray-900 mt-2 min-h-[1.5rem] px-1 py-0.5 line-clamp-2">{{ cafe.name }}</h3>
+              <span class="c-cafe-area text-xs font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
+              <h3 class="c-cafe-title font-bold mt-2 min-h-[1.5rem] px-1 py-0.5 line-clamp-2">{{ cafe.name }}</h3>
             </div>
             <div class="flex flex-col justify-start">
-              <p class="text-gray-600 text-sm mt-1">🕒 {{ cafe.businessHours }}</p>
-              <p class="text-gray-800 text-sm min-h-[1.5rem] line-clamp-2">📍 {{ cafe.address }}</p>
+              <p class="c-cafe-meta text-sm mt-1">🕒 {{ cafe.businessHours }}</p>
+              <p class="c-cafe-meta text-sm mt-1">📍 {{ cafe.address }}</p>
             </div>
             <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
-              <span class="bg-gray-100 px-2 py-1 rounded"><img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
-              <span class="bg-gray-100 px-2 py-1 rounded"><img src="/images/icon/power_icon.png" alt="電源のアイコン" class="w-4"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
+              <span class="c-cafe-tag px-2 py-1 rounded"><img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
+              <span class="c-cafe-tag px-2 py-1 rounded"><img src="/images/icon/power_icon.png" alt="電源のアイコン" class="w-4"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
             </div>
           </div>
 
@@ -48,19 +48,25 @@
   width: 100%;
   max-width:1100px;
   background: rgb(106 106 106 / 50%);
-  padding: 20px 20px 45px 20px;
+  padding: 20px 10px 40px 10px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
 
-  /* 💡 茶色系のカラー設定をVue版のクラスに適用します */
-  --swiper-navigation-color: rgba(53, 32, 16, 1);
+  /* 💡 茶色系のカラー設定をVue版のクラスに適用 */
   --swiper-navigation-size: 30px;
-  --swiper-theme-color: rgba(53, 32, 16, 1);
-  --swiper-pagination-color: rgb(133, 71, 23);
-  --swiper-pagination-bullet-inactive-color: #cccccc;
-  --swiper-pagination-bullet-inactive-opacity: 0.5;
+  --swiper-navigation-color: var(--color-text);
+  --swiper-theme-color: var(--color-text);
+  --swiper-pagination-color: var(--color-accent);
+  --swiper-pagination-bullet-inactive-color: var(--color-beige);
   --swiper-pagination-bullet-size: 12px;
+}
+.c-cafe-card {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(62, 43, 36, 0.08);
 }
 
 /* 💡 Vue版では ::part ではなく .swiper-wrapper クラスを直接指定して高さを同期します */
@@ -87,8 +93,18 @@
   flex-grow: 1;
 }
 
+.c-cafe-title {
+  color: var(--color-text);
+}
+
+.c-cafe-meta {
+  color: var(--color-muted);
+}
+
 .tags{
   & span{
+     color: var(--color-muted);
+     background: var(--color-base);
      display: flex;
      gap: 4px;
      flex-wrap: wrap;

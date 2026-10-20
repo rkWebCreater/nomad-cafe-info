@@ -87,6 +87,7 @@ import {AREAS} from '~/constants/areas'
           position:absolute;
           left:57%;
           transform : translate(-50% , -50%);
+          transition: color 0.5s ease-in-out;
          
         }
         p:after{
@@ -105,14 +106,18 @@ import {AREAS} from '~/constants/areas'
               border-radius: 10px;
               clip-path: ellipse(100% 65% at 100% 40%);
               position: absolute;
+              top: 0;
               left: 3px;
-
+              transition: top 0.5s ease-in-out;
             }
+      .area-name:hover::before{
+               top: -80px;
+      }
+      .area-name:hover p{
+               color:rgb(255, 247, 240);
+      }
     }
     
-}
-.area-item:hover{
-              opacity : 0.5;
 }
 
 @media (max-width:768px){

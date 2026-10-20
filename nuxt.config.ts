@@ -4,6 +4,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+
+  // Vite 8 と既存 Tailwind CSS v3 の CSS minify 互換性を保つ
+  vite: {
+    build: {
+      cssMinify: 'esbuild'
+    }
+  },
   
   runtimeConfig:{
     // サーバーサイドでのみアクセス可能（ブラウザには露出しない）
@@ -21,8 +28,12 @@ export default defineNuxtConfig({
     'swiper/css/pagination'
   ],
 
+  // ルートディレクトリをソースディレクトリにする場合
+  srcDir: '.',
+
   //  app内設定 外部のモジュールをインストール不要
   app: { 
+    // Vercelのドメイン直下で配信するため、ベースURLをルートに固定します。
     baseURL: '/',
     head: {
       link: [

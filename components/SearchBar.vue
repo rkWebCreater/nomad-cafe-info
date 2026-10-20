@@ -1,40 +1,74 @@
 <!-- app/components/SearchBar.vue 検索バーのコンポーネント-->
 <script setup>
-// Nuxt 3 では route, router, ref は自動インポートされるため import 文は不要です
+// Nuxt 3 では useRoute、useRouter、ref、watch は自動インポート
 const route = useRoute()
 const router = useRouter()
 
-// 1. URLにすでに keyword があれば、検索窓の初期値としてセットする
-const searchQuery = ref(route.query.keyword || '')
+// keyword は URL によって string、string[]、null のいずれかになる
+// 検索窓では文字列を扱うため、常に string にそろえる
+const normalizeKeyword = (keyword) => {
+  if (Array.isArray(keyword)) {
+    // ?keyword=foo&keyword=bar のような URL では、最初の値を使う
+    return typeof keyword[0] === 'string' ? keyword[0] : ''
+  }
 
-// 2. URLの keyword が変わったときに、検索窓の文字も連動させる
-watch(() => route.query.keyword, (newKeyword) => {
-  searchQuery.value = newKeyword || ''
-})
+  // null など文字列以外の値は、空文字列にする
+  return typeof keyword === 'string' ? keyword : ''
+}
+
+// URL に keyword があれば、検索窓の初期値に設定
+const searchQuery = ref(normalizeKeyword(route.query.keyword))
+
+// URL の keyword が変わったときも、検索窓の表示を同期
+watch(
+  () => route.query.keyword,
+  (newKeyword) => {
+    searchQuery.value = normalizeKeyword(newKeyword)
+  }
+)
 
 const handleSearch = () => {
-  if (!searchQuery.value.trim()) return // 空っぽのときは何もしない
+  // 前後の空白を除いてから検索
+  const keyword = searchQuery.value.trim()
 
+  // 空文字列では検索ページへ移動しない
+  if (!keyword) return
+
+  // 検索キーワードを URL のクエリに設定して検索ページへ移動
   router.push({
     path: '/search',
-    query: { keyword: searchQuery.value.trim() }
+    query: { keyword }
   })
-
 }
 </script>
 
 <template>
-  <!-- 検索フォームの submit イベントを handleSearch メソッドにバインド -->
-  <form @submit.prevent="handleSearch" class="search-container c-search-form">
-    
-   <input type="text" v-model="searchQuery" class="search-input c-search-input placeholder:text-xs md:placeholder:text-sm">
-   <button type="submit" class="search-button c-search-button">
-    <span class="c-search-button-label">検索</span>
-    <span class="c-search-particles" aria-hidden="true">
-     <i v-for="particle in 12" :key="particle" class="c-search-particle"></i>
-    </span>
-   </button>
-    
+  <!-- submit 時のページ再読み込みを防ぎ、handleSearch を実行 -->
+  <form
+    class="search-container c-search-form"
+    @submit.prevent="handleSearch"
+  >
+    <input
+      v-model="searchQuery"
+      type="text"
+      class="search-input c-search-input placeholder:text-xs md:placeholder:text-sm"
+      aria-label="検索キーワード"
+    >
+
+    <button
+      type="submit"
+      class="search-button c-search-button"
+    >
+      <span class="c-search-button-label">検索</span>
+
+      <span class="c-search-particles" aria-hidden="true">
+        <i
+          v-for="particle in 12"
+          :key="particle"
+          class="c-search-particle"
+        ></i>
+      </span>
+    </button>
   </form>
 </template>
 

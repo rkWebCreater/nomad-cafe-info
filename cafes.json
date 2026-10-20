@@ -6,7 +6,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区道玄坂1丁目12-1",
     "budget": "￥600〜￥1,200",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "08:00 - 22:00",
     "features": {
       "wifi": {
@@ -36,7 +36,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区西新宿2丁目8-1",
     "budget": "￥700〜￥1,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "09:00 - 21:00",
     "features": {
       "wifi": {
@@ -63,7 +63,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区神南1丁目19-11",
     "budget": "￥550〜￥1,100",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "07:00 - 20:00",
     "features": {
       "wifi": {
@@ -87,7 +87,7 @@
     "areaNameJa": "梅田",
     "address": "大阪府大阪市北区梅田2丁目5-25",
     "budget": "￥650〜￥1,300",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "07:30 - 20:00",
     "features": {
       "wifi": {
@@ -120,7 +120,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中村区名駅3丁目28-12",
     "budget": "￥1,200〜￥2,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "20:00 - 07:30",
     "features": {
       "wifi": {
@@ -147,7 +147,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区歌舞伎町1丁目2-3",
     "budget": "￥1,000〜￥2,200",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "22:00 - 06:30",
     "features": {
       "wifi": {
@@ -171,7 +171,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市中央区天神1丁目11-17",
     "budget": "￥1,100〜￥2,400",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "21:00 - 06:30",
     "features": {
       "wifi": {
@@ -198,7 +198,7 @@
     "areaNameJa": "難波",
     "address": "大阪府大阪市中央区難波5丁目1-60",
     "budget": "￥1,300〜￥2,800",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "20:00 - 07:30",
     "features": {
       "wifi": {
@@ -222,7 +222,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区宇田川町21-6 B1F",
     "budget": "￥1,500〜￥3,000",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "22:00 - 05:00",
     "features": {
       "wifi": {
@@ -249,7 +249,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区新宿3丁目38-1 3F",
     "budget": "￥900〜￥2,000",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "21:00 - 06:00",
     "features": {
       "wifi": {
@@ -276,7 +276,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中区栄4丁目15-20",
     "budget": "￥600〜￥1,400",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "20:00 - 05:30",
     "features": {
       "wifi": {
@@ -300,7 +300,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区歌舞伎町2丁目10-5 2F",
     "budget": "￥800〜￥1,800",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "23:00 - 08:00",
     "features": {
       "wifi": {
@@ -327,7 +327,7 @@
     "areaNameJa": "梅田",
     "address": "大阪府大阪市北区角田町8-7 B1F",
     "budget": "￥1,600〜￥3,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "21:30 - 05:00",
     "features": {
       "wifi": {
@@ -351,7 +351,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区桜丘町26-1 4F",
     "budget": "￥750〜￥1,600",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "08:00 - 16:00",
     "features": {
       "wifi": {
@@ -375,7 +375,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区西新宿1丁目25-1",
     "budget": "￥850〜￥1,900",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "22:00 - 07:00",
     "features": {
       "wifi": {
@@ -402,7 +402,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市博多区博多駅前2丁目1-1",
     "budget": "￥800〜￥1,600",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "21:00 - 05:00",
     "features": {
       "wifi": {
@@ -429,7 +429,7 @@
     "areaNameJa": "難波",
     "address": "大阪府大阪市中央区心斎橋筋1丁目7-1",
     "budget": "￥1,200〜￥2,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "20:30 - 06:00",
     "features": {
       "wifi": {
@@ -456,7 +456,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中区錦3丁目24-17 2F",
     "budget": "￥1,400〜￥2,800",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "05:30 - 15:00",
     "features": {
       "wifi": {
@@ -489,7 +489,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区神宮前6丁目18-3",
     "budget": "￥650〜￥1,350",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "08:00 - 20:00",
     "features": {
       "wifi": {
@@ -513,7 +513,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区新宿4丁目1-6",
     "budget": "￥700〜￥1,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "09:00 - 21:00",
     "features": {
       "wifi": {
@@ -540,7 +540,7 @@
     "areaNameJa": "梅田",
     "address": "大阪府大阪市北区茶屋町10-12",
     "budget": "￥600〜￥1,200",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "08:00 - 22:00",
     "features": {
       "wifi": {
@@ -564,7 +564,7 @@
     "areaNameJa": "難波",
     "address": "大阪府大阪市中央区難波千日前12-7",
     "budget": "￥500〜￥1,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "09:00 - 21:00",
     "features": {
       "wifi": {
@@ -588,7 +588,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中村区名駅1丁目1-4",
     "budget": "￥700〜￥1,400",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "07:30 - 21:30",
     "features": {
       "wifi": {
@@ -618,7 +618,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中区栄3丁目6-1",
     "budget": "￥550〜￥1,300",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "10:00 - 20:00",
     "features": {
       "wifi": {
@@ -651,7 +651,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市博多区博多駅中央街1-1",
     "budget": "￥600〜￥1,300",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "07:30 - 21:00",
     "features": {
       "wifi": {
@@ -678,7 +678,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市中央区天神2丁目2-43",
     "budget": "￥650〜￥1,450",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "08:00 - 22:00",
     "features": {
       "wifi": {
@@ -705,7 +705,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市中央区大名1丁目14-25",
     "budget": "￥550〜￥1,200",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "10:00 - 20:00",
     "features": {
       "wifi": {
@@ -732,7 +732,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中区錦2丁目18-5",
     "budget": "￥600〜￥1,300",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "08:30 - 21:00",
     "features": {
       "wifi": {
@@ -762,7 +762,7 @@
     "areaNameJa": "梅田",
     "address": "大阪府大阪市北区大深町3-1",
     "budget": "￥750〜￥1,600",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "08:00 - 22:00",
     "features": {
       "wifi": {
@@ -792,7 +792,7 @@
     "areaNameJa": "難波",
     "address": "大阪府大阪市中央区道頓堀1丁目4-16",
     "budget": "￥600〜￥1,400",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "09:00 - 23:00",
     "features": {
       "wifi": {
@@ -819,7 +819,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区神南1丁目5-11",
     "budget": "￥700〜￥1,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "09:00 - 21:00",
     "features": {
       "wifi": {
@@ -846,7 +846,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区新宿1丁目11-3",
     "budget": "￥650〜￥1,300",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "08:00 - 19:00",
     "features": {
       "wifi": {
@@ -870,7 +870,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市中央区大名2丁目1-18",
     "budget": "￥700〜￥1,600",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "08:00 - 20:00",
     "features": {
       "wifi": {
@@ -897,7 +897,7 @@
     "areaNameJa": "梅田",
     "address": "大阪府大阪市北区芝田1丁目1-3",
     "budget": "￥600〜￥1,350",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "10:00 - 21:00",
     "features": {
       "wifi": {
@@ -921,7 +921,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区西新宿6丁目5-1",
     "budget": "￥1,200〜￥2,800",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "11:00 - 23:00",
     "features": {
       "wifi": {
@@ -948,7 +948,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区恵比寿西1丁目10-7",
     "budget": "￥550〜￥1,250",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "09:00 - 19:30",
     "features": {
       "wifi": {
@@ -972,7 +972,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市中央区薬院1丁目6-14",
     "budget": "￥500〜￥1,150",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "08:30 - 19:00",
     "features": {
       "wifi": {
@@ -999,7 +999,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区神宮前6丁目20-10",
     "budget": "￥800〜￥1,800",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "08:00 - 22:30",
     "features": {
       "wifi": {
@@ -1023,7 +1023,7 @@
     "areaNameJa": "新宿",
     "address": "東京都新宿区歌舞伎町1丁目19-3",
     "budget": "￥900〜￥2,000",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "18:00 - 05:00",
     "features": {
       "wifi": {
@@ -1050,7 +1050,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中村区名駅4丁目7-1",
     "budget": "￥700〜￥1,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "07:00 - 22:00",
     "features": {
       "wifi": {
@@ -1080,7 +1080,7 @@
     "areaNameJa": "梅田",
     "address": "大阪府大阪市北区茶屋町15-22",
     "budget": "￥650〜￥1,400",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "09:00 - 21:30",
     "features": {
       "wifi": {
@@ -1104,7 +1104,7 @@
     "areaNameJa": "難波",
     "address": "大阪府大阪市中央区心斎橋筋1丁目8-3",
     "budget": "￥600〜￥1,300",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "08:30 - 20:30",
     "features": {
       "wifi": {
@@ -1131,7 +1131,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市博多区博多駅前3丁目25-24",
     "budget": "￥750〜￥1,500",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "07:00 - 22:00",
     "features": {
       "wifi": {
@@ -1155,7 +1155,7 @@
     "areaNameJa": "難波",
     "address": "大阪府大阪市中央区難波2丁目3-5",
     "budget": "￥1,100〜￥2,400",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "10:00 - 22:00",
     "features": {
       "wifi": {
@@ -1179,7 +1179,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区道玄坂2丁目29-1",
     "budget": "￥500〜￥1,100",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "07:30 - 20:00",
     "features": {
       "wifi": {
@@ -1212,7 +1212,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中村区名駅5丁目3-18",
     "budget": "￥600〜￥1,200",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal.png",
+    "imageUrl": "/images/slider/cafeNormal.png",
     "businessHours": "08:00 - 21:00",
     "features": {
       "wifi": {
@@ -1242,7 +1242,7 @@
     "areaNameJa": "福岡",
     "address": "福岡県福岡市中央区天神2丁目11-1",
     "budget": "￥600〜￥1,300",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNight.png",
+    "imageUrl": "/images/slider/cafeNight.png",
     "businessHours": "07:30 - 21:00",
     "features": {
       "wifi": {
@@ -1269,7 +1269,7 @@
     "areaNameJa": "名古屋",
     "address": "愛知県名古屋市中区大須3丁目30-40",
     "budget": "￥500〜￥1,100",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe2.jpg",
+    "imageUrl": "/images/slider/cafe2.jpg",
     "businessHours": "10:00 - 19:00",
     "features": {
       "wifi": {
@@ -1299,7 +1299,7 @@
     "areaNameJa": "梅田",
     "address": "大阪府大阪市北区中之島2丁目3-18",
     "budget": "￥800〜￥1,700",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafeNormal2.png",
+    "imageUrl": "/images/slider/cafeNormal2.png",
     "businessHours": "08:30 - 21:00",
     "features": {
       "wifi": {
@@ -1326,7 +1326,7 @@
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区神宮前1丁目8-8",
     "budget": "￥750〜￥1,600",
-    "imageUrl": "/nomad-cafe-info/images/slider/cafe1.jpg",
+    "imageUrl": "/images/slider/cafe1.jpg",
     "businessHours": "09:00 - 20:30",
     "features": {
       "wifi": {

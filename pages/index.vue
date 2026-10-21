@@ -35,6 +35,7 @@
    <CafeAreas />
 
    <!-- タグから探す -->
+   <div id="cafeTag"></div> <!-- Drawer.vueに同じコンポーネントを使用しているためid指定をこのページ限定にする -->
    <TagSection />
 
    <!-- 新着おすすめカフェ -->

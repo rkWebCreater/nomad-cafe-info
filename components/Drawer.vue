@@ -142,7 +142,7 @@
 }
 
 .drawer-nav .tag-section #cafeTag > p {
-  display:none;
+  display: none; /* Drawer内では説明文を非表示にする */
 }
 
 .drawer-nav .tag-section #cafeTag > div {
@@ -158,8 +158,6 @@
   padding: 6px 12px;
   font-size: 12px;
 }
-/* ここまでDrawer内のTagSection */
-
 .drawer-nav ul {
   list-style: none;
   padding: 0;

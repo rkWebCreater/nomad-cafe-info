@@ -18,7 +18,7 @@
     <div :class="['drawer-menu', { 'is-open': isOpen }]" id="drawer-menu">
       <nav class="drawer-nav">
         <div class="tag-section">
-          <TagSection />
+          <TagSection class="cafeTags"/>
         </div>
         <ul>
           <!-- @click="closeMenu" を仕込むことで、リンクを踏んだ瞬間に自動でドロワーが閉じます v-forによる繰り返し処理-->
@@ -131,25 +131,25 @@
 }
 
 /* Drawer内のTagSectionだけをコンパクトに調整 */
-.drawer-nav .tag-section #cafeTag {
+.drawer-nav .tag-section .cafeTags {
   padding-inline: 0;
   margin-bottom: 24px;
 }
 
-.drawer-nav .tag-section #cafeTag .section-ttl {
+.drawer-nav .tag-section .cafeTags .section-ttl {
   font-size: 16px;
   margin-bottom: 8px;
 }
 
-.drawer-nav .tag-section #cafeTag > p {
+.drawer-nav .tag-section .cafeTags > p {
   display: none; /* Drawer内では説明文を非表示にする */
 }
 
-.drawer-nav .tag-section #cafeTag > div {
+.drawer-nav .tag-section .cafeTags > div {
   gap: 8px;
 }
 
-.drawer-nav .tag-section #cafeTag > div a {
+.drawer-nav .tag-section .cafeTags > div a {
   display: inline-flex;
   width: auto;
   align-items: center;

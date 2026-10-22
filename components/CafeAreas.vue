@@ -25,6 +25,9 @@ import {AREAS} from '~/constants/areas'
                 :alt="area.name"
                 width="200"
                 height="80"
+                sizes="xs:150px md:200px"
+                quality="80"
+                loading="lazy"
                 format="webp"
           />
         </div>

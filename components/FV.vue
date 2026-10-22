@@ -10,7 +10,7 @@
       <div class="hero-gallery">
         <!-- 画像1（メイン：テラス・PC） -->
         <div class="gallery-item main-img">
-          <img
+          <NuxtImg
             :src="mainImage"
             alt="カフェのテラス席でPC作業する様子"
             loading="eager"
@@ -33,7 +33,7 @@
 
         <!-- 画像3（右下：カフェ内観） -->
         <div class="gallery-item interior-img">
-          <img
+          <NuxtImg
             :src="interiorImage"
             alt="落ち着いたカフェの内観"
             loading="lazy"
@@ -69,11 +69,11 @@
 <script setup lang="ts">
 export interface TopHeroProps {
   /** メイン画像（テラス・PC作業）のURL */
-  mainImage: string
+  mainImage?: string /* デフォルト値: 'images/FV/fv_1.webp' */
   /** 左下画像（コーヒーカップ）のURL */
-  coffeeImage: string
+  coffeeImage?: string /* デフォルト値: 'images/FV/fv_2.mp4' */
   /** 右下画像（カフェ内観）のURL */
-  interiorImage: string
+  interiorImage?: string /* デフォルト値: 'images/FV/fv_3.webp' */
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {

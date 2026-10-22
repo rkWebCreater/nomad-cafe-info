@@ -1,5 +1,7 @@
 // @ts-nocheck 
 
+import type { n } from "vue-router/dist/options-B1Pk0SIa.mjs";
+
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -17,10 +19,23 @@ export default defineNuxtConfig({
     geminiApiKey: process.env.GEMINI_API_KEY
   },
 
- //tailwind 設定
-  modules: [
-    '@nuxtjs/tailwindcss'
+ // モジュールのインストール
+  modules: [ 
+    '@nuxtjs/tailwindcss' ,
+    '@nuxt/image'
   ],
+  // tailwindcssの設定をNuxtに渡す
+  tailwindcss: {
+    exposeConfig: true,
+    viewer: false
+  },
+
+  // 3. Nuxt本体のPostCSS設定（これがモジュールの自動生成を上書きします）
+  postcss: {
+    plugins: {
+      'tailwindcss/nesting': false // 👈 tailwindcssの「中」ではなく「外」に書きます
+    }
+  },
 
   css: [
     'swiper/css',

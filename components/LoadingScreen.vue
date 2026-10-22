@@ -7,7 +7,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  duration: 4300
+  duration: 3500
 })
 
 const isVisible = ref(true)

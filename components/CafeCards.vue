@@ -64,8 +64,8 @@ const swiperBreakpoints = {
               <p class="c-cafe-meta text-sm mt-1">📍 {{ cafe.address }}</p>
             </div>
             <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
-              <span class="c-cafe-tag px-2 py-1 rounded"><img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4"> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
-              <span class="c-cafe-tag px-2 py-1 rounded"><img src="/images/icon/power_icon.png" alt="電源のアイコン" class="w-4"> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
+              <span class="c-cafe-tag px-2 py-1 rounded"><NuxtImg src="/images/icon/wifi_icon.png" alt="wifiのアイコン" width="16" height="16" class="w-4"/> {{ cafe.features?.wifi?.available ? 'あり' : 'なし' }}</span>
+              <span class="c-cafe-tag px-2 py-1 rounded"><NuxtImg src="/images/icon/power_icon.png" alt="電源のアイコン" width="16" height="16" class="w-4"/> {{ cafe.features?.power?.available ? 'あり' : 'なし' }}</span>
             </div>
           </div>
 

@@ -13,6 +13,11 @@
           <NuxtImg
             :src="mainImage"
             alt="カフェのテラス席でPC作業する様子"
+            width="400"
+            height="250"
+            sizes="xs:360px sm:400px md:600px"
+            quality="80"
+            format="webp"
             preload
             fetchpriority="high"
             loading="null"
@@ -28,8 +33,8 @@
             muted
             loop
             fetchpriority="high"
-            preload="auto"
             playsinline
+            preload="none"
           >
           </video>
         </div>

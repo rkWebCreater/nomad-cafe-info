@@ -56,7 +56,19 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         // 使いたいフォント（zen kurenaido とStyle Script）の読み込みリンク
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap&family=Style+Script&display=swap' }
+        // 非同期読み込み：初期状態を print にしてレンダリングブロックを防ぎ、読み込み完了時に all に切り替える
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Style+Script&display=swap',
+          media: 'print',
+          onload: "this.media='all'"
+        }
+      ],
+      // 万が一JSがオフの環境向けのフォールバック（推奨）
+      noscript: [
+        {
+          children: '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Style+Script&display=swap">'
+        }
       ]
     }
   },

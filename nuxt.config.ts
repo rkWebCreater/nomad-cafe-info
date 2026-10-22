@@ -22,7 +22,8 @@ export default defineNuxtConfig({
  // モジュールのインストール
   modules: [ 
     '@nuxtjs/tailwindcss' ,
-    '@nuxt/image'
+    '@nuxt/image',
+    '@nuxt/fonts'
   ],
   // tailwindcssの設定をNuxtに渡す
   tailwindcss: {
@@ -55,17 +56,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'カフェ検索webアプリをvue nuxt typescriptで開発' }
       ],
-      link: [
-        // Google Fonts のサーバーに接続する設定
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        // 使いたいフォント（zen kurenaido とStyle Script）の読み込みリンク
-        // 非同期読み込み：初期状態を print にしてレンダリングブロックを防ぎ、読み込み完了時に all に切り替える
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Style+Script&display=swap'
-        }
-      ],
+      
       // 万が一JSがオフの環境向けのフォールバック（推奨）
       noscript: [
         {

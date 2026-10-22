@@ -13,7 +13,9 @@
           <NuxtImg
             :src="mainImage"
             alt="カフェのテラス席でPC作業する様子"
-            loading="lazy"
+            preload
+            fetchpriority="high"
+            loading="null"
           />
         </div>
 
@@ -25,6 +27,7 @@
             autoplay
             muted
             loop
+            fetchpriority="high"
             preload="auto"
             playsinline
           >
@@ -36,7 +39,9 @@
           <NuxtImg
             :src="interiorImage"
             alt="落ち着いたカフェの内観"
-            loading="lazy"
+            preload
+            fetchpriority="high"
+            loading="null"
           />
         </div>
 

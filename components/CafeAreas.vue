@@ -23,9 +23,6 @@ import {AREAS} from '~/constants/areas'
          <NuxtImg 
                 :src="area.imageUrl" 
                 :alt="area.name" 
-                width="262" 
-                height="145" 
-                sizes="sm:100vw md:50vw lg:262px"
                 format="webp"
           />
         </div>

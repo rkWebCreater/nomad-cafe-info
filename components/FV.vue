@@ -13,7 +13,7 @@
           <NuxtImg
             :src="mainImage"
             alt="カフェのテラス席でPC作業する様子"
-            loading="eager"
+            loading="lazy"
           />
         </div>
 

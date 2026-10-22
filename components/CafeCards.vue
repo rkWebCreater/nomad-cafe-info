@@ -1,4 +1,42 @@
 <!-- app/components/CafeCards.vue カフェスライダーのスライドのコンポーネント-->
+
+<script lang="ts" setup>
+
+// 💡 Web Components ではなく、Vue専用のコンポーネントとモジュールをインポートします
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, Scrollbar } from 'swiper/modules'
+import { type Cafe } from "@/schemas/cafe"
+
+// 💡 Vue版Swiperに必要なCSSをここで確実に読み込みます
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+
+defineProps({ //cafeのデータを取り出す
+  cafes: {
+    type: Array as () => Cafe[],
+    required: true
+  }
+})
+
+// スライダーのモジュールを配列化
+const modules = [Navigation, Pagination, Scrollbar]
+
+// 💡 ブレイクポイントの数値をVueのオブジェクトとして定義（JSON.stringifyは不要になります）
+const swiperBreakpoints = {
+  0: {
+    slidesPerView: 1.2,
+    centeredSlides: true,
+    spaceBetween: 15
+  },
+  768: {
+    slidesPerView: 3,
+    centeredSlides : false,
+    spaceBetween: 20
+  }
+}
+</script>
 <template>
   <ClientOnly> <!-- コンテンツをブラウザ（クライアントサイド）でのみ描画し、サーバーサイドのビルドから除外（ツリーシェイキング）するための内蔵コンポーネント -->
     <!-- 💡 <Swiper> コンポーネントを使用。これにより遷移時のバグが100%消滅 -->
@@ -15,7 +53,7 @@
           
         <NuxtLink :to="`/cafes/${cafe.id}`" class="block text-left flex flex-col flex-1 card-link">
 
-          <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-48 object-cover" />
+         <NuxtImg :src="cafe.imageUrl" :alt="cafe.name" loading="lazy" class="w-full h-48 object-cover" />
           <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-1 content-between card-body-height flex-1">
             <div>
               <span class="c-cafe-area text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
@@ -69,26 +107,35 @@
   box-shadow: 0 8px 24px rgba(62, 43, 36, 0.08);
 }
 
-/* 💡 Vue版では ::part ではなく .swiper-wrapper クラスを直接指定して高さを同期します */
-.cafe-cards-slider :deep(.swiper-wrapper) {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: stretch !important;
+/* ==========================================
+   2. Swiper内部要素（!importantの代替アプローチ）
+========================================== */
+/* 💡 :deep() を使って Swiper 内部のクラスに対して一括で詳細度を適用します */
+.cafe-cards-slider :deep() {
+  /* 高さを揃えるためのラッパー設定 */
+  & .swiper-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  /* 各スライドカードの共通ベース */
+  & .swiper-slide {
+    height: auto; 
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
 }
 
 /* ==========================================
-   2. 各スライドカードの共通ベース
+   3. スコープ内のパーツデザイン
 ========================================== */
-.swiper-slide {
-  height: auto !important; 
-  display: flex !important;
-  flex-direction: column;
-  flex-shrink: 0;
-
-  & .area-name{
-    text-align: center;
-  }
+/* ※Vueコンポーネント内の要素（.swiper-slide配下であっても自分で書いたHTML部分）は通常通り記述できます */
+.area-name {
+  text-align: center;
 }
+
 .card-link, .card-body-height {
   flex-grow: 1;
 }
@@ -101,8 +148,8 @@
   color: var(--color-muted);
 }
 
-.tags{
-  & span{
+.tags {
+  & span {
      color: var(--color-muted);
      background: var(--color-base);
      display: flex;
@@ -112,6 +159,7 @@
      align-content: center;
   }
 }
+
 
 /* ==========================================
    3. スマホ・タブレット表示（767px以下）
@@ -134,42 +182,6 @@
   }
 }
 </style>
-<script setup>
-
-// 💡 Web Components ではなく、Vue専用のコンポーネントとモジュールをインポートします
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules'
-
-// 💡 Vue版Swiperに必要なCSSをここで確実に読み込みます
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
-
-defineProps({ //cafeのデータを取り出す
-  cafes: {
-    type: Array,
-    required: true
-  }
-})
-
-// スライダーのモジュールを配列化
-const modules = [Navigation, Pagination, Scrollbar]
-
-// 💡 ブレイクポイントの数値をVueのオブジェクトとして定義（JSON.stringifyは不要になります）
-const swiperBreakpoints = {
-  0: {
-    slidesPerView: 1.2,
-    centeredSlides: true,
-    spaceBetween: 15
-  },
-  768: {
-    slidesPerView: 3,
-    centeredSlides : false,
-    spaceBetween: 20
-  }
-}
-</script>
 <!-- スライドをクリックしてページ遷移しスライダーが固まるバグ解消法
 ------------------------------
 ## 【Nuxt 3 × Swiper】ページ遷移時にスライダーが崩れる（ただ並ぶだけになる）バグの解説## 1. 以前の書き方（Web Components版）が壊れていた理由

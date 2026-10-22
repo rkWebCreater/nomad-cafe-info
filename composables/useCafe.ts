@@ -1,10 +1,11 @@
-import rawCafeData from '@@/cafes.json'
+import rawCafeData from '@@/server/data/cafes.json'
 import featureMaster from '@@/data/features.json'
 import { CafesSchema, type Cafe, type FeatureKey } from '@/schemas/cafe'
+import {type SearchOptions, type SearchApiResponse } from '@/schemas/search'
 
 // ==========================================
-// 1. 型定義（Interface）を作成して any を排除
-// ==========================================
+/* 1. 型定義（Interface）を作成  schemas/search.ts で定義済みの型を使う場合は、ここで再定義する必要はない
+
 export interface SearchOptions {
   keyword? :string ,
   area? : string ,
@@ -18,6 +19,7 @@ export interface SearchApiResponse {
   conditions?: unknown
   isFallback?: boolean
 }
+*/
 
 // ★ アプリ全体で共有するカフェデータのマスター（ここで1回だけ読み込む！）
 const validatedCafes = CafesSchema.parse(rawCafeData) // cafes.json の内容を Zod で検証し、型安全な Cafe[] に変換
@@ -83,7 +85,7 @@ const checkIfOpen = (businessHours: string): boolean => {
   //-------- ここまで営業中かどうかの判定
 
   
-const FEATURE_KEYWORDS = featureMaster
+
 
   /*
    * ローカル検索・エリア絞り込み・タグ絞り込みを実行するメイン関数
@@ -92,6 +94,7 @@ const FEATURE_KEYWORDS = featureMaster
    * @param options 検索条件（keyword: キーワード, area: エリア, tag: タグ）
    * @returns 絞り込まれたカフェの配列
    */
+  const FEATURE_KEYWORDS = featureMaster // features.json の内容を使って、設備ごとのキーワードを定義
   const localSearch = (
     allCafes: Cafe[],
     options: SearchOptions = {}
@@ -138,7 +141,7 @@ const FEATURE_KEYWORDS = featureMaster
     })
   }
 
-  // ④ ローカル検索の自動算出プロパティ (filteredCafes)
+  // ④ ローカル検索の結果を算出プロパティとして返す
   const filteredCafes = computed<Cafe[]>(() => {
     return localSearch(allCafesData.value, {
       keyword: searchKeyword.value,
@@ -147,8 +150,9 @@ const FEATURE_KEYWORDS = featureMaster
     })
   })
 
-  //-------- API 検索関数（名称は fetchSearchResults のまま）
+  //-------- API 検索関数
   const fetchSearchResults = async (keyword: string) => {
+
     if (!import.meta.client) return // サーバーサイドでは実行しない
     if (!keyword || !keyword.trim() || isLoading.value) return // キーワードが空、またはすでに検索中の場合は何もしない
 
@@ -158,12 +162,16 @@ const FEATURE_KEYWORDS = featureMaster
     searchResults.value = []  
 
     try { 
+      // ① AI検索APIにリクエストを送信
       const data = await $fetch<SearchApiResponse>(`/api/search?text=${encodeURIComponent(keyword.trim())}`) 
 
       if (!data.success) {
         throw new Error(data.message || 'APIの処理に失敗しました')
       }
 
+      // ② AI検索APIのレスポンスを受け取り、条件に基づいてカフェを絞り込む
+      // ここで、AIが返した条件（data.conditions）を使って、filteredCafes.value を再度絞り込むことも可能
+      // 例: data.conditions に基づいて filteredCafes.value をフィルタリングする処理を追加
       if (data.results.length === 0) {
 
         searchResults.value = filteredCafes.value || []

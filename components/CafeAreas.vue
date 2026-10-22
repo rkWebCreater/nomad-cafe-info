@@ -22,7 +22,9 @@ import {AREAS} from '~/constants/areas'
         <div class="area-image">
          <NuxtImg 
                 :src="area.imageUrl" 
-                :alt="area.name" 
+                :alt="area.name"
+                width="200"
+                height="80"
                 format="webp"
           />
         </div>

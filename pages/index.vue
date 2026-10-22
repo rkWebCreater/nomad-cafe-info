@@ -79,7 +79,7 @@ header{
 /* Project: トップページの営業中カフェ欄 */
 .p-home-open-cafes {
   background:
-    linear-gradient(180deg, rgba(62, 43, 36, 0.18), rgba(62, 43, 36, 0.68)),
+    linear-gradient(180deg, #ae713c75, #fff1e5),
     url(/images/slider/bg/cafe_table.webp) center / cover no-repeat;
   position: relative;
   padding: clamp(24px, 4vw, 48px);

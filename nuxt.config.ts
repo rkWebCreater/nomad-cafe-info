@@ -51,6 +51,10 @@ export default defineNuxtConfig({
     // Vercelのドメイン直下で配信するため、ベースURLをルートに固定します。
     baseURL: '/',
     head: {
+      title: 'nomad-cafe-info', // 👈 ここに書く
+      meta: [
+        { name: 'description', content: 'カフェ検索webアプリをvue nuxt typescriptで開発' }
+      ],
       link: [
         // Google Fonts のサーバーに接続する設定
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

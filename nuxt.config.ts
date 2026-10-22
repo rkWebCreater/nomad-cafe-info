@@ -59,9 +59,7 @@ export default defineNuxtConfig({
         // 非同期読み込み：初期状態を print にしてレンダリングブロックを防ぎ、読み込み完了時に all に切り替える
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Style+Script&display=swap',
-          media: 'print',
-          onload: "this.media='all'"
+          href: 'https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Style+Script&display=swap'
         }
       ],
       // 万が一JSがオフの環境向けのフォールバック（推奨）

@@ -17,7 +17,7 @@ useSeoMeta({
 </template>
 <style>
   
-:global(:root) {
+:root{
   --color-base: #f7f2e9;
   --color-accent: #d2a933;
   --color-surface: #fffcf7;

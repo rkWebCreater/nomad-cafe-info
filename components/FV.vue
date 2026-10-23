@@ -13,7 +13,9 @@
           <NuxtImg
             :src="mainImage"
             alt="屋外でPC作業"
-            preload
+            width="300"
+            height="190"
+            preload="none" 
             fetchpriority="high"
             loading="null"
             sizes="xs:100px md:150px"

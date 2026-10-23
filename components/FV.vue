@@ -16,14 +16,17 @@
             poster="/images/FV/fv_1.webp"
             width="300"
             height="190"
-            preload="metadata"
+            preload="none" 
             autoplay
             muted
             playsinline
             loop
             fetchpriority="high"
+            aria-hidden="true"
           ></video>
-          <!--<NuxtImg
+          <!--
+          preload="none" は、ビデオが表示されるまで読み込みを遅らせるためのオプション autoplay（自動再生）が指定されている場合、preload="metadata" は無視されて動画全編のダウンロードが始まるので一部のブラウザでの不要な先行読み込みを防ぎ、ページ全体の読み込み速度（LCP）を向上させるために none または指定なしを推奨
+          <NuxtImg
             :src="mainImage"
             alt="カフェのテラス席でPC作業する様子"
             width="400"

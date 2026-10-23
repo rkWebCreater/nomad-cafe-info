@@ -24,19 +24,6 @@
             fetchpriority="high"
             aria-hidden="true"
           ></video>
-          <!--
-          preload="none" は、ビデオが表示されるまで読み込みを遅らせるためのオプション autoplay（自動再生）が指定されている場合、preload="metadata" は無視されて動画全編のダウンロードが始まるので一部のブラウザでの不要な先行読み込みを防ぎ、ページ全体の読み込み速度（LCP）を向上させるために none または指定なしを推奨
-          <NuxtImg
-            :src="mainImage"
-            alt="カフェのテラス席でPC作業する様子"
-            width="400"
-            height="250"
-            sizes="xs:360px sm:400px md:600px"
-            quality="80"
-            format="webp"
-            fetchpriority="high"
-            loading="null"
-          />-->
 
         </div>
 

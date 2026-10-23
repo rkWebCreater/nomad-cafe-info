@@ -53,7 +53,7 @@ const swiperBreakpoints = {
           
         <NuxtLink :to="`/cafes/${cafe.id}`" class="block text-left flex flex-col flex-1 card-link">
 
-         <NuxtImg :src="cafe.imageUrl" :alt="cafe.name" loading="lazy" class="w-full h-48 object-cover" />
+         <NuxtImg :src="cafe.imageUrl" class= "object-cover" :alt="cafe.name" width="500" height="330" loading="lazy" />
           <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-1 content-between card-body-height flex-1">
             <div>
               <span class="c-cafe-area text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>

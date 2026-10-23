@@ -12,7 +12,7 @@
         <div class="gallery-item main-img">
           <NuxtImg
             :src="mainImage"
-            alt="落ち着いたカフェの内観"
+            alt="屋外でPC作業"
             preload
             fetchpriority="high"
             loading="null"
@@ -99,7 +99,7 @@ export interface TopHeroProps {
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {
-  mainImage: 'images/FV/fv_1.mp4',
+  mainImage: 'images/FV/fv_1.webp',
   coffeeImage: 'images/FV/fv_2.mp4',
   interiorImage: 'images/FV/fv_3.webp'
 })

@@ -49,11 +49,11 @@ const swiperBreakpoints = {
       class="cafe-cards-slider">
  
       <!-- 💡 <SwiperSlide> タグを使用 -->
-      <SwiperSlide  v-for="cafe in cafes" :key="cafe.id" class="c-cafe-card w-full overflow-hidden transition">
+      <SwiperSlide  v-for="cafe in cafes" :key="cafe.id" class="overflow-hidden transition">
           
         <NuxtLink :to="`/cafes/${cafe.id}`" class="block text-left flex flex-col flex-1 card-link">
 
-         <NuxtImg :src="cafe.imageUrl" class= "object-cover" :alt="cafe.name" width="500" height="330" loading="lazy" />
+         <NuxtImg :src="cafe.imageUrl" class= "object-cover" :alt="cafe.name" width="500" height="330" sizes="xs:100vw sm:100vw md:500px" loading="lazy" />
           <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-1 content-between card-body-height flex-1">
             <div>
               <span class="c-cafe-area text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded inline-block">{{ cafe.areaNameJa }}</span>
@@ -84,7 +84,7 @@ const swiperBreakpoints = {
 
 .cafe-cards-slider {
   width: 100%;
-  max-width:1100px;
+  max-width:500px;
   background: rgb(106 106 106 / 50%);
   padding: 20px 10px 40px 10px;
   margin-left: auto;
@@ -99,7 +99,7 @@ const swiperBreakpoints = {
   --swiper-pagination-bullet-inactive-color: var(--color-beige);
   --swiper-pagination-bullet-size: 12px;
 }
-.c-cafe-card {
+.swiper-slide{
   color: var(--color-text);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -121,6 +121,8 @@ const swiperBreakpoints = {
 
   /* 各スライドカードの共通ベース */
   & .swiper-slide {
+    width: 100%;
+    max-width: 500px;
     height: auto; 
     display: flex;
     flex-direction: column;
@@ -175,6 +177,9 @@ const swiperBreakpoints = {
    4. PC表示（768px以上〜）
 ========================================== */
 @media (min-width: 768px) {
+  .cafe-cards-slider {
+    max-width: 1100px;
+  }
   
   .swiper-slide .cafe-name {
     font-size: 20px;

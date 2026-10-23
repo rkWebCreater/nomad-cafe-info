@@ -24,7 +24,7 @@
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section p-home-open-cafes mx-auto max-w-[1100px]" id="nowOpenCafe">
       <h2 class="cafe-cards-ttl p-home-open-cafes-title font-semibold tracking-wider">現在営業中のカフェ</h2>
-      <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
+      <p class="canSlide text-center">＜ーー  スライドできます  ーー＞</p>
     
       <!-- CafeCards -->
       <CafeCards :cafes="openCafes" class="h-full" />
@@ -35,7 +35,6 @@
    <CafeAreas />
 
    <!-- タグから探す -->
-   <div id="cafeTag"></div> <!-- Drawer.vueにTagSectionを使用しているためid指定をこのページ限定にする -->
    <TagSection />
 
    <!-- 新着おすすめカフェ -->
@@ -79,7 +78,7 @@ header{
 /* Project: トップページの営業中カフェ欄 */
 .p-home-open-cafes {
   background:
-    linear-gradient(180deg, #ae713c75, #fff1e5),
+    linear-gradient(180deg, rgba(62, 43, 36, 0.18), rgba(62, 43, 36, 0.68)),
     url(/images/slider/bg/cafe_table.webp) center / cover no-repeat;
   position: relative;
   padding: clamp(24px, 4vw, 48px);

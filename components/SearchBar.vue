@@ -81,7 +81,7 @@ const handleSearch = () => {
   --color-border: #ddcdbd;
   --color-text: #3e2b24;
   --color-muted: #76675d;
-  --color-accent: #c59915;
+  --color-accent: #d2a933;
 }
 /* Component: 検索フォーム */
 .c-search-form {

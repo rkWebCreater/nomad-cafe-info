@@ -250,6 +250,7 @@
   onMounted(()=>{
     checkAndScroll()
   })
+</script>
 
   //下部のスライダー同様、同じページ内でハッシュが変わった瞬間を監視してスクロール
   watch(()=> route.hash , () =>{

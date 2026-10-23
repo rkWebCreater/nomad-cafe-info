@@ -10,7 +10,15 @@
       <div class="hero-gallery">
         <!-- 画像1（メイン：テラス・PC） -->
         <div class="gallery-item main-img">
-          
+          <NuxtImg
+            :src="mainImage"
+            alt="落ち着いたカフェの内観"
+            preload
+            fetchpriority="high"
+            loading="null"
+            sizes="xs:100px md:150px"
+          />
+          <!--
           <video
             :src="mainImage"
             poster="/images/FV/fv_1.webp"
@@ -24,7 +32,7 @@
             fetchpriority="high"
             aria-hidden="true"
           ></video>
-
+         -->
         </div>
 
         <!-- 画像2（左下：コーヒーカップ） -->

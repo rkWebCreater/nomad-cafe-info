@@ -10,7 +10,20 @@
       <div class="hero-gallery">
         <!-- 画像1（メイン：テラス・PC） -->
         <div class="gallery-item main-img">
-          <NuxtImg
+          
+          <video
+            :src="mainImage"
+            poster="/images/FV/fv_1.webp"
+            width="300"
+            height="190"
+            preload="metadata"
+            autoplay
+            muted
+            playsinline
+            loop
+            fetchpriority="high"
+          ></video>
+          <!--<NuxtImg
             :src="mainImage"
             alt="カフェのテラス席でPC作業する様子"
             width="400"
@@ -18,10 +31,10 @@
             sizes="xs:360px sm:400px md:600px"
             quality="80"
             format="webp"
-            preload
             fetchpriority="high"
             loading="null"
-          />
+          />-->
+
         </div>
 
         <!-- 画像2（左下：コーヒーカップ） -->
@@ -47,6 +60,7 @@
             preload
             fetchpriority="high"
             loading="null"
+            sizes="xs:100px md:150px"
           />
         </div>
 
@@ -87,7 +101,7 @@ export interface TopHeroProps {
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {
-  mainImage: 'images/FV/fv_1.webp',
+  mainImage: 'images/FV/fv_1.mp4',
   coffeeImage: 'images/FV/fv_2.mp4',
   interiorImage: 'images/FV/fv_3.webp'
 })

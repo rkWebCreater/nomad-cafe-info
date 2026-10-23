@@ -16,6 +16,15 @@ useSeoMeta({
   
 </template>
 <style>
+  
+:global(:root) {
+  --color-base: #f7f2e9;
+  --color-accent: #d2a933;
+  --color-surface: #fffcf7;
+  --color-border: #ddcdbd;
+  --color-text: #3e2b24;
+  --color-muted: #76675d;
+}
  /* サイト全体の背景色を一括で指定します */
 body {
   background-color: rgb(255, 241, 229); /* カフェサイトに合う優しい生成り色 */

@@ -22,12 +22,13 @@
     <FV/> 
 
     <!-- カフェスライダーセクション -->
-    <div class="cafe-cards-section p-home-open-cafes mx-auto max-w-[1100px]" id="nowOpenCafe">
-      <h2 class="cafe-cards-ttl p-home-open-cafes-title font-semibold tracking-wider">現在営業中のカフェ</h2>
-      <p class="canSlide text-center">＜ーー  スライドできます  ーー＞</p>
+    <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
+  
+      <h2 class="cafe-cards-ttl font-semibold text-white tracking-wider">現在営業中のカフェ</h2>
+      <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
     
-      <!-- CafeCards -->
-      <CafeCards :cafes="openCafes" class="h-full" />
+      <!-- 営業中のカフェをCafeSliderで表示 -->
+      <CafeSlider :allCafes="openCafes" class="h-full" />
     
     </div>
     
@@ -48,6 +49,8 @@
 /*PC、SP共通 */
 header{
         width:clamp(320px , 100% , 1200px);/*clamp() メディアクエリを使わなくてもSP、PC両方のサイズを設定できる 最小320px、画面幅の100%を基本とし、最大1200pxに制限 */
+        background:url(/images/FV/FV_cafe.png);
+        background-repeat: no-repeat;
         position:relative;
         
       h1{
@@ -75,22 +78,17 @@ header{
 
 }
 /*CSSの background または background-image プロパティで url() と linear-gradient() をカンマ (,) で区切って同時に指定すると、背景画像の上に半透明のグラデーションを重ねて表示できる。先に書いた方が手前（上層）に重なる。 */
-/* Project: トップページの営業中カフェ欄 */
-.p-home-open-cafes {
-  background:
-    linear-gradient(180deg, rgba(62, 43, 36, 0.18), rgba(62, 43, 36, 0.68)),
-    url(/images/slider/bg/cafe_table.webp) center / cover no-repeat;
-  position: relative;
-  padding: clamp(24px, 4vw, 48px);
-  color: var(--color-surface);
-}
-
-.p-home-open-cafes-title {
-  color: var(--color-surface);
-}
-
-.p-home-open-cafes .canSlide {
-  color: var(--color-surface);
+.cafe-cards-section{ 
+                     background: linear-gradient(#7c3d0586, var(--color-base)), url(/images/slider/bg/cafe_table.jpg);
+                     background-repeat: no-repeat;
+                     background-size: cover;
+                     background-position: center;
+                     position: relative;
+          
+           .canSlide{
+                     color: white;
+                     text-align:center;
+            }
 }
 /*
 .cafe-cards-section::before{

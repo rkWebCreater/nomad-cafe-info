@@ -78,8 +78,7 @@ const searchAreaName = computed(() => {
   <ul v-if="searchResults.length > 0" class="cafe_filter_list ml-auto mr-auto">
     <li v-for="filteredCafe in searchResults" :key="filteredCafe.id">
       <NuxtLink :to="`/cafes/${filteredCafe.id}`" class="block h-full">
-        <!-- カフェの画像　NuxtImg , sizesを指定して過剰なレンダリングを防ぐ-->
-        <NuxtImg :src="filteredCafe.imageUrl" :alt="filteredCafe.name" class="w-full h-48 object-cover" sizes="sm:100vw md:50vw lg:300px"/>
+        <img :src="filteredCafe.imageUrl" :alt="filteredCafe.name" class="w-full h-48 object-cover"/>
         
         <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-2 content-between card-body-height flex-1">
           <div>

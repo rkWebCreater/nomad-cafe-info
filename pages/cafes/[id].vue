@@ -8,10 +8,7 @@
       
       <!-- 1. 最上部：メイン画像エリア（大きく配置） -->
       <div class="hero-image-wrapper relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-md mb-6 md:mb-8">
-        <NuxtImg :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" sizes="sm:100vw md:50vw lg:300px"/>
-        <!-- <span class="absolute top-4 left-4 bg-amber-100/90 text-amber-900 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
-          {{ cafe.areaNameJa }}
-        </span>-->
+        <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" />
       </div>
 
       <!-- 2. 情報カードエリア (SP: 1列 / PC: 左右2列) -->
@@ -94,7 +91,7 @@
     <div v-if="othersCafes && othersCafes.length > 0" :key="cafeId" class="cafe-cards-section ml-auto mr-auto mt-12">
       <h2 class="cafe-cards-ttl font-bold text-xl mb-2 text-[#7a583a]">他のおすすめカフェ</h2>
       <p class="canSlide text-gray-400 text-xs mb-4">＜ーー スライドできます ーー＞</p>
-      <CafeCards :cafes="othersCafes" :key="cafe.id" />
+      <CafeSlider :allCafes="othersCafes" />
     </div>
 
   </div>
@@ -265,31 +262,24 @@
 }
 </style>
 <script setup>
-// pages/cafes/[id].vue の script setup 部分
-
-/* import { computed, watch } from 'vue'
-   import { useRoute } from 'vue-router' import文不要 
-import cafeData from '@@/cafes.json'*/
-
 const route = useRoute()
-const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分を24時間監視してリアルタイムで検知する
-const {allCafes, checkIfOpen } = useCafe()
+const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分をリアルタイムで検知
+const { allCafes, checkIfOpen } = useCafe()
 
-//---------Nuxt 3において「現在開いている詳細ページのカフェのデータをJSONから探し出し、URL（ID）が切り替わったときも自動でデータを最新に更新する」という、極めてスマートな非同期データ取得（データ一本釣り）の処理
-const {data : cafe } = await useAsyncData(
-    ()  =>  `cafe-${cafeId.value}`, //データの識別スタンプ
-    () => {
-        const found = allCafes.value.find(cafe => String(cafe.id) === cafeId.value)
-        return Promise.resolve(found || null)
-    },
-    {
-        watch:[cafeId] //URLが変わったら自動でデータをリフレッシュ（更新）
-    }
-)//-------------
+// 現在開いている詳細ページのカフェのデータを取得
+const { data: cafe } = await useAsyncData(
+  () => `cafe-${cafeId.value}`,
+  () => {
+    const found = allCafes.value.find(cafe => String(cafe.id) === cafeId.value)
+    return Promise.resolve(found || null)
+  },
+  {
+    watch: [cafeId]
+  }
+)
 
-// 他の営業中のカフェ（今見ている店は除外）CafeCards.vueをメインで表示されているカフェ以外のフィルタと営業時間判定にかけるため
+// 他の営業中のカフェ（今見ているカフェは除外 ＋ 営業時間内のカフェのみ）
 const othersCafes = computed(() => {
-  return allCafes.value.filter(cafe => String(cafe.id) !== cafeId.value && checkIfOpen(cafe.businessHours) === true)
+  return allCafes.value.filter(cafe => String(cafe.id) !== cafeId.value && checkIfOpen(cafe.businessHours))
 })
 </script>
-

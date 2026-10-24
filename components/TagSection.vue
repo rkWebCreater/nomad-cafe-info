@@ -43,7 +43,7 @@ import { TAGS } from '~/constants/tags'
         v-for="tag in TAGS"
         :key="tag.key"
         :to="{ path: '/search', query: { tag: tag.key } }"
-        class="tag-btn inline-block bg-[#a35921] text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
+        class="tag-btn bg-[#b16213] inline-block text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
         {{ tag.name }}
       </NuxtLink>
     </div>
@@ -58,8 +58,8 @@ import { TAGS } from '~/constants/tags'
       }
 }
 .tag-btn:hover{
-  color : black;
-  background : radial-gradient(rgba(250, 176, 126, 1), rgb(177, 98, 19));
+  color :  var(--color-text);
+  background : radial-gradient(rgba(250, 176, 126, 1), #b16213);
   scale: 1.2 ;
 }
 </style>

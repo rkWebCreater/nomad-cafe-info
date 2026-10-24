@@ -18,8 +18,14 @@ const areaList = [
       
       <!-- 1. ロゴ・ブランドエリア -->
       <div class="footer-item footer-brand">
-        <NuxtLink to="/" >
-         <NuxtImg src="/images/Logo/nomad_cafe_info.png" class="footer-logo" width="200" height="80" alt="logo"/>
+        <NuxtLink to="/" class="inline-block">
+          <img 
+            src="/images/Logo/nomad_cafe_info.png" 
+            class="footer-logo" 
+            width="150" 
+            height="33" 
+            alt="nomad cafe info"
+          />
         </NuxtLink>
         <p class="brand-desc">カフェで仕事や作業をして過ごしたい人のための<br>カフェ検索サイト</p>
       </div>
@@ -70,8 +76,8 @@ const areaList = [
 
 <style scoped>
 .site-footer {
-  background: rgb(188, 151, 122);
-  color: rgb(237, 242, 247);
+  background: var(--color-base);
+  color: var(--color-text);
   padding: 40px 20px 20px;
   margin-top: 80px;
 
@@ -101,12 +107,14 @@ const areaList = [
       }
 
       .footer-logo {
-        width: 130px;
+        width: 140px;
+        height: auto;
+        display: block;
       }
 
       .brand-desc {
         font-size: 12px;
-        color: rgb(224, 218, 203);
+        color: var(--color-text);
         margin-top: 8px;
       }
     }
@@ -120,9 +128,9 @@ const areaList = [
 
       .nav-title {
         font-size: 12px;
-        color: rgb(220, 213, 195);
+        color: var(--color-text);
         margin-bottom: 12px;
-        border-bottom: 0.5px solid rgb(220, 213, 195);
+        border-bottom: 0.5px solid var(--color-border);
         padding-bottom: 4px;
       }
 
@@ -141,13 +149,13 @@ const areaList = [
         }
 
         .nav-link {
-          color: rgb(240, 236, 226);
+          color: var(--color-text);
           text-decoration: none;
           font-size: 0.85rem;
           transition: color 0.2s ease;
 
           &:hover {
-            color: #fff;
+            color: var(--color-accent);
           }
         }
       }
@@ -164,7 +172,7 @@ const areaList = [
 
     .copyright {
       font-size: 0.75rem;
-      color: rgb(65, 40, 20);
+      color: var(--color-text);
     }
   }
 }

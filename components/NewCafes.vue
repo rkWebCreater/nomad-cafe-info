@@ -91,13 +91,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
           :to="`/cafes/${featuredCafe.id}`" 
           class="cafe-card main-card"
         >
-          <NuxtImg :src="featuredCafe.imageUrl" :alt="featuredCafe.name" class="card-image"
-           width="400"
-           height="300"
-           sizes="xs:360px sm:400px md:600px"
-           quality="80"
-           loading="lazy"
-           format="webp" />
+          <img :src="featuredCafe.imageUrl" :alt="featuredCafe.name" class="card-image" />
           <div class="card-overlay">
             <span class="area-badge">{{ featuredCafe.areaName }}</span>
             <h3 class="cafe-name">{{ featuredCafe.name }}</h3>
@@ -113,13 +107,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
             :to="`/cafes/${cafe.id}`" 
             class="cafe-card sub-card"
           >
-            <NuxtImg :src="cafe.imageUrl" :alt="cafe.name" class="card-image"
-             width="400"
-             height="300"
-             sizes="xs:360px sm:400px md:600px"
-             quality="80"
-             loading="lazy"
-             format="webp" />
+            <img :src="cafe.imageUrl" :alt="cafe.name" class="card-image" />
             <div class="card-overlay">
               <span class="area-badge">{{ cafe.areaName }}</span>
               <h3 class="cafe-name">{{ cafe.name }}</h3>

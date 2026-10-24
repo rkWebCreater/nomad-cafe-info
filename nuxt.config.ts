@@ -52,7 +52,7 @@ export default defineNuxtConfig({
     // Vercelのドメイン直下で配信するため、ベースURLをルートに固定します。
     baseURL: '/',
     head: {
-      title: 'nomad-cafe-info', // 👈 ここに書く
+      title: 'nomad-cafe-info', 
       meta: [
         { name: 'description', content: 'カフェ検索webアプリをvue nuxt typescriptで開発' }
       ],

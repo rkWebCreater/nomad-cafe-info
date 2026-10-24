@@ -10,17 +10,7 @@
       <div class="hero-gallery">
         <!-- 画像1（メイン：テラス・PC） -->
         <div class="gallery-item main-img">
-          <NuxtImg
-            :src="mainImage"
-            alt="屋外でPC作業"
-            width="300"
-            height="190"
-            preload="none" 
-            fetchpriority="high"
-            loading="null"
-            sizes="xs:100px md:150px"
-          />
-          <!--
+          
           <video
             :src="mainImage"
             poster="/images/FV/fv_1.webp"
@@ -34,7 +24,7 @@
             fetchpriority="high"
             aria-hidden="true"
           ></video>
-         -->
+
         </div>
 
         <!-- 画像2（左下：コーヒーカップ） -->
@@ -101,7 +91,7 @@ export interface TopHeroProps {
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {
-  mainImage: 'images/FV/fv_1.webp',
+  mainImage: 'images/FV/fv_1.mp4',
   coffeeImage: 'images/FV/fv_2.mp4',
   interiorImage: 'images/FV/fv_3.webp'
 })
@@ -119,15 +109,15 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   position: relative;
   width: 100%;
   min-height: 80vh;
-  background-color: #fff1e5;
+  color: var(--color-text);
+  background: var(--color-base);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3rem 1.25rem;
   overflow: hidden;
   box-sizing: border-box;
-  color: #3d2c1e;
-
+  
   /* 背景ウォーターマーク */
   .hero-watermark {
     width:100%;
@@ -141,8 +131,8 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     p{
      width:100%;
      font-size: clamp(6rem, 16vw, 22rem) ;
-     color: rgba(251, 246, 227, 0.463);
-     text-shadow: 0 0 20px rgba(230, 226, 222, 0.8);
+     color: var(--color-base);
+     text-shadow: 0 0 20px rgb(250, 248, 246);
      font-family: 'Style Script';
     }
 
@@ -265,7 +255,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     .hero-subtext-top {
       font-size: 0.5rem;
       letter-spacing: 0.2em;
-      color: #4a382a;
+      color: #533c2b;
       margin: 0 0 0.4rem 0;
       font-weight: 500;
     }

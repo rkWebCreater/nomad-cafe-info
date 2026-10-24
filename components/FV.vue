@@ -10,7 +10,15 @@
       <div class="hero-gallery">
         <!-- 画像1（メイン：テラス・PC） -->
         <div class="gallery-item main-img">
-          
+
+          <NuxtImg
+            :src="mainImage"
+            alt="屋外でPC"
+            preload
+            fetchpriority="high"
+            loading="null"
+            sizes="xs:200px md:300px"
+          />
           <video
             :src="mainImage"
             poster="/images/FV/fv_1.webp"

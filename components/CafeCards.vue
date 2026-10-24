@@ -3,21 +3,29 @@
 <script lang="ts" setup>
 import { type Cafe } from "../schemas/cafe"
 
+// 1. コンポーネントが受け取る props の型定義（Zod由来の型を使用）
 const props = defineProps<{
   cafe: Cafe
 }>()
 
-const optimizedImageUrl =computed(()=>{
+// 2. 画像URLにキャッシュバスティング用のクエリパラメータを自動付与する算出プロパティ
+const optimizedImageUrl = computed(() => {
   const url = props.cafe.imageUrl
   if (!url) return ''
 
+  // すでにクエリパラメータが含まれている場合は '&'、なければ '?' で連結する
   const separator = url.includes('?') ? '&' : '?'
-  const commitSha = import.meta.env.VERCEL_GIT_COMMIT_SHA || Date.now().toString()
-  const version = commitSha.slice(0 , 8)
 
+  // 3. Vercelのデプロイ環境ごとに自動で変わるGitコミットハッシュを取得
+  // ※ ローカル開発時（環境変数がない場合）は現在のタイムスタンプ（Date.now()）にフォールバック
+  const commitSha = import.meta.env.VERCEL_GIT_COMMIT_SHA || Date.now().toString()
+  
+  // 4. ハッシュが長すぎるため、先頭の8文字にスライスしてスッキリさせる
+  const version = commitSha.slice(0, 8)
+
+  // 5. 元のURLの末尾に '?v=xxxxx'（または '&v=xxxxx'）を結合した新しいURLを返す
   return `${url}${separator}v=${version}`
 })
-
 
 </script>
 
@@ -26,6 +34,7 @@ const optimizedImageUrl =computed(()=>{
   <NuxtLink v-if="cafe" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
     <NuxtImg 
       :src="optimizedImageUrl"
+      :key="optimizedImageUrl"
       class="cafe-img object-cover rounded-t-lg" 
       :alt="cafe.name" 
       loading="lazy" 

@@ -9,6 +9,7 @@ defineProps<{
 </script>
 
 <template>
+
   <NuxtLink v-if="cafe" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
     <NuxtImg 
       :src="cafe.imageUrl" 
@@ -39,6 +40,7 @@ defineProps<{
       </div>
     </div>
   </NuxtLink>
+
 </template>
 
 <style scoped>

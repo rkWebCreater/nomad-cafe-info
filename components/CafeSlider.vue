@@ -1,15 +1,15 @@
 <template>
-  <div class="cafe-slider-wrapper">
+  <div class="cafe-slider-wrapper ">
     <!-- Swiperの読み込みやレスポンシブ設定はここ1箇所に集約 -->
     <Swiper
       :modules="modules"
       :breakpoints="swiperBreakpoints"
       :navigation="true"
       :pagination="{ clickable: true }"
-      class="cafe-cards-slider ">
+      class="cafe-cards-slider">
 
       <!-- 💡 ループ処理とスライドタグをここにまとめる -->
-      <SwiperSlide v-for="cafe in allCafes" :key="cafe.id" class="overflow-hidden transition h-auto">
+      <SwiperSlide v-for="cafe in allCafes" :key="cafe.id" class="overflow-hidden transition">
         <!-- slot を使って、中身のデータ（1件分のカフェ）を外に送る -->
         <CafeCards :cafe="cafe" />
       </SwiperSlide>
@@ -67,78 +67,22 @@ const swiperBreakpoints = {
   max-width: 1000px;
   margin: auto ;
   /* ページネーション用の下部スペースを確保（カードと重ならないように） */
-  padding-bottom: 44px ;
+  padding-bottom: 40px ;
   position: relative;
 }
 
-@media (max-width: 767px) {
+/* スマホ表示
+   - カード内容を隠さないよう小さめにし、左右端に寄せて配置
+   - カードのサムネイル画像付近（top: 36%）に配置して文字と被らない設計
+*/ 
   .cafe-cards-slider {
     padding-bottom: 38px;
   }
-}
 
-/* ==========================================
-   1. 矢印（Navigation ボタン）
-   - サイトに合わせた温かみのあるブラウン＆ベージュ系の丸ボタン
-========================================== */
-.cafe-cards-slider :deep(.swiper-button-prev),
-.cafe-cards-slider :deep(.swiper-button-next) {
-  width: 42px;
-  height: 42px;
-  background: rgba(255, 252, 247, 0.92); /* --color-surface */
-  color: var(--color-text, #3e2b24);      /* サイトの濃いブラウン */
-  border: 1px solid var(--color-border, #ddcdbd);
-  border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(62, 43, 36, 0.12);
-  backdrop-filter: blur(4px);
-  transition: all 0.2s ease-in-out;
-  z-index: 10;
-  top: 42%; /* カード写真と情報の境目付近 */
-}
-
-/* 矢印アイコンのサイズ調整 */
-.cafe-cards-slider :deep(.swiper-button-prev)::after,
-.cafe-cards-slider :deep(.swiper-button-next)::after {
-  font-size: 16px ;
-  font-weight: bold;
-}
-
-/* ホバー時（PC） */
-.cafe-cards-slider :deep(.swiper-button-prev):hover,
-.cafe-cards-slider :deep(.swiper-button-next):hover {
-  background: #ffffff;
-  color: var(--color-accent, #c59915);
-  border-color: var(--color-accent, #c59915);
-  box-shadow: 0 6px 16px rgba(62, 43, 36, 0.18);
-  transform: scale(1.06);
-}
-
-/* スライダーの端に到達した無効状態 */
-.cafe-cards-slider :deep(.swiper-button-disabled) {
-  opacity: 0.25 ;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* PC表示の左右位置 */
-.cafe-cards-slider :deep(.swiper-button-prev) {
-  left: 6px;
-}
-.cafe-cards-slider :deep(.swiper-button-next) {
-  right: 6px;
-}
-
-/* スマホ表示（767px以下）
-   - カード内容を隠さないよう小さめにし、左右端に寄せて配置
-   - カードのサムネイル画像付近（top: 36%）に配置して文字と被らない設計
-*/
-@media (max-width: 767px) {
   .cafe-cards-slider :deep(.swiper-button-prev),
   .cafe-cards-slider :deep(.swiper-button-next) {
-    width: 30px;
-    height: 30px;
-    top: 50%;
-    transform : translateY(-50%);
+    width: 20px;
+    height: 20px;
   }
 
   .cafe-cards-slider :deep(.swiper-button-prev)::after,
@@ -152,7 +96,6 @@ const swiperBreakpoints = {
   .cafe-cards-slider :deep(.swiper-button-next) {
     right: 4px;
   }
-}
 
 /* ==========================================
    2. ページネーション（Pagination）
@@ -176,9 +119,9 @@ const swiperBreakpoints = {
   margin: 0 3px ;
 }
 
-/* アクティブなドット（そのままのアクセントカラー） */
+/* アクティブなドット */
 .cafe-cards-slider :deep(.swiper-pagination-bullet-active) {
-  background: var(--color-accent, #c59915) ;
+  background: var(--color-accent) ;
   opacity: 1;
   width: 20px;
   border-radius: 4px;
@@ -195,15 +138,70 @@ const swiperBreakpoints = {
 
 .cafe-cards-slider :deep(.swiper-slide) {
   display: flex;
+  height: auto;
   align-items: stretch;
 }
 
 .cafe-cards-slider :deep(.card-link) {
   width: 100%;
   max-width: 500px;
-  height: 100%;
+  height:100%;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
 }
+
+/* ==========================================
+   1. 矢印（Navigation ボタン）
+   - サイトに合わせた温かみのあるブラウン＆ベージュ系の丸ボタン
+========================================== */
+@media (min-width: 768px) {
+
+ .cafe-cards-slider :deep(.swiper-button-prev),
+ .cafe-cards-slider :deep(.swiper-button-next) {
+  width: 35px;
+  height: 35px;
+  color: var(--color-text, #3e2b24);      /* サイトの濃いブラウン */
+  border: 1px solid var(--color-border, #ddcdbd);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(62, 43, 36, 0.12);
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+  top: 50%; /* カード写真と情報の境目付近 */
+  transform:translateY(-50%);
+}
+
+/* PC表示の左右位置 */
+.cafe-cards-slider :deep(.swiper-button-prev) {
+  left: 5px;
+}
+.cafe-cards-slider :deep(.swiper-button-next) {
+  right: 5px;
+}
+
+/* 矢印アイコンのサイズ調整 */
+.cafe-cards-slider :deep(.swiper-button-prev)::after,
+.cafe-cards-slider :deep(.swiper-button-next)::after {
+  font-size: 16px ;
+  font-weight: bold;
+}
+
+/* ホバー時（PC） */
+.cafe-cards-slider :deep(.swiper-button-prev):hover,
+.cafe-cards-slider :deep(.swiper-button-next):hover {
+  color: var(--color-accent, #c59915);
+  border-color: var(--color-accent, #c59915);
+  box-shadow: 0 6px 16px rgba(62, 43, 36, 0.18);
+}
+
+/* スライダーの端に到達した無効状態 */
+.cafe-cards-slider :deep(.swiper-button-disabled) {
+  opacity: 0.25 ;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+}
+
 </style>

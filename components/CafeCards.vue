@@ -3,6 +3,7 @@
 <script lang="ts" setup>
 import { type Cafe } from "../schemas/cafe"
 
+const buildId = Date.now()
 defineProps<{
   cafe: Cafe
 }>()
@@ -12,7 +13,7 @@ defineProps<{
 
   <NuxtLink v-if="cafe" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
     <NuxtImg 
-      :src="cafe.imageUrl" 
+      :src="`${cafe.imageUrl}?b=${buildId}`" 
       class="cafe-img object-cover rounded-t-lg" 
       :alt="cafe.name" 
       loading="lazy" 

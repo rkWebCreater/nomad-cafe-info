@@ -91,7 +91,7 @@
     <div v-if="othersCafes && othersCafes.length > 0" :key="cafeId" class="cafe-cards-section ml-auto mr-auto mt-12">
       <h2 class="cafe-cards-ttl font-bold text-xl mb-2 text-[#7a583a]">他のおすすめカフェ</h2>
       <p class="canSlide text-gray-400 text-xs mb-4">＜ーー スライドできます ーー＞</p>
-      <CafeSlider :allCafes="othersCafes" />
+      <CafeSlider :allCafes="othersCafes" state-key="detail-recommendations"/>
     </div>
 
   </div>

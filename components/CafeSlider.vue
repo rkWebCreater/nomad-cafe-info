@@ -6,6 +6,8 @@
       :breakpoints="swiperBreakpoints"
       :navigation="true"
       :pagination="{ clickable: true }"
+      :initial-slide="initialSlide"
+      @slideChange="saveSlide"
       class="cafe-cards-slider">
 
       <!-- 💡 ループ処理とスライドタグをここにまとめる -->
@@ -31,9 +33,34 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 // ページ側からカフェデータの配列を受け取るプロップス
-defineProps<{
-  allCafes: Cafe[]
-}>()
+const props = withDefaults(
+  defineProps<{
+    allCafes: Cafe[]
+    stateKey?: string
+  }>(),
+  {
+    stateKey : 'default'
+  }
+) 
+// useStateで、現在表示中のスライドのカフェIDをページ遷移後も保持する
+const savedCafeId = useState<string | null >(
+     `cafe-slider-${props.stateKey}`,
+     () => null
+)
+// 保存したカフェIDが一覧の何番目かを探し、Swiperの初期位置にする
+// IDが見つからない場合は先頭にする
+const initialSlide = computed(()=>{
+  const index = props.allCafes.findIndex(
+    cafe => String(cafe.id) === savedCafeId.value
+  )
+  return index >= 0 ? index : 0 
+})
+
+// スライド変更時に、表示中のスライドに対応するカフェIDを保存する
+const saveSlide = (swiper : {realIndex : number}) => {
+const cafe = props.allCafes[swiper.realIndex]
+if (cafe)savedCafeId.value = String(cafe.id)
+}
 
 // スライダーのモジュールを配列化（ページネーションと矢印ナビゲーション）
 const modules = [Navigation, Pagination]

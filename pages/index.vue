@@ -12,7 +12,10 @@
       <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
     
       <!-- 営業中のカフェをCafeSliderで表示 -->
-      <CafeSlider :allCafes="openCafes" class="h-full" />
+      <CafeSlider 
+      :allCafes="openCafes"
+      state-key="home-open-cafes" 
+      class="h-full" />
     
     </div>
     

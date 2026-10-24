@@ -1,5 +1,4 @@
 ﻿<script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, useTemplateRef } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app';
 
 interface Props {
@@ -10,7 +9,13 @@ const props = withDefaults(defineProps<Props>(), {
   duration: 3500
 })
 
-const isVisible = ref(true)
+// ページ遷移後も保持される、ローディング表示済み状態
+const hasShownLoading = useState<boolean>(
+  'loading-screen-has-shown',
+  () => false
+)
+
+const isVisible = ref(!hasShownLoading.value)  //初回だけ表示
 const isFading = ref(false)
 const videoRef = useTemplateRef<HTMLVideoElement>('videoRef')
 
@@ -41,6 +46,11 @@ const hideOverlay = (delay: number) => {
 }
 
 onMounted(() => {
+  //2回目以降は表示しない
+  if(!isVisible.value) return
+
+  hasShownLoading.value = true
+
   if (videoRef.value) {
     videoRef.value.play().catch(() => {})
   }

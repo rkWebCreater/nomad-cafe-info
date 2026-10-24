@@ -1,8 +1,10 @@
 <!-- トップページ -->
 <template>
   <div class="min-h-screen">
-    <!-- FVコンポーネント -->
+
+    <LoadingScreen />
     <FV/> 
+
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
   

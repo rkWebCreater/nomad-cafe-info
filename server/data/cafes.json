@@ -6,7 +6,7 @@
         "areaNameJa": "渋谷",
         "address": "東京都渋谷区道玄坂1丁目12-1",
         "budget": "￥600〜￥1,200",
-        "imageUrl": "/images/slider/cafeNormal.webp",
+        "imageUrl": "/images/slider/cafe1.webp",
         "businessHours": "08:00 - 22:00",
         "features": {
             "wifi": {
@@ -63,7 +63,7 @@
         "areaNameJa": "渋谷",
         "address": "東京都渋谷区神南1丁目19-11",
         "budget": "￥550〜￥1,100",
-        "imageUrl": "/images/slider/cafeNormal2.webp",
+        "imageUrl": "/images/slider/cafeNormal.webp",
         "businessHours": "07:00 - 20:00",
         "features": {
             "wifi": {
@@ -171,7 +171,7 @@
         "areaNameJa": "福岡",
         "address": "福岡県福岡市中央区天神1丁目11-17",
         "budget": "￥1,100〜￥2,400",
-        "imageUrl": "/images/slider/cafeNight.webp",
+        "imageUrl": "/images/slider/cafeNight2.webp",
         "businessHours": "21:00 - 06:30",
         "features": {
             "wifi": {

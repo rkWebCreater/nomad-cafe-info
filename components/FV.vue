@@ -100,7 +100,7 @@ export interface TopHeroProps {
 }
 
 const props = withDefaults(defineProps<TopHeroProps>(), {
-  mainImage: 'images/FV/fv_1.mp4',
+  mainImage: 'images/FV/fv_1.webp',
   coffeeImage: 'images/FV/fv_2.mp4',
   interiorImage: 'images/FV/fv_3.webp'
 })

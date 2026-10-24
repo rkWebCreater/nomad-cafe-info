@@ -3,17 +3,29 @@
 <script lang="ts" setup>
 import { type Cafe } from "../schemas/cafe"
 
-const buildId = Date.now()
-defineProps<{
+const props = defineProps<{
   cafe: Cafe
 }>()
+
+const optimizedImageUrl =computed(()=>{
+  const url = props.cafe.imageUrl
+  if (!url) return ''
+
+  const separator = url.includes('?') ? '&' : '?'
+  const commitSha = import.meta.env.VERCEL_GIT_COMMIT_SHA || Date.now().toString()
+  const version = commitSha.slice(0 , 8)
+
+  return `${url}${separator}v=${version}`
+})
+
+
 </script>
 
 <template>
 
   <NuxtLink v-if="cafe" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
     <NuxtImg 
-      :src="`${cafe.imageUrl}?b=${buildId}`" 
+      :src="optimizedImageUrl"
       class="cafe-img object-cover rounded-t-lg" 
       :alt="cafe.name" 
       loading="lazy" 

@@ -6,7 +6,7 @@
       :breakpoints="swiperBreakpoints"
       :navigation="true"
       :pagination="{ clickable: true }"
-      class="cafe-cards-slider">
+      class="cafe-cards-slider ">
 
       <!-- 💡 ループ処理とスライドタグをここにまとめる -->
       <SwiperSlide v-for="cafe in allCafes" :key="cafe.id" class="overflow-hidden transition h-auto">
@@ -64,6 +64,8 @@ const swiperBreakpoints = {
 
 .cafe-cards-slider {
   width: 100%;
+  max-width: 1000px;
+  margin: auto ;
   /* ページネーション用の下部スペースを確保（カードと重ならないように） */
   padding-bottom: 44px ;
   position: relative;
@@ -133,9 +135,10 @@ const swiperBreakpoints = {
 @media (max-width: 767px) {
   .cafe-cards-slider :deep(.swiper-button-prev),
   .cafe-cards-slider :deep(.swiper-button-next) {
-    width: 32px;
-    height: 32px;
-    top: 36%;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    transform : translateY(-50%);
   }
 
   .cafe-cards-slider :deep(.swiper-button-prev)::after,

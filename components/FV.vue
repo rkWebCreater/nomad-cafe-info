@@ -19,6 +19,7 @@
             loading="null"
             sizes="xs:200px md:300px"
           />
+          <!--
           <video
             :src="mainImage"
             poster="/images/FV/fv_1.webp"
@@ -32,7 +33,7 @@
             fetchpriority="high"
             aria-hidden="true"
           ></video>
-
+          -->
         </div>
 
         <!-- 画像2（左下：コーヒーカップ） -->

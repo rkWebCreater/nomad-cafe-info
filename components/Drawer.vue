@@ -18,7 +18,7 @@
     <div :class="['drawer-menu', { 'is-open': isOpen }]" id="drawer-menu">
       <nav class="drawer-nav">
         <div class="tag-section">
-          <TagSection />
+          <TagSection class="tagConpo"/>
         </div>
         <ul>
           <!-- @click="closeMenu" を仕込むことで、リンクを踏んだ瞬間に自動でドロワーが閉じます v-forによる繰り返し処理-->
@@ -131,25 +131,25 @@
 }
 
 /* Drawer内のTagSectionだけをコンパクトに調整 */
-.drawer-nav .tag-section #cafeTag {
+.drawer-nav .tag-section .tagConpo {
   padding-inline: 0;
   margin-bottom: 24px;
 }
 
-.drawer-nav .tag-section #cafeTag .section-ttl {
+.drawer-nav .tag-section .tagConpo .section-ttl {
   font-size: 16px;
   margin-bottom: 8px;
 }
 
-.drawer-nav .tag-section #cafeTag > p {
+.drawer-nav .tag-section .tagConpo > p {
   display: none; /* Drawer内では説明文を非表示にする */
 }
 
-.drawer-nav .tag-section #cafeTag > div {
+.drawer-nav .tag-section .tagConpo > div {
   gap: 8px;
 }
 
-.drawer-nav .tag-section #cafeTag > div a {
+.drawer-nav .tag-section .tagConpo > div a {
   display: inline-flex;
   width: auto;
   align-items: center;
@@ -257,6 +257,27 @@
   })
   
 </script>
+<!-- Nuxt3 / Vue3】ドロワー＆スクロールコードの重要用語解説1. Vue / Nuxt の基本機能（関数）
+
+
+ ref() （レフ） 日常のたとえ: 画面と連動する 「魔法のホワイトボード」解説: 普通の変数（let x = false）は、中身を書き換えても画面の見た目は変わりません。しかし ref(false) で囲むと、JavaScript側で isOpen.value = true に書き換えた瞬間に、画面側のHTML（ドロワーメニュー）も連動してパッと自動で開くようになります。
+ このように画面をリアルタイムに動かす仕組みを「リアクティブ」と呼びます。
+  
+ onMounted() （オン・マウンテッド）日常のたとえ: お店の 「オープン初日（開店の瞬間）」解説: ページがブラウザに表示され、HTMLの組み立てが100%完了した「一番最初の瞬間」に、中の処理（スクロールチェックなど）を1回だけ自動で実行してくれる案内役です。
+  
+ watch() （ウォッチ）日常のたとえ: 24時間体制の 「監視カメラ」解説: 指定したデータ（今回はURLの #about-con などのハッシュ）をじーっと見張り続け、中身が変化した「その瞬間」を検知して、自動で次の処理（スクロール関数など）を呼び出してくれる防犯カメラのような機能です。
+  ブラウザ標準の機能（Web APIメソッド・プロパティ）
+  
+ document.getElementById()   日常のたとえ: 巨大なマンションから 「部屋番号で住人を一本釣りする」解説: 画面の中にある無数のHTML要素の中から、指定した id="about-con" などの名前（ID）を持っている要素を1つだけピンポイントで探し出して連れてくる命令です。
+ 
+ getBoundingClientRect() （ビー・アール・シー）日常のたとえ: 建築士の 「レーザー距離計（測定器）」解説: 探し出してきたHTML要素が、「今、画面の最上部から数えて何ピクセル下に位置しているか」という正確な現在地（座標情報）をリアルタイムに測って教えてくれる超高精度なメソッドです。
+  
+ window.scrollY   日常のたとえ: マラソンの 「これまでに走った（スクロールした）累計距離」解説: ユーザーがページを上から下へどれだけスクロールしたか、その「現在のスクロール量（ピクセル）」を表すプロパティです。
+ 
+ window.scrollTo()  日常のたとえ: 指定の場所へワープさせる 「自動操縦ボタン」解説: ブラウザの画面を指定した位置まで自動で動かす命令です。オプションに { behavior: 'smooth' } を指定することで、一瞬でワープするのではなく、カメラがスーッと滑らかに移動する（スムーズスクロール）ようになります。 
+  
+ import.meta.client  日常のたとえ: 「ここはブラウザ（パソコンの画面）ですか？」という確認の合図解説: Nuxt 3は、画面を表示する前に「サーバー側（裏側）」で一度HTMLを組み立てます。しかし、サーバー側には window や document（画面）が存在しないため、直接スクロールを実行しようとすると画面が真っ白にクラッシュしてしまいます。
+ if(import.meta.client) と書くことで、「サーバー側での処理のときはスルーして、ユーザーのブラウザ画面に表示されたときだけ安全にスクロールを実行してね」という強力な安全装置（防壁）になります。
   
  setTimeout()  日常のたとえ: 「ちょっと100ミリ秒（0.1秒）だけお茶を飲んで待つ」解説: ページが切り替わった直後は、まだ文字や画像の読み込みが完全に終わっておらず、スクロール位置がズレてしまうことがあります。
  setTimeout(() => { ... }, 100) と書くことで、ほんの一瞬だけ実行を遅らせ、ブラウザが幅や高さを完全に計算し終えた「一番綺麗なタイミング」でスクロールを走らせる、実務でも必須のズレ防止テクニックです。

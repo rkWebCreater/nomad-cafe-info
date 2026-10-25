@@ -34,7 +34,7 @@ const optimizedImageUrl = computed(() => {
   <NuxtLink v-if="cafe" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
     <NuxtImg 
       :src="optimizedImageUrl"
-      :key="optimizedImageUrl"
+      :key="`${cafe.id}-${cafe.imageUrl}`"
       class="cafe-img object-cover rounded-t-lg" 
       :alt="cafe.name" 
       loading="lazy" 

@@ -31,13 +31,13 @@ const optimizedImageUrl = computed(() => {
 
 <template>
 
-  <NuxtLink v-if="cafe" :key="`${cafe.id}-${cafe.imageUrl}`" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
+  <NuxtLink v-if="cafe" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
     <NuxtImg 
       :src="optimizedImageUrl"
-      
+      :key="`${cafe.id}-${cafe.imageUrl}`"
       class="cafe-img object-cover rounded-t-lg" 
       :alt="cafe.name" 
-      loading="lazy" 
+      sizes="sm:100vw lg:33vw" 
     />
     <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-1 content-between card-body-height flex-1 bg-white rounded-b-lg">
       <div>

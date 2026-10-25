@@ -207,42 +207,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
         grid-row: 8 / 12;
         animation: moveUnder 1.5s ease-out infinite; 
       }
-      /*メイン画像　アニメーション */
-    @keyframes moveScale{
-        0%{
-             scale:1;
-        }
-        50%{
-             scale:0.98;
-        }
-        100%{
-             scale:1;
-        }
-      }
-  /* 右画像　アニメーション */
-      @keyframes moveUnder{
-        0%{
-             transform:translateY(-3px);
-        }
-        50%{
-             transform:translateY(0px);
-        }
-        100%{
-             transform:translateY(-3px);
-         }
-       }
-      /*左画像　アニメーション */
-      @keyframes moveSide {
-         0% {
-            transform: translateX(3px); /*横移動 transform: translateX() に修正 */
-         }
-         50% {
-            transform: translateX(0px);
-         }
-         100% {
-            transform: translateX(3px);
-         }
-      }
+    
     }
   }
   

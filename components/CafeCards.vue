@@ -38,7 +38,7 @@ const optimizedImageUrl = computed(() => {
       class="cafe-img object-cover rounded-t-lg" 
       :alt="cafe.name"
       width="500"
-　　  height="300" 
+　　  height="330" 
   　　loading="lazy" 
     />
     <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-1 content-between card-body-height flex-1 bg-white rounded-b-lg">

@@ -20,10 +20,11 @@ const areaList = [
       <div class="footer-item footer-brand">
         <NuxtLink to="/" class="inline-block">
           <img 
-            src="/images/Logo/nomad_cafe_info.png" 
+            src="/images/Logo/nomad_cafe_info.webp" 
             class="footer-logo" 
             width="150" 
             height="33" 
+            sizes="sm:150px md:200px"
             alt="nomad cafe info"
           />
         </NuxtLink>

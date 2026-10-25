@@ -30,9 +30,9 @@ export default defineNuxtConfig({
   modules: [ 
     '@nuxtjs/tailwindcss' ,
     '@nuxt/image',
-    '@nuxt/google-fonts'
+    '@nuxt/fonts'
   ],
-  googleFonts: {
+  Fonts: {
     // Zen Kurenaido のみを指定（通常ウェイトの 400 のみ）
     families: {
       'Zen+Kurenaido': [400],

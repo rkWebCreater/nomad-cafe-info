@@ -10,10 +10,23 @@ export default defineNuxtConfig({
   // Vite 8 と既存 Tailwind CSS v3 の CSS minify 互換性を保つ
   vite: {
     build: {
-      cssMinify: 'esbuild'
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            }
+          }
+        }
+      }
     }
   },
-  
+  // 実験的機能やnitroの最適化（必要に応じて）
+  experimental: {
+    inlineSSRStyles: true // SSR時のCSSをインライン化してレンダリングブロックを軽減
+  },
+
   runtimeConfig:{
     // サーバーサイドでのみアクセス可能（ブラウザには露出しない）
     geminiApiKey: process.env.GEMINI_API_KEY

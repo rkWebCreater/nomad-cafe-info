@@ -7,7 +7,7 @@
       :breakpoints="swiperBreakpoints"
       :navigation="true"
       :pagination="{ clickable: true }"
-      :initial-slide="initialSlide"
+      :initial-slide="initialSlide" 
       @slideChange="saveSlide"
       class="cafe-cards-slider">
 

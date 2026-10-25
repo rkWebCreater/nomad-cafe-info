@@ -8,7 +8,7 @@ const props = defineProps<{
   cafe: Cafe
 }>()
 
-// 2. 画像URLにキャッシュバスティング用のクエリパラメータを自動付与する算出プロパティ
+/* 2. 画像URLにキャッシュバスティング用のクエリパラメータを自動付与する算出プロパティ
 const optimizedImageUrl = computed(() => {
   const url = props.cafe.imageUrl
   if (!url) return ''
@@ -26,15 +26,15 @@ const optimizedImageUrl = computed(() => {
   // 5. 元のURLの末尾に '?v=xxxxx'（または '&v=xxxxx'）を結合した新しいURLを返す
   return `${url}${separator}v=${version}`
 })
-
+*/
 </script>
 
 <template>
 
   <NuxtLink v-if="cafe" :to="`/cafes/${cafe.id}`" class="card-link block text-left flex flex-col flex-1">
     <img 
-      :src="optimizedImageUrl"
-      :key="`${cafe.id}-${cafe.imageUrl}`"
+      :src="cafe.imageUrl"
+      :key="cafe.id"
       class="cafe-img object-cover rounded-t-lg" 
       :alt="cafe.name" 
       sizes="sm:100vw lg:33vw" 

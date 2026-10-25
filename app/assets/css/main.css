@@ -1,0 +1,8 @@
+/* app/assets/css/main.css */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
+
+body {
+  font-family: 'Zen Kurenaido', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

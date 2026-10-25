@@ -56,7 +56,13 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'カフェ検索webアプリをvue nuxt typescriptで開発' }
       ],
-      
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png', sizes: '96x96' }, //favicon設定
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'shortcut icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/site.webmanifest' }
+      ],
       // 万が一JSがオフの環境向けのフォールバック（推奨）
       noscript: [
         {

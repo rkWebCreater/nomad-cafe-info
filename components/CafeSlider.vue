@@ -2,6 +2,7 @@
   <div class="cafe-slider-wrapper ">
     <!-- Swiperの読み込みやレスポンシブ設定はここ1箇所に集約 -->
     <Swiper
+      :key="`${stateKey}-${allCafes.length}`"
       :modules="modules"
       :breakpoints="swiperBreakpoints"
       :navigation="true"

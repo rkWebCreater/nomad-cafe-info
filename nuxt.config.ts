@@ -32,6 +32,16 @@ export default defineNuxtConfig({
     '@nuxt/fonts'
   ],
 
+  image: {
+    // 外部CDNやUnsplashのドメインを許可
+    domains: [
+      'images.unsplash.com'
+    ],
+    // クオリティやデフォルト設定
+    quality: 80,
+    format: ['avif', 'webp']
+  },
+
   // tailwindcssの設定をNuxtに渡す
   tailwindcss: {
     exposeConfig: true,
@@ -46,7 +56,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@/assets/css/main.css',
+    '@/app/assets/css/main.css',
     'swiper/css',
     'swiper/css/navigation',
     'swiper/css/pagination'

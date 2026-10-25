@@ -23,6 +23,7 @@
    <CafeAreas />
 
    <!-- タグから探す -->
+   <div id="cafeTag"></div>
    <TagSection />
 
    <!-- 新着おすすめカフェ -->

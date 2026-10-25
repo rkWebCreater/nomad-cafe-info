@@ -9,12 +9,11 @@ export default defineNuxtConfig({
 
   // Vite 8 と既存 Tailwind CSS v3 の CSS minify 互換性を保つ
   vite: {
-    build: {
-      
-      cssCodeSplit: true,   
-        
-      
-    }
+      build: {
+           // Vite 8 でデフォルトになった lightningcss を避け、
+           // 従来（Vite 7以前）の esbuild による CSS ミニファイに固定して互換性を維持
+           cssMinify: 'esbuild'
+      }
   },
   // 実験的機能やnitroの最適化（必要に応じて）
   experimental: {
@@ -32,16 +31,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/fonts'
   ],
-  Fonts: {
-    // Zen Kurenaido のみを指定（通常ウェイトの 400 のみ）
-    families: {
-      'Zen+Kurenaido': [400],
-    },
-    display: 'swap',
-    preload: true,
-    download: true, // プロジェクト内にローカルホストして外部DNS/TLS遅延をゼロにする
-    inject: true,
-  },
+
   // tailwindcssの設定をNuxtに渡す
   tailwindcss: {
     exposeConfig: true,
@@ -56,6 +46,7 @@ export default defineNuxtConfig({
   },
 
   css: [
+    '@/assets/css/main.css',
     'swiper/css',
     'swiper/css/navigation',
     'swiper/css/pagination'

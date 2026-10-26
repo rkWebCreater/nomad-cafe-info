@@ -59,9 +59,18 @@ export default defineNuxtConfig({
   modules: [ 
     '@nuxtjs/tailwindcss' ,
     '@nuxt/image',
-    '@nuxt/fonts'
+    '@nuxt/fonts',
+    '@nuxtjs/google-fonts'
   ],
-
+  googleFonts: {
+    families: {
+      // 例: Zen Kurenaido の 400ウェイトのみを指定
+      'Zen+Kurenaido': [400],
+    },
+    display: 'swap',
+    download: true, // 自動でローカルにダウンロードして配信（これが重要）
+    inject: true,
+  },
   image: {
     // 外部CDNやUnsplashのドメインを許可
     domains: [
@@ -71,7 +80,6 @@ export default defineNuxtConfig({
     quality: 80,
     format: ['avif', 'webp']
   },
-
   // tailwindcssの設定をNuxtに渡す
   tailwindcss: {
     exposeConfig: true,

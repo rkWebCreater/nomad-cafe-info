@@ -7,6 +7,28 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+ // swiper element webcomponent 読み込み
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
+    },
+  },
+  nitro: {
+    prerender: {
+      // 検索ページ（クエリパラメータ付き含む）の事前生成を対象外にする
+      ignore: [
+        '/search',
+        '/Search',
+        '/nomad-cafe-info/search',
+        '/nomad-cafe-info/Search'
+      ]
+    }
+  },
+  // 静的に配信できるページ（トップページなど）をあらかじめビルド時に生成する
+  routeRules: {
+    '/': { prerender: true },
+    '/search': { swr: 3600 }, // 1時間キャッシュを維持
+  },
   // Vite 8 と既存 Tailwind CSS v3 の CSS minify 互換性を保つ
   vite: {
       build: {
@@ -101,22 +123,6 @@ export default defineNuxtConfig({
     }
   },
 
-  // swiper element webcomponent 読み込み
-  vue: {
-    compilerOptions: {
-      isCustomElement: (tag) => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
-    },
-  },
-  nitro: {
-    prerender: {
-      // 検索ページ（クエリパラメータ付き含む）の事前生成を対象外にする
-      ignore: [
-        '/search',
-        '/Search',
-        '/nomad-cafe-info/search',
-        '/nomad-cafe-info/Search'
-      ]
-    }
-  }
+  
 
 })

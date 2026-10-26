@@ -211,7 +211,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     }
   }
   
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     .hero-gallery {
       max-width: 100%;
       height: 480px;

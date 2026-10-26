@@ -13,7 +13,15 @@ export default defineNuxtConfig({
            // Vite 8 でデフォルトになった lightningcss を避け、
            // 従来（Vite 7以前）の esbuild による CSS ミニファイに固定して互換性を維持
            cssMinify: 'esbuild'
-      }
+      },
+      optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        'swiper/modules',
+        'swiper/vue',
+        'zod',
+      ]
+    }
   },
   // 実験的機能やnitroの最適化（必要に応じて）
   experimental: {
@@ -71,6 +79,9 @@ export default defineNuxtConfig({
     baseURL: '/',
     head: {
       title: 'nomad-cafe-info', 
+      htmlAttrs:{
+        lang : 'ja'
+      },
       meta: [
         { name: 'description', content: 'カフェ検索webアプリをvue nuxt typescriptで開発' }
       ],

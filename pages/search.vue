@@ -15,6 +15,41 @@ const {
   searchTag,       // 画面にタグを表示する用
 } = useCafe()
 
+//もっと見るボタンの処理
+const isMobile = ref(false)
+const loadedMoreCount = ref(0) //もっと見るボタンの最初のカウントを0にする
+
+
+const initialResultCount = computed(() => isMobile.value ? 6 : 10)
+const visibleSearchResults = computed(() =>
+  searchResults.value.slice(0, initialResultCount.value + loadedMoreCount.value)
+)
+
+//もっと見るボタンを押すごとに10件ずつ追加表示
+const showMoreResults = () => {
+  loadedMoreCount.value += 10
+}
+
+const updateViewport = () => {
+  isMobile.value = window.innerWidth < 768
+}
+
+onMounted(() => {
+  updateViewport()
+  window.addEventListener('resize', updateViewport)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateViewport)
+})
+
+//検索結果が変わったらもっと見るボタンのカウントを0にする
+watch(searchResults, () => {
+  loadedMoreCount.value = 0
+})
+
+
+
 // ③ タグの英名（例: "power"）を日本語（例: "電源あり"）に変換する計算
 const searchTagName = computed(() => {
   if(!searchTag.value) return ''
@@ -76,7 +111,7 @@ const searchAreaName = computed(() => {
   <!-- 検索結果一覧 -->
   <!-- 1件以上ある場合 -->
   <ul v-if="searchResults.length > 0" class="cafe_filter_list ml-auto mr-auto">
-    <li v-for="filteredCafe in searchResults" :key="filteredCafe.id">
+    <li v-for="filteredCafe in visibleSearchResults" :key="filteredCafe.id">
       <NuxtLink :to="`/cafes/${filteredCafe.id}`" class="block h-full">
         <img :src="filteredCafe.imageUrl" :alt="filteredCafe.name" class="w-full h-48 object-cover"/>
         
@@ -98,10 +133,10 @@ const searchAreaName = computed(() => {
           
           <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
             <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4">{{ filteredCafe.features?.wifi?.available ? 'あり' : 'なし' }}
+              <img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4">{{ filteredCafe.features?.wifi?.available ? '◎' : '✖' }}
             </span>
             <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="/images/icon/power_icon.png" alt="powerのアイコン" class="w-4">{{ filteredCafe.features?.power?.available ? 'あり' : 'なし' }}
+              <img src="/images/icon/power_icon.png" alt="powerのアイコン" class="w-4">{{ filteredCafe.features?.power?.available ? '◎' : '✖' }}
             </span>
           </div>
 
@@ -110,17 +145,30 @@ const searchAreaName = computed(() => {
     </li>
   </ul>
 
+  <button
+    v-if="visibleSearchResults.length < searchResults.length"
+    type="button"
+    class="more_show_btn block mx-auto my-8 rounded-full px-8 py-3 font-bold text-white transition "
+    @click="showMoreResults"
+  >
+    もっと見る
+  </button>
+
   <!-- 0件の場合のメッセージ （ローディング中でない時だけ表示）-->
-  <div v-else-if="!isLoading" class="text-center py-12 text-gray-500">
+  <div v-if="searchResults.length === 0 && !isLoading" class="text-center py-12 text-gray-500">
     <p class="text-lg font-medium">条件に一致するカフェが見つかりませんでした。</p>
     <p class="text-sm mt-2">検索キーワードやエリアを変更して再度お試しください。</p>
-    <p v-if="searchTag === 'meeting'" class="text-xs text-amber-700 bg-amber-50 inline-block px-3 py-1.5 rounded-full mt-4 border border-amber-200">
+    <p v-if="searchTag === 'meeting'" class="text-xs text-amber-700 bg-[]-50 inline-block px-3 py-1.5 rounded-full mt-4 border border-amber-200">
       ※「打あわせ可」は0件表示のデザイン確認用のため、現在データをセットしていません。
     </p>
   </div>
+
 </template>
 
-<style>
+<style scoped>
+ :global(:root){
+  --color-bg : rgb(237, 244, 251);
+ }
  .search_result{
               padding: 20px;
               margin-top: 80px;
@@ -129,7 +177,7 @@ const searchAreaName = computed(() => {
             h1{
               width: fit-content;
               font-size:20px ;
-              background: aliceblue;
+              background: var(--color-bg);
               border-radius: 40px;
               padding: 10px 20px 10px 20px;
               margin-left: auto;
@@ -138,7 +186,7 @@ const searchAreaName = computed(() => {
             }
             p{
               width: fit-content;
-              background: aliceblue;
+              background: var(--color-bg);
               border-radius: 40px;
               padding: 10px 20px ;
               margin-left: auto;
@@ -148,7 +196,9 @@ const searchAreaName = computed(() => {
              span{
                  background: linear-gradient(transparent 45%, rgb(232 204 180) 80%);
              }
+
             }
+
  }
  .cafe_filter_list{
                display: grid;
@@ -159,7 +209,7 @@ const searchAreaName = computed(() => {
                gap: 20px;
 
               li{
-                background: white;
+                background: var(--color-bg);
                 border-radius: 10px;
 
                img{
@@ -177,4 +227,11 @@ const searchAreaName = computed(() => {
       align-content: center;
   }
 }
+.more_show_btn{
+  background : #3e2b24;
+}
+.more_show_btn:hover{
+  background : #634d46;
+}
+
 </style>

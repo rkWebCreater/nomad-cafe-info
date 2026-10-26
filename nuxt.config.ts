@@ -24,11 +24,6 @@ export default defineNuxtConfig({
       ]
     }
   },
-  // 静的に配信できるページ（トップページなど）をあらかじめビルド時に生成する
-  routeRules: {
-    '/': { prerender: true },
-    '/search': { swr: 3600 }, // 1時間キャッシュを維持
-  },
   // Vite 8 と既存 Tailwind CSS v3 の CSS minify 互換性を保つ
   vite: {
       build: {
@@ -62,14 +57,19 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxtjs/google-fonts'
   ],
+  // Google Fonts の最適化設定（Zen Kurenaido のみ＆ローカルホスト配信）
   googleFonts: {
     families: {
-      // 例: Zen Kurenaido の 400ウェイトのみを指定
       'Zen+Kurenaido': [400],
     },
     display: 'swap',
-    download: true, // 自動でローカルにダウンロードして配信（これが重要）
+    download: true, // 自動でプロジェクト内にダウンロードして配信（これが重要）
     inject: true,
+  },
+  // 静的に配信できるページ（トップページなど）をあらかじめビルド時に生成する
+  routeRules: {
+    '/': { prerender: true },
+    '/search': { swr: 3600 },
   },
   image: {
     // 外部CDNやUnsplashのドメインを許可

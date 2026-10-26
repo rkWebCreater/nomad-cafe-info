@@ -117,10 +117,12 @@ const swiperBreakpoints = {
     width: 20px;
     height: 20px;
     color: var(--color-text, #3e2b24);      /* サイトの濃いブラウン */
-    border: 1px solid var(--color-border, #ddcdbd);
+    background: rgba(255, 255, 255, 0.5);
+    border: 5px solid var(--color-border, #372514);
     border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(62, 43, 36, 0.12);
-    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px #3e2b241f;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(5px);
     transition: all 0.2s ease-in-out;
     z-index: 10;
     top: 50%; /* カード写真と情報の境目付近 */

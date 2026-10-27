@@ -5,7 +5,7 @@ const route = useRoute();
 <template>
   <!-- pagesフォルダの中身をURLに合わせて自動で映し出すスイッチです -->
    <div class="app-shell">
-    <RouteBackground :key="route.path" :accent-rate="0.08" />
+    <RouteBackground :key="route.path" :accent-rate="0.28" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -25,7 +25,6 @@ body {
   color: var(--color-text);
   background: var(--color-base);
   margin: 0;
-  font-family: 'zen kurenaido', sans-serif;
 }
 .app-shell {
   position: relative;

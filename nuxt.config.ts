@@ -54,18 +54,8 @@ export default defineNuxtConfig({
   modules: [ 
     '@nuxtjs/tailwindcss' ,
     '@nuxt/image',
-    '@nuxt/fonts',
-    '@nuxtjs/google-fonts'
+    '@nuxt/fonts'
   ],
-  // Google Fonts の最適化設定（Zen Kurenaido のみ＆ローカルホスト配信）
-  googleFonts: {
-    families: {
-      'Zen+Kurenaido': [400],
-    },
-    display: 'swap',
-    download: true, // 自動でプロジェクト内にダウンロードして配信（これが重要）
-    inject: true,
-  },
   // 静的に配信できるページ（トップページなど）をあらかじめビルド時に生成する
   routeRules: {
     '/': { prerender: true },
@@ -121,13 +111,8 @@ export default defineNuxtConfig({
         { rel: 'shortcut icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' }
-      ],
-      // 万が一JSがオフの環境向けのフォールバック（推奨）
-      noscript: [
-        {
-          children: '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Style+Script&display=swap">'
-        }
       ]
+      
     }
   },
 

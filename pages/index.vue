@@ -26,8 +26,8 @@
    <div id="cafeTag"></div>
    <TagSection />
 
-   <!-- 新着おすすめカフェ 
-   <NewCafes />-->
+   <!-- 新着おすすめカフェ -->
+   <NewCafes />
   
   </div>
 </template>
@@ -43,8 +43,6 @@ header{
         
       h1{
         color:rgb(65, 40, 20);
-        font-family: "Zen Kurenaido", sans-serif;
-        font-style: normal;
         position: absolute;
 
         .mCatch{
@@ -74,7 +72,7 @@ header{
                      position: relative;
           
            .canSlide{
-                     color: white;
+                     color: var(--color-text-white);
                      text-align:center;
             }
 }

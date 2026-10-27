@@ -1,8 +1,6 @@
 /* app/assets/css/main.css */
-@import "@fontsource/zen-kurenaido";
-
 body {
-  font-family: 'Zen Kurenaido', sans-serif;
+   font-family:  "Yu Gothic" , "Hiragino Kaku Gothic ProN" , "Hiragino Sans";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

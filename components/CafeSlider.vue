@@ -104,7 +104,7 @@ const swiperBreakpoints = {
   position: relative;
 }
 
-/* スマホ表示
+/*デフォルト表示
    - カード内容を隠さないよう小さめにし、左右端に寄せて配置
    - カードのサムネイル画像付近（top: 36%）に配置して文字と被らない設計
 */ 
@@ -116,9 +116,9 @@ const swiperBreakpoints = {
   .cafe-cards-slider :deep(.swiper-button-next) {
     width: 25px;
     height: 25px;
-    color: var(--color-text, #3e2b24);      /* サイトの濃いブラウン */
+    color: var(--color-text);     /* サイトの濃いブラウン */
     background: rgba(255, 255, 255, 0.5);
-    border: 5px solid var(--color-border, #372514);
+    border: 5px solid rgba(55, 37, 20, 0.8);
     border-radius: 50%;
     box-shadow: 0 4px 12px #3e2b241f;
     -webkit-backdrop-filter: blur(4px);
@@ -226,8 +226,8 @@ const swiperBreakpoints = {
 /* ホバー時（PC） */
 .cafe-cards-slider :deep(.swiper-button-prev):hover,
 .cafe-cards-slider :deep(.swiper-button-next):hover {
-  color: var(--color-accent, #c59915);
-  border-color: var(--color-accent, #c59915);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
   box-shadow: 0 6px 16px rgba(62, 43, 36, 0.18);
 }
 

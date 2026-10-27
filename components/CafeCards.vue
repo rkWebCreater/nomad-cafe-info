@@ -95,7 +95,7 @@ const optimizedImageUrl = computed(() => {
 .tags {
   & span {
      color: var(--color-muted);
-     background: var(--color-base);
+     background: rgba(248, 227, 192, 0.2);
      display: flex;
      gap: 4px;
      flex-wrap: wrap;

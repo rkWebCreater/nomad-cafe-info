@@ -114,8 +114,8 @@ const swiperBreakpoints = {
 
   .cafe-cards-slider :deep(.swiper-button-prev),
   .cafe-cards-slider :deep(.swiper-button-next) {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     color: var(--color-text, #3e2b24);      /* サイトの濃いブラウン */
     background: rgba(255, 255, 255, 0.5);
     border: 5px solid var(--color-border, #372514);

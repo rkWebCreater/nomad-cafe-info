@@ -26,8 +26,8 @@
    <div id="cafeTag"></div>
    <TagSection />
 
-   <!-- 新着おすすめカフェ -->
-   <NewCafes />
+   <!-- 新着おすすめカフェ 
+   <NewCafes />-->
   
   </div>
 </template>

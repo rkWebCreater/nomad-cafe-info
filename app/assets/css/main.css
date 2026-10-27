@@ -3,4 +3,23 @@ body {
    font-family:  "Yu Gothic" , "Hiragino Kaku Gothic ProN" , "Hiragino Sans";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+:root{
+  --color-base: #f5efe5;
+  --color-accent: #d2a933;
+  --color-border: #d6bfa7;
+  --color-text: #3e2b24;
+  --color-text-white : white;
+  --color-muted: #5c5049;
+}
+/* 2. 見出し（h1〜h6）だけを Google Fonts（Zen Kurenaido）にする */
+h1, h2, h3, h4, h5, h6 {
+   font-family: 'Zen Kurenaido', sans-serif;
+  
+   /* ブラウザの強制太字を解除（文字が潰れるのを防ぐ） */
+   font-weight: 400; 
+  
+   /* 文字の隙間を少しあけて読みやすくする */
+   letter-spacing: 0.04em; 
 }

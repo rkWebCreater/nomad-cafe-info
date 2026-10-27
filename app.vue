@@ -12,14 +12,6 @@ const route = useRoute();
   </div>
 </template>
 <style>
-:root{
-  --color-base: #f5efe5;
-  --color-accent: #d2a933;
-  --color-border: #d6bfa7;
-  --color-text: #3e2b24;
-  --color-text-white : white;
-  --color-muted: #5c5049;
-}
  /* サイト全体の背景色を一括で指定します */
 body {
   color: var(--color-text);

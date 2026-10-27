@@ -4,7 +4,7 @@
     "keywords": ["電源", "電源あり", "コンセント", "コンセントあり", "power"]
   },
   "wifi": {
-    "name": "Wifi",
+    "name": "WiFi",
     "keywords": ["wifi", "wifiあり", "wi-fi", "わいふぁい", "わいふぁいあり", "ワイファイ", "ワイファイあり"]
   },
   "morning": {

@@ -1,5 +1,5 @@
 //google gemini apiを使って検索バーにgeminiを組み込む
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI, Type , ThinkingLevel} from "@google/genai";
 import cafeData from "../data/cafes.json"
 import featureMaster from "@@/data/features.json"
 
@@ -43,7 +43,7 @@ export default defineEventHandler(async(event) =>{
     try{
         // 1. Geminiに「この条件でJSON形式で返してね」とお願いする
         const response = await ai.models.generateContent({
-            model: "gemini-3.7-flash",
+            model: "gemini-3.5-flash-lite",
             contents:`ユーザーのカフェ検索要望から検索条件を抽出してください。検索できる設備・条件は以下です。
             ${featureInstructions}
             ユーザーの文章に該当する条件があればfeaturesに入れてください。
@@ -51,7 +51,12 @@ export default defineEventHandler(async(event) =>{
             ユーザー入力: "${userText}"`,
 
             config:{
+                
                 responseMimeType:"application/json",
+                
+                thinkingConfig: {
+                        thinkingLevel: ThinkingLevel.MINIMAL,
+                },
                 responseSchema:{
                     type:Type.OBJECT,
                     properties:{

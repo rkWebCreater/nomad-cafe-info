@@ -34,9 +34,13 @@ const handleSearch = () => {
     />
     <button type="submit" class="search-button">検索</button>
   </form>
+  <div class="attention">
+   <p>※「渋谷の電源があるカフェ」、「名古屋のWi-Fiが使えるカフェ」などの文章でも検索可能</p>
+  </div>
 </template>
 
 <style scoped>
+
 .search-container {
   max-width: 500px;
   max-height:40px;
@@ -44,33 +48,45 @@ const handleSearch = () => {
   display: flex;
   justify-content: center;
   gap: 1px;
+  position : relative;
 }
+
 .search-input {
   padding: 0 10px ;
   font-size: 16px ;
   border: 1px solid var(--color-border) ;
-  border-radius: 5px ;
+  border-radius: 20px ;
   width: 100% ;
-  height:32px ;
-
-  @media (min-width:768px){
-    height:40px ;
-  }
+  height:40px ;
   
 }
 /* 検索ボタン */
 .search-button {
   width:80px;
+  height:35px;
   font-size: 16px;
   color: white;
   background: linear-gradient(300deg , rgb(111, 88, 3) ,rgb(71, 45, 14));
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: 20px;
   cursor: pointer;
   transition:ease-in-out 0.5ms;
-
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  transform: translateY(-50%);
 }
+
 .search-button:hover {
   background: linear-gradient(30deg , rgba(111, 88, 3, 0.8),rgba(71, 45, 14, 0.8));
+  top:55%;
+}
+
+/*検索バーの下の※注意書き */
+.attention p{
+  font-size:12px;
+  @media(min-width:768px){
+    font-size:14px;
+  }
 }
 </style>

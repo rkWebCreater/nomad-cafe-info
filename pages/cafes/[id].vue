@@ -1,5 +1,29 @@
 <!-- pages/cafes/[id].vue カフェの詳細ページ-->
 
+
+<script setup>
+const route = useRoute()
+const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分をリアルタイムで検知
+const { allCafes, checkIfOpen } = useCafe()
+
+// 現在開いている詳細ページのカフェのデータを取得
+const { data: cafe } = await useAsyncData(
+  () => `cafe-${cafeId.value}`,
+  () => {
+    const found = allCafes.value.find(cafe => String(cafe.id) === cafeId.value)
+    return Promise.resolve(found || null)
+  },
+  {
+    watch: [cafeId]
+  }
+)
+
+// 他の営業中のカフェ（今見ているカフェは除外 ＋ 営業時間内のカフェのみ）
+const othersCafes = computed(() => {
+  return allCafes.value.filter(cafe => String(cafe.id) !== cafeId.value && checkIfOpen(cafe.businessHours))
+})
+</script>
+
 <template>
   <div class="max-w-5xl mx-auto p-4 md:p-6 text-left">
     
@@ -9,6 +33,9 @@
       <!-- メイン画像エリア -->
       <div class="hero-image-wrapper relative w-full md:w-1/2 h-72 md:h-96 rounded-2xl overflow-hidden shadow-md ">
         <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" />
+        <div class="sns_link">
+         <SnsLinks :socialLinks="cafe.socialLinks" /> 
+        </div>
       </div>
       <!--  情報カードエリア  -->
       <div class="info-card bg-white border border-[#efe8e1] rounded-2xl p-6 md:p-10 shadow-sm">
@@ -260,25 +287,3 @@
   margin-bottom: 16px;
 }
 </style>
-<script setup>
-const route = useRoute()
-const cafeId = computed(() => route.params.id) //URLの末尾cafe.idの部分をリアルタイムで検知
-const { allCafes, checkIfOpen } = useCafe()
-
-// 現在開いている詳細ページのカフェのデータを取得
-const { data: cafe } = await useAsyncData(
-  () => `cafe-${cafeId.value}`,
-  () => {
-    const found = allCafes.value.find(cafe => String(cafe.id) === cafeId.value)
-    return Promise.resolve(found || null)
-  },
-  {
-    watch: [cafeId]
-  }
-)
-
-// 他の営業中のカフェ（今見ているカフェは除外 ＋ 営業時間内のカフェのみ）
-const othersCafes = computed(() => {
-  return allCafes.value.filter(cafe => String(cafe.id) !== cafeId.value && checkIfOpen(cafe.businessHours))
-})
-</script>

@@ -19,35 +19,33 @@ const {
 const isMobile = ref(false)
 const loadedMoreCount = ref(0) //もっと見るボタンの最初のカウントを0にする
 
-
 const initialResultCount = computed(() => isMobile.value ? 6 : 10)
 const visibleSearchResults = computed(() =>
   searchResults.value.slice(0, initialResultCount.value + loadedMoreCount.value)
 )
 
 //もっと見るボタンを押すごとに10件ずつ追加表示
-const showMoreResults = () => {
+function showMoreResults() {
   loadedMoreCount.value += 10
 }
 
-const updateViewport = () => {
+const mobileViewport = () => {
   isMobile.value = window.innerWidth < 768
 }
 
 onMounted(() => {
-  updateViewport()
-  window.addEventListener('resize', updateViewport)
+  mobileViewport()
+  window.addEventListener('resize', mobileViewport)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', updateViewport)
+  window.removeEventListener('resize', mobileViewport)
 })
 
 //検索結果が変わったらもっと見るボタンのカウントを0にする
 watch(searchResults, () => {
   loadedMoreCount.value = 0
 })
-
 
 
 // ③ タグの英名（例: "power"）を日本語（例: "電源あり"）に変換する計算
@@ -133,10 +131,10 @@ const searchAreaName = computed(() => {
           
           <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
             <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" class="w-4">{{ filteredCafe.features?.wifi?.available ? '◎' : '✖' }}
+              <img src="/images/icon/wifi_icon.svg" alt="wifiのアイコン" class="w-4">{{ filteredCafe.features?.wifi?.available ? '◎' : '✖' }}
             </span>
             <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="/images/icon/power_icon.png" alt="powerのアイコン" class="w-4">{{ filteredCafe.features?.power?.available ? '◎' : '✖' }}
+              <img src="/images/icon/power_icon.svg" alt="powerのアイコン" class="w-4">{{ filteredCafe.features?.power?.available ? '◎' : '✖' }}
             </span>
           </div>
 

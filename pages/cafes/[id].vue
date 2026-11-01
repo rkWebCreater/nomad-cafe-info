@@ -4,19 +4,19 @@
   <div class="max-w-5xl mx-auto p-4 md:p-6 text-left">
     
     <!-- クリックしたカフェ一軒の表示部分 -->
-    <div v-if="cafe" class="detail-container mb-12">
+    <div v-if="cafe" class="detail-container gap-6 md:gap-10">
       
-      <!-- 1. 最上部：メイン画像エリア（大きく配置） -->
-      <div class="hero-image-wrapper relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-md mb-6 md:mb-8">
+      <!-- メイン画像エリア -->
+      <div class="hero-image-wrapper relative w-full md:w-1/2 h-72 md:h-96 rounded-2xl overflow-hidden shadow-md ">
         <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" />
       </div>
+      <!--  情報カードエリア  -->
+      <div class="info-card bg-white border border-[#efe8e1] rounded-2xl p-6 md:p-10 shadow-sm">
 
-      <!-- 2. 情報カードエリア (SP: 1列 / PC: 左右2列) -->
-      <div class="info-card bg-white border border-[#efe8e1] rounded-2xl p-6 md:p-8 shadow-sm">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        <div class="grid grid-cols-1 md:gap-20">
 
-          <!-- 【左カラム】基本情報 -->
-          <div class="info-column">
+          <!-- 基本情報 -->
+          <div class="info-column gap-5">
             <div class="info-item">
               <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">店舗名</dt>
               <dd class="text-xl md:text-2xl font-bold text-[#7a583a] ">{{ cafe.name }}</dd>
@@ -38,10 +38,33 @@
             </div>
             
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">💻 HP</dt>
-              <dd class="text-sm">
-                <a 
-                  v-if="cafe.website" 
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🛜 Wi-Fi</dt>
+              <dd class="text-sm text-gray-800">
+                {{cafe.features?.wifi?.available ? 'あり' : 'なし'}}
+              </dd>
+            </div>
+
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🔌 電源（コンセント）</dt>
+              <dd class="text-sm text-gray-800">
+                {{ cafe.features?.power?.available ? 'あり' : 'なし' }}
+              </dd>
+            </div>
+
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🪑 席数</dt>
+              <dd class="text-sm text-gray-800">{{ cafe.seats || '要確認' }}</dd>
+            </div>
+
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">☕️ 雰囲気</dt>
+              <dd class="text-sm text-gray-800">{{ cafe.atmosphere || cafe.nomadInfo?.atmosphere || '作業しやすい環境' }}</dd>
+            </div>
+
+            <div class="info-item">
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider">💻 HP</dt>
+              <dd class="text-sm  bg-[#fff9f0] p-2 rounded-md">
+                <a v-if="cafe.website" 
                   :href="cafe.website" 
                   target="_blank" 
                   rel="noopener noreferrer" 
@@ -51,33 +74,6 @@
                 </a>
                 <span v-else class="text-gray-400">なし</span>
               </dd>
-            </div>
-          </div>
-
-          <!-- 【右カラム】作業環境情報 -->
-          <div class="info-column  border-t md:border-t-0 md:border-l border-[#f0e6df] pt-6 md:pt-0 md:pl-10">
-            <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🪑 席数</dt>
-              <dd class="text-sm text-gray-800">{{ cafe.seats || cafe.nomadInfo?.seats || '要確認' }}</dd>
-            </div>
-
-            <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🛜 Wi-Fi</dt>
-              <dd class="text-sm text-gray-800">
-                {{ cafe.nomadInfo?.wifiSpeed || (cafe.features?.wifi?.available ? 'あり' : 'なし') }}
-              </dd>
-            </div>
-
-            <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🔌 電源（コンセント）</dt>
-              <dd class="text-sm text-gray-800">
-                {{ cafe.nomadInfo?.powerSupply || (cafe.features?.power?.available ? 'あり' : 'なし') }}
-              </dd>
-            </div>
-
-            <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">☕️ 雰囲気</dt>
-              <dd class="text-sm text-gray-800">{{ cafe.atmosphere || cafe.nomadInfo?.atmosphere || '作業しやすい環境' }}</dd>
             </div>
 
           </div>
@@ -104,6 +100,15 @@
   margin: 0 auto;
   padding: 20px 16px 60px;
   text-align: left;
+}
+.detail-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width:768px){
+    flex-direction : row ;
+  }
 }
 
 /* ==============================================
@@ -136,7 +141,6 @@
     background: rgba(254, 243, 199, 0.95); /* amber-100 */
     color: #78350f; /* amber-900 */
     font-size: 0.75rem;
-    font-weight: 600;
     padding: 6px 14px;
     border-radius: 20px;
     backdrop-filter: blur(4px);
@@ -157,7 +161,7 @@
   grid-template-columns: 1fr; /* SPは1列 */
   gap: 24px;
 
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     
     gap: 40px;
     padding: 36px;
@@ -167,7 +171,6 @@
   .info-column {
     display: flex;
     flex-direction: column;
-    gap:15px;
 
     /* PC表示時に右カラムの左側に縦線を入れる */
     &.border-left {
@@ -177,7 +180,7 @@
       
     }
   }
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
      .info-column{
 
         .border-left{
@@ -193,14 +196,13 @@
     flex-direction: column;
     gap: 1px;
 
-   @media (min-width:769px){
+   @media (min-width:768px){
     gap:4px;
 
    }
 
     .label {
       font-size: 0.75rem;
-      font-weight: bold;
       color: #8c7a6b;
       letter-spacing: 0.05em;
     }
@@ -213,9 +215,7 @@
 
       &.font-bold {
         font-size: 1.35rem;
-        font-weight: bold;
         color: #7a583a;
-        font-family: 'YuMincho', '游明朝', serif;
       }
 
       .link {
@@ -249,7 +249,6 @@
 .cafe-cards-ttl {
   text-align: center;
   font-size: 1.25rem;
-  font-weight: bold;
   color: #7a583a;
   margin-bottom: 8px;
 }

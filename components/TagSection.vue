@@ -2,7 +2,7 @@
 import { TAGS } from '~/constants/tags'
 
 // 画像に表示されているタグのリスト
-// key は JSON 側のプロパティ名やクエリのパラメータに合わせて調整できます
+// key は JSON 側のプロパティ名やクエリのパラメータに合わせて調整可能
 /*const tags = [
   { name: '電源', key: 'power' },
   { name: 'Wifi', key: 'wifi' },
@@ -11,8 +11,9 @@ import { TAGS } from '~/constants/tags'
   { name: '一人席', key: 'single' },
   { name: '禁煙', key: 'no-smoking' },
   { name: '打あわせ可', key: 'meeting' }
-] constants/tags.js にまとめたので消しても大丈夫　*/
- /*
+
+] constants/tags.js にまとめたので消しても大丈夫
+
  const tagImages =[
   {id:1 , name:'wifiImage' , imgUrl :'~/images/illust/wifi_pin.png'},
   {id:2 , name:'powerImage' , imgUrl :'~/images/illust/power_pin.png'}
@@ -43,23 +44,57 @@ import { TAGS } from '~/constants/tags'
         v-for="tag in TAGS"
         :key="tag.key"
         :to="{ path: '/search', query: { tag: tag.key } }"
-        class="tag-btn bg-[#b16213] inline-block text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
+        :style="{ '--tag-icon': `url('${tag.iconImg}')` }"
+        class="tag-btn bg-[#b16213] inline-block text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm"
+        >
         {{ tag.name }}
       </NuxtLink>
     </div>
   </section>
 </template>
+
 <style>
 .section-ttl{
   font-size:18px;
-  
+
   @media (min-width:768px){
         font-size:25px;
-      }
+  }
+  
+}
+.tag-btn {
+  position: relative;
 }
 .tag-btn:hover{
   color :  var(--color-text);
   background : radial-gradient(rgba(250, 176, 126, 1), #b16213);
   scale: 1.2 ;
 }
+
+/* 疑似要素の設定 
+*/
+.tag-btn::after{
+    content: '';
+    opacity: 0;
+
+    /* svgの色を変更　background の代わりに　mask を使う */
+    -webkit-mask: var(--tag-icon) left center / contain no-repeat;
+    mask: var(--tag-icon) left center / contain no-repeat;
+    background: rgb(245 240 230 / 50%);
+    z-index: -1;
+
+    /* 配置設定 */
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    transition: opacity 0.5s cubic-bezier(0.75, -0.2, 0.19, 1.36), top 0.5s cubic-bezier(0.82, -0.22, 0.25, 1);
+}
+.tag-btn:hover::after{
+  opacity: 1 ;
+  top:50%;
+}
+
 </style>

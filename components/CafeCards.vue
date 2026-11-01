@@ -54,11 +54,11 @@ const optimizedImageUrl = computed(() => {
       </div>
       <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
         <span class="c-cafe-tag px-2 py-1 rounded">
-          <img src="/images/icon/wifi_icon.png" alt="wifiのアイコン" width="16" height="16" class="w-4 inline-block"/> 
+          <img src="/images/icon/wifi_icon.svg" alt="wifiのアイコン" width="16" height="16" class="w-4 inline-block"/> 
           {{ cafe.features?.wifi?.available ? '◎' : '✖' }}
         </span>
         <span class="c-cafe-tag px-2 py-1 rounded">
-          <img src="/images/icon/power_icon.png" alt="電源のアイコン" width="16" height="16" class="w-4 inline-block"/> 
+          <img src="/images/icon/power_icon.svg" alt="電源のアイコン" width="16" height="16" class="w-4 inline-block"/> 
           {{ cafe.features?.power?.available ? '◎' : '✖' }}
         </span>
       </div>

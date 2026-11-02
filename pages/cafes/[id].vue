@@ -50,41 +50,41 @@ const othersCafes = computed(() => {
             </div>
             
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">📍 住所</dt>
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">住所 📍</dt>
               <dd class="text-sm text-gray-800 leading-relaxed">{{ cafe.address }}</dd>
             </div>
             
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🕒 営業時間</dt>
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">営業時間 🕒</dt>
               <dd class="text-sm text-gray-800">{{ cafe.businessHours }}</dd>
             </div>
             
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">💰 予算</dt>
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">予算 💰</dt>
               <dd class="text-sm text-gray-800">{{ cafe.budget }}</dd>
             </div>
             
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🛜 Wi-Fi</dt>
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">Wi-Fi 🛜</dt>
               <dd class="text-sm text-gray-800">
                 {{cafe.features?.wifi?.available ? 'あり' : 'なし'}}
               </dd>
             </div>
 
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🔌 電源（コンセント）</dt>
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">電源（コンセント）🔌</dt>
               <dd class="text-sm text-gray-800">
                 {{ cafe.features?.power?.available ? 'あり' : 'なし' }}
               </dd>
             </div>
 
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">🪑 席数</dt>
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">席数 🪑</dt>
               <dd class="text-sm text-gray-800">{{ cafe.seats || '要確認' }}</dd>
             </div>
 
             <div class="info-item">
-              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">☕️ 雰囲気</dt>
+              <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider mb-1">雰囲気 ☕️</dt>
               <dd class="text-sm text-gray-800">{{ cafe.atmosphere || cafe.nomadInfo?.atmosphere || '作業しやすい環境' }}</dd>
             </div>
 

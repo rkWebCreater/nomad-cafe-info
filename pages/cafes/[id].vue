@@ -90,7 +90,7 @@ const othersCafes = computed(() => {
 
             <div class="info-item">
               <dt class="text-xs font-bold text-[#8c7a6b] tracking-wider">💻 HP</dt>
-              <dd class="text-sm  bg-[#fff9f0] p-2 rounded-md">
+              <dd class="text-sm text-center bg-[#fff9f0] p-2 rounded-md ">
                 <a v-if="cafe.website" 
                   :href="cafe.website" 
                   target="_blank" 

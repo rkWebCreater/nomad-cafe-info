@@ -2,6 +2,8 @@
 import { GoogleGenAI, Type , ThinkingLevel} from "@google/genai";
 import cafeData from "../data/cafes.json"
 import featureMaster from "@@/data/features.json"
+import { type Cafe , type FeatureKey } from "@/schemas/cafe"
+import { z } from "zod"
 
 // features.json から Gemini へのプロンプト文を自動生成 Object.entries()で配列にしてmapを使って値を分ける
 // 例: "- 電源 → \"power\"\n- Wifi → \"wifi\"..."
@@ -14,6 +16,22 @@ const featureInstructions = Object.entries(featureMaster)
 const featureDescription = Object.entries(featureMaster)
     .map(([key, item]) => `${item.name}なら'${key}'`)
     .join('、') + '。なければ空配列'
+
+const isFeatureKey = (key: string): key is FeatureKey =>
+  Object.prototype.hasOwnProperty.call(featureMaster, key)
+
+const hasFeature = (cafe: Cafe, key: string): boolean =>
+  isFeatureKey(key) && cafe.features[key]?.available === true
+
+//zodで型チェックするためのスキーマを定義
+const SearchConditionsSchema = z.object({
+           area: z.string(),
+           features: z.array( z.custom<FeatureKey>((value): value is FeatureKey =>
+                                                    typeof value === 'string' && isFeatureKey(value)
+                                                  )
+           ),
+           featureLogic: z.enum(["AND", "OR"])
+})
 
 export default defineEventHandler(async(event) =>{
 
@@ -37,7 +55,7 @@ export default defineEventHandler(async(event) =>{
     const ai = new GoogleGenAI({ apiKey: config.geminiApiKey});
 
     // catch の外側でも使えるようにあらかじめ変数を用意しておく
-    let fallbackResults: any[] = [];
+    let fallbackResults: Cafe[] = [];
 
     // ----------------メインの処理     ユーザーが入力した「名古屋で電源があるカフェ」という文章をGeminiに渡し、{ area: "名古屋", features: ["power"] } という綺麗なデータに変換してもらいます。そして、そのデータをもとにJSONファイル（カフェ一覧）を絞り込んでいます
     try{
@@ -76,14 +94,18 @@ export default defineEventHandler(async(event) =>{
             }
 
         });
-        // 2. AIの返答をJavaScriptで扱いやすいデータ(JSON)に変換
-        const conditions = JSON.parse(response.text || "{}");
+
+        // 2. Geminiから返ってきたJSONをパースして、条件を取り出す
+        const conditions = SearchConditionsSchema.parse(
+           JSON.parse(response.text || "{}")
+        )
+
         // 3. カフェの全データを用意
         let filteredCafes = [...cafeData];
 
        // 4. AIが「エリア」を見つけていたら、エリアで絞り込む
        if(conditions.area){
-        filteredCafes = filteredCafes.filter((cafe:any) =>
+        filteredCafes = filteredCafes.filter((cafe:Cafe) =>
          cafe.area.includes(conditions.area) ||
          cafe.name.includes(conditions.area) ||
          (cafe.areaNameJa && cafe.areaNameJa.includes(conditions.area))
@@ -92,21 +114,16 @@ export default defineEventHandler(async(event) =>{
        // 5. AIが「設備」を見つけていたら、設備で絞り込む
        if(conditions.features && conditions.features.length > 0){
 
-        filteredCafes = filteredCafes.filter((cafe :any) => {
-        
+        filteredCafes = filteredCafes.filter((cafe :Cafe) => {  
         if (conditions.featureLogic === "OR") {
-                 return conditions.features.some((featureKey: string) => {
-                 const featureData = (cafe.features as any)?.[featureKey];
-                 return featureData && featureData.available === true;
-               });
+            return conditions.features.some((featureKey: string) =>
+                hasFeature(cafe, featureKey)
+            );
         }else {
-              return conditions.features.every((featureKey: string) => {
-                const featureData = (cafe.features as any)?.[featureKey];
-                 return featureData && featureData.available === true;
-             });
+            return conditions.features.every((featureKey: string) =>
+                hasFeature(cafe, featureKey)
+            );
         }
-         // features?.[featureKey] に赤い波線が出ている原因は、TypeScriptが「string 型の変数を使ってオブジェクトにアクセスするのは、型が安全か分からないからダメ！」と厳しくチェックしているためです。Nuxt 3のTypeScriptは非常に優秀な反面、JSONの中身のキー（wifi や power）に対して、変数（string）でダイナミックにアクセスしようとすると怒られてしまいます。これをスッキリ解決するには、cafe.features を一時的に any として扱うようにキャスト（型アサーション）してあげます。*/
-         // cafe.feature.includes(); cafes.jsonのfeaturesはオブジェクト{wifi:{available:true },power{available:true}}なのでincludesは使えない
         })
        }
         // 6. 成功結果として、絞り込んだカフェ一覧をフロントエンドに返す
@@ -119,13 +136,26 @@ export default defineEventHandler(async(event) =>{
     }
     // ----------------メインの処理 ここまで
     
-    //外部のAIに頼りきりだと、AIがダウンしたときにアプリが壊れてしまいます。それを防ぐため、「AI通信に失敗したら、とりあえず名前かエリア名が一致するカフェを探して返す」というバックアップ処理を書いています。
+    //外部のAIに頼りきりだと、AIがダウンしたときにアプリが壊れてしまう　それを防ぐため、「AI通信に失敗したら、とりあえず名前かエリア名が一致するカフェを探して返す」というバックアップ処理を書いています。
     catch(error){
         // エラーの詳細はサーバー側のログにだけ残す
         console.error("Gemini API Error Detail:",error);
 
-        // 【フォールバック処理】AIがダメなら、単純な文字の一致だけでカフェを探す
-        fallbackResults = cafeData.filter((cafe: any ) => cafe.name.includes(userText) || cafe.area.includes(userText))
+        // 【フォールバック処理】AIがダメなら、キーワードごとにカフェ情報や利用可能な設備を検索する
+        const keywords = userText.trim().toLowerCase().split(/\s+/).filter(Boolean)
+        fallbackResults = cafeData.filter((cafe: Cafe) =>
+            keywords.every((keyword) => {
+                const inText = [cafe.name, cafe.area, cafe.areaNameJa, cafe.address]
+                    .some((field: string | undefined) => field?.toLowerCase().includes(keyword))
+                const inFeature = Object.entries(featureMaster).some(([featureKey, feature]) =>
+                    feature.keywords.some((featureKeyword) =>
+                        featureKeyword.toLowerCase() === keyword
+                    ) && hasFeature(cafe, featureKey) === true
+                )
+
+                return inText || inFeature
+            })
+        )
 
     }
     return {

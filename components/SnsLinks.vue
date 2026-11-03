@@ -100,9 +100,9 @@ const getIconPath = (key: string) => {
 }
 
 .sns-link {
-  width:80px;
-  height:80px;
-  padding: 6px 12px;
+  width: 60px;
+  height: 60px;
+  padding: 5px;
   border-radius: 6px;
   font-size: 0.875rem;
   color: #334155;

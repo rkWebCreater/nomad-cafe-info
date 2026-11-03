@@ -222,13 +222,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     }
   }
   
-  @media (max-width: 768px) {
-    .hero-gallery {
-      max-width: 100%;
-      height: 480px;
-      gap: 0.75rem;
-    }
-  }
   /* 右側コンテンツ（スマホ中央揃え） */
   .hero-content {
     display: flex ;
@@ -315,7 +308,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   }
 
   /* --------------------------------------------------
-     2. ブレイクポイント: 768px 以上（タブレット・PC）
+     2. ブレイクポイント: 769px 以上（タブレット・PC）
      -------------------------------------------------- */
   @media (min-width: 769px) {
 

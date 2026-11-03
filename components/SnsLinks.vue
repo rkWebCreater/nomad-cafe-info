@@ -114,8 +114,7 @@ const getIconPath = (key: string) => {
    ========================================== */
 .accordion-header {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center;
     width: 100%;
     padding: 8px 12px;
     color: #ebe4d8;

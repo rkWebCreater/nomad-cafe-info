@@ -122,7 +122,8 @@ const getIconPath = (key: string) => {
     border: 1px solid #efe5d5;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 1rem;
+    line-height: 20px;
     letter-spacing: 2px;
 }
 

@@ -168,10 +168,10 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     z-index: 2;
     width: 100%;
     max-width: 1200px;
-    gap: 60px;
     align-items: center;
     display:flex;
     flex-direction: column-reverse;
+    gap:3.5rem;
   }
 
   /* 画像ギャラリー（スマホ基本設定） */
@@ -317,12 +317,11 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   /* --------------------------------------------------
      2. ブレイクポイント: 768px 以上（タブレット・PC）
      -------------------------------------------------- */
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
 
     .hero-container {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 3.5rem;
       align-items: center;
     }
 

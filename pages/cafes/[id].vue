@@ -195,6 +195,7 @@ const othersCafes = computed(() => {
    2. 情報カードエリア（SP: 1列 / PC: 2列）
 ============================================== */
 .info-card {
+  
   background: #ffffff;
   border: 1px solid #efe8e1; /* 元のCSSの温かいベージュトーン */
   border-radius: 20px;
@@ -206,7 +207,7 @@ const othersCafes = computed(() => {
   gap: 24px;
 
   @media (min-width: 768px) {
-    
+    width:50%;
     gap: 40px;
     padding: 36px;
     margin-bottom: 80px;

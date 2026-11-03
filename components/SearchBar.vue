@@ -35,7 +35,7 @@ const handleSearch = () => {
     <button type="submit" class="search-button">検索</button>
   </form>
   <div class="attention">
-   <p>※「渋谷の電源があるカフェ」、「名古屋のWi-Fiが使えるカフェ」などの文章でも検索可能</p>
+   <p>※「渋谷の電源と一人席があるカフェ」、「名古屋のWi-Fiと電源が使えるカフェ」などの文章でも検索可能</p>
   </div>
 </template>
 

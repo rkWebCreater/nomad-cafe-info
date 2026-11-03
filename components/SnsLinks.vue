@@ -91,8 +91,11 @@ const getIconPath = (key: string) => {
    ========================================== */
 .sns-content {
   display: flex;
+  padding: 10px;
   gap: 10px;
   margin-top: 8px;
+  background: rgb(240, 233, 222);
+  border-radius: 50px;
 
   @media(min-width: 769px){
    gap:20px;

@@ -39,6 +39,7 @@
 
         <!-- 画像2（左下：コーヒーカップ） -->
         <div class="gallery-item coffee-img">
+          
           <video
             :src="coffeeImage"
             poster="/images/FV/fv_2.webp"
@@ -48,8 +49,19 @@
             fetchpriority="high"
             playsinline
             preload="none"
+            class="hidden md:block"
           >
           </video>
+          <NuxtImg 
+             src="/images/FV/fv_2.webp" 
+             alt="Nomad Cafe Info" 
+             class="hero-video md:hidden"
+             preload
+             fetchpriority="high"
+             loading="null"
+             sizes="xs:100px md:150px"
+          />
+
         </div>
 
         <!-- 画像3（右下：カフェ内観） -->
@@ -143,7 +155,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
      font-size: clamp(6rem, 16vw, 22rem) ;
      color: var(--color-base);
      text-shadow: 0 0 20px rgb(250, 248, 246);
-     font-family: 'Style Script';
     }
 
   }
@@ -157,7 +168,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     z-index: 2;
     width: 100%;
     max-width: 1200px;
-    gap: 2.5rem;
+    gap: 60px;
     align-items: center;
     display:flex;
     flex-direction: column-reverse;
@@ -244,6 +255,8 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     }
 
     .hero-title {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-weight: 400;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -283,13 +296,12 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
         }
 
         .sub-script {
-          font-family: 'Style Script';
           position: absolute;
           left: 30%;
           bottom:-0.3rem;
           transform: translateX(-50%);
           font-size: 0.5rem;
-          color: #c4a04d;
+          color: #7c6630;
           letter-spacing: 0.5em;
           white-space: nowrap;
           pointer-events: none;

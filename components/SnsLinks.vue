@@ -82,7 +82,7 @@ const getIconPath = (key: string) => {
     </div>
     
   </div>
-  <span v-else class="text-[#efe5d5]-400 bg-[#ebe4d8] p-2">申し訳ありませんが、現在SNSはやっておりません。</span>
+  <span v-else class="text-xs text-[#efe5d5]-400 bg-[#ebe4d8] p-2 ">申し訳ありませんが、現在SNSはやっておりません。</span>
 </template>
 
 <style scoped>

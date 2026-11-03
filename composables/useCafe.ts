@@ -1,5 +1,5 @@
-import rawCafeData from '@@/server/data/cafes.json'
-import featureMaster from '@@/data/features.json'
+import CafesData from '@/server/data/cafes.json'
+import featureMaster from '@/data/features.json'
 import { CafesSchema, type Cafe, type FeatureKey } from '@/schemas/cafe'
 import {type SearchOptions, type SearchApiResponse } from '@/schemas/search'
 
@@ -21,9 +21,9 @@ export interface SearchApiResponse {
 }
 */
 
-// ★ アプリ全体で共有するカフェデータのマスター（ここで1回だけ読み込む！）
-const validatedCafes = CafesSchema.parse(rawCafeData) // cafes.json の内容を Zod で検証し、型安全な Cafe[] に変換
-export const allCafesData = ref<Cafe[]>(validatedCafes)
+// アプリ全体で共有するカフェデータのマスター
+const validatedCafes = CafesSchema.parse(CafesData) // cafes.json の内容を Zod で検証し、型安全な Cafe[] に変換
+export const allCafesData = ref<Cafe[]>(validatedCafes) // Ref<Cafe[]> として定義することで、Vueのリアクティブ機能を使えるようにする
 //JSONはすでに手元にあるので待つ必要がなく await と $fetch は不要ですが、「データが変わったら画面を自動更新する」という Vue のリアクティブ機能を使うためrefは必要。
 
 // ==========================================
@@ -83,8 +83,6 @@ const checkIfOpen = (businessHours: string): boolean => {
   return nowTimeNum >= openTime && nowTimeNum <= closeTime
 }
   //-------- ここまで営業中かどうかの判定
-
-  
 
 
   /*
@@ -220,7 +218,7 @@ const checkIfOpen = (businessHours: string): boolean => {
         await fetchSearchResults(keywordStr)
       }
 
-      await nextTick()
+      await nextTick()//nextTickは
       if (import.meta.client) {
         const headerEl = document.getElementById('search-header')
         if (headerEl) {

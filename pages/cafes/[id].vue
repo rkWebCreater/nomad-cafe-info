@@ -30,12 +30,15 @@ const othersCafes = computed(() => {
     <!-- クリックしたカフェ一軒の表示部分 -->
     <div v-if="cafe" class="detail-container gap-6 md:gap-10">
       
+      <!-- 左側のメイン画像とSNSリンクエリア -->
+      <div class="left-container">
       <!-- メイン画像エリア -->
-      <div class="hero-image-wrapper relative w-full md:w-1/2 h-72 md:h-96 rounded-2xl overflow-hidden shadow-md ">
-        <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" />
-        <div class="sns_link">
-         <SnsLinks :socialLinks="cafe.socialLinks" /> 
-        </div>
+      <div class="hero-image-wrapper relative w-full h-72 md:h-96 rounded-2xl overflow-hidden shadow-md mb-6 md:mb-10">
+        <img :src="cafe.imageUrl" :alt="cafe.name" class="w-full h-full object-cover" />      
+      </div>
+      <!-- SNSリンク -->
+      <SnsLinks :key="cafe.id" :sns="cafe.sns" />
+
       </div>
       <!--  情報カードエリア  -->
       <div class="info-card bg-white border border-[#efe8e1] rounded-2xl p-6 md:p-10 shadow-sm">
@@ -121,6 +124,14 @@ const othersCafes = computed(() => {
 </template>
 
 <style scoped>
+.sns_link {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 10;
+  width: min(280px, calc(100% - 2rem));
+}
+
 /* ページ全体の幅・余白制御 */
 .cafe-detail-page {
   max-width: 960px;

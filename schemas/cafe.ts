@@ -14,11 +14,15 @@ export type CafeFeature = z.infer<typeof CafeFeatureSchema>
 // features.json にある設備キーだけをTypeScript上で使えるようにする
 export type CafeFeatures = Partial<Record<FeatureKey, CafeFeature>>
 
-// SNSリンクのデータ形式
-export const socialLinksSchema = z.object({
+//-------- SNSリンクのデータ形式
+export const socialLinkSchema = z.object({
   instagram: z.string().optional(),
   LINE: z.string().optional()
 })
+// ZodスキーマからTypeScript型を自動生成する
+export type SnsLinksSchema = z.infer<typeof socialLinkSchema>
+
+//--------ここまでSNSリンクのデータ形式
 
 // カフェ1件のデータ形式
 export const CafeSchema = z.object({
@@ -34,7 +38,7 @@ export const CafeSchema = z.object({
   website: z.string().url().optional(),
   // 実行時には各設備が { available: boolean } の形か検証する
   features:  z.record(z.string(), CafeFeatureSchema),
-  sns : socialLinksSchema.optional()
+  sns: socialLinkSchema.optional()
 })
 
 // カフェ一覧のデータ形式

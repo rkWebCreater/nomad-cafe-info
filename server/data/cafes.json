@@ -1,7 +1,7 @@
 [
   {
     "id": "cafe-001",
-    "name": "最初のカフェは日本語で表示させる",
+    "name": "最初のカフェは日本語で表示",
     "area": "shibuya",
     "areaNameJa": "渋谷",
     "address": "東京都渋谷区道玄坂1丁目12-1",
@@ -156,6 +156,10 @@
     "budget": "￥1,000〜￥2,200",
     "imageUrl": "/images/slider/cafe06.webp",
     "businessHours": "22:00 - 06:30",
+    "sns": {
+      "instagram": "https://www.instagram.com/",
+      "LINE": "https://line.me/"
+    },
     "features": {
       "wifi": {
         "available": false,
@@ -180,6 +184,10 @@
     "budget": "￥1,100〜￥2,400",
     "imageUrl": "/images/slider/cafe05.webp",
     "businessHours": "21:00 - 06:30",
+    "sns": {
+      "instagram": "https://www.instagram.com/",
+      "LINE": "https://line.me/"
+    },
     "features": {
       "wifi": {
         "available": true,

@@ -167,11 +167,17 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 1200px;
-    align-items: center;
     display:flex;
     flex-direction: column-reverse;
+    align-items: center;
     gap:3.5rem;
+
+    @media (min-width: 769px) {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      
+    }
   }
 
   /* 画像ギャラリー（スマホ基本設定） */
@@ -311,12 +317,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
      2. ブレイクポイント: 769px 以上（タブレット・PC）
      -------------------------------------------------- */
   @media (min-width: 769px) {
-
-    .hero-container {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-    }
 
     .hero-gallery {
       max-width: 100%;

@@ -124,6 +124,12 @@ const othersCafes = computed(() => {
 </template>
 
 <style scoped>
+.left-container {
+  width: 100%;
+  @media (min-width: 769px) {
+    width: 50%;
+  }
+}
 .sns_link {
   position: absolute;
   right: 1rem;

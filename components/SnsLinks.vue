@@ -95,7 +95,7 @@ const getIconPath = (key: string) => {
   margin-top: 8px;
 
   @media(min-width: 769px){
-   gap:40px;
+   gap:20px;
   }
 }
 

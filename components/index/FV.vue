@@ -1,0 +1,358 @@
+<template>
+  <section class="top-hero">
+
+    <div class="hero-container">
+      <!-- 左側：非対称 staggered 画像ギャラリーエリア -->
+      <div class="hero-gallery">
+        <!-- 画像1（メイン：テラス・PC） -->
+        <div class="gallery-item main-img">
+          
+          <NuxtImg
+            :src="mainImage"
+            alt="屋外でPC"
+            preload
+            fetchpriority="high"
+            loading="null"
+            sizes="xs:200px md:300px"
+          />
+          <!--
+          <video
+            :src="mainImage"
+            poster="/images/FV/fv_1.webp"
+            width="300"
+            height="190"
+            preload="none" 
+            autoplay
+            muted
+            playsinline
+            loop
+            fetchpriority="high"
+            aria-hidden="true"
+          ></video>
+          -->
+
+        </div>
+
+        <!-- 画像2（左下：コーヒーカップ） -->
+        <div class="gallery-item coffee-img">
+          
+          <video
+            :src="coffeeImage"
+            poster="/images/FV/fv_2.webp"
+            autoplay
+            muted
+            loop
+            fetchpriority="high"
+            playsinline
+            preload="none"
+            class="hidden md:block"
+          >
+          </video>
+          <NuxtImg 
+             src="/images/FV/fv_2.webp" 
+             alt="Nomad Cafe Info" 
+             class="hero-video md:hidden"
+             preload
+             fetchpriority="high"
+             loading="null"
+             sizes="xs:100px md:150px"
+          />
+
+        </div>
+
+        <!-- 画像3（右下：カフェ内観） -->
+        <div class="gallery-item interior-img">
+          <NuxtImg
+            :src="interiorImage"
+            alt="落ち着いたカフェの内観"
+            preload
+            fetchpriority="high"
+            loading="null"
+            sizes="xs:100px md:150px"
+          />
+        </div>
+
+      </div>
+
+      <!-- 右側：テキストエリア -->
+      <div class="hero-content">
+        <p class="hero-subtext-top">今日の仕事はどこでしよう？</p>
+        <p class="hero-subtext-detail">Wi-Fi、電源があるところがいいなぁ</p>
+        <h1 class="hero-title">
+          <span class="title-line-1">
+            <span class="emphasis">集 中</span>
+            <span class="normal">できる</span>
+          </span>
+          <span class="title-line-2">
+            <span class="main-heading">環 境 へ</span>
+            <span class="sub-script">cafe nomadic</span>
+          </span>
+        </h1>
+        <div class="search-bar w-full max-w-l">
+         <indexSearchBar />
+        </div>
+      </div>
+      
+    </div>
+
+  </section>
+</template>
+
+<script setup lang="ts">
+export interface TopHeroProps {
+  /** メイン画像（テラス・PC作業）のURL */
+  mainImage?: string /* デフォルト値: 'images/FV/fv_1.webp' */
+  /** 左下画像（コーヒーカップ）のURL */
+  coffeeImage?: string /* デフォルト値: 'images/FV/fv_2.mp4' */
+  /** 右下画像（カフェ内観）のURL */
+  interiorImage?: string /* デフォルト値: 'images/FV/fv_3.webp' */
+}
+
+const props = withDefaults(defineProps<TopHeroProps>(), {
+  mainImage: 'images/FV/fv_1.webp',
+  coffeeImage: 'images/FV/fv_2.mp4',
+  interiorImage: 'images/FV/fv_3.webp'
+})
+</script>
+
+<style scoped>
+
+/* ==========================================================================
+   コンポーネント全体スタイル（トップページ専用 / スマホファースト）
+   ========================================================================== */
+.top-hero {
+  /* --------------------------------------------------
+     1. スマホファースト（デフォルトスタイル: < 768px）
+     -------------------------------------------------- */
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  color: var(--color-text);
+  background: var(--color-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.25rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  
+
+  /* メインコンテナ（スマホでは1カラム縦並び） */
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display:flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap:3.5rem;
+
+    @media (min-width: 769px) {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      
+    }
+  }
+
+  /* 画像ギャラリー（スマホ基本設定） */
+    /* 12 x 12 グリッドレイアウト（重ならずに上下互い違い配置） */
+  .hero-gallery {
+    width: 100%;
+    max-width: 400px;
+    height: clamp(300px, 60vh, 500px);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 0.5rem;
+    
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(61, 44, 30, 0.07);
+
+      img,
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* 1. メイン画像：上部に大きく配置（3〜11行目、横いっぱい） */
+      &.main-img {
+        grid-column: 3 / 11;
+        grid-row: 1 / 6;
+        animation:moveScale 2s ease-in-out infinite; 
+      }
+
+      /* 2. 下段左画像：少し上に配置（2〜6行目、左半分） */
+      &.coffee-img{
+        grid-column: 2/ 7;
+        grid-row: 7/ 11;
+        animation: moveSide 2s ease-in-out infinite; 
+      }
+
+      /* 3. 下段右画像：少し下に配置（7〜10行目、右半分・互い違い） */
+      &.interior-img {
+        grid-column: 8 / 12;
+        grid-row: 8 / 12;
+        animation: moveUnder 1.5s ease-out infinite; 
+      }
+    
+    }
+  }
+  
+  /* 右側コンテンツ（スマホ中央揃え） */
+  .hero-content {
+    display: flex ;
+    flex-direction: column ;
+    align-items:center;
+    width:clamp(300px , 90% , 400px) ; 
+    position: relative ;
+    top:0;
+    right:0;
+
+    .hero-subtext-top {
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: #533c2b;
+      margin: 0 0 0.4rem 0;
+      font-weight: 500;
+    }
+
+    .hero-subtext-detail {
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      color: #6e5949;
+      margin: 0 0 1.8rem 0;
+    }
+
+    .hero-title {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0;
+      line-height: 1.2;
+
+      .title-line-1 {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.6rem;
+
+        .emphasis {
+          font-size: 1.8rem;
+          font-weight: 700;
+          letter-spacing: 0.25em;
+          color: #2c1d11;
+        }
+
+        .normal {
+          font-size: 1.2rem;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          color: #2c1d11;
+        }
+      }
+
+      .title-line-2 {
+        position: relative;
+        display: inline-block;
+        width: clamp(200px, 80%, 300px);
+
+        .main-heading {
+          font-size: 2.6rem;
+          font-weight: 700;
+          letter-spacing: 0.3em;
+          color: #2c1d11;
+        }
+
+        .sub-script {
+          position: absolute;
+          top:90%;
+          left: 10%;
+          transform: translateX(-50%);
+          font-size: 0.5rem;
+          color: #7c6630;
+          letter-spacing: 0.5em;
+          white-space: nowrap;
+          pointer-events: none;
+        }
+      }
+    }
+    .search-bar{
+          width:90%;
+          max-width: 500px;
+    }
+  }
+
+  /* --------------------------------------------------
+     2. ブレイクポイント: 769px 以上（タブレット・PC）
+     -------------------------------------------------- */
+  @media (min-width: 769px) {
+
+    .hero-gallery {
+      max-width: 100%;
+      min-height: 440px;
+
+      .gallery-item.interior-img {
+        margin-top: 1rem;
+      }
+    }
+
+    .hero-content {
+      padding-left: 1rem;
+
+      .hero-subtext-top {
+        font-size: 0.8rem;
+        letter-spacing: 0.3em;
+        margin-bottom: 0.5rem;
+        top:-100%;
+      }
+
+      .hero-subtext-detail {
+        font-size: 0.8rem;
+        letter-spacing: 0.3em;
+        margin-bottom: 2.5rem;
+        top:-70%;
+      }
+
+      .hero-title {
+        gap: 0.6rem;
+
+        .title-line-1 {
+          justify-content: center;
+          gap: 0.8rem;
+
+          .emphasis {
+            font-size: 2rem;
+            letter-spacing: 0.3em;
+          }
+
+          .normal {
+            font-size: 1.4rem;
+            letter-spacing: 0.2em;
+          }
+        }
+
+        .title-line-2 {
+          .main-heading {
+            font-size: 3.6rem;
+            letter-spacing: 0.25em;
+          }
+
+          .sub-script {
+            bottom: -0.2rem;
+            left: 0;
+            letter-spacing: 10px;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

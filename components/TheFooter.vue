@@ -28,7 +28,7 @@ const areaList = [
             alt="nomad cafe info"
           />
         </NuxtLink>
-        <p class="brand-desc">カフェで仕事や作業をして過ごしたい人のための<br>カフェ検索サイト</p>
+        <p class="brand-desc">カフェで仕事や作業をして過ごしたい人<br>のためのカフェ検索サイト</p>
       </div>
 
       <!-- 2. 営業中のカフェ -->

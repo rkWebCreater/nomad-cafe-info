@@ -16,6 +16,7 @@ onMounted(() => {
   let previousWasAccent = false;
 
   for (let distance = spacing / 2; distance < length; distance += spacing) {
+
     const point = path.getPointAtLength(distance);
     const accent:boolean = !previousWasAccent && Math.random() < props.accentRate;
 

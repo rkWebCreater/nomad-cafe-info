@@ -2,8 +2,8 @@
 <template>
   <div class="min-h-screen">
 
-    <LoadingScreen />
-    <FV/> 
+    <indexLoadingScreen />
+    <indexFV/> 
 
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
@@ -20,35 +20,52 @@
     </div>
     
    <!-- エリアから探す -->
-   <CafeAreas />
+   <indexCafeAreas />
 
    <!-- タグから探す -->
    <div id="cafeTag"></div>
    <TagSection />
 
    <!-- 新着おすすめカフェ -->
-   <NewCafes />
+   <indexNewCafes />
   
   </div>
 </template>
+<script setup>
+// 💡 composables/useCafe.ts から全カフェデータと営業時間判定関数を呼び出す（個別 import 不要！）
+const { allCafes, checkIfOpen } = useCafe()
 
+const openCafes = computed(() => {
+  return allCafes.value.filter(cafe => checkIfOpen(cafe.businessHours))
+})
+</script>
 <style scoped>
-
 /*PC、SP共通 */
 header{
         width:clamp(320px , 100% , 1200px);/*clamp() メディアクエリを使わなくてもSP、PC両方のサイズを設定できる 最小320px、画面幅の100%を基本とし、最大1200pxに制限 */
         background:url(/images/FV/FV_cafe.png);
         background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
         position:relative;
+        height:400px;
+        margin-bottom:60px; 
         
       h1{
         color:rgb(65, 40, 20);
         position: absolute;
+        top: 18%;
+        left: 0;
+        text-align: start;
+        letter-spacing: 2px;
+        line-height:30px;
 
         .mCatch{
             color:rgba(218, 175, 140, 1);
             background:rgb(65, 40, 20);
             border-radius:40px;
+            font-size: 20px;
+            padding: 2px 10px 2px 10px;
         }
         .sCatch{
                color:rgb(65, 40, 20);
@@ -56,10 +73,13 @@ header{
                border-radius:40px;
                padding: 6px 20px ;
                letter-spacing:5px;
+               font-size: 12px;
         }
       }
       .search-bar{
+                 position: absolute;
                  top:70%;
+                 right: 0;
       }
 
 }
@@ -70,75 +90,20 @@ header{
                      background-size: cover;
                      background-position: center;
                      position: relative;
-          
+
+           .cafe-cards-ttl{
+                  font-size:20px;
+                  text-align: center;
+                  padding: 30px 10px 10px 10px;
+
+           }
            .canSlide{
                      color: var(--color-text-white);
                      text-align:center;
+                     font-size: 14px;
+                     padding:20px;
             }
 }
-/*
-.cafe-cards-section::before{
-   /*contentプロパティは必須 
-  content: "";
-  /* divを起点に位置を調整する 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* オーバーレイを作成 
-  background: linear-gradient(rgba(167, 88, 28, 0.5),  rgba(87, 47, 3, 0.5));
-  z-index: -1;
- }
-*/
-@media (max-width:768px) {
-
-  header{
-         height:400px;
-         margin-bottom:60px;
-         background-position: top;
-         background-size: cover;
-
-        h1{
-           top: 18%;
-           left: 0;
-           text-align: start;
-           letter-spacing: 2px;
-           line-height:30px;
-
-        }
-        .mCatch{
-                font-size: 20px;
-                padding: 2px 10px 2px 10px;
-                
-        }
-        .sCatch{
-                font-size: 12px;
-        }
-        .search-bar{
-                   position: absolute;
-                   right: 0;
-        }
-
-  }
-  .cafe-cards-section{
-             
-        .cafe-cards-ttl{
-            font-size:20px;
-            text-align: center;
-            padding: 30px 10px 10px 10px;
-
-        }
-        .canSlide{
-          color: white;
-          font-size: 14px;
-          text-align:center;
-          padding:20px;
-    
-        } 
-  }
-}
-
 @media (min-width:769px){
 
   header{
@@ -188,13 +153,3 @@ header{
  
 }
 </style>
-
-<script setup>
-// 💡 composables/useCafe.ts から全カフェデータと営業時間判定関数を呼び出す（個別 import 不要！）
-const { allCafes, checkIfOpen } = useCafe()
-
-const openCafes = computed(() => {
-  return allCafes.value.filter(cafe => checkIfOpen(cafe.businessHours))
-})
-</script>
-

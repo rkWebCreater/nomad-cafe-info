@@ -33,13 +33,6 @@ const toggleAccordion = () => {
   if (isPc.value) return // PCのときはアコーディオンをオフ
   isOpen.value = !isOpen.value
 }
-
-// Composition API (setup) の場合、または methods 内に作成
-const getIconPath = (key: string) => {
-  // キー名を小文字にして、assetsフォルダ内の画像を動的に取得
-  const lowerKey = key.toLowerCase();
-  return new URL(`/images/icon/${lowerKey}.webp`, import.meta.url).href;
-};
 </script>
 
 <template>
@@ -91,7 +84,7 @@ const getIconPath = (key: string) => {
    ========================================== */
 .sns-content {
   display: flex;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
   gap: 10px;
   margin-top: 8px;
   background: rgb(240, 233, 222);
@@ -103,8 +96,8 @@ const getIconPath = (key: string) => {
 }
 
 .sns-link {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   padding: 5px;
   border-radius: 6px;
   font-size: 0.875rem;

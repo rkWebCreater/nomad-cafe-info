@@ -1,9 +1,5 @@
 <template>
   <section class="top-hero">
-    <!-- 背景装飾のウォーターマークテキスト -->
-    <div class="hero-watermark" aria-hidden="true">
-      <p>nomad in life<br></p>
-    </div>
 
     <div class="hero-container">
       <!-- 左側：非対称 staggered 画像ギャラリーエリア -->
@@ -133,6 +129,10 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   min-height: 80vh;
   color: var(--color-text);
   background: var(--color-base);
+  background-image: radial-gradient(rgba(140, 110, 85, 0.15) 1px, transparent 0),
+    　　　　　　　　　radial-gradient(rgba(140, 110, 85, 0.1) 1px, transparent 0);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,27 +140,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   overflow: hidden;
   box-sizing: border-box;
   
-  /* 背景ウォーターマーク */
-  .hero-watermark {
-    width:100%;
-    position: absolute;
-    top: 50% ;
-    left: 50% ;
-    transform: translate(-50%, -50%) rotate(-10deg) ;
-    z-index: 1;
-    letter-spacing: 0.05em;
-
-    p{
-     width:100%;
-     font-size: clamp(6rem, 16vw, 22rem) ;
-     color: var(--color-base);
-     text-shadow: 0 0 20px rgb(250, 248, 246);
-    }
-
-  }
-  .hero-watermark p::after{
-    content : 'comfortable place';
-  }
 
   /* メインコンテナ（スマホでは1カラム縦並び） */
   .hero-container {

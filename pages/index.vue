@@ -2,8 +2,8 @@
 <template>
   <div class="min-h-screen">
 
-    <indexLoadingScreen />
-    <indexFV/> 
+    <LoadingScreen />
+    <FV/> 
 
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
@@ -20,14 +20,14 @@
     </div>
     
    <!-- エリアから探す -->
-   <indexCafeAreas />
+   <CafeAreas />
 
    <!-- タグから探す -->
    <div id="cafeTag"></div>
    <TagSection />
 
    <!-- 新着おすすめカフェ -->
-   <indexNewCafes />
+   <NewCafes />
   
   </div>
 </template>

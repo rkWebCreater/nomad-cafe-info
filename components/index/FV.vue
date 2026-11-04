@@ -85,7 +85,6 @@
           </span>
           <span class="title-line-2">
             <span class="main-heading">環 境 へ</span>
-            <span class="sub-script">cafe nomadic</span>
           </span>
         </h1>
         <div class="search-bar w-full max-w-l">
@@ -261,26 +260,16 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
       .title-line-2 {
         position: relative;
         display: inline-block;
-        width: clamp(200px, 80%, 300px);
+
 
         .main-heading {
+          width:clamp(200px, 80%, 300px);
           font-size: 2.6rem;
           font-weight: 700;
           letter-spacing: 0.3em;
           color: #2c1d11;
         }
 
-        .sub-script {
-          position: absolute;
-          top:90%;
-          left: 10%;
-          transform: translateX(-50%);
-          font-size: 0.5rem;
-          color: #7c6630;
-          letter-spacing: 0.5em;
-          white-space: nowrap;
-          pointer-events: none;
-        }
       }
     }
     .search-bar{
@@ -344,12 +333,6 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
             letter-spacing: 0.25em;
           }
 
-          .sub-script {
-            bottom: -0.2rem;
-            left: 0;
-            letter-spacing: 10px;
-            transform: none;
-          }
         }
       }
     }

@@ -128,7 +128,7 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   min-height: 80vh;
   color: var(--color-text);
   background: var(--color-base);
-  background-image: radial-gradient(rgba(140, 110, 85, 0.15) 1px, transparent 0), radial-gradient(rgba(140, 110, 85, 0.1) 1px, transparent 0);
+  background-image: radial-gradient(rgba(217, 207, 198, 0.15) 1px, transparent 0), radial-gradient(rgba(231, 211, 194, 0.1) 1px, transparent 0);
   background-size: 20px 21px;
   background-position: 0, 0, 10px 5px;
   display: flex;

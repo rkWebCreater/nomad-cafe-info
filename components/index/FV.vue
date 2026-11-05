@@ -98,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-export interface TopHeroProps {
+ interface TopHeroProps {
   /** メイン画像（テラス・PC作業）のURL */
   mainImage?: string /* デフォルト値: 'images/FV/fv_1.webp' */
   /** 左下画像（コーヒーカップ）のURL */
@@ -128,6 +128,9 @@ const props = withDefaults(defineProps<TopHeroProps>(), {
   min-height: 80vh;
   color: var(--color-text);
   background: var(--color-base);
+  background-image: radial-gradient(rgba(140, 110, 85, 0.15) 1px, transparent 0), radial-gradient(rgba(140, 110, 85, 0.1) 1px, transparent 0);
+  background-size: 20px 21px;
+  background-position: 0, 0, 10px 5px;
   display: flex;
   align-items: center;
   justify-content: center;

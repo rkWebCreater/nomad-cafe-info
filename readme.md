@@ -8,11 +8,11 @@
 
 - **Frontend:** Nuxt 4 / Vue 3 / TypeScript
 - **CSS:** Tailwind CSS
-- **UI:** Swiper v11（swiper/vue）
+- **UI:** Swiper v14（swiper/vue）
 - **Data:** JSONローカルデータ
 - **API:** Nuxt Server API / Gemini API
 - **Rendering:** SSR / SSG
-- **Deployment:** GitHub Pages / GitHub Actions
+- **Deployment:** Vercel
 - **State / Data Fetching:** `ref` / `computed` / `useRoute` / `useAsyncData`
 - **Language:** TypeScript
 
@@ -102,21 +102,6 @@ export default defineNuxtConfig({
     }
   }
 })
-
----
-
-## 🚀 GitHub Actions / GitHub Pages への CI/CD・SSGデプロイ
-
-GitHub Actions を構築し、メインブランチへのプッシュ時に自動でビルド＆デプロイされるパイプラインを確立しました。開発過程で発生したインフラ・環境固有の問題を以下のように解決しています。
-
-| 発生した問題・エラー | 原因 | 解決策 |
-| :--- | :--- | :--- |
-| **Artifacts が生成されない** | アクションのバージョン古化と出力パス設定ミス | `actions/upload-pages-artifact@v3` へ更新し、Nuxtの生成物 `.output/public` を明示的に指定 |
-| **依存関係インストール失敗** | ロックファイルの不整合・リポジトリ欠落 | `package-lock.json` をリポジトリ管理下に追加し、`npm ci` による再現性のあるビルドを確立 |
-| **画像・アセットの 404 エラー** | GitHub Pages のサブディレクトリ仕様（`/nomad-cafe-info/`）および Linux ケースセンシティブ | ベースパスに合わせた相対パス補正と、ファイル名の大文字・小文字の完全一致対応 |
-| **Prerender 時の 500 Error** | 追加したJSONデータの配列構造ネストミス | 二重配列構造をフラットな単一オブジェクト配列にデータ整形し、`undefined` 参照を解消 |
-
----
 
 ## 🔧 設備検索データの自動型定義 ＆ プロンプト一元管理
 

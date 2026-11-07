@@ -1,133 +1,110 @@
-# ☕️ 深夜・通常営業カフェ検索＆閲覧アプリケーション
+# nomad-cafe-info
 
-ノマドワーカー・在宅ワーカー向けに、**現在営業中・深夜営業のカフェを検索・閲覧できるWebアプリケーション**をNuxt 4 / Vue 3 / TypeScriptで開発しました。
+ノマドワーカーや在宅ワーカー向けのカフェ検索サイトです。営業時間、エリア、設備情報を使ってカフェを探し、店舗の詳細を確認できます。カフェ情報はプロジェクト内のJSONファイルで管理しています。
 
-営業時間をもとにした営業状態の自動判定、動的な詳細ページ、AI検索、静的サイトへのデプロイまで、フロントエンドだけでなく**SSR / SSG・API・データ設計・CI/CDを含めた開発**を行っています。
+## 主な機能
 
-## 🛠 技術スタック
+- トップページで、営業時間から判定した営業中のカフェをスライダー表示
+- 渋谷・新宿・梅田・難波・名古屋・福岡のエリア別検索
+- 設備タグ（電源、Wi-Fi、モーニング、ランチ、一人席、禁煙、打ち合わせ可）による絞り込み
+- 店名、住所、エリア、設備キーワードによるローカル検索
+- 店舗詳細ページで住所、営業時間、予算、設備、公式サイトやSNSリンクを表示
+- ローカル検索でキーワードに一致しない場合、Gemini APIで自然文からエリア・設備条件を抽出して検索
+- AI検索の応答が利用できない場合は、通常のローカル検索結果を表示
 
-- **Frontend:** Nuxt 4 / Vue 3 / TypeScript
-- **CSS:** Tailwind CSS
-- **UI:** Swiper v14（swiper/vue）
-- **Data:** JSONローカルデータ
-- **API:** Nuxt Server API / Gemini API
-- **Rendering:** SSR / SSG
-- **Deployment:** Vercel
-- **State / Data Fetching:** `ref` / `computed` / `useRoute` / `useAsyncData`
-- **Language:** TypeScript
+トップページの「新着おすすめカフェ」欄は、`components/index/NewCafes.vue` 内に記述した固定サンプルデータを表示します。`server/data/cafes.json` の店舗一覧とは連動していません。
 
----
+## 使用技術
 
-## 💡 技術的にこだわったポイント
+- Nuxt 4、Vue 3、TypeScript
+- Tailwind CSS（Nuxtモジュール経由）
+- `@nuxt/image`、`@nuxt/fonts`（Nuxtモジュール）
+- Swiper Vue コンポーネント
+- Zod（カフェデータと検索条件の検証・型定義）
+- Google GenAI SDK（Gemini API）
+- Nuxt Server API / Nitro
+- JSONによるローカルデータ管理
+- Vercel（公開環境）
 
-### 1. Nuxt 4 × Swiperのライフサイクル問題を解決
+## 必要な環境
 
-当初はWeb Components版の`<swiper-container>`を使用していましたが、Nuxt 4のページ遷移とSSR環境における初期化タイミングの違いにより、画面遷移後にSwiperがフリーズし、スライドが正常に機能しない問題が発生しました。
+- Node.js `24.x`（`package.json` の指定）
+- npm
 
-そこで`swiper/vue`へ移行し、Vueコンポーネントとしてライフサイクルを管理。
+Vercel側のNode.js設定はプロジェクト設定で管理されるため、このリポジトリからは確認できません。
 
-さらに、
+## セットアップと起動
 
-- Vueの`:key`によるコンポーネント再生成
-- `:deep(.swiper-wrapper)`によるScoped CSSの詳細度制御
-- NuxtのSSR環境を考慮した初期化
+```sh
+npm ci
+npm run dev
+```
 
-を組み合わせ、**ページ遷移後も再読み込みなしでSwiperが正常動作するUI**を実現しました。
+開発サーバーのURLはNuxtが起動時に表示します。
 
----
 
-### 2. リアクティブな詳細ページと動的データ連携
+## ビルドとプレビュー
 
-カフェ詳細ページではURLのIDを`useRoute`と`computed`でリアクティブに取得。
+Nuxtアプリケーションをビルドする場合：
 
-さらに`useAsyncData`の`watch`を利用し、ページ下部のおすすめカフェをクリックした際にも、**ページ全体をリロードせず詳細情報だけをリアクティブに切り替える設計**にしています。
+```sh
+npm run build
+npm run preview
+```
 
-また、おすすめカフェ一覧では現在表示中のカフェを`.filter()`で除外し、同一店舗が重複表示されないようにしています。
+静的ファイルを生成する場合（Vercelへの現在の公開手順ではありません）：
 
-共通処理はPropsを利用してコンポーネント化し、再利用性も考慮しています。
+```sh
+npm run generate
+```
 
----
+静的生成物は `.output/public` に出力されます。`package.json` には `lint` と `test` のスクリプトは定義されていません。
 
-### 3. 営業時間から「現在営業中」を自動判定
+## デプロイ
 
-JSONに保持した営業時間データをもとに、現在時刻と営業時間を比較して営業状態を自動判定するロジックを実装。
+公開環境は Vercel です。`nuxt.config.ts` では `app.baseURL` を `/` に設定し、Vercelのドメイン直下で配信する構成になっています。Gemini検索を使うには、Vercelの環境変数に `GEMINI_API_KEY` を設定してください。
 
-通常営業時間だけでなく、**日付をまたぐ深夜営業にも対応できるデータ構造**を採用し、検索結果や詳細ページで現在の営業状態を動的に表示できるようにしています。
 
----
+Vercelのビルド設定、公開ブランチ、ドメインはVercel側で管理され、このリポジトリ内からは確認できません。
 
-### 4. Gemini APIを利用したAI検索とフォールバック設計
+`.github/workflows/deploy.yml` もリポジトリに残っており、内容は `main` ブランチへのpushで GitHub Pages に静的サイトを公開する設定です。現在の公開先はVercelとのことですが、このワークフローが無効化・未使用かどうかはリポジトリ内から確認できません。Vercelへのデプロイ手順とは別の設定です。
 
-検索バーにはGemini APIを利用した自然言語検索を実装。
+## データと動作上の注意
 
-例えば「WiFiがあって電源も使える深夜営業のカフェ」のような条件をAI側で解析し、設備条件などを構造化して検索できる仕組みを設計しました。
+- カフェ一覧は `server/data/cafes.json` の固定データ50件です。データの外部取得や更新処理はありません。
+- おすすめ欄の画像には `images.unsplash.com` の画像URLが使われています。ネットワーク接続や画像提供元の状態により表示が変わる場合があります。
+- 店舗情報の出典や更新日はコード内で確認できません。実店舗の現在の営業状況、設備、料金を保証するデータとして扱わないでください。
+- 営業中判定はブラウザーの現在時刻と `businessHours` の時刻範囲を比較します。日付をまたぐ営業時間には対応していますが、曜日、祝日、臨時休業、タイムゾーン別の営業時間は扱いません。ブラウザーの時計設定にも依存します。
+- `meeting`（打ち合わせ可）は設備マスターにありますが、現在のカフェ一覧には該当設備のデータがありません。検索結果は0件になります。
+- `content/readme.md` はリポジトリ内にあるメモです。アプリのソースからの参照は確認できません。
+- Vercelの公開URLやプロジェクト設定はリポジトリ内に記載されていません。
 
-ただし、AI検索に依存するとAPI障害や環境変数未設定時にアプリケーション全体が停止する可能性があります。
-そのため、
+## ディレクトリ構成
+
 ```text
-ローカル検索
-  ↓
-ローカル検索で引っかからない場合
-AI検索
-try / catch
-  ↓
-API失敗
-  ↓
-ローカル検索へフォールバック設計を採用。
-
-searchResults.value = filteredCafes.value || []のような防御的な実装も行い、API通信に失敗してもUIがクラッシュしない構成にしています。
-
----
-
-### 5. SSG環境におけるGemini APIとNitro Prerenderの問題を解決
-
-GitHub PagesへのSSGデプロイ時、Nuxt / NitroのPrerender処理が`/search`関連ページをクロールし、ビルド時にAPI処理が実行される問題が発生しました。
-
-GitHub Actionsにはセキュリティ上`.env`をアップロードしていないため、ビルド環境にはGemini APIキーが存在せず、API処理が`500 Server Error`となっていました。
-
-そこで`nitro.prerender.ignore`を利用し、検索ページをPrerender対象から除外しました。
-
-```ts
-// nuxt.config.ts
-export default defineNuxtConfig({
-  nitro: {
-    prerender: {
-      // ビルド時に検索ページをPrerender対象から除外
-      ignore: [
-        '/search',
-        '/Search',
-        '/nomad-cafe-info/search',
-        '/nomad-cafe-info/Search'
-      ]
-    }
-  }
-})
-
-## 🔧 設備検索データの自動型定義 ＆ プロンプト一元管理
-
-カフェの設備仕様（Wi-Fi、電源、ランチ、深夜営業など）は `FeatureKey` として一元管理しています。
-
-* **シングルソース・オブ・トゥルース（Single Source of Truth）**:
-1. `server/api/search.ts` における Gemini API 向けシステムプロンプト
-2. AIレスポンスバリデーション用 JSON Schema
-3. `useCafe.ts` における通常フォールバック検索キーワード
-4. TypeScript の `FeatureKey` 型定義
-
-設備キーを追加・変更するだけで、上記 4 箇所の型・プロンプト・判定ロジックが連動して更新される設計を採用。ハードコードを排除し、保守性と型安全性を大幅に向上させました。
-
----
-
-## 📌 実装・開発を通じてアピールできるポイント
-
-本プロジェクトでは、単なる画面デザインやCRUD操作の域を超え、Webアプリケーション全体のライフサイクルを見据えた開発を遂行しました。
-
-* **フロントエンド・フレームワーク** : Nuxt 4 / Vue 3 Composition API による高品質なUI構築
-* **型安全性と保守性** : TypeScript による厳密な型定義とデータドリブンな一元管理
-* **アーキテクチャの理解** : SSR / SSG のレンダリング挙動の違いに応じた Nitro Prerender の制御
-* **API連携と堅牢性** : Nuxt Server API + Gemini API の活用、および障害に強い Fail-Safe（フォールバック）設計
-* **リアクティブ思考** : `useAsyncData` + `watch` / `computed` を駆使した画面遷移のないシームレスなUX
-* **ライブラリ・ライフサイクル制御** : Nuxt 4 と Swiper のSSR/クライアントギャップの克服
-* **DevOps / CI/CD** : GitHub Actions による静的サイト自動生成および GitHub Pages への堅牢なデプロイパイプライン
-
-各技術の特性と動作用域（サーバー/クライアント/ビルド時）を正しく理解し、実際に発生した課題の原因を突き止めて解決に導く実践力を身につけています。
-"""
+.
+├── app/
+│   ├── assets/css/main.css     # 共通スタイル
+│   └── router.options.ts       # ルーターのスクロール動作
+├── components/
+│   ├── cafe/                   # カフェカード、スライダー
+│   └── index/                  # トップページの各セクション
+├── composables/useCafe.ts      # カフェデータ、営業時間判定、検索処理
+├── constants/                  # エリア・タグの表示用定義
+├── content/readme.md           # アプリから参照されていないメモ
+├── data/features.json          # 設備名、検索語、アイコンの定義
+├── layouts/default.vue         # 共通レイアウト
+├── pages/
+│   ├── index.vue               # トップページ
+│   ├── search.vue              # 検索結果
+│   └── cafes/[id].vue          # カフェ詳細
+├── public/                     # 画像、アイコン、Webアプリマニフェスト
+├── schemas/                    # ZodスキーマとTypeScript型
+├── server/
+│   ├── api/search.ts           # Geminiを使う検索API
+│   └── data/cafes.json         # カフェ一覧データ
+├── .github/workflows/          # GitHub Pages向け設定（現行公開先ではないとのこと）
+├── nuxt.config.ts
+├── package.json
+└── readme.md                   # プロジェクト説明
+```

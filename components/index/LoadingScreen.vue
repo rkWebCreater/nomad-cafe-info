@@ -97,7 +97,7 @@ const skipLoading = () => {
   position: fixed;
   inset: 0;
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
   background-color: #fff1e5;
   display: flex;
   align-items: center;
@@ -128,7 +128,6 @@ const skipLoading = () => {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  border-radius: 20px;
 }
 
 .skip-hint {

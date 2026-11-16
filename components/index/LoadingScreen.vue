@@ -98,7 +98,8 @@ const skipLoading = () => {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #fff1e5;
+  background: #fff1e5;
+  z-index:1111;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -102,7 +102,6 @@ const skipLoading = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999999;
   cursor: pointer;
   overflow: hidden;
   transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s ease;

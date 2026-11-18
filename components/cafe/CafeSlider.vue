@@ -1,32 +1,8 @@
-<template>
-  <div class="cafe-slider-wrapper ">
-    <!-- Swiperの読み込みやレスポンシブ設定はここ1箇所に集約 -->
-    <Swiper
-      :key="`${stateKey}-${allCafes.map(c => c.id).join('-')}`"
-      :modules="modules"
-      :breakpoints="swiperBreakpoints"
-      :navigation="true"
-      :pagination="{ clickable: true }"
-      :initial-slide="initialSlide" 
-      @slideChange="saveSlide"
-      class="cafe-cards-slider">
-
-      <!-- 💡 ループ処理とスライドタグをここにまとめる -->
-      <SwiperSlide v-for="cafe in allCafes" :key="cafe.id" class="overflow-hidden transition">
-        <!-- slot を使って、中身のデータ（1件分のカフェ）を外に送る -->
-        <CafeCards :cafe="cafe" />
-      </SwiperSlide>
-
-    </Swiper>
-
-  </div>
-</template>
-
 <script setup lang="ts">
 // 💡 Web Components ではなく、Vue専用のコンポーネントとモジュールをインポートします
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination } from 'swiper/modules'
-import { type Cafe } from "../schemas/cafe" 
+import { type CafeType } from "@/schemas/cafe" 
 
 // 💡 Vue版Swiperに必要なCSSをここで確実に読み込みます
 import 'swiper/css'
@@ -36,7 +12,7 @@ import 'swiper/css/pagination'
 // ページ側からカフェデータの配列を受け取るプロップス
 const props = withDefaults(
   defineProps<{
-    allCafes: Cafe[]
+    allCafes: CafeType[]
     stateKey?: string
   }>(),
   {
@@ -86,6 +62,30 @@ const swiperBreakpoints = {
 }
 </script>
 
+<template>
+  <div class="cafe-slider-wrapper ">
+    <!-- Swiperの読み込みやレスポンシブ設定はここ1箇所に集約 -->
+    <Swiper
+      :key="`${stateKey}-${allCafes.map(c => c.id).join('-')}`"
+      :modules="modules"
+      :breakpoints="swiperBreakpoints"
+      :navigation="true"
+      :pagination="{ clickable: true }"
+      :initial-slide="initialSlide" 
+      @slideChange="saveSlide"
+      class="cafe-cards-slider">
+
+      <!-- 💡 ループ処理とスライドタグをここにまとめる -->
+      <SwiperSlide v-for="cafe in allCafes" :key="cafe.id" class="overflow-hidden transition">
+        <!-- slot を使って、中身のデータ（1件分のカフェ）を外に送る -->
+        <CafeCards :cafe="cafe" />
+      </SwiperSlide>
+
+    </Swiper>
+
+  </div>
+</template>
+
 <style scoped>
 /* ==========================================
    Swiper 全体ラッパーと下部余白
@@ -96,12 +96,10 @@ const swiperBreakpoints = {
 }
 
 .cafe-cards-slider {
-  width: 100%;
+  width: 80%;
   max-width: 1000px;
-  margin: auto ;
   /* ページネーション用の下部スペースを確保（カードと重ならないように） */
   padding-bottom: 40px ;
-  position: relative;
 }
 
 /*デフォルト表示
@@ -199,7 +197,12 @@ const swiperBreakpoints = {
    1. 矢印（Navigation ボタン）
    - サイトに合わせた温かみのあるブラウン＆ベージュ系の丸ボタン
 ========================================== */
-@media (min-width: 768px) {
+@media (min-width: 769px) {
+  
+  .cafe-cards-slider {
+     margin-right: auto;
+     margin-left: 0;
+  }
 
  .cafe-cards-slider :deep(.swiper-button-prev),
  .cafe-cards-slider :deep(.swiper-button-next) {

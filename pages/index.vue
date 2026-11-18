@@ -8,14 +8,15 @@
     <!-- カフェスライダーセクション -->
     <div class="cafe-cards-section  mx-auto" id="nowOpenCafe">
   
-      <h2 class="cafe-cards-ttl text-white tracking-wider">現在営業中のカフェ</h2>
-      <p class="canSlide">＜ーー  スライドできます  ーー＞</p>
+      <h2 class="cafe-cards-ttl tracking-wider mb-5">現在営業中のカフェ</h2>
     
       <!-- 営業中のカフェをCafeSliderで表示 -->
       <CafeSlider 
       :allCafes="openCafes"
       state-key="home-open-cafes" 
       class="h-full" />
+
+      <img src="/images/slider/bg/cafe_table-bg.webp" alt="カフェのテーブル">
     
     </div>
     
@@ -34,9 +35,13 @@
 <script setup>
 // 💡 composables/useCafe.ts から全カフェデータと営業時間判定関数を呼び出す（個別 import 不要！）
 const { allCafes, checkIfOpen } = useCafe()
+// 曜日配列（営業日判定用）
+const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 const openCafes = computed(() => {
-  return allCafes.value.filter(cafe => checkIfOpen(cafe.businessHours))
+  const today = WEEKDAYS[new Date().getDay()]
+  // 営業中のカフェ(営業時間、営業日)をフィルタリングして返す
+  return allCafes.value.filter(cafe => checkIfOpen(cafe.businessHours) && !cafe.closedDays?.includes(today))
 })
 </script>
 <style scoped>
@@ -85,24 +90,25 @@ header{
 }
 /*CSSの background または background-image プロパティで url() と linear-gradient() をカンマ (,) で区切って同時に指定すると、背景画像の上に半透明のグラデーションを重ねて表示できる。先に書いた方が手前（上層）に重なる。 */
 .cafe-cards-section{ 
-                     background: linear-gradient(#7c3d0586, var(--color-base)), url(/images/slider/bg/cafe_table.jpg);
-                     background-repeat: no-repeat;
-                     background-size: cover;
-                     background-position: center;
                      position: relative;
+                     width:100% ;
 
            .cafe-cards-ttl{
+                  color:var(--text-color);
                   font-size:20px;
                   text-align: center;
                   padding: 30px 10px 10px 10px;
 
            }
-           .canSlide{
-                     color: var(--color-text-white);
-                     text-align:center;
-                     font-size: 14px;
-                     padding:20px;
-            }
+           img{
+
+            width: 200px;
+            position: absolute;
+            left: -80px;
+            bottom: -70px;
+            
+           }
+           
 }
 @media (min-width:769px){
 
@@ -134,9 +140,9 @@ header{
                   
         }
   }
-    .cafe-cards-section{
-                       width:100% ;
-                       padding:20px ;
+  .cafe-cards-section{
+                       max-width: 1200px;
+                       padding: 20px ;
                        margin-bottom:120px ; 
 
         .cafe-cards-ttl{
@@ -145,9 +151,10 @@ header{
                         padding: 30px 0 0 0 ;
                         margin-bottom: 40px ;
         }
-        .canSlide{
-                 font-size: 18px ;
-                 letter-spacing: 10px ;
+        img{
+              width:400px;
+              position: absolute ;
+              left: 65%;
         }
      }
  

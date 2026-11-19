@@ -98,7 +98,9 @@ Vercelのビルド設定、公開ブランチ、ドメインはVercel側で管�
 │   ├── search.vue              # 検索結果
 │   └── cafes/[id].vue          # カフェ詳細
 ├── public/                     # 画像、アイコン、Webアプリマニフェスト
-├── schemas/                    # ZodスキーマとTypeScript型
+├── schemas/　　　　　　　　　　　# ZodスキーマとTypeScript型
+    ├── cafe.ts
+    └── search.ts
 ├── server/
 │   ├── api/search.ts           # Geminiを使う検索API
 │   └── data/cafes.json         # カフェ一覧データ

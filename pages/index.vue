@@ -10,11 +10,13 @@
   
       <h2 class="cafe-cards-ttl tracking-wider mb-5">現在営業中のカフェ</h2>
     
-      <!-- 営業中のカフェをCafeSliderで表示 -->
-      <CafeSlider 
-      :allCafes="openCafes"
-      state-key="home-open-cafes" 
-      class="h-full" />
+      <!-- 営業中のカフェをCafeSliderで表示 <ClientOnly> でopenCafesの箇所を囲むことでブラウザ側とサーバー側での描画の差異を解消 -->
+      <ClientOnly>
+        <CafeSlider 
+          :allCafes="openCafes"
+          state-key="home-open-cafes" 
+          class="h-full" />
+      </ClientOnly>
 
       <img src="/images/slider/bg/cafe_table-bg.webp" alt="カフェのテーブル">
     
@@ -39,12 +41,12 @@ const { allCafes, checkIfOpen } = useCafe()
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 const openCafes = computed(() => {
-onMounted(() => {
+
   // ページ読み込み時に、現在営業中のカフェを取得する
   const today = WEEKDAYS[new Date().getDay()]
   // 営業中のカフェ(営業時間、営業日)をフィルタリングして返す
   return allCafes.value.filter(cafe => checkIfOpen(cafe.businessHours) && !cafe.closedDays?.includes(today))
-})
+
 })
 
 </script>

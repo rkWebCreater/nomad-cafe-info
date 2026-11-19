@@ -39,10 +39,14 @@ const { allCafes, checkIfOpen } = useCafe()
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 const openCafes = computed(() => {
+onMounted(() => {
+  // ページ読み込み時に、現在営業中のカフェを取得する
   const today = WEEKDAYS[new Date().getDay()]
   // 営業中のカフェ(営業時間、営業日)をフィルタリングして返す
   return allCafes.value.filter(cafe => checkIfOpen(cafe.businessHours) && !cafe.closedDays?.includes(today))
 })
+})
+
 </script>
 <style scoped>
 /*PC、SP共通 */

@@ -28,7 +28,7 @@ const normalizedBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`
 
 // public/images/loading/loading_bar.mp4 へのパス
 const videoSrc = computed(() => {
-  return `${normalizedBase}images/loading/loading_bar.mp4`
+  return `${normalizedBase}images/loading/loading.mp4`
 })
 
 const clearTimers = () => {

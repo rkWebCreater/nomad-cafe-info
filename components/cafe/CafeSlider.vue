@@ -96,7 +96,7 @@ const swiperBreakpoints = {
 }
 
 .cafe-cards-slider {
-  width: 80%;
+  width: 90%;
   max-width: 1000px;
   /* ページネーション用の下部スペースを確保（カードと重ならないように） */
   padding-bottom: 40px ;
@@ -199,10 +199,6 @@ const swiperBreakpoints = {
 ========================================== */
 @media (min-width: 769px) {
   
-  .cafe-cards-slider {
-     margin-right: auto;
-     margin-left: 0;
-  }
 
  .cafe-cards-slider :deep(.swiper-button-prev),
  .cafe-cards-slider :deep(.swiper-button-next) {

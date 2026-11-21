@@ -50,9 +50,11 @@ watch(searchResults, () => {
 
 // ③ タグの英名（例: "power"）を日本語（例: "電源あり"）に変換する計算
 const searchTagName = computed(() => {
+
   if(!searchTag.value) return ''
+
   //TAG_MAP にデータがあればその日本語名を返し、なければそのままの文字列を返す
-  return String(searchTag.value || '').split(',').map(tag => TAG_MAP[tag] || tag).join(', ')
+  return String(searchTag.value || '').split(',').map(tag => TAG_MAP[tag] || tag).join(' , ')
 })
 
 // ④ エリアの英名（例: "nagoya"）を日本語（例: "名古屋"）に変換する計算
@@ -93,15 +95,15 @@ const searchAreaName = computed(() => {
     <h1>
       <!-- エリア・キーワード・タグの組み合わせ表示 -->
       <span v-if="searchArea">エリア「{{ searchAreaName }}」</span>
-      <span v-if="searchArea && (searchKeyword || searchTag)">と</span>
+      <span v-if="searchArea && (searchKeyword || searchTag.length > 0)">と</span>
       
       <span v-if="searchKeyword">キーワード「{{ searchKeyword }}」</span>
-      <span v-if="searchKeyword && searchTag">と</span>
+      <span v-if="searchKeyword && searchTag.length > 0">と</span>
       
-      <span v-if="searchTag">タグ「{{ searchTagName }}」</span>
+      <span v-if="searchTag.length > 0">タグ「{{ searchTagName }}」</span>
       
-      <!-- いずれも指定がない場合 -->
-      <span v-if="!searchArea && !searchKeyword && !searchTag">すべてのカフェ</span>
+      <!-- いずれも指定がない場合 searchTagのみlengthが0 なのはsearchTagが配列で空配列でもtrueになってしまい表示されてしまうのを防ぐ-->
+      <span v-if="!searchArea && !searchKeyword && searchTag.length === 0">すべてのカフェ</span>
     </h1>
     <p><span>{{ searchResults.length }}件</span>のカフェが見つかりました</p>
   </div>

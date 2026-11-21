@@ -17,7 +17,6 @@ function applyFilters() {
 
 function resetFilters() {
   selectedTags.value = [] // 選択されたタグをリセット
-  router.push({ path: '/search' })
 }
 </script>
 

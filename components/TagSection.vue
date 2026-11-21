@@ -1,24 +1,24 @@
 <script setup>
 import { TAGS } from '~/constants/tags'
+const router = useRouter()
+const selectedTags = ref([]) // 選択されたタグを保持する配列
 
-// 画像に表示されているタグのリスト
-// key は JSON 側のプロパティ名やクエリのパラメータに合わせて調整可能
-/*const tags = [
-  { name: '電源', key: 'power' },
-  { name: 'Wifi', key: 'wifi' },
-  { name: 'モーニング', key: 'morning' },
-  { name: 'ランチ', key: 'lunch' },
-  { name: '一人席', key: 'single' },
-  { name: '禁煙', key: 'no-smoking' },
-  { name: '打あわせ可', key: 'meeting' }
+function toggleTag(tagKey) {
+  // 選択済みのタグが含まれている場合は削除、含まれていない場合は追加する
+  selectedTags.value = selectedTags.value.includes(tagKey)
+    ? selectedTags.value.filter((key) => key !== tagKey)
+    : [...selectedTags.value, tagKey]
+}
 
-] constants/tags.js にまとめたので消しても大丈夫
+function applyFilters() {
+  // 選択されたタグをクエリパラメータとしてルートに渡す
+  router.push({ path: '/search', query: { tag: selectedTags.value.join(',') } })
+}
 
- const tagImages =[
-  {id:1 , name:'wifiImage' , imgUrl :'~/images/illust/wifi_pin.png'},
-  {id:2 , name:'powerImage' , imgUrl :'~/images/illust/power_pin.png'}
-  ]  
-  */
+function resetFilters() {
+  selectedTags.value = [] // 選択されたタグをリセット
+  router.push({ path: '/search' })
+}
 </script>
 
 <template>
@@ -40,16 +40,32 @@ import { TAGS } from '~/constants/tags'
 -->
     <!-- タグボタン一覧 -->
     <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-      <NuxtLink
+      <button
         v-for="tag in TAGS"
         :key="tag.key"
-        :to="{ path: '/search', query: { tag: tag.key } }"
+        @click="toggleTag(tag.key)"
         :style="{ '--tag-icon': `url('${tag.iconImg}')` }"
-        class="tag-btn bg-[#b16213] inline-block text-white text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm"
+        class="tag-btn inline-block text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm"
+        :class="{ 'is-selected': selectedTags.includes(tag.key) }"
         >
         {{ tag.name }}
-      </NuxtLink>
+      </button>
     </div>
+
+    <div class="btns flex justify-center gap-4 mt-8">
+     
+     <!-- 絞り込みボタン -->
+     <button @click="applyFilters" class="bg-[#7A583A] text-white px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
+      絞り込み
+     </button>
+
+     <!-- リセットボタン -->
+     <button @click="resetFilters" class="bg-[#ccc] text-[#7A583A] px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
+       リセット
+     </button>
+    
+    </div>
+
   </section>
 </template>
 
@@ -66,11 +82,15 @@ import { TAGS } from '~/constants/tags'
   position: relative;
 }
 .tag-btn:hover{
-  color :  var(--color-text);
-  background : radial-gradient(rgba(250, 176, 126, 1), #b16213);
+  color: #fff8f1;
+  background: radial-gradient(#682b01, #ffc78f);
   scale: 1.2 ;
 }
-
+.tag-btn.is-selected {
+  color: #fff8f1;
+  background: radial-gradient(#682b01, #ffc78f);
+  box-shadow: 0 0 0 3px rgb(177 98 19 / 35%);
+}
 /* 疑似要素の設定 
 */
 .tag-btn::after{
@@ -96,5 +116,6 @@ import { TAGS } from '~/constants/tags'
   opacity: 1 ;
   top:50%;
 }
+
 
 </style>

@@ -42,7 +42,16 @@ export const useCafe = () => {
   // ③ URLのクエリパラメータを監視・取得するための算出プロパティ
   const searchKeyword = computed(() => String(route.query.keyword || ''))
   const searchArea = computed(() => String(route.query.area || ''))
-  const searchTag = computed(() => String(route.query.tag || ''))
+  const searchTag = computed<string[]>(() => {
+                    const value = route.query.tag
+                    const values = Array.isArray(value) ? value : [value]
+
+                    return values
+                           .filter((tag): tag is string => typeof tag === 'string')
+                           .flatMap(tag => tag.split(',')
+                           .map(tag => tag.trim())
+                           .filter(Boolean)) // カンマ区切りのタグを分割して配列化
+                    })
 
   // 入力チェック用（キーワードが空じゃないか判定）
   const isValidInput = computed(() => searchKeyword.value.trim().length > 0)
@@ -99,14 +108,16 @@ const checkIfOpen = (businessHours: string): boolean => {
   ): Cafe[] => {
     const rawKeyword = (options.keyword || '').trim().toLowerCase()
     const area = (options.area || '').trim()
-    const tag = (options.tag || '').trim()
+    const tags = (Array.isArray(options.tag) ? options.tag : [options.tag || ''])
+                .map(tag => tag.trim())
+                .filter(Boolean)
 
     // キーワード文字列をスペース区切りで配列化  rawKeyword ? ... : [] （三項演算子） rawKeywordに文字が入っていたら後半の処理を実行　空なら空の配列[]を返す
     // .split(/\s+/) : 1つ以上の半角/全角スペースで分割
     // .filter(Boolean) : 空文字 ("") を除外　JavaScript では Boolean("") は false になるため、.filter(Boolean) と書くだけで空要素がキレイに消えます。
     const keywords: string[] = rawKeyword? rawKeyword.replace(/ /g, ' ').split(/\s+/).filter(Boolean): [] 
 
-    if (keywords.length === 0 && !area && !tag) return allCafes
+    if (keywords.length === 0 && !area && !tags.length) return allCafes
 
     return allCafes.filter((cafe) => {
       // --- 条件 A: キーワード（複数単語AND検索 ＆ 電源/Wi-Fi判定） ---
@@ -133,7 +144,7 @@ const checkIfOpen = (businessHours: string): boolean => {
 
       // --- 条件 C: タグ一致確認 ---
       // タグが未指定(!tag)、または該当タグのavailableがtrueの場合に true
-      const matchTag = !tag || cafe.features[tag as FeatureKey]?.available
+      const matchTag = tags.length === 0 || tags.every(tag => cafe.features[tag as FeatureKey]?.available === true)
 
       return matchKeyword && matchArea && matchTag
     })
@@ -142,9 +153,11 @@ const checkIfOpen = (businessHours: string): boolean => {
   // ④ ローカル検索の結果を算出プロパティとして返す
   const filteredCafes = computed<Cafe[]>(() => {
     return localSearch(allCafesData.value, {
+
       keyword: searchKeyword.value,
       area: searchArea.value,
       tag: searchTag.value
+    
     })
   })
 
@@ -175,8 +188,7 @@ const checkIfOpen = (businessHours: string): boolean => {
         searchResults.value = filteredCafes.value || []
 
         if (searchResults.value.length > 0) {
-          noticeMessage.value =
-            'AI検索で一致しなかったため、通常のキーワード検索結果を表示しています。'
+          noticeMessage.value = 'AI検索で一致しなかったため、通常のキーワード検索結果を表示しています。'
         }
       } else {
         searchResults.value = data.results || []
@@ -189,8 +201,7 @@ const checkIfOpen = (businessHours: string): boolean => {
     } catch (error) {
 
       console.error('Search request error:', error)
-      noticeMessage.value =
-        '⚠️ AI検索を利用できないため、通常のキーワード検索結果を表示しています。'
+      noticeMessage.value = '⚠️ AI検索を利用できないため、通常のキーワード検索結果を表示しています。'
       searchResults.value = filteredCafes.value || []
 
     } finally {
@@ -232,7 +243,7 @@ const checkIfOpen = (businessHours: string): boolean => {
 
   // Vueファイル側で使いたい変数・関数をすべて返す
   return {
-    allCafes: allCafesData, // ★ 全カフェデータ（Ref<Cafe[]>）
+    allCafes: allCafesData, //  全カフェデータ（Ref<Cafe[]>）
     checkIfOpen,
     localSearch,
     searchKeyword,

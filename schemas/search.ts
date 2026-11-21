@@ -5,7 +5,7 @@ import { CafeSchema } from '@/schemas/cafe'
 export const SearchOptionsSchema = z.object({
   keyword: z.string().optional(),
   area: z.string().optional(),
-  tag: z.string().optional()
+  tag: z.union([z.string(), z.array(z.string())]).optional()
 })
 
 // Zodスキーマを使って、検索APIのレスポンス型を作成

@@ -44,7 +44,7 @@ function resetFilters() {
         :key="tag.key"
         @click="toggleTag(tag.key)"
         :style="{ '--tag-icon': `url('${tag.iconImg}')` }"
-        class="tag-btn inline-block text-sm md:text-base px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm"
+        class="tag-btn inline-block text-sm md:text-base px-4 py-2 rounded-full transition-colors duration-200 shadow-sm"
         :class="{ 'is-selected': selectedTags.includes(tag.key) }"
         >
         {{ tag.name }}
@@ -79,13 +79,9 @@ function resetFilters() {
 }
 .tag-btn {
   position: relative;
+  background: #fff8f0;
 }
-.tag-btn:hover{
-  color: #fff8f1;
-  background: radial-gradient(#682b01, #ffc78f);
-  scale: 1.2 ;
-}
-.tag-btn.is-selected {
+.is-selected {
   color: #fff8f1;
   background: radial-gradient(#682b01, #ffc78f);
   box-shadow: 0 0 0 3px rgb(177 98 19 / 35%);

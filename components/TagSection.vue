@@ -54,12 +54,12 @@ function resetFilters() {
     <div class="btns flex justify-center gap-4 mt-8">
      
      <!-- 絞り込みボタン -->
-     <button @click="applyFilters" class="bg-[#7A583A] text-white px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
+     <button @click="applyFilters" class="btn bg-[#7A583A] text-white px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
       絞り込み
      </button>
 
      <!-- リセットボタン -->
-     <button @click="resetFilters" class="bg-[#ccc] text-[#7A583A] px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
+     <button @click="resetFilters" class="btn bg-[#dcdcdc] text-[#7A583A] px-6 py-2.5 rounded-full transition-colors duration-200 shadow-sm">
        リセット
      </button>
     
@@ -111,6 +111,8 @@ function resetFilters() {
   opacity: 1 ;
   top:50%;
 }
-
+.btns .btn:hover{
+  opacity:0.8;
+}
 
 </style>

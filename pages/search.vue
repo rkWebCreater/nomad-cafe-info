@@ -52,7 +52,7 @@ watch(searchResults, () => {
 const searchTagName = computed(() => {
   if(!searchTag.value) return ''
   //TAG_MAP にデータがあればその日本語名を返し、なければそのままの文字列を返す
-  return TAG_MAP[searchTag.value] || searchTag.value
+  return String(searchTag.value || '').split(',').map(tag => TAG_MAP[tag] || tag).join(', ')
 })
 
 // ④ エリアの英名（例: "nagoya"）を日本語（例: "名古屋"）に変換する計算

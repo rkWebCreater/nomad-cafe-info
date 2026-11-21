@@ -158,7 +158,7 @@ const searchAreaName = computed(() => {
   <div v-if="searchResults.length === 0 && !isLoading" class="text-center py-12 text-gray-500">
     <p class="text-lg font-medium">条件に一致するカフェが見つかりませんでした。</p>
     <p class="text-sm mt-2">検索キーワードやエリアを変更して再度お試しください。</p>
-    <p v-if="searchTag === 'meeting'" class="text-xs text-amber-700 bg-[]-50 inline-block px-3 py-1.5 rounded-full mt-4 border border-amber-200">
+    <p v-if="searchTag.length > 0 && searchTag[0] === 'meeting'" class="text-xs text-amber-700 bg-[]-50 inline-block px-3 py-1.5 rounded-full mt-4 border border-amber-200">
       ※「打あわせ可」は0件表示のデザイン確認用のため、現在データをセットしていません。
     </p>
   </div>

@@ -68,7 +68,7 @@
  #menu-trigger {
                width: 40px;
                height: 40px;
-               gap: 7px;
+               gap: 5px;
 
             span{
                  width: 24px;
@@ -208,7 +208,6 @@
              {id: 1 , name: 'トップページ' , path:'/' },
              {id: 2 , name: '営業中のカフェ' , path:'/#nowOpenCafe'},
              {id: 3 , name: 'エリアから探す' , path:'/#cafeArea'},
-             {id: 4 , name: 'タグから探す' , path:'/#cafeTag'},
              {id: 5 , name: '新着おすすめカフェ' , path:'/#new-reco-cafe'}
   ]
 

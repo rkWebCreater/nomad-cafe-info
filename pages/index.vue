@@ -35,7 +35,7 @@
   </div>
 </template>
 <script setup>
-// 💡 composables/useCafe.ts から全カフェデータと営業時間判定関数を呼び出す（個別 import 不要！）
+//  composables/useCafe.ts から全カフェデータと営業時間判定関数を呼び出す（個別 import 不要！）
 const { allCafes, checkIfOpen } = useCafe()
 // 曜日配列（営業日判定用）
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -107,12 +107,11 @@ header{
 
            }
            img{
-
-            width: 200px;
-            position: absolute;
-            left: -80px;
-            bottom: -70px;
-            
+               width: 200px;
+               position: absolute;
+               left: -80px;
+               bottom: -70px;
+               filter: drop-shadow(5px 4px 1px black);
            }
            
 }
@@ -160,8 +159,8 @@ header{
         img{
               width:400px;
               position: absolute ;
-              left: 65%;
-              filter: drop-shadow(5px 4px 1px black);
+              left: 75%;
+              
         }
      }
  

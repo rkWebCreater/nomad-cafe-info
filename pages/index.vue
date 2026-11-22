@@ -158,7 +158,6 @@ header{
         }
         img{
               width:400px;
-              position: absolute ;
               left: 75%;
               
         }

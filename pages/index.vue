@@ -108,7 +108,7 @@ header{
            }
            img{
                width: 200px;
-               position: absolute;
+               position: sticky;
                left: -80px;
                bottom: -70px;
                filter: drop-shadow(5px 4px 1px black);

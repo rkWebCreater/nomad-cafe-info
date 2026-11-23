@@ -21,13 +21,13 @@
       <img src="/images/slider/bg/cafe_table-bg.webp" alt="カフェのテーブル">
     
     </div>
+
+    <!-- タグから探す -->
+   <div id="cafeTag"></div>
+   <TagSection />
     
    <!-- エリアから探す -->
    <indexCafeAreas />
-
-   <!-- タグから探す -->
-   <div id="cafeTag"></div>
-   <TagSection />
 
    <!-- 新着おすすめカフェ -->
    <indexNewCafes />

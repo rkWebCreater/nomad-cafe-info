@@ -1,8 +1,5 @@
 // @ts-nocheck 
 
-import type { n } from "vue-router/dist/options-B1Pk0SIa.mjs";
-
-
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },

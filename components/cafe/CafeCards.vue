@@ -1,11 +1,11 @@
 <!-- app/components/CafeCards.vue カフェスライダーのスライドのコンポーネント-->
 
 <script lang="ts" setup>
-import { type Cafe } from "../schemas/cafe"
+import { type CafeType } from "@/schemas/cafe"
 
 // 1. コンポーネントが受け取る props の型定義（Zod由来の型を使用）
 const props = defineProps<{
-  cafe: Cafe
+  cafe: CafeType
 }>()
 
 /* 2. 画像URLにキャッシュバスティング用のクエリパラメータを自動付与する算出プロパティ

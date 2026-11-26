@@ -4,7 +4,7 @@
 import { AREA_MAP } from '../constants/areas'
 import { TAG_MAP } from '../constants/tags'
 
-// useCafe から必要なデータと機能を呼び出す（個別 import も引数も不要！）
+// useSearch から必要なデータと機能を呼び出す（個別 import も引数も不要！）
 const {
   isLoading,
   noticeMessage,
@@ -13,7 +13,7 @@ const {
   searchKeyword,   // 画面に検索キーワードを表示する用
   searchArea,      // 画面にエリアを表示する用
   searchTag,       // 画面にタグを表示する用
-} = useCafe()
+} = useSearch()
 
 //もっと見るボタンの処理
 const isMobile = ref(false)
@@ -30,7 +30,7 @@ function showMoreResults() {
 }
 
 const mobileViewport = () => {
-  isMobile.value = window.innerWidth < 768
+  isMobile.value = window.innerWidth < 769
 }
 
 onMounted(() => {

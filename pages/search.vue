@@ -178,26 +178,9 @@ const searchAreaName = computed(() => {
                grid-auto-flow: row;
                justify-content: center;
                gap: 20px;
-
-              li{
-                background: var(--color-bg);
-                border-radius: 10px;
-
-               img{
-                   border-radius: 10px 10px 0 0 ;
-               }
-              }
-               
+             
  }
- .tags{
-    & span{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 4px ;
-      align-content: center;
-  }
-}
+ 
 .more_show_btn{
   background : #3e2b24;
 }

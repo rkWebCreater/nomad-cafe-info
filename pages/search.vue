@@ -111,37 +111,8 @@ const searchAreaName = computed(() => {
   <!-- 検索結果一覧 -->
   <!-- 1件以上ある場合 -->
   <ul v-if="searchResults.length > 0" class="cafe_filter_list ml-auto mr-auto">
-    <li v-for="filteredCafe in visibleSearchResults" :key="filteredCafe.id">
-      <NuxtLink :to="`/cafes/${filteredCafe.id}`" class="block h-full">
-        <img :src="filteredCafe.imageUrl" :alt="filteredCafe.name" class="w-full h-48 object-cover"/>
-        
-        <div class="p-5 grid grid-rows-[auto_1fr_auto] gap-2 content-between card-body-height flex-1">
-          <div>
-            <span class="area-name bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded inline-block">
-              {{ filteredCafe.areaNameJa }}
-            </span>
-            <h3 class="cafe-name font-bold text-gray-900 mt-2 mb-1 min-h-[2rem] line-clamp-1.5 py-0 px-[5px]">
-              {{ filteredCafe.name }}
-            </h3>
-            <p class="text-gray-800 text-sm min-h-[2rem] line-clamp-1.5">
-              📍{{ filteredCafe.address }}
-            </p>
-            <p class="text-gray-600 text-sm mt-1">
-              🕒{{ filteredCafe.businessHours }}
-            </p>
-          </div>
-          
-          <div class="tags mt-2 flex gap-2 text-xs text-gray-500">
-            <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="/images/icon/wifi_icon.svg" alt="wifiのアイコン" class="w-4">{{ filteredCafe.features?.wifi?.available ? '◎' : '✖' }}
-            </span>
-            <span class="bg-gray-100 px-2 py-1 rounded">
-              <img src="/images/icon/power_icon.svg" alt="powerのアイコン" class="w-4">{{ filteredCafe.features?.power?.available ? '◎' : '✖' }}
-            </span>
-          </div>
-
-        </div>
-      </NuxtLink>
+    <li v-for="filteredCafe in visibleSearchResults" :key="filteredCafe.id" class="flex flex-col">
+      <CafeCards :cafe="filteredCafe" />
     </li>
   </ul>
 

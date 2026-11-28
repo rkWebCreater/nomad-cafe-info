@@ -1,120 +1,119 @@
-<script setup>
+<script setup lang="ts">
+import type { CafeType } from '@/schemas/cafe'
+
 // 表示したいおすすめカフェの合計枠数（メイン1件 ＋ サブ2件 ＝ 計3件）
 const DISPLAY_COUNT = 3
 
-// カフェのデータ（実務では API や microCMS 等から取得）
-const recoCafes = ref([
-  {
-    id: 1,
-    name: 'Cafe normand blaren',
-    areaName: '渋谷',
-    desc: '渋谷ストリーム2Fに位置する開放感あふれる旗艦店。大きな窓から差し込む自然光の中で、ゆったりと作業を進められます。',
-    imageUrl: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop',
-    rating: 4.8,
-    isFeatured: true    //  手動おすすめフラグ
-  },
-  {
-    id: 2,
-    name: 'ROASTERY & WORK',
-    areaName: '新宿',
-    desc: '静寂なBGMと自家焙煎コーヒーが楽しめるワークスペース。全席コンセント完備。',
-    imageUrl: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=800&auto=format&fit=crop',
-    rating: 4.5,
-    isFeatured: false
-  },
-  {
-    id: 3,
-    name: 'GREEN SHADE CAFE',
-    areaName: '梅田',
-    desc: '緑に囲まれたテラス席が人気のノマドカフェ。Wi-Fiも高速で快適です。',
-    imageUrl: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop',
-    rating: 4.9,        //  手動指定なしの中で最高評価
-    isFeatured: false
-  },
-  {
-    id: 4,
-    name: 'SILENT COFFEE',
-    areaName: '名古屋',
-    desc: '集中作業に特化したサイレント仕様のカフェ。深煎りエスプレッソが魅力。',
-    imageUrl: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800&auto=format&fit=crop',
-    rating: 4.6,
-    isFeatured: true,
-    featuredOrder: 1 //表示優先
+const { allCafes } = useCafe()
+const dailyCafes = ref<CafeType[]>([])
+
+// 今日の日付（例: 20261128）をシード値として生成
+const getTodaySeed = (): number => {
+  const now = new Date()
+  return (
+    now.getFullYear() * 10000 +
+    (now.getMonth() + 1) * 100 +
+    now.getDate()
+  )
+}
+
+// シード値から毎回同じ並びの乱数を生み出す関数（Mulberry32）
+const createSeededRandom = (seed: number) => {
+  let state = seed >>> 0
+  return () => {
+    state += 0x6d2b79f5
+    let t = Math.imul(state ^ (state >>> 15), 1 | state)
+    t ^= t + Math.imul(t ^ (t >>> 7), 61 | t)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   }
-])
+}
 
-// -------------------------------------------------------------
-// 【コアロジック】手動指定優先 ＋ 不足分は高評価店舗で自動補完
-// -------------------------------------------------------------
-const recommendedCafes = computed(() => {
-  // 1. 手動で「おすすめ指定（isFeatured: true）」された店舗を取り出し優先順にソート
-  const featured = recoCafes.value.filter(item => item.isFeatured).sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
+// 日付シードを使って全カフェからランダムに指定件数を抽出する
+const pickDailyRandomCafes = (
+  cafes: CafeType[],
+  count: number,
+  seed: number
+): CafeType[] => {
+  const shuffled = [...cafes]
+  const random = createSeededRandom(seed)
 
-  // 手動指定だけで目標の3件が埋まっていれば、そのまま返す
-  if (featured.length >= DISPLAY_COUNT) {
-    return featured.slice(0, DISPLAY_COUNT)
+  // Fisher-Yates シャッフル（元の配列を壊さずにランダム並び替え）
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1))
+    const temp = shuffled[i]
+    shuffled[i] = shuffled[j]!
+    shuffled[j] = temp!
   }
 
-  // 2. 重複防止：手動選出されたカフェのIDを「Set」に保存
-  const featuredIds = new Set(featured.map(item => item.id))
+  return shuffled.slice(0, count)
+}
 
-  // 3. 未選出の店舗から「評価（rating）が高い順」に不足分（3 - 手動数）だけ取得
-  const neededCount = DISPLAY_COUNT - featured.length
-  const fallback = recoCafes.value
-    .filter(item => !featuredIds.has(item.id)) // Setを使って重なりを除外
-    .sort((a, b) => b.rating - a.rating)       // 降順ソート
-    .slice(0, neededCount)                    // 足りない分だけ切り出し
-
-  // 4. スプレッド構文（...）で「手動指定」＋「高評価補完」を合体！
-  return [...featured, ...fallback]
+// 静的プリレンダリングや時差によるズレを防ぐため、ブラウザ表示時に今日のおすすめを選出
+onMounted(() => {
+  dailyCafes.value = pickDailyRandomCafes(
+    allCafes.value,
+    DISPLAY_COUNT,
+    getTodaySeed()
+  )
 })
 
-// -------------------------------------------------------------
-// 【UI用データ切り分け】
-// -------------------------------------------------------------
-// 先頭1件（インデックス0）を「左側のメイン（featuredCafe）」に割り当て
-const featuredCafe = computed(() => recommendedCafes.value[0])
-
-// 2件目と3件目（インデックス1〜2）を「右側のサブ（subCafes）」に割り当て
-const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
+// 先頭1件を左側のメイン、2〜3件目を右側のサブに割り当て
+const featuredCafe = computed(() => dailyCafes.value[0])
+const subCafes = computed(() => dailyCafes.value.slice(1, DISPLAY_COUNT))
 </script>
 
 <template>
   <section class="new-cafes-section">
     <div class="section-container">
-      <h2 class="section-title" id="new-reco-cafe">新着おすすめカフェ</h2>
+      <h2 class="section-title" id="new-reco-cafe">今日のおすすめカフェ</h2>
 
-      <div class="cafe-grid">
+      <div v-if="featuredCafe" class="cafe-grid">
         <!-- 左側：メインカード（縦長に空間を見せる） -->
-        <div 
-          v-if="featuredCafe" 
-          :to="`/cafes/${featuredCafe.id}`" 
+        <NuxtLink
+          :to="`/cafes/${featuredCafe.id}`"
           class="cafe-card main-card"
         >
-          <img :src="featuredCafe.imageUrl" :alt="featuredCafe.name" class="card-image" />
+          <img
+            :src="featuredCafe.imageUrl"
+            :alt="featuredCafe.name"
+            class="card-image"
+            loading="lazy"
+          />
           <div class="card-overlay">
-            <span class="area-badge">{{ featuredCafe.areaName }}</span>
+            <span class="area-badge">{{ featuredCafe.areaNameJa }}</span>
             <h3 class="cafe-name">{{ featuredCafe.name }}</h3>
-            <p class="cafe-desc">{{ featuredCafe.desc }}</p>
+            <p class="cafe-desc">
+              <span v-if="featuredCafe.businessHours">🕒 {{ featuredCafe.businessHours }}</span>
+              <span v-if="featuredCafe.businessHours && featuredCafe.address"> ／ </span>
+              <span v-if="featuredCafe.address">📍 {{ featuredCafe.address }}</span>
+            </p>
           </div>
-        </div>
+        </NuxtLink>
 
         <!-- 右側：サブカード群（文字量を抑えて写真の印象をキープ） -->
         <div class="sub-cards-group">
-          <div
-            v-for="cafe in subCafes" 
-            :key="cafe.id" 
-            :to="`/cafes/${cafe.id}`" 
+          <NuxtLink
+            v-for="cafe in subCafes"
+            :key="cafe.id"
+            :to="`/cafes/${cafe.id}`"
             class="cafe-card sub-card"
           >
-            <img :src="cafe.imageUrl" :alt="cafe.name" class="card-image" />
+            <img
+              :src="cafe.imageUrl"
+              :alt="cafe.name"
+              class="card-image"
+              loading="lazy"
+            />
             <div class="card-overlay">
-              <span class="area-badge">{{ cafe.areaName }}</span>
+              <span class="area-badge">{{ cafe.areaNameJa }}</span>
               <h3 class="cafe-name">{{ cafe.name }}</h3>
-              <p class="cafe-desc">{{ cafe.desc }}</p>
+              <p class="cafe-desc">
+                <span v-if="cafe.businessHours">🕒 {{ cafe.businessHours }}</span>
+                <span v-if="cafe.businessHours && cafe.address"> ／ </span>
+                <span v-if="cafe.address">📍 {{ cafe.address }}</span>
+              </p>
             </div>
-          </div>
-          
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -126,7 +125,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
 .new-cafes-section {
   padding:20px;
 
-  @media (min-width:768px){
+  @media (min-width:769px){
     padding: 60px 20px;
   }
 
@@ -142,7 +141,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
       font-weight: 500;
       letter-spacing: 0.05em;
 
-      @media (min-width:768px){
+      @media (min-width:769px){
         font-size:25px;
       }
     }
@@ -154,7 +153,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
       gap: 20px;
 
       /* レスポンシブ（PC表示）も中にネスト */
-      @media (min-width: 768px) {
+      @media (min-width: 769px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 24px;
@@ -244,7 +243,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
   &.main-card {
     height: 380px;
 
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       height: 460px;
     }
   }
@@ -253,7 +252,7 @@ const subCafes = computed(() => recommendedCafes.value.slice(1, 3))
   &.sub-card {
     height: 220px;
 
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       height: 218px;
     }
 
